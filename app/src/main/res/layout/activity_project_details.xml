@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View
+        android:id="@+id/v_interval"
+        style="@style/GreyInterval"
+        android:layout_below="@+id/toolbar"></View>
+
+    <LinearLayout
+        android:id="@+id/ll_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <Button
+            android:id="@+id/commit"
+            style="@style/SubmitButton"
+            android:layout_margin="@dimen/DIMEN_5"
+            android:background="@drawable/select_submit_button_simple"
+            android:text="@string/immediate_investment" />
+    </LinearLayout>
+
+        <FrameLayout
+            android:layout_above="@id/ll_commit"
+            android:layout_below="@+id/v_interval"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.xwsd.app.view.ObserveScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_bg"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_bg"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        custom:cardBackgroundColor="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_oddTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/DIMEN_10"
+                                android:layout_marginLeft="@dimen/DIMEN_15"
+                                android:layout_marginRight="@dimen/DIMEN_15"
+                                android:layout_marginTop="@dimen/DIMEN_15"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="福州宝马520LI融资租赁"
+                                android:textColor="@color/gray_2"
+                                android:textSize="@dimen/TEXT_L" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/DIMEN_5"
+                                android:layout_marginLeft="@dimen/DIMEN_15"
+                                android:layout_marginRight="@dimen/DIMEN_15"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tv_oddYearRate"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="@dimen/DIMEN_5"
+                                        android:singleLine="true"
+                                        android:text="18.6"
+                                        android:textColor="@color/text_orange"
+                                        android:textSize="@dimen/TEXT_XL" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="%"
+                                        android:textColor="@color/text_orange"
+                                        android:textSize="@dimen/TEXT_M" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/DIMEN_5"
+                                    android:layout_marginTop="@dimen/DIMEN_5"
+                                    android:text="年化收益"
+                                    android:textColor="@color/gray_text"
+                                    android:textSize="@dimen/TEXT_S" />
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:id="@+id/tv_rewards"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="@dimen/DIMEN_5"
+                                        android:background="@drawable/bg_newbid_rewards"
+                                        android:text="+0.6%"
+                                        android:textColor="@color/red_f4333c"
+                                        android:textSize="@dimen/TEXT_S"
+                                        android:visibility="visible" />
+                                </RelativeLayout>
+
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+                                <ProgressBar
+                                    android:id="@+id/pb_schedule"
+                                    style="@android:style/Widget.ProgressBar.Horizontal"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="@dimen/DIMEN_5"
+                                    android:layout_marginBottom="@dimen/DIMEN_5"
+                                    android:layout_marginLeft="@dimen/DIMEN_15"
+                                    android:layout_marginRight="@dimen/DIMEN_15"
+                                    android:max="100"
+                                    android:progress="0"
+                                    android:progressDrawable="@drawable/gradual_progress" />
+                                <TextView
+                                    android:id="@+id/process"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="@dimen/DIMEN_5"
+                                    android:layout_weight="0.12"
+                                    android:textColor="@color/blue_simple"
+                                    android:textSize="@dimen/TEXT_S"
+                                    android:text="20%"
+                                    />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/DIMEN_10"
+                                android:layout_marginLeft="@dimen/DIMEN_15"
+                                android:layout_marginRight="@dimen/DIMEN_15"
+                                android:orientation="horizontal">
+
+                                <include
+                                android:id="@+id/ll_oddMoney"
+                                layout="@layout/layout_project_details_2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/ll_time"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="@dimen/DIMEN_5"
+                                            android:singleLine="true"
+                                            android:text="38000"
+                                            android:textColor="@color/blue_simple"
+                                            android:textSize="@dimen/TEXT_L" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="投资期限"
+                                        android:textColor="@color/gray_text"
+                                        android:textSize="@dimen/TEXT_S" />
+                                </LinearLayout>
+
+
+                                <include
+                                    android:id="@+id/ll_oddMoneyLast"
+                                    layout="@layout/layout_project_details_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"/>
+                            </LinearLayout>
+
+                            <View
+                                style="@style/GreyInterval"
+                                android:layout_marginBottom="@dimen/DIMEN_5"
+                                android:layout_marginLeft="@dimen/DIMEN_15"
+                                android:layout_marginRight="@dimen/DIMEN_15"/>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        custom:cardBackgroundColor="@color/white">
+
+                        <include layout="@layout/layout_project_introduce"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/DIMEN_10"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        custom:cardBackgroundColor="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <!--<android.support.design.widget.TabLayout-->
+                                <!--android:id="@+id/tab_layout"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--custom:tabIndicatorColor="@color/blue_simple"-->
+                                <!--custom:tabSelectedTextColor="@color/blue_simple"-->
+                                <!--custom:tabTextColor="@color/gray_2" />-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/DIMEN_40"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/tab_project_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="项目详情"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/TEXT_L" />
+                                <TextView
+                                    android:id="@+id/tab_project_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="风控材料"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/TEXT_L" />
+                                <TextView
+                                    android:id="@+id/tab_project_3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="投资记录"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/TEXT_L" />
+
+                                <LinearLayout
+                                    android:id="@+id/ll_tab_project_right"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:id="@+id/tab_project_right"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="在投记录"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/TEXT_L" />
+                                    <TextView
+                                        android:id="@+id/iv_arrows"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginLeft="@dimen/DIMEN_3"
+                                        android:layout_marginTop="@dimen/DIMEN_3"
+                                        android:gravity="center"
+                                        android:textColor="@color/white"
+                                        android:visibility="gone"
+                                        android:background="@drawable/hong_yuan_text"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="horizontal">
+
+                                <View
+                                    android:id="@+id/indicator_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"></View>
+
+                                <View
+                                    android:id="@+id/indicator_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"
+                                    android:visibility="invisible"></View>
+                                <View
+                                    android:id="@+id/indicator_3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"
+                                    android:visibility="invisible"></View>
+                                <View
+                                    android:id="@+id/indicator_4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"
+                                    android:visibility="invisible"></View>
+
+                            </LinearLayout>
+                            <FrameLayout
+                                android:id="@+id/frame_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"></FrameLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+            </com.xwsd.app.view.ObserveScrollView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <com.xwsd.app.view.EmptyLayout
+                android:id="@+id/error_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"></com.xwsd.app.view.EmptyLayout>
+
+        </FrameLayout>
+
+</RelativeLayout>

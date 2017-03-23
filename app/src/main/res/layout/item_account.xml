@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="0.0dip"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/item_account_iv"
+        android:layout_width="@dimen/DIMEN_50"
+        android:layout_height="@dimen/DIMEN_50"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/DIMEN_10" />
+
+    <TextView
+        android:id="@+id/item_account_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_account_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/DIMEN_2"
+        android:maxLines="1"
+        android:text="@string/invest_manage"
+        android:textColor="@color/gray_1"
+        android:textSize="@dimen/TEXT_M" />
+
+    <View
+        style="@style/GreyInterval"
+        android:layout_below="@id/item_account_text"
+        android:layout_marginTop="@dimen/DIMEN_3"></View>
+
+</RelativeLayout>

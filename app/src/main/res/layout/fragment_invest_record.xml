@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/InvestRecordItemText"
+            android:layout_weight="1"
+            android:text="序号" />
+
+        <TextView
+            style="@style/InvestRecordItemText"
+            android:text="投标人" />
+
+        <TextView
+            style="@style/InvestRecordItemText"
+            android:text="金额（元）" />
+
+        <TextView
+            style="@style/InvestRecordItemText"
+            android:text="时间" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.xwsd.app.view.MyListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_220"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/DIMEN_15"
+            android:padding="@dimen/DIMEN_10"></com.xwsd.app.view.MyListView>
+
+        <com.xwsd.app.view.EmptyLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:padding="@dimen/DIMEN_30"
+            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+
+    </FrameLayout>
+</LinearLayout>

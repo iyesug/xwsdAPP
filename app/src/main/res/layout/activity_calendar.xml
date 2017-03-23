@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_returned_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/DIMEN_10"
+                    android:text="@string/returned_time"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_L" />
+
+                <LinearLayout
+                    android:id="@+id/returned_time_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_20"
+                        android:layout_height="@dimen/DIMEN_20"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/DIMEN_10"
+                        android:src="@mipmap/ic_in_g_left" />
+
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:id="@+id/returned_time_hsv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/DIMEN_10"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/returned_time_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"></LinearLayout>
+
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:id="@+id/returned_time_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_20"
+                        android:layout_height="@dimen/DIMEN_20"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/DIMEN_10"
+                        android:src="@mipmap/ic_in_g" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_interval"
+                style="@style/GreyInterval"
+                android:layout_above="@id/ll_returned_time"></View>
+
+            <ScrollView
+                android:scrollbars="none"
+                android:id="@+id/vertical_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/view_interval"
+                android:background="@color/gray_bg">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/DIMEN_10">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="@dimen/DIMEN_48"
+                            android:gravity="center_vertical">
+
+                            <LinearLayout
+                                android:id="@+id/btn_prev_month"
+                                android:layout_width="0.0dip"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="0.2"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="@dimen/DIMEN_20"
+                                    android:layout_height="@dimen/DIMEN_20"
+                                    android:duplicateParentState="true"
+                                    android:src="@mipmap/ic_in_g_left" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/ll_month"
+                                android:layout_width="0.0dip"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="0.6"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_month"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="@color/gray_1"
+                                    android:textSize="@dimen/TEXT_L" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/btn_next_month"
+                                android:layout_width="0.0dip"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="0.2"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="@dimen/DIMEN_20"
+                                    android:layout_height="@dimen/DIMEN_20"
+                                    android:duplicateParentState="true"
+                                    android:src="@mipmap/ic_in_g" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/DIMEN_5"
+                            android:layout_marginTop="@dimen/DIMEN_5">
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="日" />
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="一" />
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="二" />
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="三" />
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="四" />
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="五" />
+
+                            <TextView
+                                style="@style/WeekName"
+                                android:text="六" />
+                        </LinearLayout>
+
+                        <ViewFlipper
+                            android:id="@+id/flipper"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/DIMEN_5"
+                        android:paddingLeft="@dimen/DIMEN_10"
+                        android:paddingRight="@dimen/DIMEN_10"
+                        android:paddingTop="@dimen/DIMEN_5">
+
+                        <ImageView
+                            android:layout_width="@dimen/DIMEN_20"
+                            android:layout_height="@dimen/DIMEN_20"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:background="@mipmap/ic_calendar_s" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/DIMEN_5"
+                            android:text="@string/selected_time"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_L" />
+
+                        <TextView
+                            android:id="@+id/tv_selected_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:gravity="right"
+                            android:text="2016-08-12"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_L" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/buf_left"
+                            android:layout_width="@dimen/DIMEN_20"
+                            android:layout_height="@dimen/DIMEN_20"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/DIMEN_10"
+                            android:src="@mipmap/ic_in_g_left" />
+                        <HorizontalScrollView
+                            android:id="@+id/horizontalScrollView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:scrollbars="none">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/DIMEN_1"
+                                android:background="@color/white"
+                                android:orientation="horizontal"
+                                android:paddingBottom="@dimen/DIMEN_10"
+                                android:paddingTop="@dimen/DIMEN_10">
+                                <include
+                                    android:id="@+id/ll_returned_money_month"
+                                    layout="@layout/layout_calendar_returned"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"/>
+                                <include
+                                    android:id="@+id/ll_returned_money_month_lixi"
+                                    layout="@layout/layout_calendar_returned"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/gray"/>
+                                <include
+                                    android:id="@+id/ll_returned_money_day"
+                                    layout="@layout/layout_calendar_returned"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"/>
+                                <include
+                                    android:id="@+id/ll_returned_money_day_lixi"
+                                    layout="@layout/layout_calendar_returned"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/gray"/>
+                                <include
+                                    android:id="@+id/ll_returned_money_practical"
+                                    layout="@layout/layout_calendar_returned"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"/>
+                                <include
+                                    android:id="@+id/ll_returned_money_practical_lixi"
+                                    layout="@layout/layout_calendar_returned"
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <ImageView
+                            android:layout_width="@dimen/DIMEN_20"
+                            android:layout_height="@dimen/DIMEN_20"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/DIMEN_10"
+                            android:src="@mipmap/ic_in_g"
+                            android:id="@+id/buf_right" />
+                    </LinearLayout>
+
+
+                    <com.xwsd.app.view.AdaptiveListView
+                        android:id="@+id/list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/DIMEN_10"
+                        android:divider="@color/transparency"
+                        android:dividerHeight="@dimen/DIMEN_5"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

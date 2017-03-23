@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--分组TAB-->
+    <declare-styleable name="SegmentedGroup">
+        <attr name="sc_corner_radius" format="dimension" />
+        <attr name="sc_border_width" format="dimension" />
+        <attr name="sc_tint_color" format="color" />
+        <attr name="sc_checked_text_color" format="color" />
+    </declare-styleable>
+
+    <!--带title的text-->
+    <declare-styleable name="TitleTextView">
+        <attr name="text_title" format="string" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_content" format="string" />
+    </declare-styleable>
+
+</resources>

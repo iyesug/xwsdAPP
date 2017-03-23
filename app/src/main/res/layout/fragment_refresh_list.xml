@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/gray_bg"
+android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/list_bootom"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:scrollbars="none"
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/DIMEN_10"
+            android:padding="@dimen/DIMEN_10"></ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_50"
+        android:background="@color/white"
+        android:id="@+id/list_bootom"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/all_number"
+                android:paddingTop="@dimen/DIMEN_3"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/TEXT_L" />
+            <TextView
+                android:id="@+id/bottom_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/TEXT_L" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/all_money"
+                android:paddingTop="@dimen/DIMEN_3"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/TEXT_L" />
+            <TextView
+                android:id="@+id/bottom_right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/TEXT_L" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+
+<com.xwsd.app.view.EmptyLayout
+    android:id="@+id/error_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+
+</FrameLayout>

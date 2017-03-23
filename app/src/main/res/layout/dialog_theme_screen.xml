@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_spinner_backdrop"
+    android:orientation="vertical">
+
+    <ExpandableListView
+        android:id="@+id/lsit_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_250"></ExpandableListView>
+
+</LinearLayout>

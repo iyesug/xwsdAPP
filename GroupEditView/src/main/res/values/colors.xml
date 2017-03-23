@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_gray">#e2e2e2</color>
+    <color name="bg_blue_s">#569dff</color>
+    <color name="bg_blue_d">#2491fb</color>
+    <color name="tv_white">#ffffff</color>
+    <color name="tv_gray">#e2e2e2</color>
+    <color name="tv_gray_1">#8f8f8f</color>
+
+</resources>

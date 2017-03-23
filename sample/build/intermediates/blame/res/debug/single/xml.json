@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\xml\\widget_provider.xml",
+        "source": "D:\\Java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\xml\\widget_provider.xml"
+    },
+    {
+        "merged": "D:\\new\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\xml\\widget_provider.xml",
+        "source": "D:\\new\\xwsdAPP\\sample\\src\\main\\res\\xml\\widget_provider.xml"
+    }
+]

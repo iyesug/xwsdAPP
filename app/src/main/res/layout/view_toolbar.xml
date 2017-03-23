@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    style="@style/ClubToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize">
+
+    <LinearLayout
+        android:id="@+id/navbar_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal"
+        android:padding="@dimen/DIMEN_10">
+
+        <ImageView
+            android:id="@+id/navbar_left_image"
+            android:layout_width="@dimen/DIMEN_20"
+            android:layout_height="@dimen/DIMEN_20" />
+
+        <TextView
+            android:id="@+id/navbar_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/DIMEN_5"
+            android:textSize="@dimen/TEXT_L" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/navbar_centre"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DIMEN_50"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textSize="@dimen/TEXT_L" />
+
+    <LinearLayout
+        android:id="@+id/navbar_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal"
+        android:padding="@dimen/DIMEN_10">
+
+        <TextView
+            android:id="@+id/navbar_right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/DIMEN_5"
+            android:textSize="@dimen/TEXT_L" />
+
+        <ImageView
+            android:id="@+id/navbar_right_image"
+            android:layout_width="@dimen/DIMEN_20"
+            android:layout_height="@dimen/DIMEN_20" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

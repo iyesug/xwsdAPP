@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg"
+        android:orientation="vertical">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/DIMEN_10">
+
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="账号余额"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_property_all"
+                            style="@style/PropertyDetailsOrangeText"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:text="15820.00" />
+
+                        <TextView
+                            style="@style/PropertyDetailsGrayText"
+                            android:text="@string/yuan" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_balance_usable"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_balance_freeze"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <!--<include-->
+                        <!--android:id="@+id/tv_balance_withdraw"-->
+                        <!--layout="@layout/layout_property_details_text"></include>-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/DIMEN_10">
+
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_gravity="center"
+                            android:text="待收总额" />
+
+                        <ImageView
+                            android:id="@+id/iv_hint"
+                            android:layout_width="@dimen/DIMEN_30"
+                            android:layout_height="@dimen/DIMEN_30"
+                            android:layout_marginLeft="@dimen/DIMEN_10"
+                            android:padding="@dimen/DIMEN_5"
+                            android:src="@mipmap/ic_transfer_explain" />
+
+                        <TextView
+                            android:id="@+id/tv_due_all"
+                            style="@style/PropertyDetailsOrangeText"
+                            android:layout_width="0dp"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="15820.00" />
+
+                        <TextView
+                            style="@style/PropertyDetailsGrayText"
+                            android:text="@string/yuan" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_due_principal"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_due_interest"
+                        layout="@layout/layout_property_details_text"></include>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/DIMEN_10">
+
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="投资总况" />
+
+                        <TextView
+                            android:id="@+id/tv_invest_all"
+                            style="@style/PropertyDetailsOrangeText"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:text="15820.00" />
+
+                        <TextView
+                            style="@style/PropertyDetailsGrayText"
+                            android:text="@string/yuan" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_interest_awarded"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_interest_due"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_interest_deduct"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_interest_practical"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_activity_cash"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_invest_activity"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_invest_integral"
+                        layout="@layout/layout_property_details_text"></include>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/DIMEN_10">
+
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="债权承接情况" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_transfer_money"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_transfer_interest"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_continue_money"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_continue_interest"
+                        layout="@layout/layout_property_details_text"></include>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/DIMEN_10">
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="我的卡券" />
+                    </LinearLayout>
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_increase_interest"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_get_money"
+                        layout="@layout/layout_property_details_text"></include>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/DIMEN_20"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/DIMEN_10">
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="推荐奖励" />
+                    </LinearLayout>
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/tv_recommended_award"
+                        layout="@layout/layout_property_details_text"></include>
+
+                    <include
+                        android:id="@+id/tv_recommended_use_award"
+                        layout="@layout/layout_property_details_text"></include>
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+        <com.xwsd.app.view.EmptyLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

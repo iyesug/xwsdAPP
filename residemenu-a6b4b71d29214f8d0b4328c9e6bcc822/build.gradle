@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('residemenu-a6b4b71d29214f8d0b4328c9e6bcc822.jar'))

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/DIMEN_10" />
+
+    <ImageView
+        android:id="@+id/iv_left"
+        android:layout_width="@dimen/DIMEN_30"
+        android:layout_height="@dimen/DIMEN_30"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/DIMEN_10"
+        android:clickable="true"
+        android:src="@mipmap/ic_back_t" />
+
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_width="@dimen/DIMEN_30"
+        android:layout_height="@dimen/DIMEN_30"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="@dimen/DIMEN_10"
+        android:clickable="true"
+        android:src="@mipmap/ic_back_t_overturn" />
+
+</FrameLayout>

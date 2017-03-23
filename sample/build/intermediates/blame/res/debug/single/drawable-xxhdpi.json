@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_launcher.png",
+        "source": "D:\\Java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\new\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_launcher.png",
+        "source": "D:\\new\\xwsdAPP\\sample\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    }
+]
