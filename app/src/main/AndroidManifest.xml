@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xwsd.app">
+
+    <!-- 访问网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 读取外部SD卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读取内部SD卡 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 查看当前网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取系统栈 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- 富友支付权限开始 -->
+    <!-- <permission android:name="com.fuiou.permission.FUIOU_PAY" /> -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <!-- 富友支付权限结束 -->
+    <application
+        android:name=".AppContext"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- 启动页 -->
+        <activity
+            android:name=".guide.GuideActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 主界面 -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- 标的详情页 -->
+        <activity
+            android:name=".activity.BidDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 标的详情页 -->
+        <activity
+            android:name=".activity.ProjectDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 立即投资 -->
+        <activity
+            android:name=".activity.PromptlyInvestActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 充值 -->
+        <activity
+            android:name=".activity.RechargeActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 债权转让 -->
+        <activity
+            android:name=".activity.TransferDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- H5详情页 -->
+        <activity
+            android:name=".activity.WebDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 用户个人信息 -->
+        <activity
+            android:name=".activity.UserInfoActiviy"
+            android:screenOrientation="portrait" />
+
+        <!-- 昵称 -->
+        <activity
+            android:name=".activity.NicknameActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 资产详情 -->
+        <activity
+            android:name=".activity.PropertyDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 自动授权 -->
+        <activity
+            android:name=".activity.AutoBidActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 自动授权-设置 -->
+        <activity
+            android:name=".activity.AutoBidSettingActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 回款日历 -->
+        <activity
+            android:name=".activity.CalendarActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 投资管理 -->
+        <activity
+            android:name=".activity.InvestManageActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 充值提现记录 -->
+        <activity
+            android:name=".activity.RechargeWithdrawActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 充值提现记录 -->
+        <activity
+            android:name=".activity.BankCardActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 添加银行卡 -->
+        <activity
+            android:name=".activity.AddCardActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 债权转让 -->
+        <activity
+            android:name=".activity.CreditorTransferActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 账户安全 -->
+        <activity
+            android:name=".activity.AccountSafetyActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 实名认证 -->
+        <activity
+            android:name=".activity.CertificationActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 手机认证 -->
+        <activity
+            android:name=".activity.MobileCertificationActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 邮箱认证 -->
+        <activity
+            android:name=".activity.EmailCertificationActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 修改登录密码 -->
+        <activity
+            android:name=".activity.ModifyLoginPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 修改支付密码 -->
+        <activity
+            android:name=".activity.ModifyPayPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 借款 -->
+        <activity
+            android:name=".activity.BorrowingActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 关于小微 -->
+        <activity
+            android:name=".activity.AboutXWActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 提现 -->
+        <activity
+            android:name=".activity.WithdrawActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 用户登录注册找回密码 -->
+        <activity
+            android:name=".activity.UserActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 手势锁设置 -->
+        <activity
+            android:name=".activity.GestureLockSettingsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 手势登录 -->
+        <activity
+            android:name=".activity.GestureLoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <!-- 开通托管 -->
+        <activity
+            android:name=".activity.DredgeTrusteeshipActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 富宝支付页面 -->
+        <activity
+            android:name="com.fuiou.pay.activity.FyWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <!-- 认证银行卡 -->
+        <activity
+            android:name=".activity.SettingsPayBankActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 获取用户信息的服务 -->
+        <service android:name=".service.UserService" />
+
+        <activity
+            android:name=".activity.RecommendFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CEOQuestionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.VIPActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NoviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WebApproveActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- <service -->
+        <!-- android:name=".service.MyService" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true"></service> -->
+
+        <activity android:name=".activity.FundRecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ProtJiaActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ProtDetilaActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.baofoo.sdk.vip.BaofooPayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
+        <activity android:name=".activity.AutoBidJianSettingActivity"/>
+    </application>
+
+</manifest>

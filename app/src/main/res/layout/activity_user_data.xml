@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+
+        <ScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/user_portrait"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/DIMEN_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center"
+                            android:layout_weight="1"
+                            android:text="@string/portrait"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_XL" />
+
+                        <ImageView
+                            android:id="@+id/user_portrait_img"
+                            android:layout_width="@dimen/DIMEN_60"
+                            android:layout_height="@dimen/DIMEN_60"
+                            android:layout_gravity="right" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/user_nickname"
+                        layout="@layout/layout_user_data_text"></include>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/user_name"
+                        layout="@layout/layout_user_data_text"></include>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/user_identity"
+                        layout="@layout/layout_user_data_text"></include>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/user_mobile"
+                        layout="@layout/layout_user_data_text"></include>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <include
+                        android:id="@+id/user_address"
+                        layout="@layout/layout_user_data_select"></include>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/user_sex"
+                        layout="@layout/layout_user_data_select"></include>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <include
+                        android:id="@+id/user_marriage"
+                        layout="@layout/layout_user_data_select"></include>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/commit"
+                    style="@style/SubmitButton"
+                    android:layout_marginLeft="@dimen/DIMEN_15"
+                    android:layout_marginRight="@dimen/DIMEN_15"
+                    android:layout_marginTop="@dimen/DIMEN_20"
+                    android:background="@drawable/select_submit_button_simple"
+                    android:text="@string/save" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!--<com.xwsd.app.view.EmptyLayout-->
+        <!--android:id="@+id/error_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:visibility="visible"></com.xwsd.app.view.EmptyLayout>-->
+
+    </FrameLayout>
+
+</LinearLayout>

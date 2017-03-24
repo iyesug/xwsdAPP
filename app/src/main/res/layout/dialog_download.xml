@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/blue_00aaee">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/DIMEN_15"
+            android:text="下载中"
+            android:textColor="@color/white"
+            android:textSize="@dimen/DIMEN_18" />
+    </android.support.v7.widget.CardView>
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/pg_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_30"
+        android:layout_marginLeft="@dimen/DIMEN_10"
+        android:layout_marginRight="@dimen/DIMEN_10"
+        android:layout_marginTop="@dimen/DIMEN_30"
+        custom:progress_reached_bar_height="@dimen/DIMEN_3"
+        custom:progress_reached_color="@color/bg_blue_s"
+        custom:progress_text_color="@color/bg_blue_s"
+        custom:progress_text_size="@dimen/DIMEN_20"
+        custom:progress_unreached_bar_height="@dimen/DIMEN_2"
+        custom:progress_unreached_color="@color/gray_1" />
+
+</LinearLayout>

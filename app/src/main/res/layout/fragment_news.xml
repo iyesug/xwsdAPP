@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navbar_bg"
+        android:minHeight="?attr/actionBarSize">
+
+        <com.xwsd.app.view.SegmentedGroup
+            android:id="@+id/segmented_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/DIMEN_10"
+            android:layout_marginRight="@dimen/DIMEN_10"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_new_bid_notice"
+                style="@style/NewsRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/new_bid_notice"
+                android:textSize="@dimen/TEXT_L" />
+
+            <RadioButton
+                android:id="@+id/rb_notice_message"
+                style="@style/NewsRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/notice_message"
+                android:textSize="@dimen/TEXT_L" />
+
+            <RadioButton
+                android:id="@+id/rb_feedback"
+                style="@style/NewsRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/feedback"
+                android:textSize="@dimen/TEXT_L" />
+
+        </com.xwsd.app.view.SegmentedGroup>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DIMEN_1"
+        android:background="@color/gray"></View>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:padding="@dimen/DIMEN_10"
+        android:text="银行　　"
+        android:textColor="@color/gray_2"
+        android:textSize="@dimen/TEXT_L" />
+
+    <TextView
+        android:id="@+id/text_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:padding="@dimen/DIMEN_10"
+        android:text="工商银行"
+        android:textColor="@color/gray_2"
+        android:textSize="@dimen/TEXT_L" />
+
+</LinearLayout>

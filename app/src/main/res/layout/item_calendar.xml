@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/DIMEN_45"
+    android:layout_height="@dimen/DIMEN_45"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tvtext"
+        android:layout_width="@dimen/DIMEN_45"
+        android:layout_height="@dimen/DIMEN_45"
+        android:gravity="center"
+        android:padding="@dimen/DIMEN_2" />
+
+    <ImageView
+        android:id="@+id/iv_seal"
+        android:layout_width="@dimen/DIMEN_45"
+        android:layout_height="@dimen/DIMEN_45" />
+
+</FrameLayout>
+

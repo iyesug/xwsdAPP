@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_10"
+                android:layout_marginLeft="@dimen/DIMEN_10"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/flag_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/zi"/>
+                <TextView
+                    android:id="@+id/tv_oddTitle"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="福州宝马520LI融资租赁"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/TEXT_L" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_oddMoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/DIMEN_5"
+                        android:gravity="right"
+                        android:text="999999"
+                        android:textColor="@color/text_orange"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yuan"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/TEXT_L" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_10"
+                android:layout_marginLeft="@dimen/DIMEN_10"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tv_oddReward"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/DIMEN_5"
+                                android:text="18.6"
+                                android:textColor="@color/text_orange"
+                                android:textSize="@dimen/TEXT_XXL" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="%"
+                                android:textColor="@color/text_orange"
+                                android:textSize="@dimen/TEXT_M" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_rewards"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/DIMEN_5"
+                            android:background="@drawable/bg_newbid_rewards"
+                            android:text="+0.6%"
+                            android:textColor="@color/red_f4333c"
+                            android:textSize="@dimen/TEXT_S"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_5"
+                        android:text="预期年化收益率"
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/TEXT_M" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_oddPeriod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:text="3"
+                            android:textColor="@color/gray_2"
+                            android:textSize="@dimen/TEXT_XXL" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个月"
+                            android:textColor="@color/gray_2"
+                            android:textSize="@dimen/DIMEN_15" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_5"
+                        android:text="投资期限"
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/TEXT_M" />
+
+                </LinearLayout>
+
+                <com.github.lzyzsd.circleprogress.DonutProgress
+                    android:id="@+id/dp_schedule"
+                    android:layout_width="@dimen/DIMEN_70"
+                    android:layout_height="@dimen/DIMEN_70"
+                    custom:donut_finished_stroke_width="@dimen/DIMEN_3"
+                    custom:donut_progress="0"
+                    custom:donut_text_size="@dimen/DIMEN_14"
+                    custom:donut_unfinished_stroke_width="@dimen/DIMEN_3" />
+                <!--custom:donut_text="14:00"-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

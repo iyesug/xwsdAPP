@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/gray_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_60"
+                    android:layout_height="@dimen/DIMEN_60"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/DIMEN_10"
+                    android:src="@mipmap/ic_about_xw" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/DIMEN_10"
+                    android:gravity="center"
+                    android:text="开创小微金融新时代"
+                    android:textColor="@color/blue_simple"
+                    android:textSize="@dimen/TEXT_L" />
+
+                <View style="@style/GreyInterval"></View>
+
+                <RelativeLayout
+                    android:id="@+id/call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/DIMEN_10">
+
+                    <ImageView
+                        android:id="@+id/serve_iv"
+                        android:layout_width="@dimen/DIMEN_40"
+                        android:layout_height="@dimen/DIMEN_40"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/DIMEN_5"
+                        android:src="@mipmap/ic_service" />
+
+                    <TextView
+                        android:id="@+id/serve_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/serve_iv"
+                        android:gravity="center"
+                        android:text="400-865-9993"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/TEXT_XL" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/serve_num"
+                        android:layout_toRightOf="@id/serve_iv"
+                        android:gravity="center"
+                        android:text="服务时间：9:00-21:00"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_S" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_about_us"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/DIMEN_10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:text="关于我们"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_15"
+                        android:layout_height="@dimen/DIMEN_15"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_in_g" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                    android:id="@+id/ll_help_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/DIMEN_10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:text="帮助中心"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_15"
+                        android:layout_height="@dimen/DIMEN_15"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_in_g" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                    android:id="@+id/ll_charging_standard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/DIMEN_10">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:text="平台收费标准"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_15"
+                        android:layout_height="@dimen/DIMEN_15"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_in_g" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="@dimen/DIMEN_10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/DIMEN_10"
+                    android:layout_weight="1"
+                    android:text="版本号"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_L" />
+
+
+                <TextView
+                    android:id="@+id/tv_versions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/DIMEN_10"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/TEXT_L" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

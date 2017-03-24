@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/HomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/DIMEN_10"
+        android:layout_marginLeft="@dimen/DIMEN_15"
+        android:layout_marginRight="@dimen/DIMEN_15"
+        android:layout_marginTop="@dimen/DIMEN_15"
+        android:text="介绍" />
+
+    <View
+        style="@style/GreyInterval"
+        android:layout_marginLeft="@dimen/DIMEN_10"
+        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/DIMEN_10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/ttv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:text_content="按月付息"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="@string/payment_method"></com.xwsd.app.view.TitleTextView>
+
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/ttv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                custom:text_content="按月付息"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="@string/payment_method"></com.xwsd.app.view.TitleTextView>
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/ttv_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                custom:text_content="按月付息"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="@string/payment_method"></com.xwsd.app.view.TitleTextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/ttv_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:text_content="按月付息"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="@string/payment_method"></com.xwsd.app.view.TitleTextView>
+
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/ttv_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                custom:text_content="按月付息"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="@string/payment_method"></com.xwsd.app.view.TitleTextView>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

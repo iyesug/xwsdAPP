@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:edit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/DIMEN_100"
+        android:layout_height="@dimen/DIMEN_100"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/DIMEN_20"
+        android:src="@mipmap/ic_logo_1" />
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        edit:editType="number"
+        edit:hint="@string/hint_mobile"
+        edit:imager="@mipmap/ic_phone"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        edit:editType="number"
+        edit:hint="@string/hint_verify"
+        edit:imager="@mipmap/ic_verification"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_password_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        edit:editType="password"
+        edit:hint="@string/hint_new_password"
+        edit:imager="@mipmap/ic_password_2"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_password_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        edit:editType="password"
+        edit:hint="@string/hint_new_password_affirm"
+        edit:imager="@mipmap/ic_password_1"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <Button
+        android:id="@+id/commit"
+        style="@style/SubmitButton"
+        android:layout_marginBottom="@dimen/DIMEN_10"
+        android:layout_marginLeft="@dimen/DIMEN_30"
+        android:layout_marginRight="@dimen/DIMEN_30"
+        android:layout_marginTop="@dimen/DIMEN_30"
+        android:background="@drawable/select_submit_button_login"
+        android:text="@string/confirm" />
+
+</LinearLayout>

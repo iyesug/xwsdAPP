@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/view_toolbar"></include>
+
+        <View style="@style/GreyInterval"></View>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_180"
+            android:scaleType="fitXY"
+            android:src="@mipmap/friend_back" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/lan_tiao"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="好友"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="0.6"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="级别"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="0.7"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="推荐奖励"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="注册时间"/>
+        </LinearLayout>
+    </LinearLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:layout_above="@+id/my_bootom"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <com.xwsd.app.view.AdaptiveListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:background="@color/white"
+            android:dividerHeight="@dimen/DIMEN_15"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout
+        android:id="@+id/my_bootom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:layout_marginBottom="@dimen/DIMEN_10"
+            android:id="@+id/get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/DIMEN_15"
+            android:layout_marginTop="@dimen/DIMEN_15"
+            android:background="@mipmap/blue"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="@string/get_jiangli_url" />
+        <Button
+            android:layout_marginBottom="@dimen/DIMEN_10"
+            android:id="@+id/commit"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_15"
+            android:layout_marginLeft="@dimen/DIMEN_15"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/yellow"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="@string/get_recommend_url" />
+    </LinearLayout>
+
+</RelativeLayout>

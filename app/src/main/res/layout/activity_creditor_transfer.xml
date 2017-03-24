@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_bg"
+        android:orientation="vertical">
+
+        <!--<android.support.design.widget.TabLayout-->
+        <!--custom:tabPadding="@dimen/DIMEN_10"-->
+        <!--android:id="@+id/tab_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="@color/white"-->
+        <!--custom:tabGravity="fill"-->
+        <!--custom:tabMode="fixed"-->
+        <!--custom:tabIndicatorColor="@color/blue_simple"-->
+        <!--custom:tabSelectedTextColor="@color/blue_simple"-->
+        <!--custom:tabTextAppearance="@style/MyTabLayoutTextAppearance"-->
+        <!--custom:tabTextColor="@color/gray_2" />-->
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#b7b7b7"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/title_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    custom:tabGravity="fill"
+                    custom:tabIndicatorColor="@color/blue_simple"
+                    custom:tabMode="fixed"
+                    custom:tabPadding="@dimen/DIMEN_10"
+                    custom:tabSelectedTextColor="@color/blue_simple"
+                    custom:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+                    custom:tabTextColor="@color/gray_2" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</LinearLayout>

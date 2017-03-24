@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/cb_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/DIMEN_10"
+        android:background="@drawable/select_check_box"
+        android:button="@null"
+        android:padding="@dimen/DIMEN_10"
+        android:text="一月标/16%"
+        android:textColor="@color/check_box_text_color"
+        android:textSize="@dimen/TEXT_S">
+
+    </CheckBox>
+
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:edit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/DIMEN_100"
+        android:layout_height="@dimen/DIMEN_100"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/DIMEN_20"
+        android:src="@mipmap/ic_logo_1" />
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        edit:editType="number"
+        edit:hint="@string/hint_mobile"
+        edit:imager="@mipmap/ic_phone"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        edit:editType="number"
+        edit:hint="@string/hint_verify"
+        edit:imager="@mipmap/ic_verification"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <com.gnwai.groupeeditview.GroupeEditView
+        android:id="@+id/user_referrer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        edit:hint="@string/hint_referrer"
+        edit:imager="@mipmap/ic_name"></com.gnwai.groupeeditview.GroupeEditView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/DIMEN_25"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/DIMEN_10">
+
+        <CheckBox
+            android:id="@+id/cb_user_agreement"
+            android:layout_width="@dimen/DIMEN_20"
+            android:layout_height="@dimen/DIMEN_20"
+            android:button="@drawable/select_register_checkbox"
+            android:checked="true"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/tv_user_agreement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_10"
+            android:text="@string/hint_agreement"
+            android:textColor="@color/white"
+            android:textSize="@dimen/TEXT_M" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginBottom="@dimen/DIMEN_10"
+        android:id="@+id/commit"
+        style="@style/SubmitButton"
+        android:layout_marginLeft="@dimen/DIMEN_30"
+        android:layout_marginRight="@dimen/DIMEN_30"
+        android:layout_marginTop="@dimen/DIMEN_10"
+        android:background="@drawable/select_submit_button_login"
+        android:text="@string/next" />
+
+</LinearLayout>

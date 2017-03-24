@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/DIMEN_10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/tv_principal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                custom:text_content="10150元"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="剩余本金："></com.xwsd.app.view.TitleTextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.xwsd.app.view.TitleTextView
+                android:id="@+id/tv_interest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                custom:text_content="153.5元"
+                custom:text_size="@dimen/TEXT_S"
+                custom:text_title="转让利息："></com.xwsd.app.view.TitleTextView>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <com.xwsd.app.view.TitleTextView
+        android:layout_marginBottom="@dimen/DIMEN_10"
+        android:layout_marginLeft="@dimen/DIMEN_10"
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:text_content="16-07-20"
+        custom:text_size="@dimen/TEXT_S"
+        custom:text_title="转让时间："></com.xwsd.app.view.TitleTextView>
+
+
+    <View
+        style="@style/GreyInterval"
+        android:layout_marginBottom="@dimen/DIMEN_5"
+        android:layout_marginLeft="@dimen/DIMEN_10"
+        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+    <TextView
+        android:id="@+id/prot_bid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/DIMEN_5"
+        android:layout_marginRight="@dimen/DIMEN_5"
+        android:background="@drawable/bg_check_sharp_white"
+        android:padding="@dimen/DIMEN_8"
+        android:text="原标查询"
+        android:textColor="@color/gray_1"
+        android:textSize="@dimen/TEXT_L" />
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/DIMEN_60"
+    android:layout_height="@dimen/DIMEN_60">
+
+    <LinearLayout
+        android:layout_width="@dimen/DIMEN_50"
+        android:layout_height="@dimen/DIMEN_50"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@mipmap/ic_calendar_day"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_month"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="六月"
+            android:textColor="@color/white"
+            android:textSize="@dimen/TEXT_S" />
+
+        <TextView
+            android:id="@+id/tv_day"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="01"
+            android:textColor="@color/gray_1"
+            android:textSize="@dimen/TEXT_L" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--输入框的属性-->
+    <declare-styleable name="LoginEditViewEdit">
+        <!--图片资源-->
+        <attr name="imager" format="reference" />
+        <!--edit提示-->
+        <attr name="hint" format="string" />
+        <!--edit的输入类型-->
+        <attr name="editType">
+            <enum name="number" value="0x00000002" />
+            <enum name="password" value="0x81" />
+        </attr>
+    </declare-styleable>
+
+</resources>

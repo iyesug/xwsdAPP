@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/DIMEN_10"
+                    android:text="开通托管可以确保您的账号资金安全"
+                    android:textSize="@dimen/TEXT_XL" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/DIMEN_10">
+
+                    <TextView
+                        style="@style/PropertyDetailsBlueText"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="开通托管"
+                        android:textColor="@color/gray_1" />
+
+                    <com.xwsd.app.view.SwitchView
+                        android:id="@+id/toggle_button"
+                        android:layout_width="@dimen/DIMEN_60"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:padding="@dimen/DIMEN_10"
+                    android:text="小微时贷使用汇潮支付提供第三方资金托管服务，您在汇潮支付开立托管账户之后，可以充值、提现，用账户资金购买理财计划。小微时贷会根据您的授权划拨资金给借款人，除此之外无权动用，从而保障资金安全。"
+                    android:textSize="@dimen/TEXT_M" />
+
+            </LinearLayout>
+
+        <com.xwsd.app.view.EmptyLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

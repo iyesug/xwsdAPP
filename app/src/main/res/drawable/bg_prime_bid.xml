@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!--矩形橘色边框-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 边缘线条颜色 -->
+    <stroke
+        android:width="@dimen/DIMEN_1"
+        android:color="@color/text_orange" />
+
+    <solid android:color="@color/white"></solid>
+
+    <!-- 圆角的幅度 -->
+    <corners android:radius="@dimen/DIMEN_5"></corners>
+
+</shape>

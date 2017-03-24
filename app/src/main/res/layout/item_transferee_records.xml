@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_5"
+                android:layout_marginLeft="@dimen/DIMEN_15"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="承接时间"
+                    android:textColor="@color/gray_2"
+                    android:textSize="@dimen/TEXT_L" />
+
+                <TextView
+                    android:id="@+id/tv_continue_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/DIMEN_15"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="2016-08-20"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_M" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/GreyInterval"
+                android:layout_marginBottom="@dimen/DIMEN_5"
+                android:layout_marginLeft="@dimen/DIMEN_10"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:layout_marginTop="@dimen/DIMEN_5"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/DIMEN_10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.xwsd.app.view.TitleTextView
+                        android:id="@+id/tv_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_5"
+                        custom:text_content="10150元"
+                        custom:text_size="@dimen/TEXT_S"
+                        custom:text_title="承接金额："></com.xwsd.app.view.TitleTextView>
+
+                    <com.xwsd.app.view.TitleTextView
+                        android:id="@+id/tv_expire_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_5"
+                        custom:text_content="16-12-10"
+                        custom:text_size="@dimen/TEXT_S"
+                        custom:text_title="到期时间："></com.xwsd.app.view.TitleTextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.xwsd.app.view.TitleTextView
+                        android:id="@+id/tv_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_5"
+                        custom:text_content="153.5元"
+                        custom:text_size="@dimen/TEXT_S"
+                        custom:text_title="到期利息："></com.xwsd.app.view.TitleTextView>
+
+                    <com.xwsd.app.view.TitleTextView
+                        android:id="@+id/tv_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_5"
+                        custom:text_content="130天"
+                        custom:text_size="@dimen/TEXT_S"
+                        custom:text_title="剩余天数："></com.xwsd.app.view.TitleTextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                style="@style/GreyInterval"
+                android:layout_marginBottom="@dimen/DIMEN_5"
+                android:layout_marginLeft="@dimen/DIMEN_10"
+                android:layout_marginRight="@dimen/DIMEN_10"></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/prot_detail"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="@dimen/DIMEN_5"
+                    android:layout_marginLeft="@dimen/DIMEN_5"
+                    android:gravity="center"
+                    android:background="@drawable/bg_check_sharp_white"
+                    android:padding="@dimen/DIMEN_8"
+                    android:text="明细"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_L" />
+
+                <TextView
+                    android:id="@+id/prot_bid"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/DIMEN_5"
+                    android:layout_marginRight="@dimen/DIMEN_5"
+                    android:background="@drawable/bg_check_sharp_white"
+                    android:padding="@dimen/DIMEN_8"
+                    android:text="原标查询"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_L" />
+            </RelativeLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/yijiaxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/yijiaxi"/>
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

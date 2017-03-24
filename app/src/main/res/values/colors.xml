@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3096fd</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="white_translucence">#33ffffff</color>
+    <color name="gray">#e2e2e2</color>
+    <color name="gray_1">#646464</color>
+    <color name="gray_2">#393938</color>
+    <color name="gray_3">#f1f1f1</color>
+    <color name="gray_4">#e5e5e5</color>
+    <color name="gray_text">#b3b3b3</color>
+    <color name="gray_bg">#f1f2f7</color>
+    <color name="blue">#2491fb</color>
+    <color name="blue_simple">#569dff</color>
+    <color name="watchet">#56e6ff</color>
+    <color name="text_orange">#f58101</color>
+    <color name="navbar_bg">#f9f9f9</color>
+    <color name="translucence">#33000000</color>
+    <color name="transparency">#00000000</color>
+    <color name="purple">#82649f</color>
+    <color name="purple_light">#ae77ec</color>
+    <color name="purple_dark">#7e4bbc</color>
+    <color name="radio_button_selected_color">#2491fb</color>
+    <color name="radio_button_unselected_color">@android:color/transparent</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="count_money_bg">#b4b4b4</color>
+    <color name="blue_thin">#4ec2fe</color>
+    <color name="button_orange">#eda658</color>
+    <color name="button_orange_simple">#fac679</color>
+    <color name="ink">#445a6a</color>
+    <color name="check_box_select">#8ad7fe</color>
+    <color name="grey_a5a5a5">#A5A5A5</color>
+    <color name="red_f4333c">#F4333C</color>
+    <color name="blue_grey">#2675bd</color>
+    <color name="blue_4dbaf5">#4dbaf5</color>
+    <color name="blue_8cb6ce">#8cb6ce</color>
+    <color name="blue_new_bid_dark">#3462fe</color>
+    <color name="blue_new_bid_simple">#1cc0fc</color>
+    <color name="white_milk">#fdfdfe</color>
+    <color name="one_key">#28c4f7</color>
+    <color name="greed_text">#12A874</color>
+    <color name="zhonghong_text">#e4901a</color>
+    <color name="backk">#000000</color>
+
+    <!-- 下拉刷新时，颜色值 -->
+    <color name="swiperefresh_color1">#ff00ddff</color>
+    <color name="swiperefresh_color2">#ffffbb33</color>
+    <color name="swiperefresh_color3">#ffff4444</color>
+    <color name="swiperefresh_color4">#ffaa66cc</color>
+</resources>

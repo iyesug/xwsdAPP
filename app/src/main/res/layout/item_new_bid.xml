@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    custom:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/DIMEN_8"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="标题内容标题内容标题内容标题内容"
+            android:textColor="@color/gray_2"
+            android:textSize="@dimen/TEXT_L" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/DIMEN_8"
+            android:layout_marginLeft="@dimen/DIMEN_8"
+            android:layout_marginRight="@dimen/DIMEN_8"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_20"
+                    android:layout_height="@dimen/DIMEN_20"
+                    android:src="@mipmap/ic_news_look" />
+
+                <TextView
+                    android:id="@+id/tv_look"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/DIMEN_3"
+                    android:text="32"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/TEXT_M" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_20"
+                    android:layout_height="@dimen/DIMEN_20"
+                    android:src="@mipmap/ic_news_time" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/DIMEN_3"
+                    android:text="2016.08.22    12:00:  00"
+                    android:textColor="@color/gray_text"
+                    android:textSize="@dimen/TEXT_M" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

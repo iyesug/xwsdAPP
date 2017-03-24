@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/tab_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/tab_radio_borrow_data"
+                style="@style/RiskControlRadioButton"
+                android:text="借款资料" />
+
+            <RadioButton
+                android:id="@+id/tab_radio_risk_describe"
+                style="@style/RiskControlRadioButton"
+                android:text="风控描述" />
+
+            <RadioButton
+                android:id="@+id/tab_radio_property_img"
+                style="@style/RiskControlRadioButton"
+                android:text="产权图片" />
+
+            <RadioButton
+                android:id="@+id/tab_radio_borrow_procedure"
+                style="@style/RiskControlRadioButton"
+                android:text="借款手续" />
+
+            <RadioButton
+                android:id="@+id/tab_radio_risk_img"
+                style="@style/RiskControlRadioButton"
+                android:text="风控图片" />
+
+            <RadioButton
+                android:id="@+id/tab_radio_checkout_img"
+                style="@style/RiskControlRadioButton"
+                android:text="验车图片" />
+
+            <RadioButton
+                android:id="@+id/tab_radio_investigation"
+                style="@style/RiskControlRadioButton"
+                android:text="征信报告" />
+
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/frame_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></FrameLayout>
+
+    </LinearLayout>
+
+    <com.xwsd.app.view.EmptyLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:padding="@dimen/DIMEN_30"></com.xwsd.app.view.EmptyLayout>
+
+</FrameLayout>

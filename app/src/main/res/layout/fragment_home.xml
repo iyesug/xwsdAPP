@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<android.support.v4.widget.SwipeRefreshLayout-->
+    <!--android:id="@+id/swipe_refresh_layout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hejunlin.superindicatorlibray.LoopViewPager
+                    android:id="@+id/icv_home_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_220" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/DIMEN_20"
+                    android:layout_marginLeft="@dimen/DIMEN_30"
+                    android:layout_marginRight="@dimen/DIMEN_30">
+
+                    <TextView
+                        android:id="@+id/tv_turnover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/turnover"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TEXT_M" />
+
+                    <TextView
+                        android:id="@+id/tv_turnover_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_turnover"
+                        android:text="999,999,99元"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TEXT_XL" />
+
+                    <TextView
+                        android:id="@+id/tv_benefit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/benefit"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TEXT_M" />
+
+                    <TextView
+                        android:id="@+id/tv_benefit_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/tv_benefit"
+                        android:text="999,999,99元"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TEXT_XL" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_trumpet"
+            android:layout_width="@dimen/DIMEN_25"
+            android:layout_height="@dimen/DIMEN_25"
+            android:layout_margin="@dimen/DIMEN_10"
+            android:background="@drawable/anim_trumpet" />
+
+        <TextSwitcher
+            android:id="@+id/text_switcher"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/DIMEN_10"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_new_menu"
+            android:layout_width="@dimen/DIMEN_25"
+            android:layout_height="@dimen/DIMEN_25"
+            android:layout_margin="@dimen/DIMEN_10"
+            android:src="@mipmap/ic_new_bid_menu" />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.xwsd.app.view.ObserveScrollView
+        android:scrollbars="none"
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/DIMEN_10"
+                card_view:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_10">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iv_left"
+                                android:layout_width="@dimen/DIMEN_40"
+                                android:layout_height="@dimen/DIMEN_40"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/DIMEN_10"
+                                android:clickable="true"
+                                android:src="@mipmap/ic_new_bid_left" />
+                            <android.support.v4.view.ViewPager
+                                android:id="@+id/vp_newbie_bid"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/DIMEN_120"
+                                android:layout_weight="1"></android.support.v4.view.ViewPager>
+                            <ImageView
+                                android:id="@+id/iv_right"
+                                android:layout_width="@dimen/DIMEN_40"
+                                android:layout_height="@dimen/DIMEN_40"
+                                android:layout_gravity="center_vertical|right"
+                                android:layout_marginRight="@dimen/DIMEN_10"
+                                android:clickable="true"
+                                android:src="@mipmap/ic_new_bid_right" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/DIMEN_80"
+                            android:layout_height="@dimen/DIMEN_30"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:background="@mipmap/ic_new_bid" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/DIMEN_5"
+                        android:layout_marginRight="@dimen/DIMEN_5"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/et_new_bid"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/DIMEN_28"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:hint="输入金额"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/gray_text"
+                            android:textColorHint="@color/gray_text"
+                            android:textSize="@dimen/TEXT_M" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:gravity="center"
+                            android:text="@string/yuan"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_M" />
+
+                        <View
+                            android:layout_width="@dimen/DIMEN_2"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:background="@color/gray"></View>
+
+                        <TextView
+                            android:id="@id/tv_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:gravity="center"
+                            android:text="@string/yi_yue"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_M" />
+
+                        <View
+                            android:layout_width="@dimen/DIMEN_2"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:background="@color/gray"></View>
+
+                        <TextView
+                            android:id="@+id/tv_predict"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="预计收益"
+                            android:textColor="@color/gray_text"
+                            android:textSize="@dimen/TEXT_M" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:gravity="center"
+                            android:text="@string/yuan"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_M" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginBottom="@dimen/DIMEN_5"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+                    <Button
+                        android:id="@+id/commit"
+                        style="@style/SubmitButton"
+                        android:layout_marginBottom="@dimen/DIMEN_5"
+                        android:layout_marginLeft="@dimen/DIMEN_5"
+                        android:layout_marginRight="@dimen/DIMEN_5"
+                        android:text="@string/immediate_investment" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_20"
+                android:layout_marginRight="@dimen/DIMEN_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/HomeText"
+                    android:text="【为您推荐】" />
+
+                <TextView
+                    android:id="@+id/tv_today"
+                    style="@style/HomeText"
+                    android:gravity="right"
+                    android:text="今日可投：99999" />
+
+            </LinearLayout>
+
+            <com.xwsd.app.view.AdaptiveListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="@dimen/DIMEN_15"
+                android:padding="@dimen/DIMEN_10"/>
+        </LinearLayout>
+
+    </com.xwsd.app.view.ObserveScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+
+
+</LinearLayout>
+    <com.xwsd.app.view.EmptyLayout
+        android:id="@+id/error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
+</FrameLayout>

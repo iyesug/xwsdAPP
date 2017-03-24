@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ink"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ink"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_ranking_valid"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="有效排名"
+                                android:textColor="@color/blue_8cb6ce"
+                                android:textSize="@dimen/TEXT_L" />
+
+                            <TextView
+                                android:id="@+id/tv_valid_ranking"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="1159"
+                                android:textColor="@color/blue_8cb6ce"
+                                android:textSize="@dimen/TEXT_XXL" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/DIMEN_20"
+                                android:layout_height="@dimen/DIMEN_20"
+                                android:layout_gravity="center"
+                                android:src="@mipmap/ic_auto_bid_people" />
+
+                            <TextView
+                                android:id="@+id/tv_ranking_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/DIMEN_5"
+                                android:gravity="center"
+                                android:text="@string/my_ranking"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/TEXT_S" />
+
+                            <TextView
+                                android:id="@+id/tv_my_ranking"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/DIMEN_5"
+                                android:ellipsize="marquee"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="1234"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/TEXT_XXXXL" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_ranking_invalid"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="无效排名"
+                                android:textColor="@color/blue_8cb6ce"
+                                android:textSize="@dimen/TEXT_L" />
+
+                            <TextView
+                                android:id="@+id/tv_invalid_ranking"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="1230"
+                                android:textColor="@color/blue_8cb6ce"
+                                android:textSize="@dimen/TEXT_XXL" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:scrollbars="none">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/DIMEN_20"
+                            android:layout_marginTop="@dimen/DIMEN_10"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/DIMEN_10"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/AccountText_1"
+                                    android:text="一月标" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_num_1"
+                                        style="@style/AccountText_2"
+                                        android:text="55" />
+
+                                    <TextView
+                                        style="@style/AccountText_2_1"
+                                        android:text="人" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bid_1_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_money_1"
+                                        style="@style/AccountText_3"
+                                        android:text="555" />
+
+                                    <TextView
+                                        style="@style/AccountText_3_1"
+                                        android:text="@string/yuan" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/DIMEN_10"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/AccountText_1"
+                                    android:text="二月标" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_num_2"
+                                        style="@style/AccountText_2"
+                                        android:text="55" />
+
+                                    <TextView
+                                        style="@style/AccountText_2_1"
+                                        android:text="人" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bid_2_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_money_2"
+                                        style="@style/AccountText_3"
+                                        android:text="555" />
+
+                                    <TextView
+                                        style="@style/AccountText_3_1"
+                                        android:text="@string/yuan" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/DIMEN_10"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/AccountText_1"
+                                    android:text="三月标" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_num_3"
+                                        style="@style/AccountText_2"
+                                        android:text="55" />
+
+                                    <TextView
+                                        style="@style/AccountText_2_1"
+                                        android:text="人" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bid_3_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_money_3"
+                                        style="@style/AccountText_3"
+                                        android:text="555" />
+
+                                    <TextView
+                                        style="@style/AccountText_3_1"
+                                        android:text="@string/yuan" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/DIMEN_10"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/AccountText_1"
+                                    android:text="六月标" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_num_4"
+                                        style="@style/AccountText_2"
+                                        android:text="55" />
+
+                                    <TextView
+                                        style="@style/AccountText_2_1"
+                                        android:text="人" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bid_4_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_money_4"
+                                        style="@style/AccountText_3"
+                                        android:text="555" />
+
+                                    <TextView
+                                        style="@style/AccountText_3_1"
+                                        android:text="@string/yuan" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/DIMEN_10"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/AccountText_1"
+                                    android:text="十二月标" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_num_5"
+                                        style="@style/AccountText_2"
+                                        android:text="55" />
+
+                                    <TextView
+                                        style="@style/AccountText_2_1"
+                                        android:text="人" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bid_5_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_money_5"
+                                        style="@style/AccountText_3"
+                                        android:text="555" />
+
+                                    <TextView
+                                        style="@style/AccountText_3_1"
+                                        android:text="@string/yuan" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="@dimen/DIMEN_10"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/AccountText_1"
+                                    android:text="二十四月标" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_num_6"
+                                        style="@style/AccountText_2"
+                                        android:text="55" />
+
+                                    <TextView
+                                        style="@style/AccountText_2_1"
+                                        android:text="人" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_bid_6_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_month_money_6"
+                                        style="@style/AccountText_3"
+                                        android:text="555" />
+
+                                    <TextView
+                                        style="@style/AccountText_3_1"
+                                        android:text="@string/yuan" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_queue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="@dimen/DIMEN_10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="当前所处队列："
+                            android:textColor="@color/gray_2" />
+
+                        <TextView
+                            android:id="@+id/tv_queue"
+                            style="@style/PropertyDetailsBlueText"
+                            android:layout_width="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="有效队列"
+                            android:textColor="@color/gray_2" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_marginBottom="@dimen/DIMEN_10"
+                        android:layout_marginTop="@dimen/DIMEN_10"></View>
+
+                    <TextView
+                        style="@style/PropertyDetailsBlueText"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:text="@string/ranking_front"
+                        android:textColor="@color/gray_2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="有效资金："
+                                android:textColor="@color/gray_1"
+                                android:textSize="@dimen/TEXT_M" />
+
+                            <TextView
+                                android:id="@+id/tv_valid_money"
+                                style="@style/PropertyDetailsOrangeText"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="@dimen/DIMEN_5"
+                                android:text="15820.00"
+                                android:textSize="@dimen/TEXT_S" />
+
+                            <TextView
+                                style="@style/PropertyDetailsGrayText"
+                                android:layout_gravity="center"
+                                android:text="@string/yuan"
+                                android:textSize="@dimen/TEXT_S" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="无效资金："
+                                android:textColor="@color/gray_1"
+                                android:textSize="@dimen/TEXT_M" />
+
+                            <TextView
+                                android:id="@+id/tv_invalid_money"
+                                style="@style/PropertyDetailsOrangeText"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="@dimen/DIMEN_5"
+                                android:text="15820.00"
+                                android:textSize="@dimen/TEXT_S" />
+
+                            <TextView
+                                style="@style/PropertyDetailsGrayText"
+                                android:layout_gravity="center"
+                                android:text="@string/yuan"
+                                android:textSize="@dimen/TEXT_S" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/DIMEN_10">
+
+                    <TextView
+                        style="@style/PropertyDetailsBlueText"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/accredit_xw"
+                        android:textColor="@color/gray_1" />
+
+                    <com.xwsd.app.view.SwitchView
+                        android:id="@+id/toggle_button"
+                        android:layout_width="@dimen/DIMEN_60"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/DIMEN_1"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:padding="@dimen/DIMEN_10"
+                    android:textColor="@color/text_orange"
+                    android:textSize="@dimen/TEXT_L" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.xwsd.app.view.EmptyLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"></com.xwsd.app.view.EmptyLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

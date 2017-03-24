@@ -1,0 +1,7 @@
+#Fri Mar 24 10:25:35 CST 2017
+base.0=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_ac9773ccf16d31ce9674feeb45ed1030973e15e7
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_3b0fe77b8c096231c3ad7b96a2e0161e87c3afde\\classes.dex
+base.1=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_3b0fe77b8c096231c3ad7b96a2e0161e87c3afde
+file.0=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_ac9773ccf16d31ce9674feeb45ed1030973e15e7\\classes.dex

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View style="@style/GreyInterval"></View>
+
+    <RadioGroup
+        android:id="@+id/main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/DIMEN_5"
+        android:paddingTop="@dimen/DIMEN_5">
+
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/tab_home"
+            style="@style/MainRadioTab"
+            android:drawableTop="@drawable/tab_home_btn"
+            android:text="@string/home" />
+
+        <RadioButton
+            android:id="@+id/tab_project"
+            style="@style/MainRadioTab"
+            android:drawableTop="@drawable/tab_project_btn"
+            android:text="@string/project" />
+
+        <RadioButton
+            android:id="@+id/tab_account"
+            style="@style/MainRadioTab"
+            android:drawableTop="@drawable/tab_account_btn"
+            android:text="@string/account" />
+
+
+        <RadioButton
+            android:id="@+id/tab_news"
+            style="@style/MainRadioTab"
+            android:drawableTop="@drawable/tab_news_btn"
+            android:text="@string/news" />
+
+    </RadioGroup>
+
+</LinearLayout>

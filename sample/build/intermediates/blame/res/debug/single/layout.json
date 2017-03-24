@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\fr_image_grid.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\fr_image_grid.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\fr_image_pager.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\fr_image_pager.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\item_pager_image.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\item_pager_image.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_image.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\item_list_image.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\ac_home.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\ac_home.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\fr_image_gallery.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\fr_image_gallery.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\ac_complex.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\ac_complex.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\item_grid_image.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\item_grid_image.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\fr_image_list.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\fr_image_list.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\widget.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\widget.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\layout\\item_gallery_image.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\layout\\item_gallery_image.xml"
+    }
+]

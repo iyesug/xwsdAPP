@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <com.star.lockpattern.widget.LockPatternIndicator
+                android:id="@+id/lockPatterIndicator"
+                android:layout_width="@dimen/DIMEN_30"
+                android:layout_height="@dimen/DIMEN_30"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DIMEN_20" />
+
+            <TextView
+                android:id="@+id/messageTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:text="@string/create_gesture_default"
+                android:textColor="@color/gray_1"
+                android:textSize="@dimen/TEXT_L" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:orientation="vertical">
+
+                <com.star.lockpattern.widget.LockPatternView
+                    android:id="@+id/lockPatternView"
+                    android:layout_width="@dimen/DIMEN_270"
+                    android:layout_height="@dimen/DIMEN_270" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

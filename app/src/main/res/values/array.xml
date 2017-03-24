@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="amount_type">
+        <item>指定金额</item>
+        <item>投资范围</item>
+    </string-array>
+
+    <string-array name="time_frame">
+        <item>全部</item>
+        <item>一天</item>
+        <item>三天</item>
+        <item>一周</item>
+        <item>一个月</item>
+    </string-array>
+
+    <string-array name="theme_frame">
+        <item>投资详情</item>
+        <item>提现</item>
+        <item>充值</item>
+        <item>自动投标</item>
+        <item>新手问题</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="theme_frame_all">
+        <item>全部</item>
+        <item>投资详情</item>
+        <item>提现</item>
+        <item>充值</item>
+        <item>自动投标</item>
+        <item>新手问题</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="spingarr">
+        <item>等额本息</item>
+        <item>先息后本</item>
+    </string-array>
+</resources>

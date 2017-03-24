@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg"
+        android:orientation="vertical">
+        <include layout="@layout/view_toolbar"></include>
+
+        <View style="@style/GreyInterval"></View>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/my_bootom"
+            android:orientation="vertical">
+            <com.xwsd.app.view.AdaptiveListView
+                android:id="@+id/list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="@dimen/DIMEN_15"/>
+            <com.xwsd.app.view.EmptyLayout
+                android:id="@+id/error_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/my_bootom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/DIMEN_10"
+        android:orientation="horizontal">
+        <Button
+            android:layout_marginBottom="@dimen/DIMEN_10"
+            android:id="@+id/sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/DIMEN_15"
+            android:layout_marginTop="@dimen/DIMEN_15"
+            android:background="@mipmap/blue"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="确认" />
+        <Button
+            android:layout_marginBottom="@dimen/DIMEN_10"
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/DIMEN_15"
+            android:layout_marginLeft="@dimen/DIMEN_15"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/yellow"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="取消" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/DIMEN_10"
+                        android:text="真实姓名"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:padding="@dimen/DIMEN_10"
+                        android:text="宝付支付"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_L" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/DIMEN_10"
+                        android:text="身份证号"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <TextView
+                        android:id="@+id/tv_identity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:padding="@dimen/DIMEN_10"
+                        android:text="宝付支付"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_L" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/DIMEN_10"
+                        android:text="银行卡号"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <EditText
+                        android:id="@+id/tv_bank_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:inputType="number"
+                        android:background="@color/white"
+                        android:hint="输入银行卡号"
+                        android:padding="@dimen/DIMEN_10"
+                        android:textColor="@color/gray_1"
+                        android:textColorHint="@color/gray_text"
+                        android:textSize="@dimen/TEXT_L" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                    android:id="@+id/ll_open_bank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/DIMEN_10"
+                        android:text="开户行　"
+                        android:textColor="@color/gray_2"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <TextView
+                        android:id="@+id/tv_open_bank"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:hint="选择银行"
+                        android:padding="@dimen/DIMEN_10"
+                        android:textColor="@color/gray_1"
+                        android:textColorHint="@color/gray_text"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <ImageView
+                        android:layout_width="@dimen/DIMEN_15"
+                        android:layout_height="@dimen/DIMEN_15"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/DIMEN_15"
+                        android:src="@mipmap/ic_in_g" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                android:background="@color/white">
+
+                <Button
+                    android:id="@+id/commit"
+                    style="@style/SubmitButton"
+                    android:layout_margin="@dimen/DIMEN_10"
+                    android:background="@drawable/select_submit_button_simple"
+                    android:text="@string/confirm" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/DIMEN_10"
+                android:text="银行限额查询："
+                android:textColor="@color/gray_2"
+                android:textSize="@dimen/TEXT_M" />
+
+            <com.xwsd.app.view.AdaptiveGridView
+                android:id="@+id/grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:numColumns="3"></com.xwsd.app.view.AdaptiveGridView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

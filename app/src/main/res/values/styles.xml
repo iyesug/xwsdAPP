@@ -1,0 +1,252 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <!-- 窗口背景颜色-->　
+        <item name="android:windowBackground">@color/gray_bg</item>
+    </style>
+
+    <!--底部四个导航-->
+    <style name="MainRadioTab">
+        <item name="android:textSize">@dimen/TEXT_M</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:textColor">@color/tab_text_color</item>
+    </style>
+
+    <!-- 按钮样式 -->
+    <style name="SubmitButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/TEXT_XL</item>
+        <item name="android:background">@drawable/select_submit_button</item>
+    </style>
+
+    <!--首页正文内容样式-->
+    <style name="HomeText">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/gray_2</item>
+        <item name="android:textSize">@dimen/TEXT_L</item>
+    </style>
+
+    <!--账户文本-->
+    <style name="AccountText_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/gray_bg</item>
+        <item name="android:textSize">@dimen/TEXT_S</item>
+    </style>
+
+    <!--账户文本-->
+    <style name="AccountText_2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/TEXT_XL</item>
+    </style>
+
+    <!--账户文本-->
+    <style name="AccountText_2_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/TEXT_S</item>
+    </style>
+
+    <!--账户文本-->
+    <style name="AccountText_3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/blue_4dbaf5</item>
+        <item name="android:textSize">@dimen/TEXT_S1</item>
+    </style>
+
+    <!--账户文本-->
+    <style name="AccountText_3_1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/blue_4dbaf5</item>
+        <item name="android:textSize">@dimen/TEXT_M</item>
+    </style>
+
+    <!--资讯顶部RadioButton-->
+    <style name="NewsRadioButton">
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:minHeight">@dimen/DIMEN_30</item>
+        <item name="android:minWidth">@dimen/DIMEN_70</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingLeft">@dimen/DIMEN_5</item>
+        <item name="android:paddingRight">@dimen/DIMEN_5</item>
+        <item name="android:paddingTop">@dimen/DIMEN_8</item>
+        <item name="android:paddingBottom">@dimen/DIMEN_8</item>
+    </style>
+
+    <!--投资记录条目文本-->
+    <style name="InvestRecordItemText">
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">@dimen/DIMEN_5</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray_1</item>
+        <item name="android:textSize">@dimen/TEXT_S</item>
+    </style>
+
+    <!--充值-银行信息对话框样式    -->
+    <style name="BankDialog" parent="@android:style/Theme.Dialog">
+        <!-- 设置未浮动窗口 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 设置无边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置完全透明 -->
+        <item name="android:windowBackground">@color/transparency</item>
+        <!-- 设置屏幕变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--支付输入框-->
+    <style name="PayEdit">
+        <item name="android:textColorHint">@color/gray_text</item>
+        <item name="android:padding">@dimen/DIMEN_5</item>
+        <item name="android:textColor">@color/gray_1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/DIMEN_40</item>
+        <item name="android:background">@drawable/bg_edit_sharp_rec</item>
+        <item name="android:textSize">@dimen/TEXT_XL</item>
+    </style>
+
+    <!--灰色间隔-->
+    <style name="GreyInterval">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/DIMEN_1</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <!--灰色间隔-->
+    <style name="GreyIntervalVertical">
+        <item name="android:layout_width">@dimen/DIMEN_2</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <!--资产明细蓝色字-->
+    <style name="PropertyDetailsBlueText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue_simple</item>
+        <item name="android:textSize">@dimen/TEXT_L</item>
+    </style>
+
+    <!--资产明细橘色字-->
+    <style name="PropertyDetailsOrangeText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_orange</item>
+        <item name="android:textSize">@dimen/TEXT_L</item>
+    </style>
+
+    <!--资产明细灰色字-->
+    <style name="PropertyDetailsGrayText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray_1</item>
+        <item name="android:textSize">@dimen/TEXT_M</item>
+    </style>
+
+    <!--日历星期-->
+    <style name="WeekName">
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1.0</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/gray_text</item>
+        <item name="android:textSize">@dimen/TEXT_M</item>
+    </style>
+
+    <!--TabLayout的字体大小-->
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/TEXT_L</item>
+    </style>
+
+    <!-- 加载滚动条样式 -->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/progressloading</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+    <!-- 风险控制单选按钮 -->
+    <style name="RiskControlRadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:padding">@dimen/DIMEN_10</item>
+        <item name="android:textColor">@color/tab_text_color</item>
+        <item name="android:textSize">@dimen/TEXT_L</item>
+    </style>
+
+    <!--图片浏览全屏对话框-->
+    <style name="DialogFullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--解决自定义toolbar时，左边始终会有间距-->
+    <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+    </style>
+
+    <style name="EDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/round_rect_translucent_black_shape</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Animations_BottomPush">
+
+    <item name="android:windowEnterAnimation">@anim/pw_push_bottom_in</item>
+
+    <item name="android:windowExitAnimation">@anim/pw_push_bottom_out</item>
+
+</style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

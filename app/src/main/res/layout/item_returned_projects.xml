@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/DIMEN_40"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@mipmap/ic_cast_bg">
+
+                    <TextView
+                        android:id="@+id/tv_cast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/DIMEN_40"
+                        android:layout_toRightOf="@id/iv_left"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TEXT_S" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_L" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_money"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_title"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:gravity="right"
+                            android:textColor="@color/text_orange"
+                            android:textSize="@dimen/TEXT_XL" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yuan"
+                            android:textColor="@color/gray_2"
+                            android:textSize="@dimen/TEXT_L" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/tv_title"
+                        android:layout_marginRight="@dimen/DIMEN_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_period"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:textColor="@color/gray_2"
+                            android:textSize="@dimen/TEXT_L" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="个月"
+                            android:textColor="@color/gray_2"
+                            android:textSize="@dimen/TEXT_M" />
+
+                    </LinearLayout>
+
+                    <View
+                        style="@style/GreyInterval"
+                        android:layout_below="@id/ll_money"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginTop="@dimen/DIMEN_5"></View>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DIMEN_10"
+                android:layout_marginTop="@dimen/DIMEN_5"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/DIMEN_40"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@mipmap/ic_capital_bg">
+
+                    <TextView
+                        android:id="@+id/tv_capital"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/DIMEN_40"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TEXT_S" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_M" />
+
+                    <TextView
+                        android:id="@+id/tv_interest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_M" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v_transfer_creditor"
+                style="@style/GreyInterval"
+                android:layout_marginBottom="@dimen/DIMEN_5"
+                android:layout_marginLeft="@dimen/DIMEN_10"
+                android:layout_marginRight="@dimen/DIMEN_10"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/prot_detail"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/DIMEN_5"
+                    android:layout_marginLeft="@dimen/DIMEN_5"
+                    android:background="@drawable/bg_check_sharp_white"
+                    android:padding="@dimen/DIMEN_8"
+                    android:text="明细"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_L" />
+                <TextView
+                    android:id="@+id/tv_transfer_creditor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/DIMEN_5"
+                    android:layout_marginRight="@dimen/DIMEN_5"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/bg_check_sharp_white"
+                    android:padding="@dimen/DIMEN_8"
+                    android:text="转让债权"
+                    android:textColor="@color/gray_1"
+                    android:textSize="@dimen/TEXT_L" />
+            </RelativeLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/yijiaxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/yijiaxi"/>
+    </RelativeLayout>
+</LinearLayout>
