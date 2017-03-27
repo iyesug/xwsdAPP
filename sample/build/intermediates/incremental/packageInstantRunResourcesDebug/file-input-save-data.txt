@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Mar 24 10:25:19 CST 2017
+#Mon Mar 27 10:49:45 CST 2017
 20.set=ANDROID_RESOURCE
 19.set=ANDROID_RESOURCE
 8.set=ANDROID_RESOURCE
@@ -13,15 +13,15 @@
 5.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\ic_error.png
 7.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 7.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\item_grid_image.xml
-11.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\ic_launcher.png
+11.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\main_menu.xml
 11.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 9.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
-9.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\widget.xml
+9.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\ac_home.xml
 13.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\ic_stub.png
 13.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 11.set=ANDROID_RESOURCE
 0.set=ANDROID_RESOURCE
-15.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\widget_provider.xml
+15.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\fr_image_grid.xml
 15.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 18.set=ASSET
 17.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
@@ -46,15 +46,15 @@
 10.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
 13.set=ANDROID_RESOURCE
 8.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
-8.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\ac_home.xml
+8.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\widget.xml
 2.set=ASSET
 20.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\item_pager_image.xml
 20.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
-12.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\main_menu.xml
+12.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\ic_launcher.png
 12.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 14.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xhdpi-v4\\ic_empty.png
 14.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
-16.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\fr_image_grid.xml
+16.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\xml\\widget_provider.xml
 16.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 9.set=ANDROID_RESOURCE
 count=21

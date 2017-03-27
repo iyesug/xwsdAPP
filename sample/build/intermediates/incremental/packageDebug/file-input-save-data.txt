@@ -1,6 +1,6 @@
 #Internal package file, do not edit.
-#Fri Mar 24 10:25:35 CST 2017
-25.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\main_menu.xml
+#Mon Mar 27 10:49:55 CST 2017
+25.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\ic_launcher.png
 25.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 22.set=ANDROID_RESOURCE
 36.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_4\\classes.dex
@@ -16,7 +16,7 @@
 count=38
 6.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\fr_image_pager.xml
 6.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
-26.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-xxhdpi-v4\\ic_launcher.png
+26.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\menu\\main_menu.xml
 2.set=ANDROID_RESOURCE
 26.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 32.set=ANDROID_RESOURCE
@@ -53,7 +53,7 @@ count=38
 6.set=ANDROID_RESOURCE
 16.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-23.1.1_be69502ce3197277d83a92633f898fd75ff647e4
 36.set=DEX
-8.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\ac_home.xml
+8.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\widget.xml
 8.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_
 17.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_8\\classes.dex
 25.set=ANDROID_RESOURCE
@@ -72,7 +72,7 @@ count=38
 30.set=ANDROID_RESOURCE
 33.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\okhttp-2.4.0_1a88588d86205825a3225019b657d26fc4d4e22f\\classes.dex
 33.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\okhttp-2.4.0_1a88588d86205825a3225019b657d26fc4d4e22f
-9.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\widget.xml
+9.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\ac_home.xml
 5.set=DEX
 18.file=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\item_gallery_image.xml
 9.base=D\:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\resources-debug.ap_

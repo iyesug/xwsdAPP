@@ -233,5 +233,9 @@
     <string name="title_activity_test_baofu">TestBaofuActivity</string>
     <string name="remain">债权本金</string>
     <string name="crtrSM">服务　费</string>
+    <string name="control">风控材料</string>
+    <string name="investment">在投记录</string>
+    <string name="notes">投资记录</string>
+    <string name="particulars">项目详情</string>
 
 </resources>

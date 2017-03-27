@@ -1,72 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+
+    android:background="@color/gray_bg"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/DIMEN_10"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_left"
-            android:layout_width="@dimen/DIMEN_30"
-            android:layout_height="@dimen/DIMEN_50"
-            android:layout_gravity="center_vertical"
-            android:clickable="true"
-            android:paddingBottom="@dimen/DIMEN_10"
-            android:paddingTop="@dimen/DIMEN_10"
-            android:src="@mipmap/ic_back_t" />
-
-        <com.xwsd.app.view.CustomViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="0dp"
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></com.xwsd.app.view.CustomViewPager>
+            android:layout_marginLeft="@dimen/DIMEN_10"
+            android:layout_marginRight="@dimen/DIMEN_10"
+            android:layout_marginTop="@dimen/DIMEN_10"
+            custom:cardBackgroundColor="@color/white">
 
-        <ImageView
-            android:id="@+id/iv_right"
-            android:layout_width="@dimen/DIMEN_30"
-            android:layout_height="@dimen/DIMEN_50"
-            android:layout_gravity="center_vertical"
-            android:clickable="true"
-            android:paddingBottom="@dimen/DIMEN_10"
-            android:paddingTop="@dimen/DIMEN_10"
-            android:src="@mipmap/ic_back_t_overturn" />
+        <include layout="@layout/layout_project_user_info"/>
+        </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/DIMEN_10"
+            android:layout_marginRight="@dimen/DIMEN_10"
+            android:layout_marginTop="@dimen/DIMEN_10"
+            custom:cardBackgroundColor="@color/white">
+
+            <include layout="@layout/layout_project_car_info"/>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 
     <View
+        android:id="@+id/view_line"
         style="@style/GreyInterval"
+        android:layout_below="@id/info"
         android:layout_marginLeft="@dimen/DIMEN_15"
         android:layout_marginRight="@dimen/DIMEN_15"
         android:layout_marginTop="@dimen/DIMEN_15"></View>
 
     <TextView
+        android:id="@+id/text_photo"
+        android:layout_below="@id/view_line"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/DIMEN_10"
-        android:layout_marginLeft="@dimen/DIMEN_15"
+        android:layout_marginLeft="@dimen/DIMEN_30"
         android:layout_marginRight="@dimen/DIMEN_15"
-        android:layout_marginTop="@dimen/DIMEN_15"
+        android:layout_marginTop="@dimen/DIMEN_10"
         android:ellipsize="end"
         android:singleLine="true"
         android:text="车辆图片"
         android:textColor="@color/gray_2"
         android:textSize="@dimen/TEXT_L" />
 
+
+
     <FrameLayout
+        android:layout_below="@id/text_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/DIMEN_10"
+
         android:layout_marginTop="@dimen/DIMEN_10">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager_botton"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/DIMEN_250" />
+            android:layout_height="@dimen/DIMEN_150"
+            android:layout_marginRight="@dimen/DIMEN_50"
+            android:layout_marginLeft="@dimen/DIMEN_50"/>
 
         <ImageView
             android:id="@+id/iv_left_botton"
@@ -88,4 +95,5 @@
 
     </FrameLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

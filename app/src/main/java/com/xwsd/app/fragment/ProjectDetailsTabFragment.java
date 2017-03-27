@@ -7,10 +7,12 @@ import android.widget.TextView;
 
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
+import com.xwsd.app.activity.ProjectDetailTabActivity;
 import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.OddBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.TitleTextView;
 
 import butterknife.Bind;
@@ -73,10 +75,11 @@ public class ProjectDetailsTabFragment extends BaseFragment {
     protected void init() {
 //        projectDetailsActivity = (ProjectDetailsActivity) getActivity();
         if (getArguments().getInt(UserParam.DATA) == 0) {
-            oddBean = ((ProjectDetailsActivity) getActivity()).oddBean;
+            oddBean = ((ProjectDetailTabActivity) getActivity()).oddBean;
         } else {
             oddBean = ((BidDetailsActivity) getActivity()).oddBean;
         }
+        TLog.error("fragment:oddBean:"+oddBean);
         switch (getArguments().getInt(UserParam.TYPE, 0)) {
             case 0://用户信息
                 //隐藏掉不需要的内容

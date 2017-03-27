@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/view_toolbar"></include>
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/ll_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <Button
+            android:id="@+id/commitdetail"
+            style="@style/SubmitButton"
+            android:layout_margin="@dimen/DIMEN_5"
+            android:background="@drawable/select_submit_button_simple"
+            android:text="@string/immediate_investment" />
+    </LinearLayout>
+
+
+
+</RelativeLayout>

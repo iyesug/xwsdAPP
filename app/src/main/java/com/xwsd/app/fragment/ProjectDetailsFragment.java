@@ -18,12 +18,14 @@ import com.bm.library.PhotoView;
 import com.gnwai.smartimageview.SmartImageView;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
+import com.xwsd.app.activity.ProjectDetailTabActivity;
 import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.OddBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
+import com.xwsd.app.view.TitleTextView;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 
 import butterknife.Bind;
@@ -36,8 +38,35 @@ import okhttp3.Call;
  */
 public class ProjectDetailsFragment extends BaseFragment implements View.OnClickListener {
 
-    @Bind(R.id.view_pager)
-    ViewPager view_pager;
+    @Bind(R.id.ttv_1)
+    TitleTextView ttv_1;
+
+    @Bind(R.id.ttv_2)
+    TitleTextView ttv_2;
+
+    @Bind(R.id.ttv_3)
+    TitleTextView ttv_3;
+
+    @Bind(R.id.ttv_11)
+    TitleTextView ttv_11;
+
+    @Bind(R.id.ttv_12)
+    TitleTextView ttv_12;
+
+    @Bind(R.id.ttv_13)
+    TitleTextView ttv_13;
+
+    @Bind(R.id.ttv_14)
+    TitleTextView ttv_14;
+
+    @Bind(R.id.ttv_15)
+    TitleTextView ttv_15;
+
+    @Bind(R.id.ttv_16)
+    TitleTextView ttv_16;
+
+/*    @Bind(R.id.view_pager)
+    ViewPager view_pager;*/
 
 //    ProjectDetailsActivity projectDetailsActivity;
 
@@ -58,25 +87,63 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
 //        projectDetailsActivity = (ProjectDetailsActivity) getActivity();
         data = getArguments().getInt(UserParam.DATA);
         if (data == 0) {
-            oddBean = ((ProjectDetailsActivity) getActivity()).oddBean;
+            oddBean = ((ProjectDetailTabActivity) getActivity()).oddBean;
         } else {
             oddBean = ((BidDetailsActivity) getActivity()).oddBean;
         }
-        view_pager.setAdapter(new TabFragmentPagerAdapter(getChildFragmentManager()));
+      /*  view_pager.setAdapter(new TabFragmentPagerAdapter(getChildFragmentManager()));*/
         //设置轮播图
         view_pager_botton.setAdapter(new PicAdapter());
+        setData();
     }
 
-    @OnClick({R.id.iv_left, R.id.iv_right, R.id.iv_left_botton, R.id.iv_right_botton})
+    private void setData() {
+        //设置用户信息数据
+        ttv_1.setTitle("昵称:");
+        ttv_1.setContent(oddBean.data.user1.username);
+        ttv_2.setTitle("年龄:");
+        ttv_2.setContent(oddBean.data.user1.age);
+        ttv_3.setTitle("婚姻:");
+        ttv_3.setContent(oddBean.data.user1.marital);
+
+        ttv_11.setTitle("车辆品牌型号:");
+        ttv_12.setTitle("行驶公里数:");
+        ttv_13.setTitle("车身颜色:");
+        ttv_14.setTitle("排量:");
+        ttv_15.setTitle("购买价格:");
+        ttv_16.setTitle("抵押估价:");
+        if (oddBean.data.oddLoanRemark != null) {
+
+            if (oddBean.data.oddLoanRemark.车辆品牌型号 != null) {
+                ttv_11.setContent(oddBean.data.oddLoanRemark.车辆品牌型号);
+            }
+
+            if (oddBean.data.oddLoanRemark.行驶公里数 != null) {
+                ttv_12.setContent(oddBean.data.oddLoanRemark.行驶公里数);
+            }
+            if (oddBean.data.oddLoanRemark.车身颜色 != null) {
+                ttv_13.setContent(oddBean.data.oddLoanRemark.车身颜色);
+            }
+
+            if (oddBean.data.oddLoanRemark.排量 != null) {
+                ttv_14.setContent(oddBean.data.oddLoanRemark.排量);
+            }
+
+            if (oddBean.data.oddLoanRemark.购买价格 != null) {
+                ttv_15.setContent(oddBean.data.oddLoanRemark.购买价格);
+            }
+
+            if (oddBean.data.oddLoanRemark.抵押估价 != null) {
+                ttv_16.setContent(oddBean.data.oddLoanRemark.抵押估价);
+            }
+        }
+    }
+
+    @OnClick({R.id.iv_left_botton, R.id.iv_right_botton})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.iv_left:
-                view_pager.setCurrentItem(view_pager.getCurrentItem() - 1);
-                break;
-            case R.id.iv_right:
-                view_pager.setCurrentItem(view_pager.getCurrentItem() + 1);
-                break;
+
             case R.id.iv_left_botton:
                 view_pager_botton.setCurrentItem(view_pager_botton.getCurrentItem() - 1);
                 break;

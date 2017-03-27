@@ -58,7 +58,10 @@
         <activity
             android:name=".activity.ProjectDetailsActivity"
             android:screenOrientation="portrait" />
-
+        <!-- 标的详情页tab -->
+        <activity
+            android:name=".activity.ProjectDetailTabActivity"
+            android:screenOrientation="portrait" />
         <!-- 立即投资 -->
         <activity
             android:name=".activity.PromptlyInvestActivity"

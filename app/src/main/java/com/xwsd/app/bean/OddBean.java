@@ -61,7 +61,7 @@ public class OddBean implements Serializable {
 
         public List<OddExteriorPhotos> oddExteriorPhotos;
 
-        public static class OddExteriorPhotos {
+        public static class OddExteriorPhotos implements Serializable{
             public String normal;
             public String min;
             public String max;
