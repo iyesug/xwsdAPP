@@ -262,7 +262,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
                             <!--<android.support.design.widget.TabLayout-->
                                 <!--android:id="@+id/tab_layout"-->
@@ -273,105 +273,106 @@
                                 <!--custom:tabTextColor="@color/gray_2" />-->
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="@dimen/DIMEN_40"
                                 android:background="@color/white"
-                                android:orientation="vertical">
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/tab_project_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="项目详情"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/TEXT_L" />
+                                <TextView
+                                    android:id="@+id/tab_project_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="风控材料"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/TEXT_L" />
+                                <TextView
+                                    android:id="@+id/tab_project_3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="投资记录"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/TEXT_L" />
 
-                                    <ImageView
-                                        android:id="@+id/tab_particulars"
+                                <LinearLayout
+                                    android:id="@+id/ll_tab_project_right"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:gravity="center_horizontal"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:id="@+id/tab_project_right"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:layout_gravity="center_horizontal"
-                                        android:src="@mipmap/icon_red_particulars" />
-                                <TextView
-                                    android:id="@+id/text_particulars"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:text="项目详情"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textColor="@color/gray_2"
-                                    android:textSize="@dimen/TEXT_M" />
-                                <View
-                                    style="@style/GreyInterval"
-                                    android:layout_marginTop="@dimen/DIMEN_10"
-                                    android:layout_marginLeft="@dimen/DIMEN_10"
-                                    android:layout_marginRight="@dimen/DIMEN_10"></View>
-                                <ImageView
-                                    android:id="@+id/tab_notes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@mipmap/icon_orange_notes" />
-                                <TextView
-                                    android:id="@+id/text_notes"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:text="投资记录"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textColor="@color/gray_2"
-                                    android:textSize="@dimen/TEXT_M" />
-
+                                        android:layout_gravity="center"
+                                        android:text="在投记录"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/TEXT_L" />
+                                    <TextView
+                                        android:id="@+id/iv_arrows"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginLeft="@dimen/DIMEN_3"
+                                        android:layout_marginTop="@dimen/DIMEN_3"
+                                        android:gravity="center"
+                                        android:textColor="@color/white"
+                                        android:visibility="gone"
+                                        android:background="@drawable/hong_yuan_text"/>
+                                </LinearLayout>
                             </LinearLayout>
-                            <View
-                                style="@style/GreyIntervalVertical"
-                                android:layout_marginTop="@dimen/DIMEN_10"
-                                android:layout_marginBottom="@dimen/DIMEN_10"></View>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:background="@color/white"
-                                android:orientation="vertical">
+                                android:orientation="horizontal">
 
-                                <ImageView
-                                    android:id="@+id/tab_control"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@mipmap/icon_green_control" />
-                                <TextView
-                                    android:id="@+id/text_control"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:text="风控材料"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textColor="@color/gray_2"
-                                    android:textSize="@dimen/TEXT_M" />
                                 <View
-                                    style="@style/GreyInterval"
-                                    android:layout_marginTop="@dimen/DIMEN_10"
-                                    android:layout_marginLeft="@dimen/DIMEN_10"
-                                    android:layout_marginRight="@dimen/DIMEN_10"></View>
-                                <ImageView
-                                    android:id="@+id/tab_investment"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:id="@+id/indicator_1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
                                     android:layout_weight="1"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@mipmap/icon_blue_investment" />
-                                <TextView
-                                    android:id="@+id/text_investment"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:singleLine="true"
-                                    android:text="在投记录"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textColor="@color/gray_2"
-                                    android:textSize="@dimen/TEXT_M" />
+                                    android:background="@color/blue_simple"></View>
+
+                                <View
+                                    android:id="@+id/indicator_2"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"
+                                    android:visibility="invisible"></View>
+                                <View
+                                    android:id="@+id/indicator_3"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"
+                                    android:visibility="invisible"></View>
+                                <View
+                                    android:id="@+id/indicator_4"
+                                    android:layout_width="0dp"
+                                    android:layout_height="@dimen/DIMEN_3"
+                                    android:layout_weight="1"
+                                    android:background="@color/blue_simple"
+                                    android:visibility="invisible"></View>
 
                             </LinearLayout>
-
-
-
-
+                            <FrameLayout
+                                android:id="@+id/frame_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"></FrameLayout>
 
                         </LinearLayout>
 

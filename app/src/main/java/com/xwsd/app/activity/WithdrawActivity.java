@@ -429,6 +429,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
         String isLottery;
         if(get_ismoney.isChecked()){
             isLottery = "1";
+            tv_poundage.setText("0");
         }else{
             isLottery = "0";
         }
