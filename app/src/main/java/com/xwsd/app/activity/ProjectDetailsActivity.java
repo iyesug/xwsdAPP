@@ -43,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -142,29 +143,31 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
     @Bind(R.id.scroll_view)
     ObserveScrollView scroll_view;
 
-    @Bind(R.id.tab_project_1)
+    @Bind(R.id.text_particulars)
     TextView tab_project_1;
 
-    @Bind(R.id.tab_project_2)
+    @Bind(R.id.text_control)
     TextView tab_project_2;
 
-    @Bind(R.id.tab_project_3)
+    @Bind(R.id.text_notes)
     TextView tab_project_3;
 
-    @Bind(R.id.tab_project_right)
-    TextView tab_project_right;
+    @Bind(R.id.text_investment)
+    TextView tab_project_4;
 
-    @Bind(R.id.iv_arrows)
-    TextView iv_arrows;
 
-    @Bind(R.id.indicator_1)
+
+/*    @Bind(R.id.iv_arrows)
+    TextView iv_arrows;*/
+
+/*    @Bind(R.id.indicator_1)
     View indicator_1;
     @Bind(R.id.indicator_2)
     View indicator_2;
     @Bind(R.id.indicator_3)
     View indicator_3;
     @Bind(R.id.indicator_4)
-    View indicator_4;
+    View indicator_4;*/
 
     @Bind(R.id.process)
     TextView process;
@@ -293,12 +296,12 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
                     if (jsonObject.getInt("status") == 1) {
                         InvestRecordNowBean investRecordBean = GsonUtils.jsonToBean(response, InvestRecordNowBean.class);
                         int num = investRecordBean.data.count;
-                        if(num > 0){
+/*                        if(num > 0){
                             iv_arrows.setVisibility(View.VISIBLE);
                             iv_arrows.setText(num+"");
                         }else {
                             iv_arrows.setVisibility(View.GONE);
-                        }
+                        }*/
                     } else {
                     }
                 } catch (JSONException e) {
@@ -523,14 +526,17 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
 //
 //            }
 //        });
-        setTabSelection(0);
+/*        setTabSelection(0);*/
     }
 
-    /**
+/*
+    */
+/**
      * 将所有的Fragment都置为隐藏状态。
      *
      * @param transaction 用于对Fragment执行操作的事务
-     */
+     *//*
+
     private void hideFragments(FragmentTransaction transaction) {
 
         if (projectDetailsFragment != null) {
@@ -546,13 +552,14 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
             transaction.hide(investRecordNowFragment);
         }
     }
+*/
 
 
-    /**
+/*    *//**
      * 加载相应的Fragment
      *
-     * @param position
-     */
+
+     *//*
     private void setTabSelection(int position) {
         // 开启一个Fragment事务
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -573,14 +580,14 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
                 //埋点开始
                 BuriedPointUtil.buriedPoint("项目介绍项目详细");
 
-                tab_project_1.setTextColor(getResources().getColor(R.color.blue_simple));
+*//*                tab_project_1.setTextColor(getResources().getColor(R.color.blue_simple));
                 tab_project_2.setTextColor(getResources().getColor(R.color.backk));
                 tab_project_3.setTextColor(getResources().getColor(R.color.backk));
                 tab_project_right.setTextColor(getResources().getColor(R.color.backk));
                 indicator_1.setVisibility(View.VISIBLE);
                 indicator_2.setVisibility(View.INVISIBLE);
                 indicator_3.setVisibility(View.INVISIBLE);
-                indicator_4.setVisibility(View.INVISIBLE);
+                indicator_4.setVisibility(View.INVISIBLE);*//*
 
                 break;
             case 1:
@@ -646,9 +653,13 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
                 break;
         }
         transaction.commitAllowingStateLoss();
-    }
+    }*/
 
-    @OnClick({R.id.commit,R.id.tab_project_1,R.id.tab_project_2,R.id.tab_project_3,R.id.ll_tab_project_right})
+    @OnClick({R.id.commit,
+            R.id.text_particulars,R.id.tab_particulars,
+            R.id.text_notes,R.id.tab_notes,
+            R.id.text_control,R.id.tab_control,
+            R.id.text_investment,R.id.tab_investment})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -670,19 +681,45 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
                 BuriedPointUtil.buriedPoint("项目介绍立即投资");
 
                 break;
-            case R.id.tab_project_1:
-                setTabSelection(0);
+            case R.id.text_particulars:
+
+                jump(1);
+
                 break;
-            case R.id.tab_project_2:
-                setTabSelection(1);
+            case R.id.tab_particulars:
+
+                jump(1);
+
                 break;
-            case R.id.tab_project_3:
-                setTabSelection(2);
+            case R.id.text_notes:
+                jump(2);
                 break;
-            case R.id.ll_tab_project_right:
-                setTabSelection(3);
+            case R.id.tab_notes:
+                jump(2);
+                break;
+            case R.id.text_control:
+                jump(3);
+                break;
+            case R.id.tab_control:
+                jump(3);
+                break;
+            case R.id.text_investment:
+                jump(4);
+                break;
+            case R.id.tab_investment:
+                jump(4);
                 break;
         }
+    }
+
+    private void jump(int id) {
+        Intent intent;
+        intent = new Intent(this, ProjectDetailTabActivity.class);
+        intent.putExtra(UserParam.ID, id);
+        intent.putExtra(UserParam.OBJ,oddBean);
+        intent.putExtra(UserParam.NUM,oddNum);
+        TLog.error("this:oddBean:"+oddBean);
+        startActivity(intent);
     }
 
 

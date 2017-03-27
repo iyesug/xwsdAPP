@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
+import com.xwsd.app.activity.ProjectDetailTabActivity;
 import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
@@ -73,7 +74,7 @@ public class InvestRecordFragment extends BasePullUpListFragment {
         super.init();
 //        projectDetailsActivity = (ProjectDetailsActivity) getActivity();
         if (getArguments().getInt(UserParam.DATA) == 0) {
-            oddNum = ((ProjectDetailsActivity) getActivity()).oddNum;
+            oddNum = ((ProjectDetailTabActivity) getActivity()).oddNum;
         } else {
             oddNum = ((BidDetailsActivity) getActivity()).oddNum;
         }

@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
+import com.xwsd.app.activity.ProjectDetailTabActivity;
 import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
@@ -58,7 +59,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
 
 //        projectDetailsActivity = (ProjectDetailsActivity) getActivity();
         if (getArguments().getInt(UserParam.DATA) == 0) {
-            oddNum = ((ProjectDetailsActivity) getActivity()).oddNum;
+            oddNum = ((ProjectDetailTabActivity) getActivity()).oddNum;
         } else {
             oddNum = ((BidDetailsActivity) getActivity()).oddNum;
         }

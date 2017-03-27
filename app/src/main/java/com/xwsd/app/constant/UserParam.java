@@ -19,5 +19,7 @@ public class UserParam {
     public static final String NEED_ENTER_ACCOUNT = "needEnterAccount";
     public static final String MONEY = "money";
     public static final String POSITION = "position";
-
+    public static final String ID = "id";
+    public static final String OBJ = "obj";
+    public static final String NUM = "num";
 }
