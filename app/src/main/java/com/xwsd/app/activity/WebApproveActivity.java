@@ -8,15 +8,17 @@ import android.view.View;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
+
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.tencent.smtt.sdk.WebSettings;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 
 import butterknife.Bind;
@@ -32,11 +34,11 @@ public class WebApproveActivity extends BaseActivity {
      */
     private NavbarManage navbarManage;
 
-    @Bind(R.id.load_progress_bar)
-    ProgressBar load_progress_bar;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
-    @Bind(R.id.web_view)
-    WebView web_view;
+    @Bind(R.id.webview_wechat)
+    com.tencent.smtt.sdk.WebView webView;
 
     String title;
 
@@ -80,52 +82,14 @@ public class WebApproveActivity extends BaseActivity {
             web_view.postUrl(url, EncodingUtils.getBytes(postDate, "BASE64"));
         }*/
 
-        web_view.loadUrl(url);
 
-        web_view.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public void onPageCommitVisible(WebView view, String url) {
-                view.loadUrl(url);
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-                TLog.error("加载网页:"+url);
-                view.loadUrl(url);
-                return true;
-            }
-
-            //shouldOverrideUrlLoading(WebView view, String url)
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                // 开始加载网页时处理 如：显示"加载提示" 的加载对话框
-
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                // 网页加载完成时处理  如：让 加载对话框 消失
-
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                super.onReceivedError(view, errorCode, description, failingUrl);
-                // 加载网页失败时处理 如：提示失败，或显示新的界面
-               TLog.error("加载网页失败");
-            }
-        });
-        setWebView();
+        setWebView(url);
     }
 
     @Override
     public void onBackPressed() {
-        if(web_view.canGoBack()){
-            web_view.goBack();
+        if(webView.canGoBack()){
+            webView.goBack();
         }else{
             super.onBackPressed();
         }
@@ -134,64 +98,52 @@ public class WebApproveActivity extends BaseActivity {
     /**
      * 设置WebView
      */
-    private void setWebView() {
-        web_view.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                //handler.cancel(); 默认的处理方式，WebView变成空白页
-                TLog.error("handler.proceed();//接受证书");
-                handler.proceed();//接受证书
-                //handleMessage(Message msg); 其他处理
-            }
-        });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            web_view.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW); }
-        //支持JS脚本
-        web_view.getSettings().setJavaScriptEnabled(true);
+    private void setWebView(String url) {
+
+        TLog.error(url);
+        com.tencent.smtt.sdk.WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         //支持缩放
-        web_view.getSettings().setSupportZoom(true);
-        web_view.getSettings().setBuiltInZoomControls(true);
-        web_view.getSettings().setSavePassword(false);
-        web_view.getSettings().setUseWideViewPort(true);
-        web_view.setInitialScale(25);
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setUseWideViewPort(true);
+        webView.setInitialScale(25);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setLoadWithOverviewMode(true);
 
-        //屏蔽跳转其他浏览器
-        web_view.setWebViewClient(new WebViewClient() {
+        webView.loadUrl(url);
+        webView.setWebViewClient(new com.tencent.smtt.sdk.WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
+            public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onReceivedError(com.tencent.smtt.sdk.WebView var1, int var2, String var3, String var4) {
+                progressBar.setVisibility(View.GONE);
+                ToastUtil.show("网页加载失败");
+
             }
         });
-
     }
 
     /**
      * 初始化顶部进度条
      */
     private void initProgressBar() {
-        web_view.setWebChromeClient(new WebChromeClient() {
 
-
+        //进度条
+        webView.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
             @Override
-            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-                return super.onJsAlert(view, url, message, result);
-            }
-
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-
-                if (load_progress_bar.getVisibility() == View.GONE) {
-                    load_progress_bar.setVisibility(View.VISIBLE);
-                }
+            public void onProgressChanged(com.tencent.smtt.sdk.WebView view, int newProgress) {
                 if (newProgress == 100) {
-                    load_progress_bar.setVisibility(View.GONE);
-                } else {
-                    if (View.INVISIBLE == load_progress_bar.getVisibility()) {
-                        load_progress_bar.setVisibility(View.VISIBLE);
-                    }
-                    load_progress_bar.setProgress(newProgress);
+                    progressBar.setVisibility(View.GONE);
+                    return;
                 }
-                super.onProgressChanged(view, newProgress);
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(newProgress);
             }
         });
     }

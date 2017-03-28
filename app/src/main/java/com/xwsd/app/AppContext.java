@@ -16,6 +16,7 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.xwsd.app.bean.UserBean;
+import com.xwsd.app.tbswebview.APIWebviewTBS;
 import com.xwsd.app.tools.TLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
@@ -73,6 +74,7 @@ public class AppContext extends Application {
         AppContext.needLock = needLock;
     }
 
+    APIWebviewTBS	mAPIWebviewTBS;
 
     @Override
     public void onCreate() {
@@ -120,6 +122,12 @@ public class AppContext extends Application {
                     .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
                     .build();
             OkHttpUtils.initClient(okHttpClient);
+
+
+        //WebviewTBS个人封装，针对升级----开始
+        mAPIWebviewTBS= APIWebviewTBS.getAPIWebview();
+        mAPIWebviewTBS.initTbs(getApplicationContext());
+        //个人封装，针对升级----结束
     }
 
 

@@ -14,6 +14,7 @@ import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import butterknife.Bind;
 
@@ -32,11 +33,11 @@ public class WebDetailsActivity extends BaseActivity {
      */
     private NavbarManage navbarManage;
 
-    @Bind(R.id.load_progress_bar)
-    ProgressBar load_progress_bar;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
-    @Bind(R.id.web_view)
-    WebView web_view;
+    @Bind(R.id.webview_wechat)
+    com.tencent.smtt.sdk.WebView webView;
 
     String title;
 
@@ -72,79 +73,63 @@ public class WebDetailsActivity extends BaseActivity {
         url = getIntent().getStringExtra(UserParam.URL);
         type = getIntent().getIntExtra(UserParam.TYPE, TYPE_NETWORK);
         navbarManage.setCentreStr(title);
-        setWebView();
+        setWebView(url);
     }
 
     @Override
     public void onBackPressed() {
-        if (web_view.canGoBack()) {
-            web_view.goBack();
-        } else {
+        if(webView.canGoBack()){
+            webView.goBack();
+        }else{
             super.onBackPressed();
         }
     }
 
     /**
-     * 页面销毁的时候发送广播
-     */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Intent intent = new Intent();
-
-        switch (title) {
-            case "投标":
-                intent.setAction(BroadcastParam.BUY_BID);
-                break;
-            case "购买债权":
-                intent.setAction(BroadcastParam.BUY_CREDITORS);
-                break;
-        }
-        sendBroadcast(intent);
-    }
-
-    /**
      * 设置WebView
      */
-    private void setWebView() {
-        //支持JS脚本
-        web_view.getSettings().setJavaScriptEnabled(true);
+    private void setWebView(String url) {
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        webView = (com.tencent.smtt.sdk.WebView) findViewById(R.id.webview_wechat);
+        com.tencent.smtt.sdk.WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         //支持缩放
-        web_view.getSettings().setSupportZoom(true);
-        web_view.getSettings().setBuiltInZoomControls(true);
-        web_view.getSettings().setUseWideViewPort(true);
-        web_view.setInitialScale(25);
-        web_view.getSettings().setDefaultTextEncodingName("gb2312");
-        WebViewClient  mWebviewclient = new WebViewClient(){
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error){
-                handler.proceed();
+        webSettings.setSupportZoom(true);
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setUseWideViewPort(true);
+        webView.setInitialScale(25);
+        webView.loadUrl(url);
+        webView.setWebViewClient(new com.tencent.smtt.sdk.WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
+                view.loadUrl(url);
+                return true;
             }
-        };
-        web_view.setWebViewClient(mWebviewclient);
-        web_view.loadUrl(url);
+
+            @Override
+            public void onReceivedError(com.tencent.smtt.sdk.WebView var1, int var2, String var3, String var4) {
+                progressBar.setVisibility(View.GONE);
+                ToastUtil.show("网页加载失败");
+
+            }
+        });
     }
 
     /**
      * 初始化顶部进度条
      */
     private void initProgressBar() {
-        web_view.setWebChromeClient(new WebChromeClient() {
 
+        //进度条
+        webView.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
             @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-
-                if (load_progress_bar.getVisibility() == View.GONE) {
-                    load_progress_bar.setVisibility(View.VISIBLE);
-                }
+            public void onProgressChanged(com.tencent.smtt.sdk.WebView view, int newProgress) {
                 if (newProgress == 100) {
-                    load_progress_bar.setVisibility(View.GONE);
-                } else {
-                    if (View.INVISIBLE == load_progress_bar.getVisibility()) {
-                        load_progress_bar.setVisibility(View.VISIBLE);
-                    }
-                    load_progress_bar.setProgress(newProgress);
+                    progressBar.setVisibility(View.GONE);
+                    return;
                 }
-                super.onProgressChanged(view, newProgress);
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(newProgress);
             }
         });
     }

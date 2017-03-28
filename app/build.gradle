@@ -53,4 +53,5 @@ dependencies {
     compile files('libs/paysdkPY36sdkProduction.jar')
     compile project(path: ':okhttp3-persistent-cookiejar')
     compile project(path: ':library')
+    compile files('libs/tbs_sdk_thirdapp_v3.0.jar')
 }
