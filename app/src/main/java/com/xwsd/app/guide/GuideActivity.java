@@ -42,6 +42,7 @@ public class GuideActivity extends BaseActivity {
     private GuideFragment1 mFragment1;
     private GuideFragment2 mFragment2;
     private GuideFragment3 mFragment3;
+    private GuideFragment4 mFragment4;
     private List<Fragment> mListFragment = new ArrayList<Fragment>();
     private PagerAdapter mPgAdapter;
     private ImageView iv_splash;
@@ -144,9 +145,11 @@ public class GuideActivity extends BaseActivity {
         mFragment1 = new GuideFragment1();
         mFragment2 = new GuideFragment2();
         mFragment3 = new GuideFragment3();
+        mFragment4 = new GuideFragment4();
         mListFragment.add(mFragment1);
         mListFragment.add(mFragment2);
         mListFragment.add(mFragment3);
+        mListFragment.add(mFragment4);
         mPgAdapter = new ViewPagerAdapter(getSupportFragmentManager(),
                 mListFragment);
         mVPActivity.setAdapter(mPgAdapter);
