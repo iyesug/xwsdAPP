@@ -51,6 +51,22 @@
                     android:id="@+id/ll_email_certification"
                     layout="@layout/layout_account_safety_select"></include>
 
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_10"></View>
+
+                <include
+                    android:id="@+id/ll_bank_card"
+                    layout="@layout/layout_account_safety_select"></include>
+
+                <View
+                    style="@style/GreyInterval"
+                    android:layout_marginLeft="@dimen/DIMEN_10"></View>
+
+                <include
+                    android:id="@+id/ll_unite_deposit"
+                    layout="@layout/layout_account_safety_select"></include>
+
             </LinearLayout>
 
             <LinearLayout

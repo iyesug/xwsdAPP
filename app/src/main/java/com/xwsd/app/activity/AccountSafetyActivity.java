@@ -40,6 +40,12 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
     @Bind(R.id.ll_email_certification)
     LinearLayout ll_email_certification;
 
+    @Bind(R.id.ll_bank_card)
+    LinearLayout ll_bank_card;
+
+    @Bind(R.id.ll_unite_deposit)
+    LinearLayout ll_unite_deposit;
+
     @Bind(R.id.ll_modify_login_password)
     LinearLayout ll_modify_login_password;
 
@@ -70,9 +76,13 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
             }
         });
 
-        ((ImageView) ll_name_certification.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_name);
-        ((ImageView) ll_mobile_certification.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_phone);
-        ((ImageView) ll_email_certification.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_email);
+        ((ImageView) ll_name_certification.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_red_name);
+        ((ImageView) ll_mobile_certification.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_green_phone);
+        ((ImageView) ll_email_certification.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_orange_email);
+
+        ((ImageView) ll_bank_card.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_blue_card);
+        ((ImageView) ll_unite_deposit.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_purple_hand);
+
         ((ImageView) ll_modify_login_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_login);
         ((ImageView) ll_modify_pay_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_pay);
         ((ImageView) ll_gesture_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_gesture);
@@ -80,6 +90,10 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
         ((TextView) ll_name_certification.findViewById(R.id.tv_title)).setText(getString(R.string.certification));
         ((TextView) ll_mobile_certification.findViewById(R.id.tv_title)).setText(getString(R.string.mobile_certification));
         ((TextView) ll_email_certification.findViewById(R.id.tv_title)).setText(getString(R.string.email_certification));
+
+        ((TextView) ll_bank_card.findViewById(R.id.tv_title)).setText(getString(R.string.bank_card));
+        ((TextView) ll_unite_deposit.findViewById(R.id.tv_title)).setText(getString(R.string.unite_deposit));
+
         ((TextView) ll_modify_login_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_login_password));
 
         if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.YES)) {
@@ -94,6 +108,8 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
     @OnClick({R.id.ll_name_certification,
             R.id.ll_mobile_certification,
             R.id.ll_email_certification,
+            R.id.ll_bank_card,
+            R.id.ll_unite_deposit,
             R.id.ll_modify_login_password,
             R.id.ll_modify_pay_password,
             R.id.ll_gesture_password,
@@ -115,6 +131,16 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
             case R.id.ll_email_certification:
                 BuriedPointUtil.buriedPoint("账户安全邮箱认证");
                 intent = new Intent(AccountSafetyActivity.this, EmailCertificationActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_bank_card:
+                BuriedPointUtil.buriedPoint("账户安全银行卡");
+                intent = new Intent(AccountSafetyActivity.this, BankCardActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_unite_deposit:
+                BuriedPointUtil.buriedPoint("账户安全资金托管");
+                intent = new Intent(AccountSafetyActivity.this, DredgeTrusteeshipActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_modify_login_password:
