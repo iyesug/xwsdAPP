@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
 
-            <TextView
+<!--            <TextView
                 android:id="@+id/tab_project_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:text="宝付充值"
                 android:textColor="@color/gray_text"
-                android:textSize="@dimen/TEXT_L" />
+                android:textSize="@dimen/TEXT_L" />-->
             <TextView
                 android:textColor="@color/gray_text"
                 android:id="@+id/tab_project_right"
@@ -44,7 +44,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+<!--        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -64,7 +64,7 @@
                 android:layout_weight="1"
                 android:background="@color/blue_simple"
                 android:visibility="invisible"/>
-        </LinearLayout>
+        </LinearLayout>-->
 
         <com.xwsd.app.view.MainViewPager
             android:id="@+id/viewPager"

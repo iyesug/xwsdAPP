@@ -5,13 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.BaseAdapterHelper;
@@ -28,16 +24,12 @@ import com.xwsd.app.view.SpinnerDialog;
 import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 
 /**
@@ -65,7 +57,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
     TextView tv_amount_type;
 
     @Bind(R.id.tv_retain)
-    TextView tv_retain;
+    SwitchView tv_retain;
 
     @Bind(R.id.ll_invest_section)
     LinearLayout ll_invest_section;
@@ -245,13 +237,36 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
         tv_balance.setText(autoInfoBean.data.fundMoney);
         //设置保留余额
         if (Long.valueOf(autoInfoBean.data.autoInvest.investEgisMoney) > 0) {
-            ll_retain_balance.setVisibility(View.VISIBLE);
-            tv_retain.setText(getString(R.string.no_retain));
+
+            tv_retain.setState(true);
             et_retain_balance.setText(autoInfoBean.data.autoInvest.investEgisMoney);
         } else {
-            ll_retain_balance.setVisibility(View.GONE);
-            tv_retain.setText(getString(R.string.retain));
+            et_retain_balance.setText("00.00");
+            tv_retain.setState(false);
+            et_retain_balance.setEnabled(false);
+
         }
+
+        //SwitchView监听
+        tv_retain.setOnStateChangedListener(new SwitchView.OnStateChangedListener() {
+            @Override
+            public void toggleToOn() {
+                et_retain_balance.setEnabled(true);
+                et_retain_balance.setText("");
+                tv_retain.toggleSwitch(true);
+            }
+
+            @Override
+            public void toggleToOff() {
+                et_retain_balance.setText("00.00");
+                et_retain_balance.setEnabled(false);
+
+                tv_retain.toggleSwitch(false);
+
+            }
+        });
+
+
         //设置投资金额
         if (autoInfoBean.data.autoInvest.moneyType == 0) {
             moneyType = ApiHttpClient.CLOSE;
@@ -380,9 +395,9 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                 amountType.show(ll_amount_type.getWidth());
                 BuriedPointUtil.buriedPoint("自动投标设置指定金额");
                 break;
-            case R.id.tv_retain:
+ /*           case R.id.tv_retain:
 
-                if (ll_retain_balance.getVisibility() != View.VISIBLE) {
+                if (tv_retain.get) {
                     ll_retain_balance.setVisibility(View.VISIBLE);
                     tv_retain.setText(getString(R.string.no_retain));
 
@@ -392,9 +407,9 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                     et_retain_balance.setText("");
                 }
 
-                BuriedPointUtil.buriedPoint("自动投标设置保留");
 
-                break;
+
+                break;*/
             case R.id.ll_tab:
                 TLog.error("点击了TAB");
                 if (autoInfoBean != null) {
@@ -415,7 +430,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                 String fixedMoney;
                 BuriedPointUtil.buriedPoint("自动投标高级-保存");
                 //得到保留金额
-                if (tv_retain.getText().toString().trim().equals(getString(R.string.no_retain))) {
+                if (3==tv_retain.getState()||4==tv_retain.getState()) {
 
                     if (TextUtils.isEmpty(et_retain_balance.getText().toString().trim())) {
                         AppContext.showToastShort(R.string.inpt_retain_money);

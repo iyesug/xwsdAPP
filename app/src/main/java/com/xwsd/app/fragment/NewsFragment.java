@@ -53,6 +53,12 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
     RadioButton rb_feedback;
 
     /**
+     * 关于小微
+     */
+    @Bind(R.id.rb_aboutus)
+    RadioButton rb_aboutus;
+
+    /**
      * 新标预告
      */
     private ForeshowListFragment newBidNoticeFragment;
@@ -66,6 +72,11 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
      * 问题反馈
      */
     private FeedbackFragment feedbackFragment;
+
+    /**
+     * 关于小微
+     */
+    private AboutXWFragment aboutXWFragment;
 
     @Override
     protected View setContentView(LayoutInflater inflater) {
@@ -93,6 +104,9 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
                     case R.id.rb_feedback://问答反馈
                         view_pager.setCurrentItem(2);
                         break;
+                    case R.id.rb_aboutus://问答反馈
+                        view_pager.setCurrentItem(3);
+                        break;
                 }
             }
         });
@@ -114,6 +128,9 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
                 break;
             case 2://问答反馈
                 rb_feedback.setChecked(true);
+                break;
+            case 3://关于小微
+                rb_aboutus.setChecked(true);
                 break;
         }
     }
@@ -156,13 +173,18 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
                         feedbackFragment = new FeedbackFragment();
                     }
                     return feedbackFragment;
+                case 3:
+                    if (aboutXWFragment == null) {
+                        aboutXWFragment = new AboutXWFragment();
+                    }
+                    return aboutXWFragment;
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override

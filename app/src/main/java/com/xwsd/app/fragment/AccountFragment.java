@@ -7,33 +7,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
-import com.xwsd.app.activity.AboutXWActivity;
-import com.xwsd.app.activity.AccountSafetyActivity;
-import com.xwsd.app.activity.AutoBidActivity;
-import com.xwsd.app.activity.BankCardActivity;
-import com.xwsd.app.activity.BorrowingActivity;
-import com.xwsd.app.activity.CalendarActivity;
-import com.xwsd.app.activity.CertificationActivity;
-import com.xwsd.app.activity.CreditorTransferActivity;
-import com.xwsd.app.activity.DredgeTrusteeshipActivity;
-import com.xwsd.app.activity.FundRecordActivity;
-import com.xwsd.app.activity.InvestManageActivity;
-import com.xwsd.app.activity.MainActivity;
-import com.xwsd.app.activity.ModifyPayPasswordActivity;
-import com.xwsd.app.activity.NoviceActivity;
-import com.xwsd.app.activity.PropertyDetailsActivity;
-import com.xwsd.app.activity.RechargeActivity;
-import com.xwsd.app.activity.RechargeWithdrawActivity;
-import com.xwsd.app.activity.RecommendFriendActivity;
-import com.xwsd.app.activity.SettingsPayBankActivity;
-import com.xwsd.app.activity.UserActivity;
-import com.xwsd.app.activity.UserInfoActiviy;
-import com.xwsd.app.activity.VIPActivity;
-import com.xwsd.app.activity.WithdrawActivity;
+import com.xwsd.app.activity.*;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -48,10 +27,9 @@ import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.RiseNumberTextView;
-import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,11 +38,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Response;
 
 /**
  * Created by Gx on 2016/8/18.
@@ -496,6 +469,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 ((MainActivity) getActivity()).hideWaitDialog();
                 if(isCard){
                     intent = new Intent(getActivity(), RechargeActivity.class);
+                    // TODO: 2017/3/28  
 //                            Bundle bundle = new Bundle();
 //                            bundle.putSerializable(AgreeCardBean.class.getName(), agreeCardBean);
                         intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
@@ -511,6 +485,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                                 @Override
                                 public void onClick(View v) {
                                     Intent intent = new Intent(getActivity(), SettingsPayBankActivity.class);
+                                    // TODO: 2017/3/28  
                                     startActivityForResult(intent,1234);
                                 }
                             })

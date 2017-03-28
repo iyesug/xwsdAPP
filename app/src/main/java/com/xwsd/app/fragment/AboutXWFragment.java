@@ -1,28 +1,28 @@
-package com.xwsd.app.activity;
+package com.xwsd.app.fragment;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
+import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
+import com.xwsd.app.activity.WebDetailsActivity;
 import com.xwsd.app.api.XWSDRequestAdresse;
-import com.xwsd.app.base.BaseActivity;
+import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Gx on 2016/8/29.
  * 关于小微
  */
-public class AboutXWActivity extends BaseActivity implements View.OnClickListener {
+public class AboutXWFragment extends BaseFragment implements View.OnClickListener {
     /**
      * 导航栏
      */
@@ -32,28 +32,19 @@ public class AboutXWActivity extends BaseActivity implements View.OnClickListene
     TextView tv_versions;
 
     @Override
-    protected void onBeforeSetContentLayout() {
-        setContentView(R.layout.activity_about_xw);
-        navbarManage = new NavbarManage(this);
+    protected View setContentView(LayoutInflater inflater) {
+        View view = inflater.inflate(R.layout.activity_about_xw, null);
+        return view;
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
-        //设置导航栏
-        navbarManage.setCentreStr(getString(R.string.about_xw));
-        navbarManage.showLeft(true);
-        navbarManage.showRight(false);
-        navbarManage.setLeftImg(R.mipmap.ic_back_b);
-        navbarManage.setBackground(R.color.navbar_bg);
-        navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
-            @Override
-            public void onLeftClick() {
-                onBackPressed();
-            }
-        });
-
+    protected void init() {
         tv_versions.setText(getVersion());
     }
+
+
+
+
 
     @OnClick({R.id.ll_about_us, R.id.ll_help_center, R.id.ll_charging_standard, R.id.ll_update,R.id.call})
     @Override
@@ -61,21 +52,21 @@ public class AboutXWActivity extends BaseActivity implements View.OnClickListene
         Intent intent;
         switch (v.getId()) {
             case R.id.ll_about_us:
-                intent = new Intent(AboutXWActivity.this, WebDetailsActivity.class);
+                intent = new Intent(this.getContext(), WebDetailsActivity.class);
                 intent.putExtra(UserParam.TITLE, "关于我们");
                 intent.putExtra(UserParam.URL, XWSDRequestAdresse.ABOUT_US);
                 intent.putExtra(UserParam.TYPE, WebDetailsActivity.TYPE_NATIVE);
                 startActivity(intent);
                 break;
             case R.id.ll_help_center:
-                intent = new Intent(AboutXWActivity.this, WebDetailsActivity.class);
+                intent = new Intent(this.getContext(), WebDetailsActivity.class);
                 intent.putExtra(UserParam.TITLE, "帮助中心");
                 intent.putExtra(UserParam.URL, XWSDRequestAdresse.QUESTION);
                 intent.putExtra(UserParam.TYPE, WebDetailsActivity.TYPE_NETWORK);
                 startActivity(intent);
                 break;
             case R.id.ll_charging_standard:
-                intent = new Intent(AboutXWActivity.this, WebDetailsActivity.class);
+                intent = new Intent(this.getContext(), WebDetailsActivity.class);
                 intent.putExtra(UserParam.TITLE, "收费标准");
                 intent.putExtra(UserParam.URL, XWSDRequestAdresse.FEES);
                 intent.putExtra(UserParam.TYPE, WebDetailsActivity.TYPE_NETWORK);
@@ -84,7 +75,7 @@ public class AboutXWActivity extends BaseActivity implements View.OnClickListene
             case R.id.ll_update:
                 break;
             case R.id.call:
-                final MADialog mMDialog = new MADialog(this);
+                final MADialog mMDialog = new MADialog(getContext());
                 mMDialog.setMessage("确认拨打：400 8659 993");
                 mMDialog.setBtnOK("确定", new View.OnClickListener() {
                     @Override
@@ -113,8 +104,8 @@ public class AboutXWActivity extends BaseActivity implements View.OnClickListene
      */
     public String getVersion() {
         try {
-            PackageManager manager = this.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
+            PackageManager manager = AppContext.context().getPackageManager();
+            PackageInfo info = manager.getPackageInfo(AppContext.context().getPackageName(), 0);
             String version = info.versionName;
             return version;
         } catch (Exception e) {
@@ -122,4 +113,6 @@ public class AboutXWActivity extends BaseActivity implements View.OnClickListene
             return this.getString(R.string.can_not_find_version_name);
         }
     }
+
+
 }
