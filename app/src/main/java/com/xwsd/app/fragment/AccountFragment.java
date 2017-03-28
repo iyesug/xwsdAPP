@@ -143,15 +143,15 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     protected void init() {
         accountItems = new ArrayList<AccountItemBean>() {{
             add(new AccountItemBean(getString(R.string.invest_manage), R.mipmap.ic_invest_manage, InvestManageActivity.class));
-            add(new AccountItemBean(getString(R.string.unite_deposit), R.mipmap.ic_unite_deposit, DredgeTrusteeshipActivity.class));
+ /*           add(new AccountItemBean(getString(R.string.unite_deposit), R.mipmap.ic_unite_deposit, DredgeTrusteeshipActivity.class));*/
             add(new AccountItemBean(getString(R.string.recharge_withdraw), R.mipmap.ic_recharge_withdraw, RechargeWithdrawActivity.class));
-            add(new AccountItemBean(getString(R.string.bank_card), R.mipmap.ic_bank_card, BankCardActivity.class));
+  /*          add(new AccountItemBean(getString(R.string.bank_card), R.mipmap.ic_bank_card, BankCardActivity.class));*/
             add(new AccountItemBean(getString(R.string.creditor_transfer), R.mipmap.ic_creditor_transfer, CreditorTransferActivity.class));
             add(new AccountItemBean(getString(R.string.security_account), R.mipmap.ic_security_account, AccountSafetyActivity.class));
             add(new AccountItemBean(getString(R.string.borrowing), R.mipmap.ic_borrowing, BorrowingActivity.class));
-            add(new AccountItemBean(getString(R.string.aboutus), R.mipmap.ic_aboutus, AboutXWActivity.class));
+ /*           add(new AccountItemBean(getString(R.string.aboutus), R.mipmap.ic_aboutus, AboutXWActivity.class));*/
             add(new AccountItemBean(getString(R.string.vip), R.mipmap.ic_vip, VIPActivity.class));
-            add(new AccountItemBean(getString(R.string.guide), R.mipmap.ic_guide, NoviceActivity.class));
+ /*           add(new AccountItemBean(getString(R.string.guide), R.mipmap.ic_guide, NoviceActivity.class));*/
             add(new AccountItemBean(getString(R.string.recommend_award), R.mipmap.ic_recommend_award, RecommendFriendActivity.class));
             add(new AccountItemBean(getString(R.string.Fund_record), R.mipmap.zijin_icon, FundRecordActivity.class));
         }};
@@ -203,37 +203,37 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     case 0:
                         BuriedPointUtil.buriedPoint("账户投资管理");
                         break;
-                    case 1:
+/*                    case 1:
                         BuriedPointUtil.buriedPoint("账户资金托管");
-                        break;
-                    case 2:
+                        break;*/
+                    case 1:
                         BuriedPointUtil.buriedPoint("账户充值提现记录");
                         break;
-                    case 3:
+/*                    case 3:
                         BuriedPointUtil.buriedPoint("账户银行卡");
-                        break;
-                    case 4:
+                        break;*/
+                    case 2:
                         BuriedPointUtil.buriedPoint("账户债权转让");
                         break;
-                    case 5:
+                    case 3:
                         BuriedPointUtil.buriedPoint("账户账号安全");
                         break;
-                    case 6:
+                    case 4:
                         BuriedPointUtil.buriedPoint("账户借款");
                         break;
-                    case 7:
+/*                    case 7:
                         BuriedPointUtil.buriedPoint("账户关于小微");
-                        break;
-                    case 8:
+                        break;*/
+                    case 5:
                         BuriedPointUtil.buriedPoint("账户VIP");
                         break;
-                    case 9:
+/*                    case 9:
                         BuriedPointUtil.buriedPoint("账户新手指南");
-                        break;
-                    case 10:
+                        break;*/
+                    case 6:
                         BuriedPointUtil.buriedPoint("账户推荐奖励");
                         break;
-                    case 11:
+                    case 7:
                         BuriedPointUtil.buriedPoint("账户资金记录");
                         break;
                 }
@@ -247,8 +247,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 //进入联合存款前先判断是否进行了实名认证
                 if (accountItems.get(position).activity.equals(DredgeTrusteeshipActivity.class) &&
                         !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                   // guideCertification();
-                   // return;
+                    guideCertification();
+                    return;
                 }
 
                 //进入借款前先判断是否进行了实名认证
@@ -452,7 +452,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         Intent intent;
         switch (v.getId()) {
             case R.id.ll_auto_bid:
-/*                //进入自动投标前先判断是否进行了实名认证
+                //进入自动投标前先判断是否进行了实名认证
                 if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
                     guideCertification();
                     return;
@@ -461,7 +461,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
                     guideTrusteeship();
                     return;
-                }*/
+                }
                 intent = new Intent(getActivity(), AutoBidActivity.class);
                 startActivity(intent);
                 break;
