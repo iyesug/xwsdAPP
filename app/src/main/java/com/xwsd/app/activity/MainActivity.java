@@ -1,11 +1,7 @@
 package com.xwsd.app.activity;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -20,10 +16,9 @@ import android.support.v7.app.AlertDialog;
 import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
+import butterknife.Bind;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
@@ -41,23 +36,14 @@ import com.xwsd.app.tools.DoubleClickExitHelper;
 import com.xwsd.app.tools.TLog;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
-
-import butterknife.Bind;
-import okhttp3.Call;
-
-import static com.xwsd.app.api.ApiHttpClient.userSecret;
 
 /**
  * Created by Gx on 2016/8/18.
@@ -126,7 +112,7 @@ public class MainActivity extends BaseActivity {
     protected void onBeforeSetContentLayout() {
         setContentView(R.layout.activity_main);
         pushBuriedPoint();
-
+        AppContext.setNeedLock(false);
 //        开启线程检查更新
         new Thread() {
             @Override
@@ -185,6 +171,8 @@ public class MainActivity extends BaseActivity {
                     homeFragment = new HomeFragment();
                     transaction.add(R.id.frame_content, homeFragment);
                 } else {
+                    AppContext.setNeedLock(false);
+
                     transaction.show(homeFragment);
                     homeFragment.getData(1);
                 }
@@ -197,6 +185,8 @@ public class MainActivity extends BaseActivity {
                     projectFragment = new ProjectFragment();
                     transaction.add(R.id.frame_content, projectFragment);
                 } else {
+                    AppContext.setNeedLock(false);
+
                     transaction.show(projectFragment);
                 }
                 break;
@@ -217,6 +207,7 @@ public class MainActivity extends BaseActivity {
                     accountFragment = new AccountFragment();
                     transaction.add(R.id.frame_content, accountFragment);
                 } else {
+                    AppContext.setNeedLock(true);
                     transaction.show(accountFragment);
                     accountFragment.getData();
                     accountFragment.agreeCard("baofoo");
@@ -234,6 +225,7 @@ public class MainActivity extends BaseActivity {
                     newsFragment = new NewsFragment();
                     transaction.add(R.id.frame_content, newsFragment);
                 } else {
+                    AppContext.setNeedLock(false);
                     transaction.show(newsFragment);
                 }
 

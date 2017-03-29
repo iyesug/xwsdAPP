@@ -110,6 +110,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     protected View setContentView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_account, null);
         navbarManage = new NavbarManage(getActivity(), view);
+        AppContext.setNeedLock(true);
+
         return view;
     }
     @Override
@@ -555,5 +557,11 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 }
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AppContext.setNeedLock(true);
     }
 }

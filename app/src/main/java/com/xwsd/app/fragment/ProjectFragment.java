@@ -5,23 +5,21 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
+import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.DemoPopupWindow;
 import com.xwsd.app.view.DoubleScreenDialog;
 import com.xwsd.app.view.NavbarManage;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Gx on 2016/8/18.
@@ -78,6 +76,8 @@ public class ProjectFragment extends BaseFragment implements View.OnClickListene
     protected View setContentView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_project, null);
         navbarManage = new NavbarManage(getActivity(), view);
+        AppContext.setNeedLock(false);
+
         return view;
     }
 

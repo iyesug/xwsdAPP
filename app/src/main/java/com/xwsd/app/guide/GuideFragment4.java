@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.GestureLockSettingsActivity;
 import com.xwsd.app.activity.GestureLoginActivity;
@@ -45,7 +43,7 @@ public class GuideFragment4 extends Fragment {
                                 intent.putExtra("showBack", false);
                             } else {
                                 //启用手势锁
-                                AppContext.setNeedLock(true);
+                           /*     AppContext.setNeedLock(true);*/
                                 intent = new Intent(getActivity(), GestureLoginActivity.class);
                             }
                         } else {

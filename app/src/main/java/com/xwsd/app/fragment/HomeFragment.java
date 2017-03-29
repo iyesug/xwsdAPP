@@ -16,35 +16,16 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.TypedValue;
-import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextSwitcher;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-
+import android.view.*;
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.gnwai.smartimageview.SmartImageView;
 import com.hejunlin.superindicatorlibray.LoopViewPager;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
-import com.xwsd.app.activity.MainActivity;
-import com.xwsd.app.activity.NewsDetailsActivity;
-import com.xwsd.app.activity.ProjectDetailsActivity;
-import com.xwsd.app.activity.PromptlyInvestActivity;
-import com.xwsd.app.activity.UserActivity;
-import com.xwsd.app.activity.WebDetailsActivity;
+import com.xwsd.app.activity.*;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -56,20 +37,13 @@ import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.ObserveScrollView;
-import com.xwsd.app.view.PullScrollView;
-import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Request;
 
 import static com.xwsd.app.R.id.commit;
 
@@ -182,6 +156,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     @Override
     protected View setContentView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_home, null);
+        AppContext.setNeedLock(false);
         return view;
     }
 

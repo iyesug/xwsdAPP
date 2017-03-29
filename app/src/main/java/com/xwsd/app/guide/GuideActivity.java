@@ -14,8 +14,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.xwsd.app.AppContext;
 import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.GestureLockSettingsActivity;
@@ -114,7 +112,9 @@ public class GuideActivity extends BaseActivity {
                     AppManager.getAppManager().finishActivity(UserActivity.class);
                     AppManager.getAppManager().finishActivity(GestureLoginActivity.class);
                     //启用手势锁
+/*
                     AppContext.setNeedLock(true);
+*/
                     intent = new Intent(GuideActivity.this, GestureLoginActivity.class);
                 }
             } else {

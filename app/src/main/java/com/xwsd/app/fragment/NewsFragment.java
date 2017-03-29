@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
@@ -81,6 +82,8 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     protected View setContentView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_news, null);
+        AppContext.setNeedLock(false);
+
         return view;
     }
 
