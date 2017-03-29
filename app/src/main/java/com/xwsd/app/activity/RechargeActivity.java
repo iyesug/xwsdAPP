@@ -1,30 +1,23 @@
 package com.xwsd.app.activity;
 
-import android.os.Bundle;
 import android.app.FragmentManager;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.Bind;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.MyPagerAdapter;
 import com.xwsd.app.base.MyBaseActivity;
 import com.xwsd.app.bean.AgreeCardBean;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.fragment.baofuMoneyFragment;
 import com.xwsd.app.fragment.fuyouMoneyFragment;
-import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.MainViewPager;
 import com.xwsd.app.view.NavbarManage;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/24.
@@ -44,17 +37,17 @@ public class RechargeActivity extends MyBaseActivity {
     private FragmentManager fragmentManager;
     public MainViewPager viewPager;
 
-
+/*
     @Bind(R.id.tab_project_left)
-    TextView tab_project_left;
+    TextView tab_project_left;*/
 
     @Bind(R.id.tab_project_right)
     TextView tab_project_right;
-    /**
+/*    *//**
      * 左边指示器
-     */
+     *//*
     @Bind(R.id.indicator_left)
-    View indicator_left;
+    View indicator_left;*/
 
     /**
      * 右边指示器
@@ -87,14 +80,14 @@ public class RechargeActivity extends MyBaseActivity {
         dataFuyou = (AgreeCardBean.Data.AgreeCard)getIntent().getSerializableExtra(UserParam.DATA2);
         int num = 0;
         if(dataBaofu!=null && dataBaofu.bank_code.length() > 0){
-            mFragments.add(new baofuMoneyFragment());
-            tab_project_left.setOnClickListener(new MyOnClickListener(num));
+       /*     mFragments.add(new baofuMoneyFragment());*/
+        /*    tab_project_left.setOnClickListener(new MyOnClickListener(num));*/
             num++;
         }
         else {
-            tab_project_left.setOnClickListener(new MyNullClickListener());
+        /*    tab_project_left.setOnClickListener(new MyNullClickListener());*/
             indicator_right.setVisibility(View.VISIBLE);
-            indicator_left.setVisibility(View.INVISIBLE);
+  /*          indicator_left.setVisibility(View.INVISIBLE);*/
         }
         if(dataFuyou!=null && dataFuyou.bank_code.length() > 0){
             mFragments.add(new fuyouMoneyFragment());
@@ -128,14 +121,14 @@ public class RechargeActivity extends MyBaseActivity {
         public void onPageSelected(int arg0) {
             switch (arg0) {
                 case 0:
-                    indicator_left.setVisibility(View.VISIBLE);
+   /*                 indicator_left.setVisibility(View.VISIBLE);
                     indicator_right.setVisibility(View.INVISIBLE);
-                    BuriedPointUtil.buriedPoint("充值页面-宝付支付");
+                    BuriedPointUtil.buriedPoint("充值页面-宝付支付");*/
                     break;
                 case 1:
-                    indicator_right.setVisibility(View.VISIBLE);
+/*                    indicator_right.setVisibility(View.VISIBLE);
                     indicator_left.setVisibility(View.INVISIBLE);
-                    BuriedPointUtil.buriedPoint("充值页面-富友支付");
+                    BuriedPointUtil.buriedPoint("充值页面-富友支付");*/
                     break;
             }
         }

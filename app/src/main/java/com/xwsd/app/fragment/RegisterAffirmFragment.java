@@ -221,7 +221,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                             startActivity(intent);
                         } else {
 //                                    启用手势锁
-                            AppContext.setNeedLock(true);
+                         /*   AppContext.setNeedLock(true);*/
                         }
 
 //                                首页点击账户页面，发送一个广播通知跳转

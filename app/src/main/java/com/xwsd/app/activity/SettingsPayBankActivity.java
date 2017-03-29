@@ -5,24 +5,17 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.Bind;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.MyPagerAdapter;
 import com.xwsd.app.base.MyBaseActivity;
-import com.xwsd.app.bean.BanksBean;
 import com.xwsd.app.bean.BanksLimitBean;
-import com.xwsd.app.fragment.BaofooFragment;
 import com.xwsd.app.fragment.FuyouFragment;
 import com.xwsd.app.view.MainViewPager;
 import com.xwsd.app.view.NavbarManage;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
 
 /**
  * Created by Gx on 2016/9/8.
@@ -34,16 +27,16 @@ public class SettingsPayBankActivity extends MyBaseActivity {
      */
     private NavbarManage navbarManage;
 
-    @Bind(R.id.tab_project_left)
-    TextView tab_project_left;
+/*    @Bind(R.id.tab_project_left)
+    TextView tab_project_left;*/
 
     @Bind(R.id.tab_project_right)
     TextView tab_project_right;
-    /**
+/*    *//**
      * 左边指示器
-     */
+     *//*
     @Bind(R.id.indicator_left)
-    View indicator_left;
+    View indicator_left;*/
 
     /**
      * 右边指示器
@@ -73,9 +66,9 @@ public class SettingsPayBankActivity extends MyBaseActivity {
                 onBackPressed();
             }
         });
-        tab_project_left.setOnClickListener(new MyOnClickListener(0));
-        tab_project_right.setOnClickListener(new MyOnClickListener(1));
-        mFragments.add(new BaofooFragment());
+/*        tab_project_left.setOnClickListener(new MyOnClickListener(0));
+        tab_project_right.setOnClickListener(new MyOnClickListener(1));*/
+   /*     mFragments.add(new BaofooFragment());*/
         mFragments.add(new FuyouFragment());
         fragmentManager = this.getFragmentManager();
         viewPager = new MainViewPager(this);
@@ -93,12 +86,12 @@ public class SettingsPayBankActivity extends MyBaseActivity {
         public void onPageSelected(int arg0) {
             switch (arg0) {
                 case 0:
-                    indicator_left.setVisibility(View.VISIBLE);
-                    indicator_right.setVisibility(View.INVISIBLE);
+/*                    indicator_left.setVisibility(View.VISIBLE);
+                    indicator_right.setVisibility(View.INVISIBLE);*/
                     break;
                 case 1:
-                    indicator_right.setVisibility(View.VISIBLE);
-                    indicator_left.setVisibility(View.INVISIBLE);
+/*                    indicator_right.setVisibility(View.VISIBLE);
+                    indicator_left.setVisibility(View.INVISIBLE);*/
                     break;
             }
         }

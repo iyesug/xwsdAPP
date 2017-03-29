@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
 
-            <TextView
+<!--            <TextView
                 android:id="@+id/tab_project_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:text="宝付充值"
                 android:textColor="@color/gray_text"
-                android:textSize="@dimen/TEXT_L" />
+                android:textSize="@dimen/TEXT_L" />-->
             <TextView
                 android:textColor="@color/gray_text"
                 android:id="@+id/tab_project_right"
@@ -49,12 +49,12 @@
             android:background="@color/white"
             android:orientation="horizontal">
 
-            <View
+<!--            <View
                 android:id="@+id/indicator_left"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/DIMEN_3"
                 android:layout_weight="1"
-                android:background="@color/blue_simple"/>
+                android:background="@color/blue_simple"/>-->
 
             <View
                 android:id="@+id/indicator_right"

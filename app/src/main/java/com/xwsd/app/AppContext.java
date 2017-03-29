@@ -8,26 +8,21 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.tbswebview.APIWebviewTBS;
 import com.xwsd.app.tools.TLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import okhttp3.OkHttpClient;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
-
-import okhttp3.OkHttpClient;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 全局类，可在这里初始化一些重要数据
@@ -71,6 +66,7 @@ public class AppContext extends Application {
     }
 
     public static void setNeedLock(boolean needLock) {
+        TLog.error("Lock:"+needLock);
         AppContext.needLock = needLock;
     }
 

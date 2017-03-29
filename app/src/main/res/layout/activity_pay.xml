@@ -44,18 +44,18 @@
 
         </LinearLayout>
 
-<!--        <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal">
 
-            <View
+<!--            <View
                 android:id="@+id/indicator_left"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/DIMEN_3"
                 android:layout_weight="1"
-                android:background="@color/blue_simple"/>
+                android:background="@color/blue_simple"/>-->
 
             <View
                 android:id="@+id/indicator_right"
@@ -64,7 +64,7 @@
                 android:layout_weight="1"
                 android:background="@color/blue_simple"
                 android:visibility="invisible"/>
-        </LinearLayout>-->
+        </LinearLayout>
 
         <com.xwsd.app.view.MainViewPager
             android:id="@+id/viewPager"

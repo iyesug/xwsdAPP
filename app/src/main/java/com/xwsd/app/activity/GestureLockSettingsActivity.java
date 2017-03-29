@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.widget.TextView;
-
+import butterknife.Bind;
 import com.star.lockpattern.util.LockPatternUtil;
 import com.star.lockpattern.widget.LockPatternIndicator;
 import com.star.lockpattern.widget.LockPatternView;
@@ -17,8 +17,6 @@ import com.xwsd.app.view.NavbarManage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
 
 /**
  * Created by Gx on 2016/8/30.
@@ -168,7 +166,7 @@ public class GestureLockSettingsActivity extends BaseActivity {
             public void run() {
                 try {
                     Thread.sleep(300);
-                    AppContext.setNeedLock(true);
+           /*         AppContext.setNeedLock(true);*/
                     if (AppManager.getActivity(MainActivity.class) == null) {
                         Intent intent = new Intent(GestureLockSettingsActivity.this, MainActivity.class);
                         startActivity(intent);
