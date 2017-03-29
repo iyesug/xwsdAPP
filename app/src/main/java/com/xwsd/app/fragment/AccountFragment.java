@@ -1,10 +1,8 @@
 package com.xwsd.app.fragment;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import butterknife.Bind;
@@ -139,21 +137,15 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         navbarManage.setRightStr(getString(R.string.details));
         navbarManage.setLeftImg(R.mipmap.ic_user_info);
         navbarManage.setRightImg(R.mipmap.ic_in_w);
-        navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
-            @Override
-            public void onLeftClick() {
-                Intent intent = new Intent(getActivity(), UserInfoActiviy.class);
-                BuriedPointUtil.buriedPoint("账户个人资料");
-                startActivity(intent);
-            }
+        navbarManage.setOnLeftClickListener(() -> {
+            Intent intent = new Intent(getActivity(), UserInfoActiviy.class);
+            BuriedPointUtil.buriedPoint("账户个人资料");
+            startActivity(intent);
         });
 
-        navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener() {
-            @Override
-            public void onRightClick() {
-                Intent intent = new Intent(getActivity(), PropertyDetailsActivity.class);
-                startActivity(intent);
-            }
+        navbarManage.setOnRightClickListener(() -> {
+            Intent intent = new Intent(getActivity(), PropertyDetailsActivity.class);
+            startActivity(intent);
         });
 
         //设置日历时间
@@ -170,97 +162,91 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 helper.setImageResource(R.id.item_account_iv, item.icoId);
             }
         });
-        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        grid_view.setOnItemClickListener((parent, view, position, id) -> {
 
-                switch (position) {
-                    case 0:
-                        BuriedPointUtil.buriedPoint("账户投资管理");
-                        break;
+            switch (position) {
+                case 0:
+                    BuriedPointUtil.buriedPoint("账户投资管理");
+                    break;
 /*                    case 1:
-                        BuriedPointUtil.buriedPoint("账户资金托管");
-                        break;*/
-                    case 1:
-                        BuriedPointUtil.buriedPoint("账户充值提现记录");
-                        break;
+                    BuriedPointUtil.buriedPoint("账户资金托管");
+                    break;*/
+                case 1:
+                    BuriedPointUtil.buriedPoint("账户充值提现记录");
+                    break;
 /*                    case 3:
-                        BuriedPointUtil.buriedPoint("账户银行卡");
-                        break;*/
-                    case 2:
-                        BuriedPointUtil.buriedPoint("账户债权转让");
-                        break;
-                    case 3:
-                        BuriedPointUtil.buriedPoint("账户账号安全");
-                        break;
-                    case 4:
-                        BuriedPointUtil.buriedPoint("账户借款");
-                        break;
+                    BuriedPointUtil.buriedPoint("账户银行卡");
+                    break;*/
+                case 2:
+                    BuriedPointUtil.buriedPoint("账户债权转让");
+                    break;
+                case 3:
+                    BuriedPointUtil.buriedPoint("账户账号安全");
+                    break;
+                case 4:
+                    BuriedPointUtil.buriedPoint("账户借款");
+                    break;
 /*                    case 7:
-                        BuriedPointUtil.buriedPoint("账户关于小微");
-                        break;*/
-                    case 5:
-                        BuriedPointUtil.buriedPoint("账户VIP");
-                        break;
+                    BuriedPointUtil.buriedPoint("账户关于小微");
+                    break;*/
+                case 5:
+                    BuriedPointUtil.buriedPoint("账户VIP");
+                    break;
 /*                    case 9:
-                        BuriedPointUtil.buriedPoint("账户新手指南");
-                        break;*/
-                    case 6:
-                        BuriedPointUtil.buriedPoint("账户推荐奖励");
-                        break;
-                    case 7:
-                        BuriedPointUtil.buriedPoint("账户资金记录");
-                        break;
-                }
-
-                //更多
-                if (accountItems.get(position).activity == null) {
-                    AppContext.showToastShort(R.string.expect);
-                    return;
-                }
-
-                //进入联合存款前先判断是否进行了实名认证
-                if (accountItems.get(position).activity.equals(DredgeTrusteeshipActivity.class) &&
-                        !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                    guideCertification();
-                    return;
-                }
-
-                //进入借款前先判断是否进行了实名认证
-                if (accountItems.get(position).activity.equals(BorrowingActivity.class) &&
-                        !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                    guideCertification();
-                    return;
-                }
-
-                //进入银行卡前，先判断用户是否已实名认证
-                if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
-                        !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                    guideCertification();
-                    return;
-                }
-
-                //进入银行卡前，先判断用户是否设置了支付密码
-                if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
-                        AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
-                    guidePay();
-                    return;
-                }
-
-                Intent intent = new Intent(getActivity(), accountItems.get(position).activity);
-                startActivity(intent);
+                    BuriedPointUtil.buriedPoint("账户新手指南");
+                    break;*/
+                case 6:
+                    BuriedPointUtil.buriedPoint("账户推荐奖励");
+                    break;
+                case 7:
+                    BuriedPointUtil.buriedPoint("账户资金记录");
+                    break;
             }
+
+            //更多
+            if (accountItems.get(position).activity == null) {
+                AppContext.showToastShort(R.string.expect);
+                return;
+            }
+
+            //进入联合存款前先判断是否进行了实名认证
+            if (accountItems.get(position).activity.equals(DredgeTrusteeshipActivity.class) &&
+                    !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+                guideCertification();
+                return;
+            }
+
+            //进入借款前先判断是否进行了实名认证
+            if (accountItems.get(position).activity.equals(BorrowingActivity.class) &&
+                    !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+                guideCertification();
+                return;
+            }
+
+            //进入银行卡前，先判断用户是否已实名认证
+            if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
+                    !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+                guideCertification();
+                return;
+            }
+
+            //进入银行卡前，先判断用户是否设置了支付密码
+            if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
+                    AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
+                guidePay();
+                return;
+            }
+
+            Intent intent = new Intent(getActivity(), accountItems.get(position).activity);
+            startActivity(intent);
         });
 
-        mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData();
-                // 宝付
-                agreeCard("baofoo");
-                //富有
-                agreeCard("fuiou");
-            }
+        mErrorLayout.setOnLayoutClickListener(v -> {
+            getData();
+            // 宝付
+            agreeCard("baofoo");
+            //富有
+            agreeCard("fuiou");
         });
 
         getData();
@@ -278,19 +264,13 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 .builder()
                 .setTitle("温馨提示：")
                 .setMsg("您尚未设置支付密码，是否前往设置。")
-                .setPositiveButton("前往", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), ModifyPayPasswordActivity.class);
-                        intent.putExtra("type", 0);
-                        startActivity(intent);
-                    }
+                .setPositiveButton("前往", v -> {
+                    Intent intent = new Intent(getActivity(), ModifyPayPasswordActivity.class);
+                    intent.putExtra("type", 0);
+                    startActivity(intent);
                 })
-                .setNegativeButton("取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                .setNegativeButton("取消", v -> {
 
-                    }
                 }).show();
     }
 
@@ -315,18 +295,12 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 .builder()
                 .setTitle("温馨提示：")
                 .setMsg("您尚未进行实名认证，是否前往认证。")
-                .setPositiveButton("前往", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), CertificationActivity.class);
-                        startActivity(intent);
-                    }
+                .setPositiveButton("前往", v -> {
+                    Intent intent = new Intent(getActivity(), CertificationActivity.class);
+                    startActivity(intent);
                 })
-                .setNegativeButton("取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                .setNegativeButton("取消", v -> {
 
-                    }
                 }).show();
     }
 
@@ -338,18 +312,12 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 .builder()
                 .setTitle("温馨提示：")
                 .setMsg("您尚未开通托管，是否前往开通。")
-                .setPositiveButton("前往", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), DredgeTrusteeshipActivity.class);
-                        startActivity(intent);
-                    }
+                .setPositiveButton("前往", v -> {
+                    Intent intent = new Intent(getActivity(), DredgeTrusteeshipActivity.class);
+                    startActivity(intent);
                 })
-                .setNegativeButton("取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                .setNegativeButton("取消", v -> {
 
-                    }
                 }).show();
     }
 
@@ -460,12 +428,9 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 }
 
 //                充值前，先判断是否认证了充值银行卡
-                ((MainActivity) getActivity()).showWaitDialog(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        if (call != null) {
-                            call.cancel();
-                        }
+                ((MainActivity) getActivity()).showWaitDialog(dialog -> {
+                    if (call != null) {
+                        call.cancel();
                     }
                 });
                 ((MainActivity) getActivity()).hideWaitDialog();
@@ -483,19 +448,13 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                             .builder()
                             .setTitle("温馨提示：")
                             .setMsg("您尚未设置充值银行卡，是否前往设置。")
-                            .setPositiveButton("前往", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(getActivity(), SettingsPayBankActivity.class);
-                                    // TODO: 2017/3/28  
-                                    startActivityForResult(intent,1234);
-                                }
+                            .setPositiveButton("前往", v1 -> {
+                                Intent intent1 = new Intent(getActivity(), SettingsPayBankActivity.class);
+                                // TODO: 2017/3/28
+                                startActivityForResult(intent1,1234);
                             })
-                            .setNegativeButton("取消", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                            .setNegativeButton("取消", v2 -> {
 
-                                }
                             }).show();
                 }
                 break;

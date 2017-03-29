@@ -94,20 +94,12 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
                 }
                 final MADialog mMDialog = new MADialog(getContext());
                 mMDialog.setMessage("确认拨打：400 8659 993");
-                mMDialog.setBtnOK("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMDialog.miss();
-                        Intent intentPhone = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008659993"));
-                        startActivity(intentPhone);
-                    }
+                mMDialog.setBtnOK("确定", v1 -> {
+                    mMDialog.miss();
+                    Intent intentPhone = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008659993"));
+                    startActivity(intentPhone);
                 });
-                mMDialog.setBtnCancel("取消", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMDialog.miss();
-                    }
-                });
+                mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
 
 
 
