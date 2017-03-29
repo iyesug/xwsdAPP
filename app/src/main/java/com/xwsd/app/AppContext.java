@@ -12,6 +12,7 @@ import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.tbswebview.APIWebviewTBS;
 import com.xwsd.app.tools.TLog;
@@ -76,8 +77,18 @@ public class AppContext extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+
         //开启日志输出
         TLog.DEBUG=true;
+
+
+        //bugly初始化
+            /*第三个参数为SDK调试模式开关，调试模式的行为特性如下：
+                    输出详细的Bugly SDK的Log；
+            每一条Crash都会被立即上报；
+            自定义日志将会在Logcat中输出。
+            建议在测试阶段建议设置成true，发布时设置为false。*/
+        CrashReport.initCrashReport(getApplicationContext(), "e625212e2d", true);
 
 //        初始化网络请求框架
 //        OkHttpClient okHttpClient = new OkHttpClient.Builder()

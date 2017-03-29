@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import com.baidu.mobstat.StatService;
 import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.GestureLockSettingsActivity;
@@ -50,6 +51,8 @@ public class GuideActivity extends BaseActivity {
 
         setContentView(R.layout.activity_guide);
 
+        //百度统计服务开始
+        StatService.start(this);
         BuriedPointUtil.getInstance();//在启动页实例化埋点单例，以后在整个程序运行周期内不会重复创建，提高效率
 
     }

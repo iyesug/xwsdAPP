@@ -1,5 +1,6 @@
 package com.xwsd.app.fragment;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -17,6 +18,9 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -75,6 +79,24 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
             case R.id.ll_update:
                 break;
             case R.id.call:
+                // 先判断是否有权限。
+                if(!AndPermission.hasPermission(getActivity(), Manifest.permission.CALL_PHONE)) {
+                    // 有权限，直接do anything.
+
+                    // 申请单个权限。
+                    AndPermission.with(this)
+                            .requestCode(100)
+                            .permission(Manifest.permission.CALL_PHONE)
+                            // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
+                            .rationale(new RationaleListener() {
+                                @Override
+                                public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+
+                                    AndPermission.rationaleDialog(getActivity(), rationale).show();
+                                }
+                            })
+                            .send();
+                }
                 final MADialog mMDialog = new MADialog(getContext());
                 mMDialog.setMessage("确认拨打：400 8659 993");
                 mMDialog.setBtnOK("确定", new View.OnClickListener() {

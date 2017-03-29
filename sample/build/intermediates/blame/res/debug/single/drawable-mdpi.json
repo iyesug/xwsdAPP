@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_stub.png",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\drawable-mdpi\\ic_stub.png"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_empty.png",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\drawable-mdpi\\ic_empty.png"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_error.png",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\drawable-mdpi\\ic_error.png"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP\\sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
+        "source": "D:\\java\\workspace\\xwsdAPP\\sample\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    }
+]

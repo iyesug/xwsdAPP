@@ -37,6 +37,7 @@ public class BuriedPointUtil {
      * 静态工厂方法
      */
     public static BuriedPointUtil getInstance() {
+
         return instance;
     }
 

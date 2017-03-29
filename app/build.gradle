@@ -21,7 +21,6 @@ android {
     }
 }
 dependencies {
-
     //兼容包
     compile 'com.android.support:appcompat-v7:23+'
     //注解框架库
@@ -56,5 +55,13 @@ dependencies {
     compile files('libs/paysdkPY36sdkProduction.jar')
     compile project(path: ':okhttp3-persistent-cookiejar')
     compile project(path: ':library')
+    //腾讯浏览器
     compile files('libs/tbs_sdk_thirdapp_v3.0.jar')
+    //百度统计
+    compile files('libs/Baidu_Mtj_3.7.5.5.jar')
+    //bugly
+    compile 'com.tencent.bugly:crashreport:latest.release' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.2.0
+
+    //运行时权限
+    compile 'com.yanzhenjie:permission:1.0.5'
 }
