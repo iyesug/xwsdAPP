@@ -147,7 +147,7 @@
     <style name="GreyInterval">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/DIMEN_1</item>
-        <item name="android:background">@color/gray</item>
+        <item name="android:background">@color/gray_line</item>
     </style>
 
     <!--灰色间隔-->
@@ -210,9 +210,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:button">@null</item>
-        <item name="android:padding">@dimen/DIMEN_10</item>
+        <item name="android:padding">@dimen/DIMEN_5</item>
         <item name="android:textColor">@color/tab_text_color</item>
         <item name="android:textSize">@dimen/TEXT_L</item>
+        <item name="android:drawableRight">@drawable/radiobutton_button</item>
+        <item name="android:drawablePadding">@dimen/DIMEN_200</item>
+
     </style>
 
     <!--图片浏览全屏对话框-->

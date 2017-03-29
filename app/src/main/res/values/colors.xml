@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="white_translucence">#33ffffff</color>
     <color name="gray">#e2e2e2</color>
+    <color name="gray_line">#efeff4</color>
     <color name="gray_1">#646464</color>
     <color name="gray_2">#393938</color>
     <color name="gray_3">#f1f1f1</color>

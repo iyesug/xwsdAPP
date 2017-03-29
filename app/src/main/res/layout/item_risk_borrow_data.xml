@@ -6,9 +6,9 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/DIMEN_30"
+        android:layout_height="@dimen/DIMEN_20"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/DIMEN_5"
+        android:layout_margin="@dimen/DIMEN_2"
         android:orientation="horizontal">
 
         <ImageView

@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.bm.library.PhotoView;
 import com.gnwai.smartimageview.SmartImageView;
 import com.xwsd.app.R;
@@ -19,12 +20,9 @@ import com.xwsd.app.bean.OddrmBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.zhy.http.okhttp.callback.BitmapCallback;
+import okhttp3.Call;
 
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/9/14.
@@ -201,7 +199,7 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
             });
             final SmartImageView imageView = (SmartImageView) view.findViewById(R.id.image);
             //imageView.setImageUrl(oddrmImgs.get(position).normal, R.drawable.ic_load, R.drawable.ic_load);
-            ApiHttpClient.getMita(oddrmImgs.get(position).normal, new BitmapCallback() {
+            ApiHttpClient.getMita(oddrmImgs.get(position).min, new BitmapCallback() {
                 @Override
                 public void onError(Call call, Exception e, int id) {
 

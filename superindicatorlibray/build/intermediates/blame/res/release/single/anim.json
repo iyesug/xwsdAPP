@@ -1,31 +1,11 @@
 [
     {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_exit.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_popup_exit.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_bottom.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_slide_in_bottom.xml"
-    },
-    {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_fade_in.xml"
     },
     {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_in.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_fade_in.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_slide_in_top.xml"
-    },
-    {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_slide_out_top.xml"
     },
     {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_in_top.xml",
@@ -34,10 +14,6 @@
     {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_popup_enter.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_popup_enter.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_popup_enter.xml"
     },
     {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
@@ -52,10 +28,6 @@
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_grow_fade_in_from_bottom.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
-    },
-    {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_slide_out_bottom.xml"
     },
@@ -66,17 +38,5 @@
     {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_top.xml",
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_slide_out_top.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_slide_out_bottom.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_slide_out_bottom.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_shrink_fade_out_from_bottom.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
-    },
-    {
-        "merged": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\release\\anim\\abc_fade_out.xml",
-        "source": "D:\\new\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\anim\\abc_fade_out.xml"
     }
 ]

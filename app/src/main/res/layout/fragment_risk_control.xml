@@ -12,56 +12,108 @@
 
         <RadioGroup
             android:id="@+id/tab_radio_group"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:padding="@dimen/DIMEN_10"
+            android:gravity="left"
             android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/tab_radio_borrow_data"
                 style="@style/RiskControlRadioButton"
                 android:text="借款资料" />
+            <FrameLayout
+                    android:id="@+id/frame_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
             <RadioButton
                 android:id="@+id/tab_radio_risk_describe"
                 style="@style/RiskControlRadioButton"
                 android:text="风控描述" />
+            <FrameLayout
+                    android:id="@+id/frame_content1"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
             <RadioButton
                 android:id="@+id/tab_radio_property_img"
                 style="@style/RiskControlRadioButton"
                 android:text="产权图片" />
+            <FrameLayout
+                    android:id="@+id/frame_content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
             <RadioButton
                 android:id="@+id/tab_radio_borrow_procedure"
                 style="@style/RiskControlRadioButton"
                 android:text="借款手续" />
+            <FrameLayout
+                    android:id="@+id/frame_content3"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
             <RadioButton
                 android:id="@+id/tab_radio_risk_img"
                 style="@style/RiskControlRadioButton"
                 android:text="风控图片" />
+            <FrameLayout
+                    android:id="@+id/frame_content4"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
             <RadioButton
                 android:id="@+id/tab_radio_checkout_img"
                 style="@style/RiskControlRadioButton"
                 android:text="验车图片" />
+            <FrameLayout
+                    android:id="@+id/frame_content5"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
             <RadioButton
                 android:id="@+id/tab_radio_investigation"
                 style="@style/RiskControlRadioButton"
                 android:text="征信报告" />
+            <FrameLayout
+                    android:id="@+id/frame_content6"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"></FrameLayout>
+            <View
+                    style="@style/GreyInterval"
+                    android:layout_margin="@dimen/DIMEN_3"></View>
 
         </RadioGroup>
 
-        <FrameLayout
-            android:id="@+id/frame_content"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></FrameLayout>
+
 
     </LinearLayout>
-
     <com.xwsd.app.view.EmptyLayout
         android:id="@+id/empty_layout"
         android:layout_width="match_parent"

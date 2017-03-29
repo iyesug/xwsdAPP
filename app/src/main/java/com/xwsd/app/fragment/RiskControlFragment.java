@@ -5,13 +5,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
+import butterknife.Bind;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
 import com.xwsd.app.activity.ProjectDetailTabActivity;
-import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.OddrmBean;
@@ -21,12 +21,12 @@ import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import butterknife.Bind;
-import okhttp3.Call;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Gx on 2016/8/23.
@@ -40,6 +40,20 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
     @Bind(R.id.empty_layout)
     EmptyLayout empty_layout;
 
+    @Bind(R.id.frame_content)
+    FrameLayout frame_content;
+    @Bind(R.id.frame_content1)
+    FrameLayout frame_content1;
+    @Bind(R.id.frame_content2)
+    FrameLayout frame_content2;
+    @Bind(R.id.frame_content3)
+    FrameLayout frame_content3;
+    @Bind(R.id.frame_content4)
+    FrameLayout frame_content4;
+    @Bind(R.id.frame_content5)
+    FrameLayout frame_content5;
+    @Bind(R.id.frame_content6)
+    FrameLayout frame_content6;
 //    ProjectDetailsActivity projectDetailsActivity;
 
     String oddNum;
@@ -120,6 +134,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Bundle bundle = new Bundle();
+        RiskImgFragment imgFragment;
         switch (checkedId) {
             case R.id.tab_radio_borrow_data://借款资料
 
@@ -130,6 +145,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 bundle.putSerializable(UserParam.DATA, oddrmBean);
                 borrowDataFragment.setArguments(bundle);
                 transaction.replace(R.id.frame_content, borrowDataFragment).commit();
+                setFrameLayout(0);
                 return;
             case R.id.tab_radio_risk_describe://风控详情
 
@@ -137,47 +153,82 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 BuriedPointUtil.buriedPoint("项目介绍风控材料风控描述");
 
                 RiskDescribeFragment describeFragment = new RiskDescribeFragment();
-                transaction.replace(R.id.frame_content, describeFragment).commit();
+                transaction.replace(R.id.frame_content1, describeFragment).commit();
+                setFrameLayout(1);
                 return;
             case R.id.tab_radio_property_img://产权图片
-
+                setFrameLayout(2);
 //                //埋点开始
                 BuriedPointUtil.buriedPoint("项目介绍风控材料产权图片");
 
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_PROPERTY);
+                imgFragment = new RiskImgFragment();
+                imgFragment.setArguments(bundle);
+                transaction.replace(R.id.frame_content2, imgFragment).commit();
                 break;
             case R.id.tab_radio_borrow_procedure://借款手续
-
+                setFrameLayout(3);
                 //埋点开始
                 BuriedPointUtil.buriedPoint("项目介绍风控材料借款手续");
 
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_BORROW_PROCEDURE);
+                imgFragment = new RiskImgFragment();
+                imgFragment.setArguments(bundle);
+                transaction.replace(R.id.frame_content3, imgFragment).commit();
                 break;
             case R.id.tab_radio_risk_img://风控图片
-
+                setFrameLayout(4);
                 //埋点开始
                 BuriedPointUtil.buriedPoint("项目介绍风控材料风控图片");
 
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_RISK);
+                imgFragment = new RiskImgFragment();
+                imgFragment.setArguments(bundle);
+                transaction.replace(R.id.frame_content4, imgFragment).commit();
                 break;
             case R.id.tab_radio_checkout_img://验车图片
-
+                setFrameLayout(5);
                 //埋点开始
                 BuriedPointUtil.buriedPoint("项目介绍风控材料验车图片");
 
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_CHECKOUT);
+                imgFragment = new RiskImgFragment();
+                imgFragment.setArguments(bundle);
+                transaction.replace(R.id.frame_content5, imgFragment).commit();
                 break;
             case R.id.tab_radio_investigation://征信报告
-
+                setFrameLayout(6);
                 //埋点开始
                 BuriedPointUtil.buriedPoint("项目介绍风控材料征信报告");
 
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_INVESTIGATION);
+                imgFragment = new RiskImgFragment();
+                imgFragment.setArguments(bundle);
+                transaction.replace(R.id.frame_content6, imgFragment).commit();
                 break;
         }
 
-        RiskImgFragment imgFragment = new RiskImgFragment();
-        imgFragment.setArguments(bundle);
-        transaction.replace(R.id.frame_content, imgFragment).commit();
+
+    }
+
+    private void setFrameLayout(int posi) {
+        List<FrameLayout> frames=new ArrayList();
+        frames.add(frame_content);
+        frames.add(frame_content1);
+        frames.add(frame_content2);
+        frames.add(frame_content3);
+        frames.add(frame_content4);
+        frames.add(frame_content5);
+        frames.add(frame_content6);
+        for(int i=0;i<frames.size();i++){
+            if(i==posi){
+                frames.get(i).setVisibility(View.VISIBLE);
+            }else{
+                frames.get(i).setVisibility(View.GONE);
+            }
+        }
+
+
+
     }
 }

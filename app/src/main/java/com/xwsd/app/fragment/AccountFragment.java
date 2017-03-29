@@ -559,9 +559,9 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         });
     }
 
-    @Override
+/*    @Override
     public void onResume() {
         super.onResume();
         AppContext.setNeedLock(true);
-    }
+    }*/
 }
