@@ -318,6 +318,7 @@
                                     android:textSize="@dimen/TEXT_M" />
 
                             </LinearLayout>
+
                             <View
                                 style="@style/GreyIntervalVertical"
                                 android:layout_marginTop="@dimen/DIMEN_10"

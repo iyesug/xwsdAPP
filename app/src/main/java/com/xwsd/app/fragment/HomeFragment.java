@@ -382,7 +382,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
             text_switcher.setText(indexBean.data.notices.get(0).news_title);
         }
 
-        //设置今日推荐
+        //设置今日可投推荐
         tv_today.setText("今日可投：" + indexBean.data.todayLast);
 
         //设置推荐列表
@@ -710,7 +710,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                 }
             });
             final SmartImageView imageView = (SmartImageView) view.findViewById(R.id.image);
-            TLog.error("indexBean.data.banners.get(position).banner:"+indexBean.data.banners.get(position).banner);
+
+            //设置轮播图图片
             Glide.with(getActivity())
                     .load(indexBean.data.banners.get(position).banner)
                     .crossFade()

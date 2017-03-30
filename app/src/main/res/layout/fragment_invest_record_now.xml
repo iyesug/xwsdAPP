@@ -2,26 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/DIMEN_10"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:orientation="horizontal">
         <TextView
-            style="@style/InvestRecordItemText"
+            style="@style/InvestRecordItemtitle"
+            android:background="@color/blue_510bff"
             android:text="投标人" />
 
         <TextView
-            style="@style/InvestRecordItemText"
+            style="@style/InvestRecordItemtitle"
+            android:background="@color/blue_74afff"
             android:text="金额（元）" />
 
         <TextView
-            style="@style/InvestRecordItemText"
+            style="@style/InvestRecordItemtitle"
+            android:background="@color/blue_510bff"
             android:text="购买时间" />
 
         <TextView
-            style="@style/InvestRecordItemText"
+            style="@style/InvestRecordItemtitle"
+            android:background="@color/blue_74afff"
             android:text="有效时间" />
 
     </LinearLayout>

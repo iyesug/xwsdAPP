@@ -28,7 +28,8 @@ public class APIWebviewTBS {  //二次封装tbs类，升级直接更换该类的
         return mAPIWebviewTBS;
     }
 
-    public void initTbs(Context context) {//第一步：application的方法
+    public void initTbs(Context context) {
+        //第一步：application的方法
         //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
         //TbsDownloader.needDownload(getApplicationContext(), false);
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
