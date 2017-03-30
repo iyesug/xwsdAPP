@@ -9,4 +9,10 @@ include ':app',
         ':smartimageview',
         ':PhotoView',
         ':CircleProgress',
-        ':materialdialog', ':residemenu-a6b4b71d29214f8d0b4328c9e6bcc822', ':baofoo', ':okhttputilss', ':okhttp3-persistent-cookiejar', ':sample', ':library'
+        ':materialdialog',
+        ':residemenu-a6b4b71d29214f8d0b4328c9e6bcc822',
+        ':baofoo',
+        ':okhttputilss',
+        ':okhttp3-persistent-cookiejar',
+
+        ':library'
