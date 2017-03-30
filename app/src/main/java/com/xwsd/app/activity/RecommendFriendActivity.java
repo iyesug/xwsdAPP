@@ -8,18 +8,14 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
-import com.xwsd.app.api.XWSDRequestAdresse;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.FriendsBean;
 import com.xwsd.app.bean.FundRecordBean;
@@ -29,19 +25,12 @@ import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.NetWorkUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EDialog;
-import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
-
-import static com.xwsd.app.fragment.HomeFragment.indexBean;
 
 /**
  * Created by Gx on 2016/9/23.
@@ -330,7 +319,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                                         Intent intent = new Intent(Intent.ACTION_SEND);
                                         intent.setType("text/plain");
                                         intent.putExtra(Intent.EXTRA_SUBJECT, "小微时贷推广");
-                                        intent.putExtra(Intent.EXTRA_TEXT, "分享测试：" + jsonObject.getJSONObject("data").getString("link"));
+                                        intent.putExtra(Intent.EXTRA_TEXT, "分享小微时贷：" + jsonObject.getJSONObject("data").getString("link"));
                                         intent.putExtra(Intent.EXTRA_TITLE, "小伙伴们快来围观啦~");
                                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(Intent.createChooser(intent, "请选择"));

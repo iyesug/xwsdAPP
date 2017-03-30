@@ -1,7 +1,6 @@
 package com.xwsd.app.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +19,7 @@ import android.view.*;
 import android.widget.*;
 import butterknife.Bind;
 import butterknife.OnClick;
+import com.bumptech.glide.Glide;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.gnwai.smartimageview.SmartImageView;
 import com.hejunlin.superindicatorlibray.LoopViewPager;
@@ -37,7 +37,6 @@ import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.ObserveScrollView;
-import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.StringCallback;
 import okhttp3.Call;
 import org.json.JSONException;
@@ -711,7 +710,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                 }
             });
             final SmartImageView imageView = (SmartImageView) view.findViewById(R.id.image);
-            ApiHttpClient.getMita(indexBean.data.banners.get(position).banner,new BitmapCallback() {
+            TLog.error("indexBean.data.banners.get(position).banner:"+indexBean.data.banners.get(position).banner);
+            Glide.with(getActivity())
+                    .load(indexBean.data.banners.get(position).banner)
+                    .crossFade()
+                    .into(imageView);
+/*            ApiHttpClient.getMita(indexBean.data.banners.get(position).banner,new BitmapCallback() {
                 @Override
                 public void onError(Call call, Exception e, int id) {
                     System.out.println("e = " + e.toString());
@@ -720,7 +724,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                 public void onResponse(Bitmap response, int id) {
                     imageView.setImageBitmap(response);
                 }
-            });
+            });*/
             container.addView(view);
             return view;
         }

@@ -448,7 +448,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                             .builder()
                             .setTitle("温馨提示：")
                             .setMsg("您尚未设置充值银行卡，是否前往设置。")
-                            .setPositiveButton("前往", v1 -> {
+                            .setPositiveButton("前往",
+                                    v1 -> {
                                 Intent intent1 = new Intent(getActivity(), SettingsPayBankActivity.class);
                                 // TODO: 2017/3/28
                                 startActivityForResult(intent1,1234);
