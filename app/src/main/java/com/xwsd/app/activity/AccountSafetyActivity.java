@@ -83,9 +83,9 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
         ((ImageView) ll_bank_card.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_blue_card);
         ((ImageView) ll_unite_deposit.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_purple_hand);
 
-        ((ImageView) ll_modify_login_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_login);
-        ((ImageView) ll_modify_pay_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_pay);
-        ((ImageView) ll_gesture_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.ic_safety_gesture);
+        ((ImageView) ll_modify_login_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_pink_mima);
+        ((ImageView) ll_modify_pay_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_blue_money);
+        ((ImageView) ll_gesture_password.findViewById(R.id.iv_tag)).setImageResource(R.mipmap.icon_hrey_hand);
 
         ((TextView) ll_name_certification.findViewById(R.id.tv_title)).setText(getString(R.string.certification));
         ((TextView) ll_mobile_certification.findViewById(R.id.tv_title)).setText(getString(R.string.mobile_certification));

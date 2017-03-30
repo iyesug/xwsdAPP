@@ -149,6 +149,7 @@ public class CalendarAdapter extends BaseAdapter {
         if (currentFlag == position) {
             // 设置当天的背景
             textView.setTextColor(context.getResources().getColor(R.color.blue_simple));
+            textView.setBackgroundResource(R.mipmap.icon_grey_yuan);
         }
         return convertView;
     }
