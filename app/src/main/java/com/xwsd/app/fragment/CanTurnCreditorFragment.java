@@ -4,15 +4,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.ProtDetilaActivity;
@@ -31,13 +26,11 @@ import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -209,6 +202,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                     helper.setText(R.id.tv_capital, (item.money));
                     helper.setText(R.id.tv_time, "预计到期时间：" + item.endtime);
                     helper.setText(R.id.tv_interest, "到期收益：" + item.interest +"元");
+
                     helper.setOnClickListener(R.id.tv_transfer_creditor, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -216,12 +210,13 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                             BuriedPointUtil.buriedPoint("账户债权转让转让债权按键");
 
                             //显示支付对话框
-                            if (payDialog == null) {
+
                                 payDialog = new Dialog(getActivity(), R.style.BankDialog);
                                 View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay, null);
                                 final EditText pass = (EditText) view.findViewById(R.id.et_password);
-                                final TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
-                                final TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);
+                                TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
+                                TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);
+
                                 remain.setText(item.remain+"");
                                 crtrSM.setText(item.crtrSM+"");
 
@@ -314,7 +309,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                                         pass.setText("");
                                     }
                                 });
-                            }
+
 
                             payDialog.show();
                         }

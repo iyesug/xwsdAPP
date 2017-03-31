@@ -6,7 +6,6 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
@@ -24,7 +23,7 @@ import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.DoubleScreenDialog;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,8 +32,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/19.
@@ -92,6 +89,7 @@ public class ALLBidFragment extends BaseUpDownListFragment {
     @Override
     public void pullUpCallBack() {
         ApiHttpClient.odds(currentPages, each_page_num, period, type, new StringCallback() {
+
             @Override
             public void onError(Call call, Exception e, int id) {
                 setPullUpState(BasePullUpListFragment.NETWORK_ERROR);
