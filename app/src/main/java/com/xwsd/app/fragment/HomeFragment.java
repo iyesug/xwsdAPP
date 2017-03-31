@@ -574,18 +574,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                             current = 0;
                         }
                         //设置数据
-                        if (indexBean!=null)
-                        text_switcher.setText(indexBean.data.notices.get(current).news_title);
+                        if (indexBean!=null&&text_switcher!=null) {
+                            text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
 
-                        text_switcher.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
-                                intent.putExtra(UserParam.DATA, indexBean.data.notices.get(current).id);
-                                startActivity(intent);
-                            }
-                        });
-
+                            text_switcher.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
+                                    intent.putExtra(UserParam.DATA, indexBean.data.notices.get(current).id);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
                         //循环
                         handler.sendEmptyMessageDelayed(1, mCycleDelayed);
                     }

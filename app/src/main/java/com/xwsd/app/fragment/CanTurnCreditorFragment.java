@@ -213,7 +213,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                             //显示支付对话框
 
                                 payDialog = new Dialog(getActivity(), R.style.BankDialog);
-                                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay, null);
+                                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay_creditor, null);
                                 final EditText pass = (EditText) view.findViewById(R.id.et_password);
                                 TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
                                 TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);

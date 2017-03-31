@@ -4,94 +4,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_pay_round"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/DIMEN_10"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_remain"
-            android:layout_width="@dimen/DIMEN_80"
-            android:layout_height="wrap_content"
 
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/DIMEN_15"
-            android:text="@string/remain"
-            android:textColor="@color/gray_2"
-            android:textSize="@dimen/TEXT_XL" />
-        <TextView
-            android:id="@+id/tv_remain_velue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center|right"
-            android:gravity="right"
-            android:layout_margin="@dimen/DIMEN_15"
-            android:text="123231423"
-            android:textColor="@color/red_f3323b"
-            android:textSize="@dimen/TEXT_XL" />
-        <TextView
-            android:id="@+id/tv_remain_yuan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="@dimen/action_button_text_size"
-            android:layout_margin="@dimen/DIMEN_15"
-            android:text="@string/yuan"
-            android:layout_marginRight="@dimen/DIMEN_30"
-            android:textColor="@color/gray_2"
-            android:textSize="@dimen/TEXT_XL" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/DIMEN_10"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_crtrSM"
-            android:layout_width="@dimen/DIMEN_80"
-            android:layout_height="wrap_content"
-
-            android:layout_margin="@dimen/DIMEN_15"
-            android:text="@string/crtrSM"
-            android:textColor="@color/gray_2"
-            android:textSize="@dimen/TEXT_XL" />
-        <TextView
-            android:id="@+id/tv_crtrSM_velue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:layout_gravity="center|right"
-            android:layout_margin="@dimen/DIMEN_15"
-            android:text="1234354656"
-            android:textColor="@color/red_f3323b"
-            android:textSize="@dimen/TEXT_XL" />
-        <TextView
-            android:id="@+id/tv_crtrSM_yuan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-          android:paddingRight="@dimen/action_button_text_size"
-            android:layout_margin="@dimen/DIMEN_15"
-            android:text="@string/yuan"
-            android:layout_marginRight="@dimen/DIMEN_30"
-            android:textColor="@color/gray_2"
-            android:textSize="@dimen/TEXT_XL" />
-    </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/DIMEN_10"
-        android:orientation="horizontal">
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="@dimen/DIMEN_80"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/DIMEN_15"
+        android:gravity="center"
         android:text="@string/pay_pasworrd"
         android:textColor="@color/gray_2"
         android:textSize="@dimen/TEXT_XL" />
@@ -99,17 +19,11 @@
     <EditText
         android:id="@+id/et_password"
         style="@style/PayEdit"
-        android:layout_margin="@dimen/DIMEN_15"
-        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/DIMEN_30"
         android:layout_marginRight="@dimen/DIMEN_30"
         android:hint="输入支付密码"
         android:inputType="textPassword" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:orientation="horizontal">
     <TextView
         android:id="@+id/tv_forget_password"
         android:layout_width="match_parent"
@@ -123,7 +37,7 @@
         android:text="@string/forget_password"
         android:textColor="@color/text_orange"
         android:textSize="@dimen/TEXT_M" />
-    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -15,7 +15,7 @@ public interface XWSDRequestAdresse {
      * 接口根地址
      */
    String API_URL = "https://app.xwsd.com/api/";//正式
- //   String API_URL = "http://app.xwsdvip.com/api/";//测试
+   //String API_URL = "http://app.xwsdvip.com/api/";//测试
 
     /**
      * 签名密钥

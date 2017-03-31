@@ -38,7 +38,7 @@ public class GuideFragment4 extends Fragment {
                         if (!TextUtils.isEmpty((String) ((GuideActivity) getActivity()).getParam(UserParam.USER_ID, ""))) {
                             //判断用户是否设置了手势密码
                             //ACache.get(getActivity()).getAsBinary((String) ((GuideActivity) getActivity()).getParam(UserParam.USER_ID, "")) == null
-                            if (guideActivity.getParam(UserParam.USER_ID, "") == null &&"".equals(GesturePassward.getString((String) guideActivity.getParam(UserParam.USER_ID, ""), ""))) {
+                            if (((GuideActivity)getActivity()).getParam(UserParam.USER_ID, "") == null &&"".equals(GesturePassward.getString((String) ((GuideActivity)getActivity()).getParam(UserParam.USER_ID, ""), ""))) {
                                 intent = new Intent(getActivity(), GestureLockSettingsActivity.class);
                                 intent.putExtra("showBack", false);
                             } else {

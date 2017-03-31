@@ -233,8 +233,8 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         ((TextView) ll_returned_money_practical.findViewById(R.id.tv_title)).setText("当天实回本金");
         ((TextView) ll_returned_money_practical_lixi.findViewById(R.id.tv_title)).setText("当天实回利息");
 
-       // ((TextView) ll_returned_money_month.findViewById(R.id.tv_money)).setText(repaymentsBean.data.allMoney);
-
+        // ((TextView) ll_returned_money_month.findViewById(R.id.tv_money)).setText(repaymentsBean.data.allMoney);
+        if(repaymentsBean!=null){
         ((TextView) ll_returned_money_month.findViewById(R.id.tv_money)).setText(repaymentsBean.data.benJin);
         ((TextView) ll_returned_money_month_lixi.findViewById(R.id.tv_money)).setText(repaymentsBean.data.interest);
 
@@ -250,6 +250,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                     break;
             }
         }
+    }
 
         StringBuffer textDate = new StringBuffer();
         textDate.append(calV.getShowYear()).append("-").append(calV.getShowMonth()).append("-").append(day_c);
@@ -264,10 +265,13 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
      * 设置选中日期的数据
      */
     private void setCheckedData(int day) {
-        ((TextView) ll_returned_money_day.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).benJin);
-        ((TextView) ll_returned_money_day_lixi.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).interest);
-        ((TextView) ll_returned_money_practical.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).realBenjin);
-        ((TextView) ll_returned_money_practical_lixi.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).realInterest);
+        if(repaymentsBean!=null){
+            ((TextView) ll_returned_money_day.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).benJin);
+            ((TextView) ll_returned_money_day_lixi.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).interest);
+            ((TextView) ll_returned_money_practical.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).realBenjin);
+            ((TextView) ll_returned_money_practical_lixi.findViewById(R.id.tv_money)).setText(repaymentsBean.data.repayments.get(day - 1).realInterest);
+        }
+
     }
 
     /**
@@ -335,30 +339,35 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
      * 设置项目列表
      */
     private void setOddsList(final int day) {
-        list_view.setAdapter(new QuickAdapter<RepaymentsBean.Data.Repayments.Records>(CalendarActivity.this, R.layout.item_project, repaymentsBean.data.repayments.get(day - 1).odds) {
-            @Override
-            protected void convert(BaseAdapterHelper helper, RepaymentsBean.Data.Repayments.Records item) {
-                helper.setText(R.id.tv_oddTitle, item.oddTitle);
-                helper.setText(R.id.tv_oddMoney, item.money);
-                helper.setText(R.id.tv_oddReward, decimalFormat.format(item.oddYearRate * 100));
-                helper.setText(R.id.tv_oddPeriod, item.oddPeriod.replace("个月", ""));
-                DonutProgress progress = helper.getView(R.id.dp_schedule);
-                progress.setProgress(100);
-                if (item.status == 0) {
-                    progress.setText("未回款");
-                } else {
-                    progress.setText("已回款");
+
+        if (repaymentsBean != null) {
+            list_view.setAdapter(new QuickAdapter<RepaymentsBean.Data.Repayments.Records>(CalendarActivity.this, R.layout.item_project, repaymentsBean.data.repayments.get(day - 1).odds) {
+                @Override
+                protected void convert(BaseAdapterHelper helper, RepaymentsBean.Data.Repayments.Records item) {
+
+                    helper.setText(R.id.tv_oddTitle, item.oddTitle);
+                    helper.setText(R.id.tv_oddMoney, item.money);
+                    helper.setText(R.id.tv_oddReward, decimalFormat.format(item.oddYearRate * 100));
+                    helper.setText(R.id.tv_oddPeriod, item.oddPeriod.replace("个月", ""));
+                    DonutProgress progress = helper.getView(R.id.dp_schedule);
+                    progress.setProgress(100);
+                    if (item.status == 0) {
+                        progress.setText("未回款");
+                    } else {
+                        progress.setText("已回款");
+                    }
+
+                    //判断是否是新手标
+                    if (item.oddReward > 0) {
+                        helper.setVisible(R.id.tv_rewards, true);
+                        helper.setText(R.id.tv_rewards, "+" + decimalFormat.format(item.oddReward * 100) + "%");
+                    } else {
+                        helper.setVisible(R.id.tv_rewards, false);
+                    }
                 }
 
-                //判断是否是新手标
-                if (item.oddReward > 0) {
-                    helper.setVisible(R.id.tv_rewards, true);
-                    helper.setText(R.id.tv_rewards, "+" + decimalFormat.format(item.oddReward * 100) + "%");
-                } else {
-                    helper.setVisible(R.id.tv_rewards, false);
-                }
-            }
-        });
+            });
+        }
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

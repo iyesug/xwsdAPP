@@ -6,7 +6,8 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.ProjectDetailsActivity;
@@ -14,9 +15,6 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.constant.UserParam;
 
 import java.text.DecimalFormat;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Gx on 2016/9/6.
@@ -52,14 +50,17 @@ public class NewbieBidFragment extends BaseFragment implements View.OnClickListe
         public void run() {
             progress += 10;
 
-            if (progress >= HomeFragment.indexBean.data.newHandOdds.get(position).schedule) {
-                arc_progress.setProgress(HomeFragment.indexBean.data.newHandOdds.get(position).schedule);
-                handler.removeCallbacks(updateProgress);
-            } else {
-                Message msg = handler.obtainMessage();
-                msg.arg1 = progress;
-                handler.sendMessage(msg);
+            if(HomeFragment.indexBean!=null){
+                if (progress >= HomeFragment.indexBean.data.newHandOdds.get(position).schedule) {
+                    arc_progress.setProgress(HomeFragment.indexBean.data.newHandOdds.get(position).schedule);
+                    handler.removeCallbacks(updateProgress);
+                } else {
+                    Message msg = handler.obtainMessage();
+                    msg.arg1 = progress;
+                    handler.sendMessage(msg);
+                }
             }
+
         }
     };
 
@@ -89,14 +90,17 @@ public class NewbieBidFragment extends BaseFragment implements View.OnClickListe
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
         position = getArguments().getInt(UserParam.POSITION);
 //        arc_progress.setProgress(newHandOdds.schedule);
-        tv_oddYearRate.setText(decimalFormat.format(HomeFragment.indexBean.data.newHandOdds.get(position).oddYearRate * 100) + "%");
-        tv_oddPeriod.setText("50元起投 " + HomeFragment.indexBean.data.newHandOdds.get(position).oddPeriod + "到期");
+        if(HomeFragment.indexBean!=null){
+            tv_oddYearRate.setText(decimalFormat.format(HomeFragment.indexBean.data.newHandOdds.get(position).oddYearRate * 100) + "%");
+            tv_oddPeriod.setText("50元起投 " + HomeFragment.indexBean.data.newHandOdds.get(position).oddPeriod + "到期");
+        }
+
     }
 
     @OnClick(R.id.arc_progress)
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.arc_progress) {
+        if (v.getId() == R.id.arc_progress&&HomeFragment.indexBean!=null) {
             Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
             intent.putExtra("oddNumber", HomeFragment.indexBean.data.newHandOdds.get(position).oddNumber);
             startActivity(intent);

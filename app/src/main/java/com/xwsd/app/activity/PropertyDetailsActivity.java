@@ -288,7 +288,12 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
 
         ((TextView) tv_increase_interest.findViewById(R.id.tv_content)).setText(userAccountBean.data.lotteries.interest + "张");
         ((TextView) tv_get_money.findViewById(R.id.tv_content)).setText(userAccountBean.data.lotteries.withdraw + "张");
-        ((TextView) tv_recommended_award.findViewById(R.id.tv_content)).setText(userAccountBean.data.spreadMoney + "元");
+        if(userAccountBean.data.spreadMoney!=null){
+            ((TextView) tv_recommended_award.findViewById(R.id.tv_content)).setText(userAccountBean.data.spreadMoney + "元");
+        }else{
+            ((TextView) tv_recommended_award.findViewById(R.id.tv_content)).setText("0元");
+        }
+
         ((TextView) tv_recommended_use_award.findViewById(R.id.tv_content)).setText(userAccountBean.data.lastSpreadMoney + "元");
 
     }

@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.*;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.UserActivity;
@@ -193,18 +194,22 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                     ((TitleTextView) helper.getView(R.id.tv_residue_interest)).setContent((item.interest) +"元");
                     ((TitleTextView) helper.getView(R.id.tv_transfer_time)).setContent(item.time);
                     ((TitleTextView) helper.getView(R.id.tv_expire_time)).setContent(item.endtime);
-
+                    TLog.error("remain&crtrSM:"+item.remain+"&&"+item.crtrSM+"&&"+item.id);
                     helper.setOnClickListener(R.id.tv_transfer_creditor, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
                             BuriedPointUtil.buriedPoint("账户债权转让转让中债权撤销转让");
                             //显示支付对话框
-                            if (payDialog == null) {
-                                payDialog = new Dialog(getActivity(), R.style.BankDialog);
-                                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay, null);
-                                final EditText editText = (EditText) view.findViewById(R.id.et_password);
 
+                                payDialog = new Dialog(getActivity(), R.style.BankDialog);
+                                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay_creditor, null);
+                                final EditText editText = (EditText) view.findViewById(R.id.et_password);
+                                TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
+                                TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);
+
+                                remain.setText(item.money+"");
+                                crtrSM.setText(item.crtrSM+"");
                                 view.findViewById(R.id.tv_forget_password).setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -291,7 +296,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                                         editText.setText("");
                                     }
                                 });
-                            }
+
 
                             payDialog.show();
                         }
