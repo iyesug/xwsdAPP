@@ -6,9 +6,9 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.groupeeditview.GroupeEditView;
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.activity.WebDetailsActivity;
@@ -18,15 +18,12 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.PatternUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/30.
@@ -80,19 +77,19 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
             public boolean onClick() {
 
                 if (TextUtils.isEmpty(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_null));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_null));
                     return false;
                 }
 
                 if (!PatternUtils.matchesPhone(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_format_error));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_format_error));
                     return false;
                 }
 
                 ApiHttpClient.sendMessage(ApiHttpClient.MSG_TYPE_REGISTER, user_name.getEditTextInfo(), new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -101,13 +98,13 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("status") == 1) {
-                                AppContext.showToastShort(getString(R.string.send_succeed));
+                                ToastUtil.showToastShort(getString(R.string.send_succeed));
                             } else {
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -126,23 +123,23 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
 
                 //判断输入是否为空
                 if (TextUtils.isEmpty(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_null));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(user_verify.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_verify_null));
+                    ToastUtil.showToastShort(getString(R.string.user_verify_null));
                     return;
                 }
 
                 //判断格式
                 if (!PatternUtils.matchesPhone(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_format_error));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_format_error));
                     return;
                 }
                 //判断用户协议是否勾选
                 if(!cb_user_agreement.isChecked()){
-                    AppContext.showToastShort(getString(R.string.user_user_agreement_no));
+                    ToastUtil.showToastShort(getString(R.string.user_user_agreement_no));
                     return;
                 }
 

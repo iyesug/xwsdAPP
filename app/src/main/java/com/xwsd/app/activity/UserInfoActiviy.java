@@ -17,7 +17,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.iosdialog.ActionSheetDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
@@ -26,22 +27,19 @@ import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.tools.FileUtil;
 import com.xwsd.app.tools.ImgUtil;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.WheelView;
 import com.xwsd.wheelselect.ChangeAddressDialog;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import me.drakeet.materialdialog.MaterialDialog;
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Arrays;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/25.
@@ -212,7 +210,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                                         @Override
                                         public void onClick(int which) {
                                             if (Environment.getExternalStorageDirectory() == null) {
-                                                AppContext.showToastShort("未找到存储设备！");
+                                                ToastUtil.showToastShort("未找到存储设备！");
                                                 return;
                                             }
 
@@ -272,7 +270,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.commit:
                 if (TextUtils.isEmpty(city)) {
-                    AppContext.showToastShort(R.string.address_null);
+                    ToastUtil.showToastShort(R.string.address_null);
                     return;
                 }
 
@@ -293,7 +291,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                             updateHead();
                         } else {
                             hideWaitDialog();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
 
@@ -303,7 +301,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
 //                        hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-//                            AppContext.showToastShort(jsonObject.getString("msg"));
+//                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
                                 AppContext.getUserBean().data.sex = sex;
                                 AppContext.getUserBean().data.maritalstatus = marriage;
@@ -311,14 +309,14 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                         if (userHead != null) {
                             updateHead();
                         }else {
                             hideWaitDialog();
                             //这里只更新用户信息
-                            AppContext.showToastShort(getString(R.string.update_success));
+                            ToastUtil.showToastShort(getString(R.string.update_success));
                         }
                     }
                 });
@@ -334,7 +332,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
             @Override
             public void onError(Call call, Exception e, int id) {
                 hideWaitDialog();
-                AppContext.showToastShort(getString(R.string.network_exception));
+                ToastUtil.showToastShort(getString(R.string.network_exception));
             }
 
             @Override
@@ -342,9 +340,9 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                 hideWaitDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    AppContext.showToastShort(jsonObject.getString("msg"));
+                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                     if (jsonObject.getInt("status") == 1) {
-                        AppContext.showToast(getString(R.string.update_success));
+                        ToastUtil.showToast(getString(R.string.update_success));
 
                         //获取data转换成json对象
                         String data = jsonObject.getString("data");
@@ -356,7 +354,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });

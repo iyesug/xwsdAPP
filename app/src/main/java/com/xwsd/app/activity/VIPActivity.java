@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -17,18 +18,15 @@ import com.xwsd.app.bean.UserVipBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.SpinnerDialog;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/9/28.
@@ -126,14 +124,14 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener {
                         userVipBean = GsonUtils.jsonToBean(response, UserVipBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         finish();
                     }else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                     }
                 } catch (JSONException e) {
@@ -169,7 +167,7 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener {
             case R.id.commit:
 
                 if (TextUtils.isEmpty(servicesId)) {
-                    AppContext.showToastShort(R.string.services_null);
+                    ToastUtil.showToastShort(R.string.services_null);
                     return;
                 }
 
@@ -186,7 +184,7 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         hideWaitDialog();
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -195,14 +193,14 @@ public class VIPActivity extends BaseActivity implements View.OnClickListener {
                         hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            AppContext.showToastShort(jsonObject.getString("msg"));
+                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
                                 getData();
                             } else {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });

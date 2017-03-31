@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.NewsDetailsActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
@@ -17,13 +15,12 @@ import com.xwsd.app.bean.InfosBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/22.
@@ -80,7 +77,7 @@ public class ForeshowListFragment extends BaseUpDownListFragment {
         ApiHttpClient.infos(type, null, null, null, currentPages, each_page_num, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -96,11 +93,11 @@ public class ForeshowListFragment extends BaseUpDownListFragment {
                         allItemCount = infosBean.data.count;
                         mAdapter.replaceAll(infosBean.data.records);
                     } else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });

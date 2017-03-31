@@ -6,23 +6,21 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -82,22 +80,22 @@ public class ModifyLoginPasswordActivity extends BaseActivity implements View.On
         switch (v.getId()) {
             case R.id.commit:
                 if (TextUtils.isEmpty(et_oldpass.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.please_write_full));
+                    ToastUtil.showToastShort(getString(R.string.please_write_full));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_password.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.please_write_full));
+                    ToastUtil.showToastShort(getString(R.string.please_write_full));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_passwordSure.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.please_write_full));
+                    ToastUtil.showToastShort(getString(R.string.please_write_full));
                     return;
                 }
 
                 if (!et_password.getText().toString().trim().equals(et_passwordSure.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.user_password_inconformity));
+                    ToastUtil.showToastShort(getString(R.string.user_password_inconformity));
                     return;
                 }
 
@@ -122,7 +120,7 @@ public class ModifyLoginPasswordActivity extends BaseActivity implements View.On
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -131,14 +129,14 @@ public class ModifyLoginPasswordActivity extends BaseActivity implements View.On
                                 hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
 //                                if (jsonObject.getInt("status") == 1) {
 //                                } else {
 
 //                                }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

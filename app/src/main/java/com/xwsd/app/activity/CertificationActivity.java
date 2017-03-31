@@ -6,22 +6,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -87,12 +85,12 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
             case R.id.commit:
                 //                    判断输入是否为空
                 if (TextUtils.isEmpty(et_name.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.name_null));
+                    ToastUtil.showToastShort(getString(R.string.name_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_identity.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.identity_null));
+                    ToastUtil.showToastShort(getString(R.string.identity_null));
                     return;
                 }
 
@@ -114,7 +112,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -123,7 +121,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                                 hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
                                         AppContext.getUserBean().data.cardstatus = ApiHttpClient.YES;
                                         et_name.setEnabled(false);
@@ -135,7 +133,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

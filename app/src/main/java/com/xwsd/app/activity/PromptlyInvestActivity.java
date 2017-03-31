@@ -1,16 +1,13 @@
 package com.xwsd.app.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.*;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
@@ -22,20 +19,17 @@ import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.Map;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/24.
@@ -314,23 +308,23 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
 
             case R.id.commit:
                 if (TextUtils.isEmpty(et_money.getText().toString().trim())) {
-                    AppContext.showToastShort("请输入购买金额");
+                    ToastUtil.showToastShort("请输入购买金额");
                     return;
                 }
 
                 if (Float.valueOf(et_money.getText().toString().trim()) < 50f) {
-                    AppContext.showToastShort("起投金额不能低于50元");
+                    ToastUtil.showToastShort("起投金额不能低于50元");
                     return;
                 }
 
                 if (Float.valueOf(et_money.getText().toString().trim()) > maxMoney) {
-                    AppContext.showToastShort("您最多可投" + maxMoney + "元");
+                    ToastUtil.showToastShort("您最多可投" + maxMoney + "元");
                     return;
                 }
 
                 if (maxMoney - Float.valueOf(et_money.getText().toString().trim()) > 0 &&
                         maxMoney - Float.valueOf(et_money.getText().toString().trim()) < 50f) {
-                    AppContext.showToastShort("剩余金额不能低于50元");
+                    ToastUtil.showToastShort("剩余金额不能低于50元");
                     return;
                 }
                 Intent intent = new Intent(PromptlyInvestActivity.this, WebDetailsActivity.class);
@@ -372,7 +366,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
             @Override
             public void onError(Call call, Exception e, int id) {
                 hideWaitDialog();
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
             @Override
             public void onResponse(String response, int id) {

@@ -9,7 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.iosdialog.ActionSheetDialog;
 import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
@@ -22,17 +23,14 @@ import com.xwsd.app.bean.BankCardsBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -124,7 +122,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                         BankCardsBean bean = GsonUtils.jsonToBean(response, BankCardsBean.class);
                         setData(bean);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent(BankCardActivity.this, UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -241,7 +239,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 //                                                        @Override
 //                                                        public void onError(Call call, Exception e, int id) {
 //                                                            hideWaitDialog();
-//                                                            AppContext.showToastShort(R.string.network_exception);
+//                                                            ToastUtil.showToastShort(R.string.network_exception);
 //                                                        }
 //
 //                                                        @Override
@@ -250,7 +248,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 //                                                            hideWaitDialog();
 //                                                            try {
 //                                                                JSONObject jsonObject = new JSONObject(response);
-//                                                                AppContext.showToastShort(jsonObject.getString("msg"));
+//                                                                ToastUtil.showToastShort(jsonObject.getString("msg"));
 //                                                                if (jsonObject.getInt("status") == 1) {
 //                                                                    adapter.remove(position);
 //                                                                    ll_add_bank_card_bg.setVisibility(View.VISIBLE);
@@ -258,7 +256,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 //                                                                }
 //                                                            } catch (JSONException e) {
 //                                                                e.printStackTrace();
-//                                                                AppContext.showToastShort(getString(R.string.network_exception));
+//                                                                ToastUtil.showToastShort(getString(R.string.network_exception));
 //                                                            }
 //                                                        }
 //                                                    });
@@ -337,7 +335,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         hideWaitDialog();
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -346,11 +344,11 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                         hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            AppContext.showToastShort(jsonObject.getString("msg"));
+                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
                                 getData();
                             } else if (jsonObject.getInt("status") == 88){
-                                AppContext.showToast("用户密码已修改，请重新登录");
+                                ToastUtil.showToast("用户密码已修改，请重新登录");
                                 Intent Fintent = new Intent();
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -358,12 +356,12 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                                 finish();
                             }else {
 
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             hideWaitDialog();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -380,7 +378,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                 Intent intent = new Intent(BankCardActivity.this, AddCardActivity.class);
                 startActivity(intent);
 //                } else {
-//                    AppContext.showToastShort("请先实名认证");
+//                    ToastUtil.showToastShort("请先实名认证");
 //                }
                 break;
         }
@@ -401,7 +399,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onError(Call call, Exception e, int id) {
                 swipe_refresh_layout.setRefreshing(false);
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
 
             @Override
@@ -414,18 +412,18 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                         BankCardsBean bean = GsonUtils.jsonToBean(response, BankCardsBean.class);
                         setData(bean);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         finish();
                     }else {
-                        AppContext.showToastShort(R.string.network_exception);
+                        ToastUtil.showToastShort(R.string.network_exception);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.network_exception);
+                    ToastUtil.showToastShort(R.string.network_exception);
                 }
             }
         });

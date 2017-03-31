@@ -6,21 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import butterknife.Bind;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BankCardActivity;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -64,12 +62,12 @@ public class CertificationFragment extends BaseFragment {
                 public void onClick(View v) {
 //                    判断输入是否为空
                     if (TextUtils.isEmpty(et_name.getText().toString().trim())) {
-                        AppContext.showToastShort(getString(R.string.name_null));
+                        ToastUtil.showToastShort(getString(R.string.name_null));
                         return;
                     }
 
                     if (TextUtils.isEmpty(et_identity.getText().toString().trim())) {
-                        AppContext.showToastShort(getString(R.string.identity_null));
+                        ToastUtil.showToastShort(getString(R.string.identity_null));
                         return;
                     }
 
@@ -91,7 +89,7 @@ public class CertificationFragment extends BaseFragment {
                                 @Override
                                 public void onError(Call call, Exception e, int id) {
                                     ((BankCardActivity) getActivity()).hideWaitDialog();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
 
                                 @Override
@@ -100,7 +98,7 @@ public class CertificationFragment extends BaseFragment {
                                     ((BankCardActivity) getActivity()).hideWaitDialog();
                                     try {
                                         JSONObject jsonObject = new JSONObject(response);
-                                        AppContext.showToastShort(jsonObject.getString("msg"));
+                                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                                         if (jsonObject.getInt("status") == 1) {
                                             AppContext.getUserBean().data.cardstatus = ApiHttpClient.YES;
                                             et_name.setEnabled(false);
@@ -112,7 +110,7 @@ public class CertificationFragment extends BaseFragment {
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
-                                        AppContext.showToastShort(getString(R.string.network_exception));
+                                        ToastUtil.showToastShort(getString(R.string.network_exception));
                                     }
                                 }
                             });

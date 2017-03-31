@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.groupeeditview.GroupeEditView;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.AppManager;
@@ -19,19 +20,12 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.tools.GesturePassward;
-import com.xwsd.app.tools.GsonUtils;
-import com.xwsd.app.tools.PatternUtils;
-import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.*;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/30.
@@ -92,32 +86,32 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
 
                 //判断输入是否为空
                 if (TextUtils.isEmpty(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_name_null));
+                    ToastUtil.showToastShort(getString(R.string.user_name_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(user_password_1.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(user_password_2.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (!user_password_1.getEditTextInfo().equals(user_password_2.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_inconformity));
+                    ToastUtil.showToastShort(getString(R.string.user_password_inconformity));
                     return;
                 }
 
                 if (!PatternUtils.matchesNum(user_password_1.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_error));
+                    ToastUtil.showToastShort(getString(R.string.user_password_error));
                     return;
                 }
 
                 if (!PatternUtils.matchesNum(user_password_2.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_error));
+                    ToastUtil.showToastShort(getString(R.string.user_password_error));
                     return;
                 }
 
@@ -141,7 +135,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 userActivity.hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -149,7 +143,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                                 TLog.error("注册:" + response);
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
 
                                         login();
@@ -160,7 +154,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     userActivity.hideWaitDialog();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });
@@ -173,7 +167,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
             @Override
             public void onError(Call call, Exception e, int id) {
                 userActivity.hideWaitDialog();
-                AppContext.showToastShort(getString(R.string.network_exception));
+                ToastUtil.showToastShort(getString(R.string.network_exception));
             }
 
             @Override
@@ -182,7 +176,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                 userActivity.hideWaitDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    AppContext.showToastShort(jsonObject.getString("msg"));
+                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                     if (jsonObject.getInt("status") == 1) {
                         UserBean userBean = GsonUtils.jsonToBean(response, UserBean.class);
 //                                设置用户信息
@@ -242,7 +236,7 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });

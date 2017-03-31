@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.baofoo.sdk.vip.BaofooPayActivity;
 import com.fuiou.pay.util.AppConfig;
 import com.xwsd.app.AppContext;
@@ -30,15 +29,14 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
-import okhttp3.Call;
 
 /**
  * Created by mo on 2016/11/22.
@@ -137,7 +135,7 @@ public class baofuMoneyFragment extends Fragment implements View.OnClickListener
             ((TextView) ll_quota_stroke.findViewById(R.id.tv_content)).setText(banksLimitBean.onceLimit);
             ((TextView) ll_quota_day.findViewById(R.id.tv_content)).setText(banksLimitBean.dayLimit);
         }else{
-            AppContext.showToast("持银行卡不支持宝付充值");
+            ToastUtil.showToast("持银行卡不支持宝付充值");
             isAble = false;
             commit.setBackgroundResource(R.drawable.bg_button_sharp_gray);
         }
@@ -215,13 +213,13 @@ public class baofuMoneyFragment extends Fragment implements View.OnClickListener
                     intent.setAction(BroadcastParam.ACCOUNT_UPDATE_RECHARGE);
                     getActivity().sendBroadcast(intent);
                     dayRechargemoney += Integer.parseInt(et_money.getText().toString());//充值成功，单日充值的金额往上加
-                    AppContext.showToast("成功充值:" + et_money.getText().toString() + "元");
+                    ToastUtil.showToast("成功充值:" + et_money.getText().toString() + "元");
 
                 } else {
-                    AppContext.showToast("充值失败");
+                    ToastUtil.showToast("充值失败");
                 }
             }catch (Exception e){
-                AppContext.showToast("正在清理缓存。");
+                ToastUtil.showToast("正在清理缓存。");
                 reset();
             }
 
@@ -238,19 +236,19 @@ public class baofuMoneyFragment extends Fragment implements View.OnClickListener
                 //跳转按钮做下控制，只能点击一次
                 if (isCanClick && isAble) {
                     if (TextUtils.isEmpty(et_money.getText().toString().trim())) {
-                        AppContext.showToastShort(getString(R.string.pay_money_null));
+                        ToastUtil.showToastShort(getString(R.string.pay_money_null));
                         return;
                     }
 
                     //判断一次充值金额是否超过限额
                     if (banksLimitBean.onceLimit.contains("W")) {
                         if (Integer.parseInt(et_money.getText().toString().trim()) > Integer.parseInt(banksLimitBean.onceLimit.split("W")[0]) * 10000) {
-                            AppContext.showToast("充值金额超过单次限额");
+                            ToastUtil.showToast("充值金额超过单次限额");
                             return;
                         }
                     } else {
                         if (Integer.parseInt(et_money.getText().toString().trim()) > Integer.parseInt(banksLimitBean.onceLimit)) {
-                            AppContext.showToast("充值金额超过单次限额");
+                            ToastUtil.showToast("充值金额超过单次限额");
                             return;
                         }
                     }
@@ -272,12 +270,12 @@ public class baofuMoneyFragment extends Fragment implements View.OnClickListener
                         //判断限额中是否包含W字
                         if (banksLimitBean.dayLimit.contains("W")) {
                             if (dayRechargemoney + Integer.parseInt(et_money.getText().toString().trim()) > Integer.parseInt(banksLimitBean.dayLimit.split("W")[0]) * 10000) {
-                                AppContext.showToast("充值金额超过每日限额");
+                                ToastUtil.showToast("充值金额超过每日限额");
                                 return;
                             }
                         } else {
                             if (dayRechargemoney + Integer.parseInt(et_money.getText().toString().trim()) > Integer.parseInt(banksLimitBean.onceLimit)) {
-                                AppContext.showToast("充值金额超过每日限额");
+                                ToastUtil.showToast("充值金额超过每日限额");
                                 return;
                             }
                         }
@@ -311,7 +309,7 @@ public class baofuMoneyFragment extends Fragment implements View.OnClickListener
                                 @Override
                                 public void onError(Call call, Exception e, int id) {
                                     rechargeActivity.hideWaitDialog();
-                                    AppContext.showToastShort(R.string.network_exception);
+                                    ToastUtil.showToastShort(R.string.network_exception);
                                 }
 
                                 @Override
@@ -332,14 +330,14 @@ public class baofuMoneyFragment extends Fragment implements View.OnClickListener
                                                 getActivity().startActivityForResult(payintent, REQUEST_CODE_BAOFOO_SDK);
                                             }
                                             else {
-                                                AppContext.showToast("银行卡信息校验失败");
+                                                ToastUtil.showToast("银行卡信息校验失败");
                                             }
                                         } else {
-                                            AppContext.showToast(jsonObject.getString("msg"));
+                                            ToastUtil.showToast(jsonObject.getString("msg"));
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
-                                        AppContext.showToastShort(getString(R.string.network_exception));
+                                        ToastUtil.showToastShort(getString(R.string.network_exception));
                                     }
                                 }
                             });

@@ -8,45 +8,34 @@ import android.text.Editable;
 import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
+import android.view.*;
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
-import com.xwsd.app.bean.AgreeCardBean;
 import com.xwsd.app.bean.BankCardsBean;
 import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.WheelView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import me.drakeet.materialdialog.MaterialDialog;
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -137,7 +126,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 if (s.length() > 0) {
 //                    提现金额不能大于余额
                     if (Float.valueOf(s.toString()) > Float.valueOf(getIntent().getSerializableExtra(UserParam.MONEY).toString())) {
-                        AppContext.showToastShort(R.string.withdraw_money_exceed);
+                        ToastUtil.showToastShort(R.string.withdraw_money_exceed);
                         et_money.setText(getIntent().getSerializableExtra(UserParam.MONEY).toString());
                         Editable etext = et_money.getText();
                         Selection.setSelection(etext, etext.length());
@@ -160,17 +149,17 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             case R.id.commit://提现
                 BuriedPointUtil.buriedPoint("提现页面-提现按钮");
                 if (checkedBank == null) {
-                    AppContext.showToastShort(R.string.withdraw_bank_card_null);
+                    ToastUtil.showToastShort(R.string.withdraw_bank_card_null);
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_money.getText().toString().trim())) {
-                    AppContext.showToastShort(R.string.withdraw_money_null);
+                    ToastUtil.showToastShort(R.string.withdraw_money_null);
                     return;
                 }
 
                 if (decimalFormat.format(Float.valueOf(et_money.getText().toString().trim())).equals("0.00")) {
-                    AppContext.showToastShort(R.string.withdraw_money_small);
+                    ToastUtil.showToastShort(R.string.withdraw_money_small);
                     return;
                 }
 
@@ -205,7 +194,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onError(Call call, Exception e, int id) {
                 if (!call.isCanceled()) {
-                    AppContext.showToastShort(R.string.network_exception);
+                    ToastUtil.showToastShort(R.string.network_exception);
                 }
             }
 
@@ -217,11 +206,11 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                     if (jsonObject.getInt("status") == 1) {
                         tv_poundage.setText(jsonObject.getJSONObject("data").getString("fee"));
                     } else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });
@@ -243,7 +232,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onError(Call call, Exception e, int id) {
                 hideWaitDialog();
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
             @Override
             public void onResponse(String response, int id) {
@@ -283,11 +272,11 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                                     }).show();
                         }
                     } else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });
@@ -380,7 +369,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 @Override
                 public void onClick(View v) {
                     if (TextUtils.isEmpty(editText.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.pay_pasworrd_null);
+                        ToastUtil.showToastShort(R.string.pay_pasworrd_null);
                         return;
                     }
                     payDialog.dismiss();
@@ -437,7 +426,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onError(Call call, Exception e, int id) {
                 hideWaitDialog();
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
 
             @Override
@@ -446,7 +435,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 TLog.error("提现：" + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    AppContext.showToastShort(jsonObject.getString("msg"));
+                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                     if (jsonObject.getInt("status") == 1) {
 
 //                        发送广播通知提现成功
@@ -460,7 +449,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });

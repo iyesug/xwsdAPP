@@ -7,13 +7,9 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -22,20 +18,17 @@ import com.xwsd.app.bean.CEOQuestionsBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/9/25.
@@ -116,7 +109,7 @@ public class CEOQuestionsActivity extends BaseActivity implements View.OnClickLi
 
                 //判断用户是否登录
                 if (TextUtils.isEmpty(et_reply.getText().toString().trim())) {
-                    AppContext.showToastShort(R.string.reply_data_null);
+                    ToastUtil.showToastShort(R.string.reply_data_null);
                     return;
                 }
 
@@ -136,7 +129,7 @@ public class CEOQuestionsActivity extends BaseActivity implements View.OnClickLi
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -145,7 +138,7 @@ public class CEOQuestionsActivity extends BaseActivity implements View.OnClickLi
                                 hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
                                         //刷新数据
                                         getData();
@@ -154,7 +147,7 @@ public class CEOQuestionsActivity extends BaseActivity implements View.OnClickLi
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

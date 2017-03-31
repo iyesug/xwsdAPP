@@ -4,24 +4,21 @@ import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.gnwai.groupeeditview.GroupeEditView;
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.tools.PatternUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/30.
@@ -89,19 +86,19 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
             public boolean onClick() {
 
                 if (TextUtils.isEmpty(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_null));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_null));
                     return false;
                 }
 
                 if (!PatternUtils.matchesPhone(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_format_error));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_format_error));
                     return false;
                 }
 
                 ApiHttpClient.sendMessage(msgType, user_name.getEditTextInfo(), new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -110,13 +107,13 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("status") == 1) {
-                                AppContext.showToastShort(getString(R.string.send_succeed));
+                                ToastUtil.showToastShort(getString(R.string.send_succeed));
                             } else {
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -133,38 +130,38 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
             case R.id.commit:
 //                判断输入是否为空
                 if (TextUtils.isEmpty(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_name_null));
+                    ToastUtil.showToastShort(getString(R.string.user_name_null));
                     return;
                 }
 
 //                判断格式
                 if (!PatternUtils.matchesPhone(user_name.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_phone_format_error));
+                    ToastUtil.showToastShort(getString(R.string.user_phone_format_error));
                     return;
                 }
 
                 if (TextUtils.isEmpty(user_verify.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_verify_null));
+                    ToastUtil.showToastShort(getString(R.string.user_verify_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(user_password_1.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(user_password_2.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (!PatternUtils.matchesNum(user_password_1.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_error));
+                    ToastUtil.showToastShort(getString(R.string.user_password_error));
                     return;
                 }
 
                 if (!user_password_1.getEditTextInfo().equals(user_password_2.getEditTextInfo())) {
-                    AppContext.showToastShort(getString(R.string.user_password_inconformity));
+                    ToastUtil.showToastShort(getString(R.string.user_password_inconformity));
                     return;
                 }
 
@@ -188,7 +185,7 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
                                 @Override
                                 public void onError(Call call, Exception e, int id) {
                                     userActivity.hideWaitDialog();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
 
                                 @Override
@@ -197,13 +194,13 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
                                     userActivity.hideWaitDialog();
                                     try {
                                         JSONObject jsonObject = new JSONObject(response);
-                                        AppContext.showToastShort(jsonObject.getString("msg"));
+                                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                                         if (jsonObject.getInt("status") == 1) {
                                             userActivity.onBackPressed();
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
-                                        AppContext.showToastShort(getString(R.string.network_exception));
+                                        ToastUtil.showToastShort(getString(R.string.network_exception));
                                     }
                                 }
                             });
@@ -216,7 +213,7 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
                                 @Override
                                 public void onError(Call call, Exception e, int id) {
                                     userActivity.hideWaitDialog();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
 
                                 @Override
@@ -225,13 +222,13 @@ public class ForgotFragment extends BaseFragment implements View.OnClickListener
                                     userActivity.hideWaitDialog();
                                     try {
                                         JSONObject jsonObject = new JSONObject(response);
-                                        AppContext.showToastShort(jsonObject.getString("msg"));
+                                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                                         if (jsonObject.getInt("status") == 1) {
                                             userActivity.onBackPressed();
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
-                                        AppContext.showToastShort(getString(R.string.network_exception));
+                                        ToastUtil.showToastShort(getString(R.string.network_exception));
                                     }
                                 }
                             });

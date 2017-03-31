@@ -11,6 +11,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import butterknife.Bind;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 import com.xwsd.app.AppContext;
@@ -21,18 +22,14 @@ import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.FundRecordBean;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.tools.BuriedPointUtil;
-import com.xwsd.app.tools.GsonUtils;
-import com.xwsd.app.tools.NetWorkUtils;
-import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-import butterknife.Bind;
-import okhttp3.Call;
 
 public class FundRecordActivity extends BaseActivity implements View.OnClickListener,AbsListView.OnScrollListener, SwipeRefreshLayout.OnRefreshListener
 {
@@ -289,7 +286,7 @@ public class FundRecordActivity extends BaseActivity implements View.OnClickList
                         allItemCount = Integer.valueOf(mFundRecordBean.data.count);
                         setData(type);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

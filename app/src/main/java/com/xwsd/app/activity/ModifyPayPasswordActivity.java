@@ -12,7 +12,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -20,16 +21,13 @@ import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.PatternUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -100,27 +98,27 @@ public class ModifyPayPasswordActivity extends BaseActivity implements View.OnCl
             case R.id.commit:
 
                 if (type == 1 && TextUtils.isEmpty(et_original_password.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_password_1.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_password_2.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.user_password_null));
+                    ToastUtil.showToastShort(getString(R.string.user_password_null));
                     return;
                 }
 
                 if (!et_password_1.getText().toString().trim().equals(et_password_2.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.user_password_inconformity));
+                    ToastUtil.showToastShort(getString(R.string.user_password_inconformity));
                     return;
                 }
 
                 if (!PatternUtils.matchesNum(et_password_1.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.user_password_error));
+                    ToastUtil.showToastShort(getString(R.string.user_password_error));
                     return;
                 }
 
@@ -168,7 +166,7 @@ public class ModifyPayPasswordActivity extends BaseActivity implements View.OnCl
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         hideWaitDialog();
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -177,14 +175,14 @@ public class ModifyPayPasswordActivity extends BaseActivity implements View.OnCl
                         hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            AppContext.showToastShort(jsonObject.getString("msg"));
+                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
 
                             } else {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -279,7 +277,7 @@ public class ModifyPayPasswordActivity extends BaseActivity implements View.OnCl
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         hideWaitDialog();
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -288,16 +286,16 @@ public class ModifyPayPasswordActivity extends BaseActivity implements View.OnCl
                         hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            AppContext.showToastShort(jsonObject.getString("msg"));
+                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
-                                AppContext.showToastShort(R.string.setting_succeed);
+                                ToastUtil.showToastShort(R.string.setting_succeed);
                                 AppContext.getUserBean().data.payPassStatus = ApiHttpClient.YES;
                             } else {
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });

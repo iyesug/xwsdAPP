@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -17,21 +18,18 @@ import com.xwsd.app.bean.AutoInfoBean;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.SpinnerDialog;
 import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 public class AutoBidJianSettingActivity extends BaseActivity implements View.OnClickListener {
     /**
@@ -240,11 +238,11 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
                 //得到保留金额
                     //得到投资范围
                     if (TextUtils.isEmpty(et_scope_money_1.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.inpt_scope_money_1);
+                        ToastUtil.showToastShort(R.string.inpt_scope_money_1);
                         return;
                     }
                     if (TextUtils.isEmpty(et_scope_money_2.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.inpt_scope_money_2);
+                        ToastUtil.showToastShort(R.string.inpt_scope_money_2);
                         return;
                     }
 
@@ -273,7 +271,7 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(R.string.network_exception);
+                                ToastUtil.showToastShort(R.string.network_exception);
                             }
 
                             @Override
@@ -282,7 +280,7 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
                                 hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
 
                                     } else {
@@ -290,7 +288,7 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

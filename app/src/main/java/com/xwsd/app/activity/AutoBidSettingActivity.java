@@ -18,6 +18,7 @@ import com.xwsd.app.bean.AutoInfoBean;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.SpinnerDialog;
@@ -433,7 +434,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                 if (3==tv_retain.getState()||4==tv_retain.getState()) {
 
                     if (TextUtils.isEmpty(et_retain_balance.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.inpt_retain_money);
+                        ToastUtil.showToastShort(R.string.inpt_retain_money);
                         return;
                     }
 
@@ -446,18 +447,18 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                 //得到投资金额
                 if (moneyType.equals("0")) {
                     if (TextUtils.isEmpty(et_assign_money.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.inpt_assign_money);
+                        ToastUtil.showToastShort(R.string.inpt_assign_money);
                         return;
                     }
                     fixedMoney = rangeBegin = rangeEnd = et_assign_money.getText().toString().trim();
                 } else {
                     //得到投资范围
                     if (TextUtils.isEmpty(et_scope_money_1.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.inpt_scope_money_1);
+                        ToastUtil.showToastShort(R.string.inpt_scope_money_1);
                         return;
                     }
                     if (TextUtils.isEmpty(et_scope_money_2.getText().toString().trim())) {
-                        AppContext.showToastShort(R.string.inpt_scope_money_2);
+                        ToastUtil.showToastShort(R.string.inpt_scope_money_2);
                         return;
                     }
                     fixedMoney = "1";
@@ -488,7 +489,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(R.string.network_exception);
+                                ToastUtil.showToastShort(R.string.network_exception);
                             }
 
                             @Override
@@ -497,7 +498,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                                 hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
 
                                     } else {
@@ -505,7 +506,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

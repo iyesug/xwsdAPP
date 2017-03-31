@@ -6,23 +6,21 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.tools.PatternUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -84,12 +82,12 @@ public class EmailCertificationActivity extends BaseActivity implements View.OnC
             case R.id.commit:
 
                 if (TextUtils.isEmpty(et_email.getText().toString().trim())) {
-                    AppContext.showToastShort("邮箱账号不能为空");
+                    ToastUtil.showToastShort("邮箱账号不能为空");
                     return;
                 }
 
                 if (!PatternUtils.matchesEmail(et_email.getText().toString().trim())) {
-                    AppContext.showToastShort("请输入正确的邮箱格式");
+                    ToastUtil.showToastShort("请输入正确的邮箱格式");
                     return;
                 }
 
@@ -109,7 +107,7 @@ public class EmailCertificationActivity extends BaseActivity implements View.OnC
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -118,7 +116,7 @@ public class EmailCertificationActivity extends BaseActivity implements View.OnC
                                 hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
                                         finish();
 //                                        et_email.setText(et_email.getText().toString().trim().replace(et_email.getText().toString().trim().substring(0, et_email.getText().toString().trim().length() / 2), "******"));
@@ -133,7 +131,7 @@ public class EmailCertificationActivity extends BaseActivity implements View.OnC
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

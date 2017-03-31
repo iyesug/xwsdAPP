@@ -5,23 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
-import android.widget.DatePicker;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
-
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
@@ -34,20 +22,17 @@ import com.xwsd.app.calendar.CalendarAdapter;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.CalendarGridView;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/24.
@@ -213,7 +198,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                 new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        AppContext.showToastShort(R.string.network_exception);
+                        ToastUtil.showToastShort(R.string.network_exception);
                     }
 
                     @Override
@@ -225,11 +210,11 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
                                 repaymentsBean = GsonUtils.jsonToBean(response, RepaymentsBean.class);
                                 setData();
                             } else {
-                                AppContext.showToastShort(R.string.network_exception);
+                                ToastUtil.showToastShort(R.string.network_exception);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(R.string.network_exception);
+                            ToastUtil.showToastShort(R.string.network_exception);
                         }
                     }
                 }

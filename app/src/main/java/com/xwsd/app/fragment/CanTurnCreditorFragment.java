@@ -23,6 +23,7 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -76,7 +77,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                         infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(TYPE_PULLUP);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -102,7 +103,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
         ApiHttpClient.usercrtrs(AppContext.getUserBean().data.userId, currentPages, each_page_num, type, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -118,18 +119,18 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                         allItemCount = infosBean.data.count;
                         mAdapter.replaceAll(infosBean.data.records);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         getActivity().finish();
                     }else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });
@@ -155,7 +156,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                         infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -240,7 +241,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                                     @Override
                                     public void onClick(View v) {
                                         if (TextUtils.isEmpty(pass.getText().toString().trim())) {
-                                            AppContext.showToastShort(R.string.pay_pasworrd_null);
+                                            ToastUtil.showToastShort(R.string.pay_pasworrd_null);
                                             return;
                                         }
                                         payDialog.dismiss();
@@ -263,7 +264,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                                                     @Override
                                                     public void onError(Call call, Exception e, int id) {
                                                         ((BaseActivity) getActivity()).hideWaitDialog();
-                                                        AppContext.showToastShort(getString(R.string.network_exception));
+                                                        ToastUtil.showToastShort(getString(R.string.network_exception));
                                                     }
 
                                                     @Override
@@ -272,11 +273,11 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                                                         ((BaseActivity) getActivity()).hideWaitDialog();
                                                         try {
                                                             JSONObject jsonObject = new JSONObject(response);
-                                                            AppContext.showToastShort(jsonObject.getString("msg"));
+                                                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                                                             if (jsonObject.getInt("status") == 1) {
                                                                 mAdapter.remove(helper.getPosition());
                                                             }else if (jsonObject.getInt("status") == 88){
-                                                                AppContext.showToast("用户密码已修改，请重新登录");
+                                                                ToastUtil.showToast("用户密码已修改，请重新登录");
                                                                 Intent Fintent = new Intent();
                                                                 Fintent.putExtra(UserParam.TYPE, 0);
                                                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -285,7 +286,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                                                             }
                                                         } catch (JSONException e) {
                                                             e.printStackTrace();
-                                                            AppContext.showToastShort(getString(R.string.network_exception));
+                                                            ToastUtil.showToastShort(getString(R.string.network_exception));
                                                         }
                                                     }
                                                 });

@@ -6,24 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import android.widget.*;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.RechargeActivity;
-import com.xwsd.app.activity.SettingsPayBankActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.bean.AgreeCardBean;
@@ -32,17 +21,14 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.ImgUtil;
 import com.xwsd.app.tools.PatternUtils;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.WheelView;
-
+import me.drakeet.materialdialog.MaterialDialog;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * Created by admin on 2016/12/1.
@@ -133,17 +119,17 @@ public class FuyouFragment extends Fragment implements View.OnClickListener {
 //                判断输入时候完整
 
                 if (TextUtils.isEmpty(tv_bank_card.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.card_num_null));
+                    ToastUtil.showToastShort(getString(R.string.card_num_null));
                     return;
                 }
 
                 if (!PatternUtils.matchesNum(tv_bank_card.getText().toString().trim(), 16, 19)) {
-                    AppContext.showToastShort(getString(R.string.card_num_length));
+                    ToastUtil.showToastShort(getString(R.string.card_num_length));
                     return;
                 }
 
                 if (TextUtils.isEmpty(bankName)) {
-                    AppContext.showToastShort(getString(R.string.banks_null));
+                    ToastUtil.showToastShort(getString(R.string.banks_null));
                     return;
                 }
 

@@ -7,7 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -16,17 +17,14 @@ import com.xwsd.app.bean.UserAccountBean;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 import me.drakeet.materialdialog.MaterialDialog;
 import okhttp3.Call;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Gx on 2016/8/25.
@@ -179,7 +177,7 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
                     mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                 } else {
                     swipe_refresh_layout.setRefreshing(false);
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
 
@@ -202,7 +200,7 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
                             mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                         } else {
                             swipe_refresh_layout.setRefreshing(false);
-                            AppContext.showToastShort(R.string.refurbish_failure);
+                            ToastUtil.showToastShort(R.string.refurbish_failure);
                         }
                     }
                 } catch (JSONException e) {
@@ -211,7 +209,7 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                     } else {
                         swipe_refresh_layout.setRefreshing(false);
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 }
             }

@@ -5,7 +5,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.BaseAdapterHelper;
@@ -15,19 +16,14 @@ import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.prot_jiaBean;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
-
-import static com.xwsd.app.R.id.commit;
 
 public class ProtJiaActivity extends BaseActivity implements View.OnClickListener {
     /**
@@ -155,7 +151,7 @@ public class ProtJiaActivity extends BaseActivity implements View.OnClickListene
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
                         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                        AppContext.showToast("加息成功");
+                        ToastUtil.showToast("加息成功");
                         finish();
                     } else {
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
@@ -176,7 +172,7 @@ public class ProtJiaActivity extends BaseActivity implements View.OnClickListene
                 if(id != null && id.length() > 0){
                     uesTicket(id);
                 }else {
-                    AppContext.showToast("请选择加息券");
+                    ToastUtil.showToast("请选择加息券");
                 }
                 break;
             case R.id.cancel://取消

@@ -3,13 +3,10 @@ package com.xwsd.app.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
-import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.activity.ProtDetilaActivity;
-import com.xwsd.app.activity.ProtJiaActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -20,16 +17,13 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.TitleTextView;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.DecimalFormat;
-
-import okhttp3.Call;
 
 /**
  * Created by admin on 2016/11/30.
@@ -68,7 +62,7 @@ public class OverusercrtrsFragment extends BaseUpDownListFragment {
                         CreditorTransferBean infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(infosBean, TYPE_PULLUP);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -94,7 +88,7 @@ public class OverusercrtrsFragment extends BaseUpDownListFragment {
         ApiHttpClient.usercrtrs(AppContext.getUserBean().data.userId, currentPages, each_page_num, type, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -110,18 +104,18 @@ public class OverusercrtrsFragment extends BaseUpDownListFragment {
                         allItemCount = infosBean.data.count;
                         mAdapter.replaceAll(infosBean.data.records);
                     }else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         getActivity().finish();
                     } else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });
@@ -147,7 +141,7 @@ public class OverusercrtrsFragment extends BaseUpDownListFragment {
                         CreditorTransferBean infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(infosBean, TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

@@ -5,13 +5,9 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.CEOQuestionsActivity;
@@ -27,20 +23,17 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.SpinnerDialog;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/22.
@@ -161,7 +154,7 @@ public class FeedbackFragment extends BaseUpDownListFragment implements View.OnC
         ApiHttpClient.infos(ApiHttpClient.TYPE_INFOS_QUESTION, title, startTime, endTime, currentPages, each_page_num, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -177,11 +170,11 @@ public class FeedbackFragment extends BaseUpDownListFragment implements View.OnC
                         allItemCount = infosBean.data.count;
                         mAdapter.replaceAll(infosBean.data.records);
                     } else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });
@@ -422,13 +415,13 @@ public class FeedbackFragment extends BaseUpDownListFragment implements View.OnC
 
                 //判断提问内容是否输入完整
                 if (TextUtils.isEmpty(et_question.getText().toString().trim())) {
-                    AppContext.showToastShort(R.string.question_data_null);
+                    ToastUtil.showToastShort(R.string.question_data_null);
                     return;
                 }
 
                 //判断主题是否选择
                 if (TextUtils.isEmpty(theme)) {
-                    AppContext.showToastShort(R.string.theme_data_null);
+                    ToastUtil.showToastShort(R.string.theme_data_null);
                     return;
                 }
 
@@ -448,7 +441,7 @@ public class FeedbackFragment extends BaseUpDownListFragment implements View.OnC
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 ((BaseActivity) getActivity()).hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -457,7 +450,7 @@ public class FeedbackFragment extends BaseUpDownListFragment implements View.OnC
                                 ((BaseActivity) getActivity()).hideWaitDialog();
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     if (jsonObject.getInt("status") == 1) {
 
                                     } else {
@@ -465,7 +458,7 @@ public class FeedbackFragment extends BaseUpDownListFragment implements View.OnC
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         });

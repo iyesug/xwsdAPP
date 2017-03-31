@@ -8,7 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -18,22 +19,19 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.CheckUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.CheckView;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.WheelView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import me.drakeet.materialdialog.MaterialDialog;
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -116,7 +114,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.ll_address_city:
                 if (provincesId == -1) {
-                    AppContext.showToastShort("请先选择省份");
+                    ToastUtil.showToastShort("请先选择省份");
                     return;
                 }
                 if (citys == null) {
@@ -127,33 +125,33 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.commit:
                 if (provincesId == -1) {
-                    AppContext.showToastShort(getString(R.string.provinces_null));
+                    ToastUtil.showToastShort(getString(R.string.provinces_null));
                     return;
                 }
 
                 if (citysId == -1) {
-                    AppContext.showToastShort(getString(R.string.citys_null));
+                    ToastUtil.showToastShort(getString(R.string.citys_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_money.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.borrowing_money_null));
+                    ToastUtil.showToastShort(getString(R.string.borrowing_money_null));
                     return;
                 }
 
 //                判断输入的金额是否是50的倍数
                 if (Integer.valueOf(et_money.getText().toString().trim()) % 50 != 0) {
-                    AppContext.showToastShort(getString(R.string.borrowing_money_error));
+                    ToastUtil.showToastShort(getString(R.string.borrowing_money_error));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_auth.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.borrowing_auth_null));
+                    ToastUtil.showToastShort(getString(R.string.borrowing_auth_null));
                     return;
                 }
 
                 if (!et_auth.getText().toString().trim().equals(auth_code.getCheckNum())) {
-                    AppContext.showToastShort(getString(R.string.borrowing_auth_incorrect));
+                    ToastUtil.showToastShort(getString(R.string.borrowing_auth_incorrect));
                     return;
                 }
 
@@ -176,7 +174,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -202,7 +200,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         }
@@ -226,7 +224,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
         ApiHttpClient.areas(String.valueOf(areasId), new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
 
             @Override
@@ -239,7 +237,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                             provinces = GsonUtils.jsonToBean(response, AreasBean.class);
                             showAreasDialog(areasId, provinces);
                         } else if (jsonObject.getInt("status") == 88){
-                            AppContext.showToast("用户密码已修改，请重新登录");
+                            ToastUtil.showToast("用户密码已修改，请重新登录");
                             Intent Fintent = new Intent();
                             Fintent.putExtra(UserParam.TYPE, 0);
                             Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -251,11 +249,11 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                         }
 
                     } else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });

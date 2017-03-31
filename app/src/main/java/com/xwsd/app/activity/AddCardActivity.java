@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -19,21 +20,18 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.PatternUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.WheelView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import me.drakeet.materialdialog.MaterialDialog;
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -143,42 +141,42 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.commit:
                 if (TextUtils.isEmpty(et_name.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.name_null));
+                    ToastUtil.showToastShort(getString(R.string.name_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_identity.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.identity_null));
+                    ToastUtil.showToastShort(getString(R.string.identity_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_card_num.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.card_num_null));
+                    ToastUtil.showToastShort(getString(R.string.card_num_null));
                     return;
                 }
 
                 if (!PatternUtils.matchesNum(et_card_num.getText().toString().trim(), 16, 19)) {
-                    AppContext.showToastShort(getString(R.string.card_num_length));
+                    ToastUtil.showToastShort(getString(R.string.card_num_length));
                     return;
                 }
 
                 if (banksId == -1) {
-                    AppContext.showToastShort(getString(R.string.banks_null));
+                    ToastUtil.showToastShort(getString(R.string.banks_null));
                     return;
                 }
 
                 if (provincesId == -1) {
-                    AppContext.showToastShort(getString(R.string.provinces_null));
+                    ToastUtil.showToastShort(getString(R.string.provinces_null));
                     return;
                 }
 
                 if (citysId == -1) {
-                    AppContext.showToastShort(getString(R.string.citys_null));
+                    ToastUtil.showToastShort(getString(R.string.citys_null));
                     return;
                 }
 
                 if (TextUtils.isEmpty(et_branch_name.getText().toString().trim())) {
-                    AppContext.showToastShort(getString(R.string.branch_name_null));
+                    ToastUtil.showToastShort(getString(R.string.branch_name_null));
                     return;
                 }
 
@@ -220,7 +218,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.ll_address_city:
                 if (provincesId == -1) {
-                    AppContext.showToastShort("请先选择省份");
+                    ToastUtil.showToastShort("请先选择省份");
                     return;
                 }
                 if (citys == null) {
@@ -274,7 +272,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         hideWaitDialog();
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -283,7 +281,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                         hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            AppContext.showToastShort(jsonObject.getString("msg"));
+                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
                                 finish();
                                 BankCardActivity.needRefresh = true;
@@ -291,7 +289,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -337,7 +335,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         hideWaitDialog();
-                        AppContext.showToastShort(getString(R.string.network_exception));
+                        ToastUtil.showToastShort(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -346,7 +344,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                         hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            AppContext.showToastShort(jsonObject.getString("msg"));
+                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
                                 finish();
                                 BankCardActivity.needRefresh = true;
@@ -354,7 +352,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -371,7 +369,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
         ApiHttpClient.areas(String.valueOf(fatherId), new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
 
             @Override
@@ -390,11 +388,11 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                         }
 
                     } else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });
@@ -409,7 +407,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
         ApiHttpClient.areas(String.valueOf(areasId), new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
 
             @Override
@@ -427,11 +425,11 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                         }
 
                     } else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });
@@ -445,7 +443,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
         ApiHttpClient.banks(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
 
             @Override
@@ -457,11 +455,11 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                         banksBean = GsonUtils.jsonToBean(response, BanksBean.class);
                         showBankDialog(banksBean);
                     } else {
-                        AppContext.showToastShort(jsonObject.getString("msg"));
+                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(getString(R.string.network_exception));
+                    ToastUtil.showToastShort(getString(R.string.network_exception));
                 }
             }
         });

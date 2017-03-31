@@ -20,10 +20,7 @@ import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.FriendsBean;
 import com.xwsd.app.bean.FundRecordBean;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.tools.BuriedPointUtil;
-import com.xwsd.app.tools.GsonUtils;
-import com.xwsd.app.tools.NetWorkUtils;
-import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EDialog;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -184,7 +181,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                         allItemCount = (mFriendsBean.data.count);
                         setData(type);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -246,17 +243,17 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
                         //                error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                        AppContext.showToast("提取成功");
+                        ToastUtil.showToast("提取成功");
                         getData(1);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         finish();
                     }else {
-                        AppContext.showToast("提取失败");
+                        ToastUtil.showToast("提取失败");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -300,7 +297,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 hideWaitDialog();
-                                AppContext.showToastShort(getString(R.string.network_exception));
+                                ToastUtil.showToastShort(getString(R.string.network_exception));
                             }
 
                             @Override
@@ -314,7 +311,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
 //                                        //将文本内容放到系统剪贴板里。
 //                                        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 //                                        cm.setText(jsonObject.getJSONObject("data").getString("link"));
-//                                        AppContext.showToastShort(getString(R.string.clipboard_succeed));
+//                                        ToastUtil.showToastShort(getString(R.string.clipboard_succeed));
 
                                         Intent intent = new Intent(Intent.ACTION_SEND);
                                         intent.setType("text/plain");
@@ -325,18 +322,18 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                                         startActivity(Intent.createChooser(intent, "请选择"));
 
                                     } else if (jsonObject.getInt("status") == 88){
-                                        AppContext.showToast("用户密码已修改，请重新登录");
+                                        ToastUtil.showToast("用户密码已修改，请重新登录");
                                         Intent Fintent = new Intent();
                                         Fintent.putExtra(UserParam.TYPE, 0);
                                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                                         startActivity(Fintent);
                                         finish();
                                     }else {
-                                        AppContext.showToastShort(jsonObject.getString("msg"));
+                                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    AppContext.showToastShort(getString(R.string.network_exception));
+                                    ToastUtil.showToastShort(getString(R.string.network_exception));
                                 }
                             }
                         }

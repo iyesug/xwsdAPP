@@ -6,13 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.Bind;
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.MyPagerAdapter;
 import com.xwsd.app.base.MyBaseActivity;
 import com.xwsd.app.bean.AgreeCardBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.fragment.fuyouMoneyFragment;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.MainViewPager;
 import com.xwsd.app.view.NavbarManage;
 
@@ -155,7 +155,7 @@ public class RechargeActivity extends MyBaseActivity {
     private class MyNullClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            AppContext.showToastShort("暂时没有开通");
+            ToastUtil.showToastShort("暂时没有开通");
         }
     }
 

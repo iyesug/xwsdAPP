@@ -34,6 +34,7 @@ import com.xwsd.app.service.UserService;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.DoubleClickExitHelper;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import okhttp3.Call;
@@ -336,7 +337,7 @@ public class MainActivity extends BaseActivity {
                 pvCall = ApiHttpClient.pvToservice(AppContext.getUserBean().data.userId, stringBuffer.toString(), new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        AppContext.showToast(getString(R.string.network_exception));
+                        ToastUtil.showToast(getString(R.string.network_exception));
                     }
 
                     @Override
@@ -354,7 +355,7 @@ public class MainActivity extends BaseActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            AppContext.showToastShort(getString(R.string.network_exception));
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
                 });
@@ -425,7 +426,7 @@ public class MainActivity extends BaseActivity {
         ApiHttpClient.updataVersion("version", new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(getString(R.string.network_exception));
+                ToastUtil.showToastShort(getString(R.string.network_exception));
             }
             @Override
             public void onResponse(String response, int id) {
@@ -475,7 +476,7 @@ public class MainActivity extends BaseActivity {
                                                 }
                                             }).show();
                                 } else {
-//                                    AppContext.showToastShort(R.string.already_newest);
+//                                    ToastUtil.showToastShort(R.string.already_newest);
                                 }
                             }
                         });
@@ -489,7 +490,7 @@ public class MainActivity extends BaseActivity {
                         @Override
                         public void run() {
                             hideWaitDialog();
-                            AppContext.showToastShort(R.string.network_error);
+                            ToastUtil.showToastShort(R.string.network_error);
                         }
                     });
                 }

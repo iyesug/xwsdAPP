@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import com.github.lzyzsd.circleprogress.DonutProgress;
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
@@ -20,6 +19,7 @@ import com.xwsd.app.bean.OddsBean;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.DoubleScreenDialog;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -167,7 +167,7 @@ public class ALLBidFragment extends BaseUpDownListFragment {
         ApiHttpClient.odds(currentPages, each_page_num, period, type, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -184,11 +184,11 @@ public class ALLBidFragment extends BaseUpDownListFragment {
                         allItemCount = oddsBean.data.count;
                         mAdapter.replaceAll(oddsBean.data.records);
                     } else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });

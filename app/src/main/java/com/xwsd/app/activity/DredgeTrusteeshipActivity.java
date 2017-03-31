@@ -3,7 +3,7 @@ package com.xwsd.app.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
+import butterknife.Bind;
 import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
@@ -13,19 +13,17 @@ import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
-
-import butterknife.Bind;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/31.
@@ -160,7 +158,7 @@ public class DredgeTrusteeshipActivity extends BaseActivity {
                 TLog.error("获取用户信息:" + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-//                        AppContext.showToastShort(jsonObject.getString("msg"));
+//                        ToastUtil.showToastShort(jsonObject.getString("msg"));
                     if (jsonObject.getInt("status") == 1) {
                         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
                         UserBean userBean = GsonUtils.jsonToBean(response, UserBean.class);
@@ -173,7 +171,7 @@ public class DredgeTrusteeshipActivity extends BaseActivity {
                             toggle_button.setState(false);
                         }
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

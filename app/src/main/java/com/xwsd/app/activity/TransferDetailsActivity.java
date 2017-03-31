@@ -5,18 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -30,21 +28,18 @@ import com.xwsd.app.fragment.CredotorTransferBuyNowFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.ObserveScrollView;
 import com.xwsd.app.view.TitleTextView;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import me.drakeet.materialdialog.MaterialDialog;
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import me.drakeet.materialdialog.MaterialDialog;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/24.
@@ -315,7 +310,7 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
                     error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                 } else {
                     swipe_refresh_layout.setRefreshing(false);
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
 
@@ -339,7 +334,7 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
                             error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                         } else {
                             swipe_refresh_layout.setRefreshing(false);
-                            AppContext.showToastShort(R.string.refurbish_failure);
+                            ToastUtil.showToastShort(R.string.refurbish_failure);
                         }
                     }
                 } catch (JSONException e) {
@@ -348,7 +343,7 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
                         error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                     } else {
                         swipe_refresh_layout.setRefreshing(false);
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 }
             }
@@ -458,23 +453,23 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
                 BuriedPointUtil.buriedPoint("债权转让详情页承接");
 
 //                if (TextUtils.isEmpty(et_money.getText().toString().trim())) {
-//                    AppContext.showToastShort("请输入购买金额");
+//                    ToastUtil.showToastShort("请输入购买金额");
 //                    return;
 //                }
 //
 //                if (Float.valueOf(et_money.getText().toString().trim()) < 50f) {
-//                    AppContext.showToastShort("起投金额不能低于50元");
+//                    ToastUtil.showToastShort("起投金额不能低于50元");
 //                    return;
 //                }
 //
 //                if (Float.valueOf(et_money.getText().toString().trim()) > maxMoney) {
-//                    AppContext.showToastShort("您最多可投" + maxMoney + "元");
+//                    ToastUtil.showToastShort("您最多可投" + maxMoney + "元");
 //                    return;
 //                }
 //
 //                if (maxMoney - Float.valueOf(et_money.getText().toString().trim()) > 0 &&
 //                        maxMoney - Float.valueOf(et_money.getText().toString().trim()) < 50f) {
-//                    AppContext.showToastShort("剩余金额不能低于50元");
+//                    ToastUtil.showToastShort("剩余金额不能低于50元");
 //                    return;
 //                }
 

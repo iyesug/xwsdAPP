@@ -1,4 +1,5 @@
 package com.xwsd.app.view;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
@@ -6,24 +7,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.gnwai.loadingview.DialogControl;
 import com.gnwai.loadingview.LoadDialog;
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
-import com.xwsd.app.base.BasePullUpListFragment;
-import com.xwsd.app.bean.OddsBean;
 import com.xwsd.app.bean.calculateBean;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import okhttp3.Call;
 
 public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements DialogControl {
 
@@ -55,12 +51,12 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
                     mode = "endmonth";
                 }
                 if(TextUtils.isEmpty(toubiaoMoney.getText().toString())){
-                    AppContext.showToastShort("投资金额不能为空");
+                    ToastUtil.showToastShort("投资金额不能为空");
                 }else if (TextUtils.isEmpty(nianhualv.getText().toString())){
-                    AppContext.showToastShort("年化收益率不能为空");
+                    ToastUtil.showToastShort("年化收益率不能为空");
                 }
                 else if (TextUtils.isEmpty(qixian.getText().toString())){
-                    AppContext.showToastShort("项目期限不能为空");
+                    ToastUtil.showToastShort("项目期限不能为空");
                 }else {
                     showWaitDialog(new DialogInterface.OnCancelListener() {
                         @Override
@@ -86,7 +82,7 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
                                     calculateBean mcalculateBean = GsonUtils.jsonToBean(response, calculateBean.class);
                                     pupo_money.setText(mcalculateBean.data.interest);
                                 } else {
-                                    AppContext.showToastShort(jsonObject.getString("msg"));
+                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

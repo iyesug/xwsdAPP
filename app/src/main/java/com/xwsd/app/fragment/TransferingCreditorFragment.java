@@ -4,14 +4,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.UserActivity;
@@ -26,17 +21,16 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.TitleTextView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -79,7 +73,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                         CreditorTransferBean infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(infosBean,TYPE_PULLUP);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -105,7 +99,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
         ApiHttpClient.usercrtrs(AppContext.getUserBean().data.userId, currentPages, each_page_num, type, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -121,18 +115,18 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                         allItemCount = infosBean.data.count;
                         mAdapter.replaceAll(infosBean.data.records);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         getActivity().finish();
                     }else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });
@@ -158,7 +152,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                         CreditorTransferBean infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(infosBean,TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -231,7 +225,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                                     @Override
                                     public void onClick(View v) {
                                         if (TextUtils.isEmpty(editText.getText().toString().trim())) {
-                                            AppContext.showToastShort(R.string.pay_pasworrd_null);
+                                            ToastUtil.showToastShort(R.string.pay_pasworrd_null);
                                             return;
                                         }
                                         payDialog.dismiss();
@@ -254,7 +248,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                                                     @Override
                                                     public void onError(Call call, Exception e, int id) {
                                                         ((BaseActivity) getActivity()).hideWaitDialog();
-                                                        AppContext.showToastShort(getString(R.string.network_exception));
+                                                        ToastUtil.showToastShort(getString(R.string.network_exception));
                                                     }
 
                                                     @Override
@@ -263,11 +257,11 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                                                         ((BaseActivity) getActivity()).hideWaitDialog();
                                                         try {
                                                             JSONObject jsonObject = new JSONObject(response);
-                                                            AppContext.showToastShort(jsonObject.getString("msg"));
+                                                            ToastUtil.showToastShort(jsonObject.getString("msg"));
                                                             if (jsonObject.getInt("status") == 1) {
                                                                 mAdapter.remove(helper.getPosition());
                                                             }else if (jsonObject.getInt("status") == 88){
-                                                                AppContext.showToast("用户密码已修改，请重新登录");
+                                                                ToastUtil.showToast("用户密码已修改，请重新登录");
                                                                 Intent Fintent = new Intent();
                                                                 Fintent.putExtra(UserParam.TYPE, 0);
                                                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -276,7 +270,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                                                             }
                                                         } catch (JSONException e) {
                                                             e.printStackTrace();
-                                                            AppContext.showToastShort(getString(R.string.network_exception));
+                                                            ToastUtil.showToastShort(getString(R.string.network_exception));
                                                         }
                                                     }
                                                 });

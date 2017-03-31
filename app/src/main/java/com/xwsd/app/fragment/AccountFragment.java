@@ -22,6 +22,7 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.RiseNumberTextView;
@@ -205,7 +206,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
             //更多
             if (accountItems.get(position).activity == null) {
-                AppContext.showToastShort(R.string.expect);
+                ToastUtil.showToastShort(R.string.expect);
                 return;
             }
 
@@ -349,7 +350,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         accountBean = GsonUtils.jsonToBean(response, AccountBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
-                        AppContext.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast("用户密码已修改，请重新登录");
                         Intent Fintent = new Intent(getActivity(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -495,7 +496,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onError(Call call, Exception e, int id) {
                 ((MainActivity) getActivity()).hideWaitDialog();
-                AppContext.showToastShort(R.string.network_exception);
+                ToastUtil.showToastShort(R.string.network_exception);
             }
             @Override
             public void onResponse(String response, int id) {

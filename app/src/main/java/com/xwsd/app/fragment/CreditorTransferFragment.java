@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-
-import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
 import com.xwsd.app.activity.TransferDetailsActivity;
@@ -19,15 +17,14 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/19.
@@ -82,7 +79,7 @@ public class CreditorTransferFragment extends BaseUpDownListFragment {
         ApiHttpClient.crtrs(currentPages, each_page_num, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                AppContext.showToastShort(R.string.refurbish_failure);
+                ToastUtil.showToastShort(R.string.refurbish_failure);
                 swipe_refresh_layout.setRefreshing(false);
             }
 
@@ -98,11 +95,11 @@ public class CreditorTransferFragment extends BaseUpDownListFragment {
                         allItemCount = oddsBean.data.count;
                         mAdapter.replaceAll(oddsBean.data.records);
                     } else {
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
             }
         });

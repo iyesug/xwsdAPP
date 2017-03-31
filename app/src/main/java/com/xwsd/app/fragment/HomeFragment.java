@@ -35,6 +35,7 @@ import com.xwsd.app.bean.Odds;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
+import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.ObserveScrollView;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -239,7 +240,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                     error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                 } else {
                     swipe_refresh_layout.setRefreshing(false);
-                    AppContext.showToastShort(R.string.refurbish_failure);
+                    ToastUtil.showToastShort(R.string.refurbish_failure);
                 }
                 System.out.println("e = " + e.toString());
             }
@@ -261,7 +262,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                             error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                         } else {
                             swipe_refresh_layout.setRefreshing(false);
-                            AppContext.showToastShort(R.string.refurbish_failure);
+                            ToastUtil.showToastShort(R.string.refurbish_failure);
                         }
                     }
                 } catch (JSONException e) {
@@ -270,7 +271,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                         error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                     } else {
                         swipe_refresh_layout.setRefreshing(false);
-                        AppContext.showToastShort(R.string.refurbish_failure);
+                        ToastUtil.showToastShort(R.string.refurbish_failure);
                     }
                 }
             }
@@ -610,7 +611,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                 switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).progress) {
                     case "start":
                         if (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).schedule == 100) {//复审中
-                            AppContext.showToastShort("已结束");
+                            ToastUtil.showToastShort("已结束");
                         } else {
                             switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).second) {
                                 case -1://立即投标
@@ -634,19 +635,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                                     }
                                     break;
                                 case 0://显示开始时间 2016-10-20 14:00:00
-                                    AppContext.showToastShort("尚未开始");
+                                    ToastUtil.showToastShort("尚未开始");
                                     break;
                                 default://开始倒计时
-                                    AppContext.showToastShort("尚未开始");
+                                    ToastUtil.showToastShort("尚未开始");
                                     break;
                             }
                         }
                         break;
                     case "run"://还款中
-                        AppContext.showToastShort("已结束");
+                        ToastUtil.showToastShort("已结束");
                         break;
                     default://已结束
-                        AppContext.showToastShort("已结束");
+                        ToastUtil.showToastShort("已结束");
                         break;
                 }
 
