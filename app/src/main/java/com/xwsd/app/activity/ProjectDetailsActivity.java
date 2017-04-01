@@ -132,6 +132,8 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
 
     public String oddNum;
 
+    public String type;
+
      private TimeCount time;
 
     int progress = 0;
@@ -226,7 +228,7 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
         });
         ttv_6.setVisibility(View.GONE);
         oddNum = getIntent().getStringExtra("oddNumber");
-
+        type = getIntent().getStringExtra("type");
         //设置错误布局点击事件
         error_layout.setOnLayoutClickListener(new View.OnClickListener() {
             @Override

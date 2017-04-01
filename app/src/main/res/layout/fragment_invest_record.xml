@@ -36,6 +36,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/DIMEN_20"
         android:background="@color/white"
         android:orientation="vertical">
 
@@ -45,7 +46,10 @@
             android:layout_height="match_parent"
             android:divider="@android:color/transparent"
             android:dividerHeight="@dimen/DIMEN_15"
-            android:padding="@dimen/DIMEN_10"></com.xwsd.app.view.MyListView>
+            android:padding="@dimen/DIMEN_10"
+            android:paddingBottom="@dimen/DIMEN_20"
+            android:layout_marginBottom="@dimen/DIMEN_20"
+                ></com.xwsd.app.view.MyListView>
 
         <com.xwsd.app.view.EmptyLayout
             android:id="@+id/error_layout"

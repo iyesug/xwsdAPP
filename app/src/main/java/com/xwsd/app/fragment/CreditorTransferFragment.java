@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import com.xwsd.app.R;
-import com.xwsd.app.activity.BidDetailsActivity;
+import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.activity.TransferDetailsActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
@@ -171,9 +171,12 @@ public class CreditorTransferFragment extends BaseUpDownListFragment {
                         @Override
                         public void onClick(View v) {
 
-                            Intent intent = new Intent(getActivity(), BidDetailsActivity.class);
+                            Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
                             intent.putExtra("oddNumber", item.oddNumber);
+                            intent.putExtra("type", "transfer");
                             startActivity(intent);
+
+
 
                             //埋点开始
                             BuriedPointUtil.buriedPoint("项目债权转让原标");

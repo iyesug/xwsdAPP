@@ -359,6 +359,7 @@ public class ALLBidFragment extends BaseUpDownListFragment {
                     if (position < mAdapter.getCount()) {
                         Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
                         intent.putExtra("oddNumber", ((Odds) mAdapter.getItem(position)).oddNumber);
+                        intent.putExtra("type", "all");
                         startActivity(intent);
                     }
                     //埋点开始

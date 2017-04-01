@@ -1,11 +1,12 @@
 package com.xwsd.app.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.Bind;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
@@ -20,14 +21,11 @@ import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.TitleTextView;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-
-import butterknife.Bind;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/22.
@@ -249,45 +247,50 @@ public class BidDetailsActivity extends BaseActivity {
      * @param position
      */
     private void setTabSelection(int position) {
-        // 开启一个Fragment事务
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
-        hideFragments(transaction);
-        switch (position) {
-            case 0:
-                if (projectDetailsFragment == null) {
-                    projectDetailsFragment = new ProjectDetailsFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(UserParam.DATA,1);
-                    projectDetailsFragment.setArguments(bundle);
-                    transaction.add(R.id.frame_content, projectDetailsFragment);
-                } else {
-                    transaction.show(projectDetailsFragment);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if(!this.isDestroyed()){
+                // 开启一个Fragment事务
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
+                hideFragments(transaction);
+                switch (position) {
+                    case 0:
+                        if (projectDetailsFragment == null) {
+                            projectDetailsFragment = new ProjectDetailsFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt(UserParam.DATA,1);
+                            projectDetailsFragment.setArguments(bundle);
+                            transaction.add(R.id.frame_content, projectDetailsFragment);
+                        } else {
+                            transaction.show(projectDetailsFragment);
+                        }
+                        break;
+                    case 1:
+                        if (riskControlFragment == null) {
+                            riskControlFragment = new RiskControlFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt(UserParam.DATA,1);
+                            riskControlFragment.setArguments(bundle);
+                            transaction.add(R.id.frame_content, riskControlFragment);
+                        } else {
+                            transaction.show(riskControlFragment);
+                        }
+                        break;
+                    case 2:
+                        if (investRecordFragment == null) {
+                            investRecordFragment = new InvestRecordFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putInt(UserParam.DATA,1);
+                            investRecordFragment.setArguments(bundle);
+                            transaction.add(R.id.frame_content, investRecordFragment);
+                        } else {
+                            transaction.show(investRecordFragment);
+                        }
+                        break;
                 }
-                break;
-            case 1:
-                if (riskControlFragment == null) {
-                    riskControlFragment = new RiskControlFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(UserParam.DATA,1);
-                    riskControlFragment.setArguments(bundle);
-                    transaction.add(R.id.frame_content, riskControlFragment);
-                } else {
-                    transaction.show(riskControlFragment);
-                }
-                break;
-            case 2:
-                if (investRecordFragment == null) {
-                    investRecordFragment = new InvestRecordFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(UserParam.DATA,1);
-                    investRecordFragment.setArguments(bundle);
-                    transaction.add(R.id.frame_content, investRecordFragment);
-                } else {
-                    transaction.show(investRecordFragment);
-                }
-                break;
+                transaction.commitAllowingStateLoss();
+            }
+            }
         }
-        transaction.commitAllowingStateLoss();
-    }
+
 }
