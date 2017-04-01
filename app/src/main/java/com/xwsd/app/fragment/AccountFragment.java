@@ -358,7 +358,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         getActivity().finish();
                     }
                     else {
-                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -523,8 +523,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        TLog.error("onResume:agreeCard");
-        getData();
+        mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+
         // 宝付
         agreeCard("baofoo");
         //富有
