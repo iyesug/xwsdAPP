@@ -434,8 +434,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                                         StringBuffer timeStr = new StringBuffer();
                                         int second = item.countdown % 60;
                                         int minute = (item.countdown - second) / 60;
-                                        TLog.error("minute:" + minute);
-                                        TLog.error("second:" + second);
+/*                                        TLog.error("minute:" + minute);
+                                        TLog.error("second:" + second);*/
                                         if (minute > 0) {
                                             if (minute < 10) {
                                                 timeStr.append("0");

@@ -520,9 +520,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         });
     }
 
-/*    @Override
+    @Override
     public void onResume() {
         super.onResume();
-        AppContext.setNeedLock(true);
-    }*/
+        TLog.error("onResume:agreeCard");
+        getData();
+        // 宝付
+        agreeCard("baofoo");
+        //富有
+        agreeCard("fuiou");
+    }
 }

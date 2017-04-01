@@ -64,7 +64,7 @@ public class AppContext extends Application {
         context = getApplicationContext();
 
         //开启日志输出
-        TLog.DEBUG=true;
+        TLog.DEBUG=false;
 
 
         //bugly初始化
@@ -73,7 +73,7 @@ public class AppContext extends Application {
             每一条Crash都会被立即上报；
             自定义日志将会在Logcat中输出。
             建议在测试阶段建议设置成true，发布时设置为false。*/
-        CrashReport.initCrashReport(getApplicationContext(), "e625212e2d", true);
+        CrashReport.initCrashReport(getApplicationContext(), "e625212e2d", false);
 
 //        初始化网络请求框架
 //        OkHttpClient okHttpClient = new OkHttpClient.Builder()

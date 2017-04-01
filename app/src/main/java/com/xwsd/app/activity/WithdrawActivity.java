@@ -204,7 +204,12 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
-                        tv_poundage.setText(jsonObject.getJSONObject("data").getString("fee"));
+                        if(!get_ismoney.isChecked()){
+                            tv_poundage.setText(jsonObject.getJSONObject("data").getString("fee"));
+                        }else{
+                            tv_poundage.setText("0");
+                        }
+
                     } else {
                         ToastUtil.showToastShort(jsonObject.getString("msg"));
                     }
