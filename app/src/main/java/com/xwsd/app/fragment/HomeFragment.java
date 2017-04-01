@@ -575,6 +575,29 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                         }
                         //设置数据
                         if (indexBean!=null&&text_switcher!=null) {
+
+                            if (viewFactory == null) {
+                                viewFactory = new ViewSwitcher.ViewFactory() {
+                                    //这里 用来创建内部的视图，这里创建TextView，用来显示文字
+                                    public View makeView() {
+                                        TextView tv = new TextView(getContext());
+                                        //设置文字大小
+                                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.DIMEN_14));
+                                        tv.setSingleLine(true);
+                                        tv.setEllipsize(TextUtils.TruncateAt.END);
+                                        //设置文字 颜色
+                                        tv.setTextColor(getResources().getColor(R.color.gray_2));
+                                        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                                        lp.gravity = Gravity.CENTER;
+                                        tv.setLayoutParams(lp);
+                                        return tv;
+                                    }
+                                };
+                                text_switcher.setFactory(viewFactory);
+
+                            }
                             text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
 
                             text_switcher.setOnClickListener(new View.OnClickListener() {
