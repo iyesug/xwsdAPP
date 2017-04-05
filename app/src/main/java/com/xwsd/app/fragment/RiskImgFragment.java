@@ -1,7 +1,6 @@
 package com.xwsd.app.fragment;
 
 import android.app.Dialog;
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -12,15 +11,13 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.bm.library.PhotoView;
+import com.bumptech.glide.Glide;
 import com.gnwai.smartimageview.SmartImageView;
 import com.xwsd.app.R;
-import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.OddrmBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
-import com.zhy.http.okhttp.callback.BitmapCallback;
-import okhttp3.Call;
 
 import java.util.List;
 
@@ -151,7 +148,11 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
                                 final PhotoView view = new PhotoView(getActivity());
                                 view.enable();
                                 view.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                                ApiHttpClient.getMita(oddrmImgs.get(position).normal, new BitmapCallback() {
+                                Glide.with(getActivity())
+                                        .load(oddrmImgs.get(position).normal)
+                                        .crossFade()
+                                        .into(view);
+/*                                ApiHttpClient.getMita(oddrmImgs.get(position).normal, new BitmapCallback() {
                                     @Override
                                     public void onError(Call call, Exception e, int id) {
 
@@ -161,7 +162,7 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
                                     public void onResponse(Bitmap response, int id) {
                                         view.setImageBitmap(response);
                                     }
-                                });
+                                });*/
                                 container.addView(view);
                                 return view;
                             }
@@ -199,7 +200,11 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
             });
             final SmartImageView imageView = (SmartImageView) view.findViewById(R.id.image);
             //imageView.setImageUrl(oddrmImgs.get(position).normal, R.drawable.ic_load, R.drawable.ic_load);
-            ApiHttpClient.getMita(oddrmImgs.get(position).min, new BitmapCallback() {
+            Glide.with(getActivity())
+                    .load(oddrmImgs.get(position).min)
+                    .crossFade()
+                    .into(imageView);
+/*            ApiHttpClient.getMita(oddrmImgs.get(position).min, new BitmapCallback() {
                 @Override
                 public void onError(Call call, Exception e, int id) {
 
@@ -209,7 +214,7 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
                 public void onResponse(Bitmap response, int id) {
                     imageView.setImageBitmap(response);
                 }
-            });
+            });*/
             container.addView(view);
 
             //埋点开始

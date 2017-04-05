@@ -1,7 +1,6 @@
 package com.xwsd.app.fragment;
 
 import android.app.Dialog;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,24 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.bm.library.PhotoView;
+import com.bumptech.glide.Glide;
 import com.gnwai.smartimageview.SmartImageView;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
 import com.xwsd.app.activity.ProjectDetailTabActivity;
-import com.xwsd.app.activity.ProjectDetailsActivity;
-import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.OddBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.TitleTextView;
-import com.zhy.http.okhttp.callback.BitmapCallback;
-
-import butterknife.Bind;
-import butterknife.OnClick;
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/23.
@@ -259,7 +253,12 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
                                 view.setScaleType(ImageView.ScaleType.FIT_CENTER);
 //                                view.setImageUrl(oddBean.data.oddExteriorPhotos.get(position).normal,
 //                                        R.drawable.ic_load, R.drawable.ic_load);
-                                ApiHttpClient.getMita(oddBean.data.oddExteriorPhotos.get(position).normal,new BitmapCallback() {
+
+                                Glide.with(getActivity())
+                                        .load(oddBean.data.oddExteriorPhotos.get(position).normal)
+                                        .crossFade()
+                                        .into(view);
+       /*                         ApiHttpClient.getMita(oddBean.data.oddExteriorPhotos.get(position).normal,new BitmapCallback() {
                                     @Override
                                     public void onError(Call call, Exception e, int id) {
                                         System.out.println("e = " + e.toString());
@@ -268,7 +267,7 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
                                     public void onResponse(Bitmap response, int id) {
                                         view.setImageBitmap(response);
                                     }
-                                });
+                                });*/
                                 container.addView(view);
 
                                 return view;
@@ -313,8 +312,11 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
             final SmartImageView imageView = (SmartImageView) view.findViewById(R.id.image);
 //            imageView.setImageUrl(oddBean.data.oddExteriorPhotos.get(position).normal,
 //                    R.drawable.ic_load, R.drawable.ic_load);
-
-            ApiHttpClient.getMita(oddBean.data.oddExteriorPhotos.get(position).normal,new BitmapCallback() {
+            Glide.with(getActivity())
+                    .load(oddBean.data.oddExteriorPhotos.get(position).min)
+                    .crossFade()
+                    .into(imageView);
+/*            ApiHttpClient.getMita(oddBean.data.oddExteriorPhotos.get(position).normal,new BitmapCallback() {
                 @Override
                 public void onError(Call call, Exception e, int id) {
                     System.out.println("e = " + e.toString());
@@ -323,7 +325,7 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
                 public void onResponse(Bitmap response, int id) {
                     imageView.setImageBitmap(response);
                 }
-            });
+            });*/
             container.addView(view);
 
             // 埋点开始
