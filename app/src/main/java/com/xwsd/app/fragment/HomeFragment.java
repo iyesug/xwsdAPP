@@ -384,7 +384,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         }
 
         //设置今日可投推荐
-        tv_today.setText("今日可投：" + indexBean.data.todayLast);
+        if(null==indexBean.data.todayLast){
+            tv_today.setText("今日可投：" + 0);
+        }else{
+            tv_today.setText("今日可投：" + indexBean.data.todayLast);
+        }
+
 
         //设置推荐列表
         if (adapter == null) {
