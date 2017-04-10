@@ -38,8 +38,7 @@
             android:scrollbars="none">
 
             <LinearLayout
-                android:id="@+id/title_lay"
-                android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:orientation="vertical">

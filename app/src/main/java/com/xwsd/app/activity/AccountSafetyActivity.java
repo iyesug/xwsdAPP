@@ -96,7 +96,7 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
 
         ((TextView) ll_modify_login_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_login_password));
 
-        if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.YES)) {
+        if (null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.payPassStatus&&AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.YES)) {
             ((TextView) ll_modify_pay_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_pay_password));
         } else {
             ((TextView) ll_modify_pay_password.findViewById(R.id.tv_title)).setText(getString(R.string.setting_pay_password));

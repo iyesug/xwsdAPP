@@ -307,6 +307,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         //设置新手标
 //        if (newHandOddsAdapter == null) {
             newHandOddsAdapter = new NewHandOddsAdapter(getChildFragmentManager());
+        if(null!=vp_newbie_bid) {
             vp_newbie_bid.setAdapter(newHandOddsAdapter);
 
             vp_newbie_bid.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -327,6 +328,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 
                 }
             });
+        }
 
             //设置文本监听
             et_new_bid.addTextChangedListener(new TextWatcher() {
@@ -357,31 +359,35 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 //            newHandOddsAdapter.notifyDataSetChanged();
 //        }
 
-        if (viewFactory == null) {
-            viewFactory = new ViewSwitcher.ViewFactory() {
-                //这里 用来创建内部的视图，这里创建TextView，用来显示文字
-                public View makeView() {
-                    TextView tv = new TextView(getContext());
-                    //设置文字大小
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.DIMEN_14));
-                    tv.setSingleLine(true);
-                    tv.setEllipsize(TextUtils.TruncateAt.END);
-                    //设置文字 颜色
-                    tv.setTextColor(getResources().getColor(R.color.gray_2));
-                    FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-                    lp.gravity = Gravity.CENTER;
-                    tv.setLayoutParams(lp);
-                    return tv;
-                }
-            };
-            text_switcher.setFactory(viewFactory);
+            if (viewFactory == null) {
+                viewFactory = new ViewSwitcher.ViewFactory() {
+                    //这里 用来创建内部的视图，这里创建TextView，用来显示文字
+                    public View makeView() {
 
-            text_switcher.setInAnimation(getActivity(), R.anim.slide_in_bottom);
-            text_switcher.setOutAnimation(getActivity(), R.anim.slide_out_top);
-            text_switcher.setText(indexBean.data.notices.get(0).news_title);
-        }
+                        TextView tv = new TextView(AppContext.context());
+                        //设置文字大小
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.DIMEN_14));
+                        tv.setSingleLine(true);
+                        tv.setEllipsize(TextUtils.TruncateAt.END);
+                        //设置文字 颜色
+                        tv.setTextColor(getResources().getColor(R.color.gray_2));
+                        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT);
+                        lp.gravity = Gravity.CENTER;
+                        tv.setLayoutParams(lp);
+                        return tv;
+                    }
+
+
+                };
+                text_switcher.setFactory(viewFactory);
+
+                text_switcher.setInAnimation(getActivity(), R.anim.slide_in_bottom);
+                text_switcher.setOutAnimation(getActivity(), R.anim.slide_out_top);
+                text_switcher.setText(indexBean.data.notices.get(0).news_title);
+            }
+
 
         //设置今日可投推荐
         if(null==indexBean.data.todayLast){
@@ -585,7 +591,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                                 viewFactory = new ViewSwitcher.ViewFactory() {
                                     //这里 用来创建内部的视图，这里创建TextView，用来显示文字
                                     public View makeView() {
-                                        TextView tv = new TextView(getContext());
+                                        TextView tv = new TextView(AppContext.context());
                                         //设置文字大小
                                         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.DIMEN_14));
                                         tv.setSingleLine(true);

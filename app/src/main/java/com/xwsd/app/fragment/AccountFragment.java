@@ -279,14 +279,17 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
      * 引导新手
      */
     private void guideNovice() {
-        //判断该用户是否第一次进入账户页面
-        if (!(boolean) ((MainActivity) getActivity()).getParam(AppContext.getUserBean().data.userId, false)) {
-            //进入新手指南
-            Intent intent = new Intent(getActivity(), NoviceActivity.class);
-            startActivity(intent);
-            ((MainActivity) getActivity()).setParam(AppContext.getUserBean().data.userId, true);
+        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
+            //判断该用户是否第一次进入账户页面
+            if (!(boolean) ((MainActivity) getActivity()).getParam(AppContext.getUserBean().data.userId, false)) {
+                //进入新手指南
+                Intent intent = new Intent(getActivity(), NoviceActivity.class);
+                startActivity(intent);
+                ((MainActivity) getActivity()).setParam(AppContext.getUserBean().data.userId, true);
+            }
         }
     }
+
 
     /**
      * 引导实名认证
@@ -492,10 +495,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         }
     }
     public void agreeCard(final String flag){
+        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId){
         call = ApiHttpClient.agreeCard(AppContext.getUserBean().data.userId,flag, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                ((MainActivity) getActivity()).hideWaitDialog();
+                if(null!=getActivity()){
+                    ((MainActivity) getActivity()).hideWaitDialog();
+                }
+
                 ToastUtil.showToastShort(R.string.network_exception);
             }
             @Override
@@ -514,10 +521,10 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     }
                 } catch (Exception e) {
                     isCard = false;
-
                 }
             }
         });
+        }
     }
 
     @Override

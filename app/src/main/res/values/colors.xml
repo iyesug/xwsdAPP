@@ -2,7 +2,6 @@
 <resources>
     <color name="colorPrimary">#3096fd</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
     <color name="white_translucence">#33ffffff</color>
     <color name="gray">#e2e2e2</color>
@@ -20,13 +19,8 @@
     <color name="navbar_bg">#f9f9f9</color>
     <color name="translucence">#33000000</color>
     <color name="transparency">#00000000</color>
-    <color name="purple">#82649f</color>
-    <color name="purple_light">#ae77ec</color>
-    <color name="purple_dark">#7e4bbc</color>
     <color name="radio_button_selected_color">#2491fb</color>
     <color name="radio_button_unselected_color">@android:color/transparent</color>
-    <color name="background_tab_pressed">#6633B5E5</color>
-    <color name="count_money_bg">#b4b4b4</color>
     <color name="blue_thin">#4ec2fe</color>
     <color name="button_orange">#eda658</color>
     <color name="button_orange_simple">#fac679</color>
@@ -37,11 +31,6 @@
     <color name="blue_grey">#2675bd</color>
     <color name="blue_4dbaf5">#4dbaf5</color>
     <color name="blue_8cb6ce">#8cb6ce</color>
-    <color name="blue_new_bid_dark">#3462fe</color>
-    <color name="blue_new_bid_simple">#1cc0fc</color>
-    <color name="white_milk">#fdfdfe</color>
-    <color name="one_key">#28c4f7</color>
-    <color name="greed_text">#12A874</color>
     <color name="zhonghong_text">#e4901a</color>
     <color name="backk">#000000</color>
 

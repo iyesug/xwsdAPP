@@ -2,9 +2,10 @@ package com.xwsd.app.tools;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
+import android.util.Base64;
 import com.xwsd.app.AppContext;
 
+import java.io.*;
 import java.util.Map;
 
 /**
@@ -195,6 +196,77 @@ public class BuriedPointUtil {
         }
         //埋点结束
 
+    }
+
+
+    /**
+     * 针对复杂类型存储<对象>
+     *
+     * @param key
+     * @param object
+     */
+    public static void setObject(String key, Object object) {
+
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream out = null;
+        try {
+
+            out = new ObjectOutputStream(baos);
+            out.writeObject(object);
+            String objectVal = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString(key, objectVal);
+            editor.commit();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (baos != null) {
+                    baos.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T getObject(String key, Class<T> clazz) {
+
+        if (sp.contains(key)) {
+            String objectVal = sp.getString(key, null);
+            byte[] buffer = Base64.decode(objectVal, Base64.DEFAULT);
+            ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+            ObjectInputStream ois = null;
+            try {
+                ois = new ObjectInputStream(bais);
+                T t = (T) ois.readObject();
+                return t;
+            } catch (StreamCorruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (bais != null) {
+                        bais.close();
+                    }
+                    if (ois != null) {
+                        ois.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
     }
 
 

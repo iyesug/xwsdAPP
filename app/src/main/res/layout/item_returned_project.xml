@@ -177,8 +177,7 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/v_transfer_creditor"
-                style="@style/GreyInterval"
+                    style="@style/GreyInterval"
                 android:layout_marginBottom="@dimen/DIMEN_5"
                 android:layout_marginLeft="@dimen/DIMEN_10"
                 android:layout_marginRight="@dimen/DIMEN_10"></View>

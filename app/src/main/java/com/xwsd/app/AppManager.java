@@ -60,15 +60,29 @@ public class AppManager {
             activity=null;
         }
     }
-    /**
+/*    *//**
      * 结束指定类名的Activity
-     */
+     *//*
     public void finishActivity(Class<?> cls){
         for (Activity activity : activityStack) {
             if(activity.getClass().equals(cls) ){
                 finishActivity(activity);
             }
         }
+    }*/
+
+    /**
+     * 结束指定类名的Activity 在遍历一个列表的时候不能执行删除操作，所有我们先记住要删除的对象，遍历之后才去删除。
+     */
+    public  void finishActivity(Class<?> cls) {
+        Activity tempActivity = null;
+        for (Activity activity : activityStack) {
+            if (activity.getClass().equals(cls)) {
+                tempActivity = activity;
+            }
+        }
+
+        finishActivity(tempActivity);
     }
     /**
      * 结束所有Activity

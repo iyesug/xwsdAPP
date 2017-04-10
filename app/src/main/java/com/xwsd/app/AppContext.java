@@ -8,7 +8,9 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.xwsd.app.bean.UserBean;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tbswebview.APIWebviewTBS;
+import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.TLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
@@ -41,9 +43,14 @@ public class AppContext extends Application {
 
     public static void setUserBean(UserBean userBean) {
         AppContext.currentUser = userBean;
+        BuriedPointUtil.setObject(UserParam.USERBEAN,userBean);
     }
 
     public static UserBean getUserBean() {
+        if(null==currentUser||null==currentUser.data){
+            currentUser=BuriedPointUtil.getObject(UserParam.USERBEAN,UserBean.class);
+        }
+
         return currentUser;
     }
 

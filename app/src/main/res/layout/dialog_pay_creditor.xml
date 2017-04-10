@@ -10,8 +10,7 @@
         android:layout_marginTop="@dimen/DIMEN_10"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/tv_remain"
-            android:layout_width="@dimen/DIMEN_80"
+                android:layout_width="@dimen/DIMEN_80"
             android:layout_height="wrap_content"
 
             android:layout_gravity="center"
@@ -31,8 +30,7 @@
             android:textColor="@color/red_f3323b"
             android:textSize="@dimen/TEXT_XL" />
         <TextView
-            android:id="@+id/tv_remain_yuan"
-            android:layout_width="wrap_content"
+                android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="@dimen/action_button_text_size"
             android:layout_margin="@dimen/DIMEN_15"
@@ -47,8 +45,7 @@
         android:layout_marginTop="@dimen/DIMEN_10"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/tv_crtrSM"
-            android:layout_width="@dimen/DIMEN_80"
+                android:layout_width="@dimen/DIMEN_80"
             android:layout_height="wrap_content"
 
             android:layout_margin="@dimen/DIMEN_15"
@@ -67,8 +64,7 @@
             android:textColor="@color/red_f3323b"
             android:textSize="@dimen/TEXT_XL" />
         <TextView
-            android:id="@+id/tv_crtrSM_yuan"
-            android:layout_width="wrap_content"
+                android:layout_width="wrap_content"
             android:layout_height="wrap_content"
           android:paddingRight="@dimen/action_button_text_size"
             android:layout_margin="@dimen/DIMEN_15"

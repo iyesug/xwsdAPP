@@ -22,8 +22,6 @@
     <string name="time">时间</string>
     <string name="type">种类</string>
     <string name="my_interest">待收利息（元）</string>
-    <string name="collection_all">待收总额（元）</string>
-    <string name="invest_all">投资总额（元）</string>
     <string name="account_info">账户信息</string>
     <string name="details">详情</string>
     <string name="auto_bid">自动投标</string>
@@ -37,16 +35,12 @@
     <string name="all_bid">全部的标</string>
     <string name="confirm">确定</string>
     <string name="questions">提问</string>
-    <string name="seleted_thme">选择主题</string>
     <string name="payment_method">还款方式：</string>
     <string name="bid_details">项目介绍</string>
     <string name="project_details">项目详情</string>
     <string name="risk_control">风控材料</string>
     <string name="invest_record">投资记录</string>
-    <string name="invest_record_now">在投记录</string>
     <string name="pay_pasworrd">支付密码</string>
-    <string name="purchase_records">购买记录</string>
-    <string name="purchase_records_now">在买记录</string>
     <string name="forget_password">忘记密码？</string>
     <string name="undertake">承接</string>
     <string name="user_data">个人资料</string>
@@ -71,21 +65,16 @@
     <string name="borrowing">借款</string>
     <string name="aboutus">关于小微</string>
     <string name="vip">VIP</string>
-    <string name="guide">新手指南</string>
     <string name="recommend_award">推荐奖励</string>
-    <string name="more">更多</string>
     <string name="Fund_record">资金记录</string>
     <string name="my_ranking">我的排名</string>
     <string name="accredit_xw">授权小微</string>
     <string name="ranking_front">排在我前面的资金：</string>
-    <string name="setting">设置</string>
     <string name="account_balance">账户余额：</string>
     <string name="investment_amount">投资金额：</string>
     <string name="open_auto_bid">开启自动投标</string>
     <string name="all_type">全部的类型</string>
     <string name="retain_balance">保留余额：</string>
-    <string name="retain">保留</string>
-    <string name="no_retain">不保留</string>
     <string name="save_settings">保存设置</string>
     <string name="returned_calendar">回款日历</string>
     <string name="selected_time">选中时间</string>
@@ -95,19 +84,11 @@
     <string name="recharge_record">充值记录</string>
     <string name="withdraw_record">提现记录</string>
     <string name="certification">实名认证</string>
-    <string name="add_card">添加卡号</string>
     <string name="bank_card_manage">银行卡管理</string>
     <string name="modification">修改</string>
-    <string name="delete">删除</string>
-    <string name="cancel">取消</string>
-    <string name="set_default">设为默认</string>
     <string name="can_turn_creditor">可转让</string>
     <string name="transfering_creditor">转让中</string>
     <string name="transfer_record">转让记录</string>
-    <string name="transferee_record">受让记录</string>
-    <string name="have_been_back">已回款</string>
-    <string name="hold_record">持有中</string>
-    <string name="hold_recording">在投记录</string>
     <string name="account_safety">账户安全</string>
     <string name="mobile_certification">手机认证</string>
     <string name="email_certification">邮箱认证</string>
@@ -115,7 +96,6 @@
     <string name="modify_pay_password">修改支付密码</string>
     <string name="gesture_password">设置手势密码</string>
     <string name="apply">立即申请</string>
-    <string name="about_xw">关于小微</string>
     <string name="login">登录</string>
     <string name="hint_name">请输入用户名</string>
     <string name="hint_password">请输入密码</string>
@@ -153,23 +133,17 @@
     <string name="user_password_inconformity">两次密码不一致</string>
     <string name="user_password_error">密码长度需为6~16位</string>
     <string name="loading">loading...</string>
-    <string name="register_succeed">注册成功</string>
-    <string name="login_succeed">登录成功</string>
     <string name="click_exit">再按一次退出应用</string>
     <string name="load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
     <string name="network_error_click_to_refresh">没有可用网络\r\n点击重试</string>
     <string name="no_data">暂无数据</string>
     <string name="please_write_full">请填写完整</string>
-    <string name="error_view_no_data">暂无内容</string>
-    <string name="loading_no_more">已加载全部</string>
-    <string name="load_succeed">加载成功</string>
     <string name="load_error">加载错误</string>
     <string name="no_more">没有更多数据</string>
     <string name="load_more">加载更多</string>
     <string name="refurbish_failure">刷新失败</string>
     <string name="name_null">姓名不能为空</string>
     <string name="identity_null">身份证不能为空</string>
-    <string name="certification_succeed">认证成功</string>
     <string name="card_num_null">银行卡号不能为空</string>
     <string name="branch_name_null">支行名不能为空</string>
     <string name="card_num_length">银行卡格式不正确</string>
@@ -184,7 +158,6 @@
     <string name="quota_stroke">单笔限额</string>
     <string name="quota_day">单日限额</string>
     <string name="auth_xw">授权小微</string>
-    <string name="bank_card_cannot_del">请联系客服进行修改</string>
     <string name="settings_card">设置充值银行卡</string>
     <string name="pay_money_null">充值金额不能为空</string>
     <string name="withdraw_money_null">提现金额不能为空</string>
@@ -205,8 +178,6 @@
     <string name="borrowing_money_error">请输入50的倍数</string>
     <string name="get_recommend_url">获取推荐链接</string>
     <string name="get_jiangli_url">获取推荐奖励</string>
-    <string name="recommend_friend">推荐好友</string>
-    <string name="clipboard_succeed">已复制到剪贴板</string>
     <string name="ceo_questions">CEO问答</string>
     <string name="reply">回复</string>
     <string name="news_details">资讯详情</string>
@@ -218,30 +189,18 @@
     <string name="address_null">请选择居住地址</string>
     <string name="promptly_apply">立即申请</string>
     <string name="services_null">请选择客服</string>
-    <string name="novice">新手指南</string>
-    <string name="all_bid_s">全部的标 ▲</string>
     <string name="auth_cancel">取消授权</string>
     <string name="update_success">更新成功！</string>
     <string name="switch_account">切换账号</string>
-    <string name="find_new_version">发现新版本</string>
-    <string name="download">下载</string>
-    <string name="already_newest">已经是最新版本</string>
     <string name="network_error">网络连接错误</string>
-    <string name="downloading">下载中</string>
     <string name="all_number">共计笔数</string>
     <string name="all_money">总共金额</string>
-    <string name="title_activity_test_baofu">TestBaofuActivity</string>
     <string name="remain">债权本金</string>
     <string name="crtrSM">服务　费</string>
     <string name="control">风控材料</string>
     <string name="investment">在投记录</string>
     <string name="notes">投资记录</string>
     <string name="particulars">项目详情</string>
-    <string name="tip">1、工作日（9:00-16:00）内单笔提现限额20万，单卡每日提现限额100万（超过100万提现需更换银行卡）；工作日（16:00-20:00）与节假日（周六、周日及法定节假日）内提现金额单笔不得大于5万,若提现金额大于5万将到下一个工作日进行处理；凡晚上20:00后的提现申请将延后至次日，按次日的提现处理方式进行处理。符合以上规则的提现申请，汇潮支付将即时处理，2小时内到账。2小时内到账。工作时间（8点-16点）内单笔提现金额额度最高300万，其余时间（包含周六、周日及法定节假日）内提现金额单笔不得大于5万，否则要到下一个工作时间内予以处理。请您注意查收。
-        2、为保障您的账户资金安全，申请提现时，您选择的银行卡开户名必须与您小微时贷账户实名认证一致，否则提现申请将不予受理。
-        3、提现每笔收2元手续费，为防止恶意套现，未投标的资金第三方支付公司会额外收取您提现金额的0.5%作为转账费用，提现费用在提现金额中扣除。（转让和受让债权的资金属于投标资金，不额外收取转账费用；转让债权按债权转让服务费规则收取转让费用。）
-        4、下列情况下，用户提现将被退回：用户提供的银行卡非本人银行卡；用户申请提现的银行卡与银行名称不符，或卡号明显异常；用户错误提供提现操作必要的支行信息，且小微时贷无法与之取得联系的。
-        5、第三方资金托管,汇潮支付咨询电话：400 0002 156</string>
     <string name="tip2.3">1、工作日（9:00-16:00）内单笔提现限额20万，单卡每日提现限额100万（超过100万提现需更换银行卡）；
      \n&#160;&#160;&#160;&#160;&#160;工作日（16:00-20:00）与节假日（周六、周日及法定节假日）内提现金额单笔不得大于5万,若提现金额大于5万将到下一个工作日进行处理；
      \n&#160;&#160;&#160;&#160;&#160;凡晚上20:00后的提现申请将延后至次日，按次日的提现处理方式进行处理。符合以上规则的提现申请，汇潮支付将即时处理，当天到账。

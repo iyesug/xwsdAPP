@@ -188,8 +188,9 @@ public class GestureLockSettingsActivity extends BaseActivity {
 
         //注意字节数组和字符串之间的直接转换不行，要转换成Base64编码。
         String gesturePassWard = Base64.encodeToString(bytes,Base64.DEFAULT);
-
-        GesturePassward.putString(AppContext.getUserBean().data.userId,gesturePassWard);
+        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
+            GesturePassward.putString(AppContext.getUserBean().data.userId, gesturePassWard);
+        }
 
 //        aCache.put(AppContext.getUserBean().data.userId, bytes);
     }

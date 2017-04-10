@@ -119,7 +119,7 @@
                             android:layout_marginLeft="3dp"
                             android:text="->"
                             android:textColor="@color/gray_2"
-                            android:id="@+id/textView2" />
+                                />
 
                         <EditText
                             android:id="@+id/et_scope_money_2"

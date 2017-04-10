@@ -5,6 +5,7 @@ package com.xwsd.app.constant;
  * 用户的一些常量
  */
 public class UserParam {
+    public static final String USERBEAN = "userBean";
     public static final String USER = "User";
     public static final String USER_INFO = "userInfo";
     public static final String URL = "url";

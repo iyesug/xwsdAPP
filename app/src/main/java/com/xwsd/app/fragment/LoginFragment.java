@@ -106,7 +106,9 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         userActivity.hideWaitDialog();
-                        ToastUtil.showToastShort(getString(R.string.network_exception));
+                        if(isAdded()) {
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
+                        }
                     }
 
                     @Override

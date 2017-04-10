@@ -1,22 +1,17 @@
 package com.xwsd.app.activity;
 
-import android.content.Intent;
-import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-
+import butterknife.Bind;
+import com.tencent.smtt.export.external.interfaces.SslError;
+import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
+import com.tencent.smtt.sdk.WebView;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
-import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
-import butterknife.Bind;
 
 /**
  * Created by Gx on 2016/8/25.
@@ -111,6 +106,12 @@ public class WebDetailsActivity extends BaseActivity {
                 progressBar.setVisibility(View.GONE);
                 ToastUtil.show("网页加载失败");
 
+            }
+
+            @Override
+            public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+           //     super.onReceivedSslError(webView, sslErrorHandler, sslError);
+                sslErrorHandler.proceed();
             }
         });
     }

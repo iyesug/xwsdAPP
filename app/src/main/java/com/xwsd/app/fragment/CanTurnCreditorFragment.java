@@ -140,37 +140,39 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
     public void firstRequestData() {
         super.firstRequestData();
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
-        ApiHttpClient.usercrtrs(AppContext.getUserBean().data.userId, currentPages, each_page_num, type, new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-            }
-
-            @Override
-            public void onResponse(String response, int id) {
-                TLog.error("可转让列表：" + response);
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    if (jsonObject.getInt("status") == 1) {
-                        mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                        infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
-                        setData(TYPE_FIRST);
-                    } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
-                        Intent Fintent = new Intent();
-                        Fintent.putExtra(UserParam.TYPE, 0);
-                        Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-                        startActivity(Fintent);
-                        getActivity().finish();
-                    }else {
-                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
+            ApiHttpClient.usercrtrs(AppContext.getUserBean().data.userId, currentPages, each_page_num, type, new StringCallback() {
+                @Override
+                public void onError(Call call, Exception e, int id) {
                     mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(String response, int id) {
+                    TLog.error("可转让列表：" + response);
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        if (jsonObject.getInt("status") == 1) {
+                            mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+                            infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
+                            setData(TYPE_FIRST);
+                        } else if (jsonObject.getInt("status") == 88) {
+                            ToastUtil.showToast("用户密码已修改，请重新登录");
+                            Intent Fintent = new Intent();
+                            Fintent.putExtra(UserParam.TYPE, 0);
+                            Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                            startActivity(Fintent);
+                            getActivity().finish();
+                        } else {
+                            mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                    }
+                }
+            });
+        }
 
     }
 

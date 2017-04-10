@@ -3,20 +3,14 @@
     <dimen name="DIMEN_1">1dp</dimen>
     <dimen name="DIMEN_2">2dp</dimen>
     <dimen name="DIMEN_3">3dp</dimen>
-    <dimen name="DIMEN_4">4dp</dimen>
     <dimen name="DIMEN_5">5dp</dimen>
-    <dimen name="DIMEN_6">6dp</dimen>
     <dimen name="DIMEN_7">7dp</dimen>
     <dimen name="DIMEN_8">8dp</dimen>
-    <dimen name="DIMEN_9">9dp</dimen>
     <dimen name="DIMEN_10">10dp</dimen>
-    <dimen name="DIMEN_11">11dp</dimen>
     <dimen name="DIMEN_12">12dp</dimen>
     <dimen name="DIMEN_13">13dp</dimen>
     <dimen name="DIMEN_14">14dp</dimen>
     <dimen name="DIMEN_15">15dp</dimen>
-    <dimen name="DIMEN_16">16dp</dimen>
-    <dimen name="DIMEN_17">17dp</dimen>
     <dimen name="DIMEN_20">20dp</dimen>
     <dimen name="DIMEN_40">40dp</dimen>
     <dimen name="DIMEN_25">25dp</dimen>
@@ -31,31 +25,23 @@
     <dimen name="DIMEN_70">70dp</dimen>
     <dimen name="DIMEN_90">90dp</dimen>
     <dimen name="DIMEN_60">60dp</dimen>
-    <dimen name="DIMEN_300">300dp</dimen>
     <dimen name="DIMEN_250">250dp</dimen>
     <dimen name="DIMEN_200">200dp</dimen>
     <dimen name="DIMEN_180">180dp</dimen>
     <dimen name="DIMEN_48">48dp</dimen>
-    <dimen name="DIMEN_55">55dp</dimen>
     <dimen name="DIMEN_35">35dp</dimen>
-    <dimen name="DIMEN_22">22dp</dimen>
     <dimen name="DIMEN_270">270dp</dimen>
     <dimen name="DIMEN_120">120dp</dimen>
     <dimen name="DIMEN_220">220dp</dimen>
 
     <dimen name="TEXT_S">12sp</dimen>
-    <dimen name="TEXT_XS">13sp</dimen>
     <dimen name="TEXT_M">14sp</dimen>
-    <dimen name="TEXT_XM">15sp</dimen>
     <dimen name="TEXT_L">16sp</dimen>
     <dimen name="TEXT_XL">18sp</dimen>
     <dimen name="TEXT_XXL">20sp</dimen>
-    <dimen name="TEXT_XXXL">25sp</dimen>
     <dimen name="TEXT_XXXXL">35sp</dimen>
-    <dimen name="TEXT_XXXXXL">40sp</dimen>
     <dimen name="TEXT_S1">10sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
 </resources>
