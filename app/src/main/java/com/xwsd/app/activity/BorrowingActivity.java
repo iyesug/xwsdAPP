@@ -96,9 +96,19 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                 onBackPressed();
             }
         });
-
-        et_name.setText(AppContext.getUserBean().data.name.replace(AppContext.getUserBean().data.name.substring(0, 1), "*"));
-        et_phone.setText(AppContext.getUserBean().data.phone.replace(AppContext.getUserBean().data.phone.substring(5, 9), "****"));
+//                判断用户是否登录
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
+//        设置用户信息
+        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.name) {
+            et_name.setText(AppContext.getUserBean().data.name.replace(AppContext.getUserBean().data.name.substring(0, 1), "*"));
+            et_phone.setText(AppContext.getUserBean().data.phone.replace(AppContext.getUserBean().data.phone.substring(5, 9), "****"));
+        }
     }
 
     @OnClick({R.id.ll_address_province, R.id.ll_address_city, R.id.commit, R.id.auth_code})

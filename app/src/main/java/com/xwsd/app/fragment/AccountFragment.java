@@ -361,11 +361,11 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         getActivity().finish();
                     }
                     else {
-                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                    mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
                 }
             }
         });
@@ -530,7 +530,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-        mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+   /*     mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);*/
 
         // 宝付
         agreeCard("baofoo");
