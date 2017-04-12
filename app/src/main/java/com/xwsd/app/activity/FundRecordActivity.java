@@ -265,6 +265,14 @@ public class FundRecordActivity extends BaseActivity implements View.OnClickList
         if(type == 1){
             mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
         }
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         ApiHttpClient.getzijinList(AppContext.getUserBean().data.userId,flag,currentPages +"",each_page_num+"",new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {

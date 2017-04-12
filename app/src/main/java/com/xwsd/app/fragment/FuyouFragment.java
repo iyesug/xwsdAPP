@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.RechargeActivity;
+import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.bean.AgreeCardBean;
@@ -88,6 +89,14 @@ public class FuyouFragment extends Fragment implements View.OnClickListener {
         init();
     }
     private void init(){
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
 //        设置用户数据
         tv_name.setText(AppContext.getUserBean().data.name);
         if(AppContext.getUserBean().data.cardnum!= null && AppContext.getUserBean().data.cardnum.length()>0){

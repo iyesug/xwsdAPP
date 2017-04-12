@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -21,7 +21,7 @@ import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,9 +29,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.Bind;
-import okhttp3.Call;
 
 
 /**
@@ -210,23 +207,34 @@ public class AutoBidActivity extends BaseActivity {
                 "4、用户仅投标成功后，才会重新排队；\n" +
                 "5、关闭第三方资金托管授权则退出自动投标队列。\n");
 
-        //判断是否授权小微
-        if (AppContext.getUserBean().data.thirdAccountAuth == 1) {
-            navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
-            navbarManage.showRight(true);
-            toggle_button.setState(true);
-        } else {
-            navbarManage.showRight(false);
-            toggle_button.setState(false);
-            ll_ranking_valid.setVisibility(View.GONE);
-            ll_ranking_invalid.setVisibility(View.GONE);
-            ll_bid_1_price.setVisibility(View.GONE);
-            ll_bid_2_price.setVisibility(View.GONE);
-            ll_bid_3_price.setVisibility(View.GONE);
-            ll_bid_4_price.setVisibility(View.GONE);
-            ll_bid_5_price.setVisibility(View.GONE);
-            ll_bid_6_price.setVisibility(View.GONE);
-            ll_queue.setVisibility(View.GONE);
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
+//        设置用户信息
+        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data) {
+            //判断是否授权小微
+            if (AppContext.getUserBean().data.thirdAccountAuth == 1) {
+                navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
+                navbarManage.showRight(true);
+                toggle_button.setState(true);
+            } else {
+                navbarManage.showRight(false);
+                toggle_button.setState(false);
+                ll_ranking_valid.setVisibility(View.GONE);
+                ll_ranking_invalid.setVisibility(View.GONE);
+                ll_bid_1_price.setVisibility(View.GONE);
+                ll_bid_2_price.setVisibility(View.GONE);
+                ll_bid_3_price.setVisibility(View.GONE);
+                ll_bid_4_price.setVisibility(View.GONE);
+                ll_bid_5_price.setVisibility(View.GONE);
+                ll_bid_6_price.setVisibility(View.GONE);
+                ll_queue.setVisibility(View.GONE);
+            }
         }
 
     }

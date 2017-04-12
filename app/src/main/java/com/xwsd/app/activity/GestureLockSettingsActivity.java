@@ -12,6 +12,7 @@ import com.xwsd.app.AppContext;
 import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GesturePassward;
 import com.xwsd.app.view.NavbarManage;
 
@@ -188,6 +189,15 @@ public class GestureLockSettingsActivity extends BaseActivity {
 
         //注意字节数组和字符串之间的直接转换不行，要转换成Base64编码。
         String gesturePassWard = Base64.encodeToString(bytes,Base64.DEFAULT);
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
+
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
             GesturePassward.putString(AppContext.getUserBean().data.userId, gesturePassWard);
         }

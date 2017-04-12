@@ -279,6 +279,15 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
      * 引导新手
      */
     private void guideNovice() {
+
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
             //判断该用户是否第一次进入账户页面
             if (!(boolean) ((MainActivity) getActivity()).getParam(AppContext.getUserBean().data.userId, false)) {

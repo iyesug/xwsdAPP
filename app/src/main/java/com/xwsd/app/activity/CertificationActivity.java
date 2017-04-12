@@ -1,6 +1,7 @@
 package com.xwsd.app.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
@@ -65,7 +67,14 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
                 onBackPressed();
             }
         });
-
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         //判断用户是否已实名认证
         if (AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
             commit.setVisibility(View.GONE);
