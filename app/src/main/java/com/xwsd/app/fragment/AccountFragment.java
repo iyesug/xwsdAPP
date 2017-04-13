@@ -504,6 +504,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         }
     }
     public void agreeCard(final String flag){
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId){
         call = ApiHttpClient.agreeCard(AppContext.getUserBean().data.userId,flag, new StringCallback() {
             @Override
@@ -517,7 +525,10 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onResponse(String response, int id) {
                 TLog.error("获取认证银行：" + response);
-                ((MainActivity) getActivity()).hideWaitDialog();
+                if(null!=getActivity()){
+                    ((MainActivity) getActivity()).hideWaitDialog();
+                }
+
 //                        这边捕获下异常，data.agreeCard为fals
                 try {
 //                            将充值银行卡的信息传给充值页面

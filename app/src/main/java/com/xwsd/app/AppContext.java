@@ -51,6 +51,7 @@ public class AppContext extends Application {
             currentUser=BuriedPointUtil.getObject(UserParam.USERBEAN,UserBean.class);
         }
 
+
         return currentUser;
     }
 
