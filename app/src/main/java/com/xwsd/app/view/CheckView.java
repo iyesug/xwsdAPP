@@ -50,7 +50,6 @@ public class CheckView extends View {
             point = CheckUtil.getPoint(height, width);
             canvas.drawCircle(point[0], point[1], 1, mTempPaint);
         }
-
     }
 
     public void setCheckNum(int[] chenckNum) {

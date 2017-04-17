@@ -14,6 +14,7 @@ import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.UserAccountBean;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
@@ -168,6 +169,14 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
     private void getData(final int type) {
         if (type == 1) {
             mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+        }
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
         }
         ApiHttpClient.useraccount(AppContext.getUserBean().data.userId, new StringCallback() {
             @Override

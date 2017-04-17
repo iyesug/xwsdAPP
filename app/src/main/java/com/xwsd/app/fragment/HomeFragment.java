@@ -359,14 +359,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 //            newHandOddsAdapter.notifyDataSetChanged();
 //        }
 
-            if (viewFactory == null) {
+            if (isAdded()&&viewFactory == null) {
                 viewFactory = new ViewSwitcher.ViewFactory() {
                     //这里 用来创建内部的视图，这里创建TextView，用来显示文字
                     public View makeView() {
 
                         TextView tv = new TextView(AppContext.context());
                         //设置文字大小
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.DIMEN_14));
+                        if(isAdded()){
+                            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.DIMEN_14));
+                        }
                         tv.setSingleLine(true);
                         tv.setEllipsize(TextUtils.TruncateAt.END);
                         //设置文字 颜色
