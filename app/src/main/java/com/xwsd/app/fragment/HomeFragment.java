@@ -589,7 +589,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                         //设置数据
                         if (indexBean!=null&&text_switcher!=null) {
 
-                            if (viewFactory == null) {
+                            if (viewFactory == null&&isAdded()) {
                                 viewFactory = new ViewSwitcher.ViewFactory() {
                                     //这里 用来创建内部的视图，这里创建TextView，用来显示文字
                                     public View makeView() {

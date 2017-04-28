@@ -216,7 +216,10 @@ public class fuyouMoneyFragment extends Fragment implements View.OnClickListener
 
                 ToastUtil.showToast("成功充值:" + et_money.getText().toString() + "元");
 
-                dayRechargemoney += Integer.parseInt(et_money.getText().toString());//充值成功，单日充值的金额往上加
+                if(""!=et_money.getText().toString()){
+                    dayRechargemoney += Integer.parseInt(et_money.getText().toString());//充值成功，单日充值的金额往上加
+                }
+
 
             } else {
                 ToastUtil.showToast("充值失败");

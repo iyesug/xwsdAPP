@@ -7,6 +7,7 @@ import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.ProtDetilaActivity;
 import com.xwsd.app.activity.ProtJiaActivity;
+import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -128,6 +129,14 @@ public class DueReturnedProjectFragment extends BaseUpDownListFragment {
     public void firstRequestData() {
         super.firstRequestData();
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         ApiHttpClient.usertenders(AppContext.getUserBean().data.userId, currentPages, each_page_num, type,
                 new StringCallback() {
                     @Override

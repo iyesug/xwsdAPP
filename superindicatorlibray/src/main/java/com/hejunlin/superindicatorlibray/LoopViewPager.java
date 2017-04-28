@@ -119,7 +119,9 @@ public class LoopViewPager extends ViewPager {
     }
 
     public void setCurrentItem(int item, boolean smoothScroll) {
+
         int realItem = mAdapter.toInnerPosition(item);
+
         super.setCurrentItem(realItem, smoothScroll);
 
     }

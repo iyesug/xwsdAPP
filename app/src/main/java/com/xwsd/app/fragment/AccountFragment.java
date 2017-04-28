@@ -288,7 +288,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
             startActivity(intent);
             return;
         }
-        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
+/*        if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId) {
             //判断该用户是否第一次进入账户页面
             if (!(boolean) ((MainActivity) getActivity()).getParam(AppContext.getUserBean().data.userId, false)) {
                 //进入新手指南
@@ -296,7 +296,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 startActivity(intent);
                 ((MainActivity) getActivity()).setParam(AppContext.getUserBean().data.userId, true);
             }
-        }
+        }*/
     }
 
 
@@ -345,6 +345,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
         if (call != null) {
             call.cancel();
+        }
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
         }
         call = ApiHttpClient.account(new StringCallback() {
             @Override

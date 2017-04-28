@@ -247,7 +247,7 @@
         <!-- 用户登录注册找回密码 -->
         <activity
             android:name=".activity.UserActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
         <!-- 手势锁设置 -->

@@ -3,7 +3,6 @@ package com.xwsd.app.api;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import android.widget.ImageView;
-
 import com.xwsd.app.AppContext;
 import com.xwsd.app.tools.ImgUtil;
 import com.xwsd.app.tools.MD5;
@@ -14,13 +13,12 @@ import com.zhy.http.okhttp.builder.PostFormBuilder;
 import com.zhy.http.okhttp.callback.BitmapCallback;
 import com.zhy.http.okhttp.callback.Callback;
 import com.zhy.http.okhttp.request.RequestCall;
+import okhttp3.Call;
 
 import java.io.File;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/31.
@@ -226,18 +224,22 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @return 返回一个可取消的请求
      */
     public static RequestCall account(Callback callback) {
-        Map<String, String> map = getSortMap();
-        map.put("userId", AppContext.getUserBean().data.userId);
-        map.put("userSecret",userSecret);
-        RequestCall call = OkHttpUtils
-                .get()
-                .url(ACCOUNT)
-                .addParams("userId", AppContext.getUserBean().data.userId)
-                .addParams("userSecret",userSecret)
-                .addParams("sign", sign(map))
-                .build();
-        call.execute(callback);
-        return call;
+        if(null!=AppContext.getUserBean()){
+            Map<String, String> map = getSortMap();
+            map.put("userId", AppContext.getUserBean().data.userId);
+            map.put("userSecret",userSecret);
+            RequestCall call = OkHttpUtils
+                    .get()
+                    .url(ACCOUNT)
+                    .addParams("userId", AppContext.getUserBean().data.userId)
+                    .addParams("userSecret",userSecret)
+                    .addParams("sign", sign(map))
+                    .build();
+            call.execute(callback);
+            return call;
+        }
+
+        return null;
     }
 
     /**
