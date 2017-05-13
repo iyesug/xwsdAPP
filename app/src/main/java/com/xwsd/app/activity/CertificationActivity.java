@@ -78,10 +78,14 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
         //判断用户是否已实名认证
         if (AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
             commit.setVisibility(View.GONE);
-            et_name.setText(AppContext.getUserBean().data.name.replace(AppContext.getUserBean().data.name.substring(0, 1), "*"));
-            et_name.setEnabled(false);
-            et_identity.setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, 13), "**********"));
-            et_identity.setEnabled(false);
+            if(null!=AppContext.getUserBean().data.name){
+                et_name.setText(AppContext.getUserBean().data.name.replace(AppContext.getUserBean().data.name.substring(0, 1), "*"));
+                et_name.setEnabled(false);
+            }
+            if(null!=AppContext.getUserBean().data.cardnum){
+                et_identity.setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, 13), "**********"));
+                et_identity.setEnabled(false);
+            }
             et_state.setText("已认证");
         }
     }

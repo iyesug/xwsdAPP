@@ -106,22 +106,16 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
         navbarManage.setLeftImg(R.mipmap.ic_back_b);
         navbarManage.setRightStr("高级");
         navbarManage.setBackground(R.color.navbar_bg);
-        navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
-            @Override
-            public void onLeftClick() {
-                onBackPressed();
-            }
-        });
+        navbarManage.setOnLeftClickListener(this::
+                onBackPressed
+        );
 
-        navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener(){
-            @Override
-            public void onRightClick() {
-                BuriedPointUtil.buriedPoint("自动投标简版-高级");
-                Intent intent = new Intent();
-                intent.setClass(AutoBidJianSettingActivity.this,AutoBidSettingActivity.class);
-                startActivity(intent);
-                AutoBidJianSettingActivity.this.finish();
-            }
+        navbarManage.setOnRightClickListener(() -> {
+            BuriedPointUtil.buriedPoint("自动投标简版-高级");
+            Intent intent = new Intent();
+            intent.setClass(AutoBidJianSettingActivity.this,AutoBidSettingActivity.class);
+            startActivity(intent);
+            AutoBidJianSettingActivity.this.finish();
         });
 
 

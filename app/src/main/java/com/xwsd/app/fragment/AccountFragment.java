@@ -371,11 +371,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
                         ToastUtil.showToast("用户密码已修改，请重新登录");
-                        Intent Fintent = new Intent(getActivity(), UserActivity.class);
+                        Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-                        startActivity(Fintent);
-                        getActivity().finish();
+                        if(isAdded()){
+                            startActivity(Fintent);
+                            getActivity().finish();
+                        }
+
                     }
                     else {
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);

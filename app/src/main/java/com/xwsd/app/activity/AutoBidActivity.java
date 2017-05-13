@@ -330,7 +330,7 @@ public class AutoBidActivity extends BaseActivity {
      */
     private void initQueue() {
         type = 0;
-        mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+//        mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
         //重新获取用户的托管状态
         if (call != null) {
             call.cancel();

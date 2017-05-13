@@ -19,6 +19,7 @@ import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.RepaymentsBean;
 import com.xwsd.app.calendar.CalendarAdapter;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
@@ -187,6 +188,14 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
      * 得到数据
      */
     private void getData() {
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         if (call != null) {
             call.cancel();
         }

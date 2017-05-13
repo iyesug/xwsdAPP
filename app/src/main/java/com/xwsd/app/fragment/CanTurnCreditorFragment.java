@@ -64,7 +64,10 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
         ApiHttpClient.usercrtrs(AppContext.getUserBean().data.userId, currentPages, each_page_num, type, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                setPullUpState(BasePullUpListFragment.NETWORK_ERROR);
+                if(isAdded()){
+                    setPullUpState(BasePullUpListFragment.NETWORK_ERROR);
+                }
+
             }
 
             @Override

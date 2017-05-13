@@ -611,16 +611,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                                 text_switcher.setFactory(viewFactory);
 
                             }
-                            text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
+                            if(isAdded()&&indexBean!=null&&indexBean.data!=null){
+                                text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
 
-                            text_switcher.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
-                                    intent.putExtra(UserParam.DATA, indexBean.data.notices.get(current).id);
-                                    startActivity(intent);
-                                }
-                            });
+                                text_switcher.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(getActivity(), NewsDetailsActivity.class);
+                                        intent.putExtra(UserParam.DATA, indexBean.data.notices.get(current).id);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+
                         }
                         //循环
                         handler.sendEmptyMessageDelayed(1, mCycleDelayed);

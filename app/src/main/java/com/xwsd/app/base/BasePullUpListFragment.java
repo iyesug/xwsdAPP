@@ -199,7 +199,9 @@ public abstract class BasePullUpListFragment extends BaseFragment implements Abs
                 break;
             case NETWORK_ERROR:
                 progressbar.setVisibility(View.GONE);
-                text.setText(getString(R.string.network_exception));
+                if(isAdded()){
+                    text.setText(getString(R.string.network_exception));
+                }
                 handler.removeCallbacks(runnable);
                 handler.postDelayed(runnable, DELYED);
                 break;

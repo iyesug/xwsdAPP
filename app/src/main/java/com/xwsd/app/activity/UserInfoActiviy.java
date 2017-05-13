@@ -150,8 +150,14 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
         }
 
         if (!TextUtils.isEmpty(AppContext.getUserBean().data.cardnum)) {
-            ((TextView) user_identity.findViewById(R.id.text_content))
-                    .setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, 13), "**********"));
+            if(AppContext.getUserBean().data.cardnum.length()<=16){
+                ((TextView) user_identity.findViewById(R.id.text_content))
+                        .setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, AppContext.getUserBean().data.cardnum.length()-3), "**********"));
+            }else{
+                ((TextView) user_identity.findViewById(R.id.text_content))
+                        .setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, 13), "**********"));
+
+            }
         }else {
             ((TextView) user_identity.findViewById(R.id.text_content))
                     .setText("");

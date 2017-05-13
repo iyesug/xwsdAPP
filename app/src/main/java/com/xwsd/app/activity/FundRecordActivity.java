@@ -295,7 +295,7 @@ public class FundRecordActivity extends BaseActivity implements View.OnClickList
                         setData(type);
                     } else if (jsonObject.getInt("status") == 88){
                         ToastUtil.showToast("用户密码已修改，请重新登录");
-                        Intent Fintent = new Intent();
+                        Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);

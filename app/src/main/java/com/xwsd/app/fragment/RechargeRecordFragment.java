@@ -8,6 +8,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
+import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -154,7 +155,7 @@ public class RechargeRecordFragment extends BaseUpDownListFragment {
                         setData(bean,TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
                         ToastUtil.showToast("用户密码已修改，请重新登录");
-                        Intent Fintent = new Intent();
+                        Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
