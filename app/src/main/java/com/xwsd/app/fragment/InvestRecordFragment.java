@@ -2,11 +2,9 @@ package com.xwsd.app.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.xwsd.app.R;
 import com.xwsd.app.activity.BidDetailsActivity;
 import com.xwsd.app.activity.ProjectDetailTabActivity;
-import com.xwsd.app.activity.ProjectDetailsActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -16,13 +14,10 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
-import com.xwsd.app.view.MDialog;
 import com.zhy.http.okhttp.callback.StringCallback;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import okhttp3.Call;
 
 /**
  * Created by Gx on 2016/8/23.
@@ -141,6 +136,8 @@ public class InvestRecordFragment extends BasePullUpListFragment {
                     helper.setText(R.id.tv_money, item.money);
                     String[] arr = item.time.split(" ");
                     helper.setText(R.id.tv_time, arr[0] + "\n\r" + arr[1]);
+                    helper.setText(R.id.tv_auto, item.autoOrder);
+
                 }
             };
 

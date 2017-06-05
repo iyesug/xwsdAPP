@@ -1,9 +1,10 @@
 package com.xwsd.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
+import butterknife.Bind;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.BaseAdapterHelper;
@@ -11,18 +12,16 @@ import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.ProtDetilabean;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
-
+import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import butterknife.Bind;
-import okhttp3.Call;
 
 public class ProtDetilaActivity extends BaseActivity {
 
@@ -70,6 +69,14 @@ public class ProtDetilaActivity extends BaseActivity {
         getData();
     }
     private void getData() {
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         ApiHttpClient.getDetilaInfo(AppContext.getUserBean().data.userId, oddNumber, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {

@@ -83,13 +83,19 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("msgType", msgType);
         map.put("phone", phone);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        PostFormBuilder build = OkHttpUtils
                 .post()
                 .url(SMS)
                 .addParams("msgType", msgType)
                 .addParams("phone", phone)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -297,12 +303,18 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall odd(String oddNumber, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("oddNumber", oddNumber);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(ODD)
                 .addParams("oddNumber", oddNumber)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -983,12 +995,18 @@ public class ApiHttpClient implements XWSDRequestAdresse {
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("oddNumber", oddNumber);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(ODDRM)
                 .addParams("oddNumber", oddNumber)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1011,14 +1029,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddNumber", oddNumber);
         map.put("page", "" + page);
         map.put("pageSize", "" + pageSize);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(ODDTENDERS)
                 .addParams("oddNumber", oddNumber)
                 .addParams("page", "" + page)
                 .addParams("pageSize", "" + pageSize)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1040,14 +1064,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddNumber", oddNumber);
         map.put("page", "" + page);
         map.put("pageSize", "" + pageSize);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(ODDTENDERS_NOW)
                 .addParams("oddNumber", oddNumber)
                 .addParams("page", "" + page)
                 .addParams("pageSize", "" + pageSize)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1217,13 +1247,19 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("page", String.valueOf(page));
         map.put("pageSize", String.valueOf(pageSize));
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(CRTRS)
                 .addParams("page", String.valueOf(page))
                 .addParams("pageSize", String.valueOf(pageSize))
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1238,12 +1274,18 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall crtr(String id, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("id", id);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(CRTR)
                 .addParams("id", id)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1261,14 +1303,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("oddNumber", id);
         map.put("userSecret",userSecret);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(GET_MAX_INVEST)
                 .addParams("userId", userId)
                 .addParams("oddNumber", id)
                 .addParams("userSecret",userSecret)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1286,14 +1334,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("id", id);
         map.put("userSecret",userSecret);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(GET_MAX_BUY)
                 .addParams("userId", userId)
                 .addParams("id", id)
                 .addParams("userSecret",userSecret)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1313,14 +1367,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", String.valueOf(page));
         map.put("id", id);
         map.put("pageSize", String.valueOf(pageSize));
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(BUY_RECORDS)
                 .addParams("page", String.valueOf(page))
                 .addParams("id", id)
                 .addParams("pageSize", String.valueOf(pageSize))
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1338,14 +1398,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", String.valueOf(page));
         map.put("id", id);
         map.put("pageSize", String.valueOf(pageSize));
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        GetBuilder build = OkHttpUtils
                 .get()
                 .url(BUYING_RECORDS)
                 .addParams("page", String.valueOf(page))
                 .addParams("id", id)
                 .addParams("pageSize", String.valueOf(pageSize))
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }
@@ -1438,7 +1504,9 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         if (!TextUtils.isEmpty(endTime)) {
             map.put("endTime", endTime);
         }
-
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
         GetBuilder build = OkHttpUtils
                 .get()
                 .url(INFOS)
@@ -1456,7 +1524,9 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         if (!TextUtils.isEmpty(endTime)) {
             build.addParams("endTime", endTime);
         }
-
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
         RequestCall call = build.build();
         call.execute(callback);
         return call;
@@ -1595,7 +1665,10 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("money", money);
         map.put("province", province);
         map.put("city", city);
-        RequestCall call = OkHttpUtils
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            map.put("userId", AppContext.getUserBean().data.userId);
+        }
+        PostFormBuilder build = OkHttpUtils
                 .post()
                 .url(ORDER)
                 .addParams("phone", phone)
@@ -1603,8 +1676,11 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("money", money)
                 .addParams("province", province)
                 .addParams("city", city)
-                .addParams("sign", sign(map))
-                .build();
+                .addParams("sign", sign(map));
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            build.addParams("userId", AppContext.getUserBean().data.userId);
+        }
+        RequestCall call = build.build();
         call.execute(callback);
         return call;
     }

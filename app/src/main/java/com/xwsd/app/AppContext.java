@@ -43,12 +43,12 @@ public class AppContext extends Application {
 
     public static void setUserBean(UserBean userBean) {
         AppContext.currentUser = userBean;
-        BuriedPointUtil.setObject(UserParam.USERBEAN,userBean);
+        BuriedPointUtil.setObject(UserParam.USERBEAN, userBean);
     }
 
     public static UserBean getUserBean() {
-        if(null==currentUser||null==currentUser.data){
-            currentUser=BuriedPointUtil.getObject(UserParam.USERBEAN,UserBean.class);
+        if (null == currentUser || null == currentUser.data) {
+            currentUser = BuriedPointUtil.getObject(UserParam.USERBEAN, UserBean.class);
         }
 
 //Log.e("currentUser","currentUser"+currentUser.data.userName);
@@ -61,11 +61,11 @@ public class AppContext extends Application {
     }
 
     public static void setNeedLock(boolean needLock) {
-        TLog.error("Lock:"+needLock);
+        TLog.error("Lock:" + needLock);
         AppContext.needLock = needLock;
     }
 
-    APIWebviewTBS	mAPIWebviewTBS;
+    APIWebviewTBS mAPIWebviewTBS;
 
     @Override
     public void onCreate() {
@@ -73,7 +73,7 @@ public class AppContext extends Application {
         context = getApplicationContext();
 
         //开启日志输出
-        TLog.DEBUG=false;
+        TLog.DEBUG = false;
 
 
         //bugly初始化
@@ -108,25 +108,23 @@ public class AppContext extends Application {
             e.printStackTrace();
         }
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                    .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                    //             .addInterceptor(new LoggerInterceptor("TAG"))
-                    .cookieJar(cookieJar1)
-                    .hostnameVerifier(new HostnameVerifier()
-                    {
-                        @Override
-                        public boolean verify(String hostname, SSLSession session)
-                        {
-                            return true;
-                        }
-                    })
-                    .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
-                    .build();
-            OkHttpUtils.initClient(okHttpClient);
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                //             .addInterceptor(new LoggerInterceptor("TAG"))
+                .cookieJar(cookieJar1)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+                .build();
+        OkHttpUtils.initClient(okHttpClient);
 
 
         //WebviewTBS个人封装，针对升级----开始
-        mAPIWebviewTBS= APIWebviewTBS.getAPIWebview();
+        mAPIWebviewTBS = APIWebviewTBS.getAPIWebview();
         mAPIWebviewTBS.initTbs(getApplicationContext());
         //个人封装，针对升级----结束
     }

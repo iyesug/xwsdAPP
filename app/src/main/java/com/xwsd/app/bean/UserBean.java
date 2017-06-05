@@ -35,5 +35,6 @@ public class UserBean implements Serializable {
         public String  maritalstatus;
         public String  userSecret;
 
+
     }
 }

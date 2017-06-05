@@ -15,6 +15,7 @@ import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.AutoInfoBean;
+import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
@@ -203,7 +204,14 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
         if (call != null) {
             call.cancel();
         }
-
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         call = ApiHttpClient.autoInfo(AppContext.getUserBean().data.userId, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {

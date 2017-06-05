@@ -1,64 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/DIMEN_10"
-    android:orientation="vertical">
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:background="@color/white"
+
+                      android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        <TextView
-            style="@style/InvestRecordItemtitle"
-            android:background="@color/blue_510bff"
+            android:orientation="vertical">
 
-            android:text="序号" />
 
-        <TextView
-            style="@style/InvestRecordItemtitle"
-            android:background="@color/blue_74afff"
-            android:text="投标人" />
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
 
-        <TextView
-            style="@style/InvestRecordItemtitle"
-            android:background="@color/blue_510bff"
-            android:text="金额（元）" />
+            <TextView
+                    style="@style/InvestRecordItemtitle"
+                    android:background="@color/blue_510bff"
 
-        <TextView
-            style="@style/InvestRecordItemtitle"
-            android:background="@color/blue_74afff"
-            android:text="时间" />
+                    android:text="序号"/>
+
+            <TextView
+                    style="@style/InvestRecordItemtitle"
+                    android:background="@color/blue_74afff"
+                    android:text="投标人"/>
+
+            <TextView
+                    style="@style/InvestRecordItemtitle"
+                    android:background="@color/blue_510bff"
+                    android:text="金额（元）"/>
+
+            <TextView
+                    style="@style/InvestRecordItemtitle"
+                    android:background="@color/blue_74afff"
+                    android:text="时间"/>
+
+            <TextView
+                    style="@style/InvestRecordItemtitle"
+                    android:background="@color/blue_510bff"
+                    android:layout_width="@dimen/DIMEN_100"
+                    android:text="自动投标排名"/>
+        </LinearLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/DIMEN_20"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            <com.xwsd.app.view.MyListView
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="@dimen/DIMEN_15"
+                    android:padding="@dimen/DIMEN_10"
+                    android:paddingBottom="@dimen/DIMEN_20"
+                    android:layout_marginBottom="@dimen/DIMEN_20"
+                    ></com.xwsd.app.view.MyListView>
+
+            <com.xwsd.app.view.EmptyLayout
+                    android:id="@+id/error_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:padding="@dimen/DIMEN_30"
+                    android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+
+        </FrameLayout>
 
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/DIMEN_20"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <com.xwsd.app.view.MyListView
-            android:id="@+id/list_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="@dimen/DIMEN_15"
-            android:padding="@dimen/DIMEN_10"
-            android:paddingBottom="@dimen/DIMEN_20"
-            android:layout_marginBottom="@dimen/DIMEN_20"
-                ></com.xwsd.app.view.MyListView>
-
-        <com.xwsd.app.view.EmptyLayout
-            android:id="@+id/error_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:padding="@dimen/DIMEN_30"
-            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
-
-    </FrameLayout>
-</LinearLayout>
+</HorizontalScrollView>

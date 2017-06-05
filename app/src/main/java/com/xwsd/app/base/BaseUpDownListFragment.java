@@ -205,36 +205,39 @@ public abstract class BaseUpDownListFragment extends BaseFragment
 //        显示上拉布局
         footerView.setVisibility(View.VISIBLE);
         footerView.setPadding(padding, padding, padding, padding);
-        switch (state) {
-            case LOAD:
-                isLaod = true;
-                progressbar.setVisibility(View.VISIBLE);
-                text.setText(getString(R.string.load_more));
-                break;
-            case SUCCEED:
-                footerView.setVisibility(View.GONE);
-                footerView.setPadding(0, -footerView.getHeight(), 0, 0);
-                isLaod = false;
-                break;
-            case LOAD_ERROR:
-                progressbar.setVisibility(View.GONE);
-                text.setText(getString(R.string.load_error));
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable, DELYED);
-                break;
-            case NETWORK_ERROR:
-                progressbar.setVisibility(View.GONE);
-                text.setText(getString(R.string.network_exception));
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable, DELYED);
-                break;
-            case NO_MORE:
-                progressbar.setVisibility(View.GONE);
-                text.setText(getString(R.string.no_more));
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable, DELYED);
-                break;
+        if(isAdded()){
+            switch (state) {
+                case LOAD:
+                    isLaod = true;
+                    progressbar.setVisibility(View.VISIBLE);
+                    text.setText(getString(R.string.load_more));
+                    break;
+                case SUCCEED:
+                    footerView.setVisibility(View.GONE);
+                    footerView.setPadding(0, -footerView.getHeight(), 0, 0);
+                    isLaod = false;
+                    break;
+                case LOAD_ERROR:
+                    progressbar.setVisibility(View.GONE);
+                    text.setText(getString(R.string.load_error));
+                    handler.removeCallbacks(runnable);
+                    handler.postDelayed(runnable, DELYED);
+                    break;
+                case NETWORK_ERROR:
+                    progressbar.setVisibility(View.GONE);
+                    text.setText(getString(R.string.network_exception));
+                    handler.removeCallbacks(runnable);
+                    handler.postDelayed(runnable, DELYED);
+                    break;
+                case NO_MORE:
+                    progressbar.setVisibility(View.GONE);
+                    text.setText(getString(R.string.no_more));
+                    handler.removeCallbacks(runnable);
+                    handler.postDelayed(runnable, DELYED);
+                    break;
+            }
         }
+
 
 //        滚动到底部
         list_view.setSelection(list_view.getBottom());

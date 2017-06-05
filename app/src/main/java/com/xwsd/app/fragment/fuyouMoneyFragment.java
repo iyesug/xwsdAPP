@@ -135,7 +135,7 @@ public class fuyouMoneyFragment extends Fragment implements View.OnClickListener
             ((TextView) ll_quota_stroke.findViewById(R.id.tv_content)).setText(banksLimitBean.onceLimit);
             ((TextView) ll_quota_day.findViewById(R.id.tv_content)).setText(banksLimitBean.dayLimit);
         }else{
-            ToastUtil.showToast("持银行卡不支持宝付充值"  + data.bank_code);
+            ToastUtil.showToast("此银行卡不支持宝付充值"  + data.bank_code);
             isAble = false;
             commit.setBackgroundResource(R.drawable.bg_button_sharp_gray);
         }
@@ -216,7 +216,7 @@ public class fuyouMoneyFragment extends Fragment implements View.OnClickListener
 
                 ToastUtil.showToast("成功充值:" + et_money.getText().toString() + "元");
 
-                if(""!=et_money.getText().toString()){
+                if(!"".equals(et_money.getText().toString())){
                     dayRechargemoney += Integer.parseInt(et_money.getText().toString());//充值成功，单日充值的金额往上加
                 }
 

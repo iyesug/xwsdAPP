@@ -103,7 +103,14 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 onBackPressed();
             }
         });
-
+//        判断用户是否登录
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
 //        设置开户名
         et_name.setText(AppContext.getUserBean().data.name);
 //        设置余额

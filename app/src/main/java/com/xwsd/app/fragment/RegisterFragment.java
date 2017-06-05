@@ -89,7 +89,9 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                 ApiHttpClient.sendMessage(ApiHttpClient.MSG_TYPE_REGISTER, user_name.getEditTextInfo(), new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        ToastUtil.showToastShort(getString(R.string.network_exception));
+                        if(isAdded()){
+                            ToastUtil.showToastShort(getString(R.string.network_exception));
+                        }
                     }
 
                     @Override

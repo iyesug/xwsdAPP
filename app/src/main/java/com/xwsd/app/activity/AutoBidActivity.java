@@ -241,6 +241,14 @@ public class AutoBidActivity extends BaseActivity {
 
     private void getAuto(){
      //   mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(this, UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         ApiHttpClient.autoInfo(AppContext.getUserBean().data.userId, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {

@@ -78,11 +78,6 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.call:
                 checkPermission();
-
-
-
-
-
         }
     }
 
@@ -90,7 +85,6 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
         // 先判断是否有权限。
         if(AndPermission.hasPermission(getActivity(), Manifest.permission.CALL_PHONE)) {
             // 有权限，直接do anything.
-
             call();
         }else{
             // 申请单个权限。
@@ -100,7 +94,9 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
                     // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
                     .rationale((requestCode, rationale) ->
                             // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
-                            AndPermission.rationaleDialog(getActivity(), rationale).show()
+                            AndPermission
+                                    .rationaleDialog(getActivity(), rationale)
+                                    .show()
                     )
                     .send();
             checkPermission();

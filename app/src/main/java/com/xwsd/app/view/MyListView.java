@@ -1,7 +1,6 @@
 package com.xwsd.app.view;
 
 import android.content.Context;
-import android.view.MotionEvent;
 import android.widget.ListView;
 
 /**
@@ -18,9 +17,9 @@ public class MyListView extends ListView {
         super(context, attrs);
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        getParent().requestDisallowInterceptTouchEvent(true);//这句话的作用 告诉父view，我的单击事件我自行处理，不要阻碍我。
-        return super.dispatchTouchEvent(ev);
-    }
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        getParent().requestDisallowInterceptTouchEvent(true);//这句话的作用 告诉父view，我的单击事件我自行处理，不要阻碍我。
+//        return super.dispatchTouchEvent(ev);
+//    }
 }

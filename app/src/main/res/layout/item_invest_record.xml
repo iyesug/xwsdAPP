@@ -28,14 +28,18 @@
                 android:text="18000" />-->
     <TextView
         android:id="@+id/tv_time"
-        android:layout_width="0dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+
         android:gravity="center"
         android:padding="@dimen/DIMEN_5"
         android:text="2016-08-12"
         android:textColor="@color/gray_1"
         android:textSize="@dimen/TEXT_S" />
+        <TextView
+                android:id="@+id/tv_auto"
+                style="@style/InvestRecordItemText"
+                android:text="18000" />
     </LinearLayout>
 <!--            <View
         style="@style/BlueInterval"></View>-->

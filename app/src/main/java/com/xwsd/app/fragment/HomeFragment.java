@@ -307,7 +307,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         //设置新手标
 //        if (newHandOddsAdapter == null) {
             newHandOddsAdapter = new NewHandOddsAdapter(getChildFragmentManager());
-        if(null!=vp_newbie_bid) {
+        if(null!=vp_newbie_bid&&isAdded()) {
             vp_newbie_bid.setAdapter(newHandOddsAdapter);
 
             vp_newbie_bid.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -609,7 +609,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                                     }
                                 };
                                 text_switcher.setFactory(viewFactory);
-
                             }
                             if(isAdded()&&indexBean!=null&&indexBean.data!=null){
                                 text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
