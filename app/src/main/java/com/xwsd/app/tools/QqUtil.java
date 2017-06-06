@@ -1,11 +1,15 @@
 package com.xwsd.app.tools;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import com.xwsd.app.view.MADialog;
+import com.yanzhenjie.permission.AndPermission;
 
 import java.util.Calendar;
 import java.util.List;
@@ -93,7 +97,7 @@ public class QqUtil {
                 String url="mqqwpa://im/chat?chat_type=crm&uin=4008659993&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
                 context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             });
-            mMDialog.setBtnGone();
+            mMDialog.setBtnCancelGone();
         }
         else{
             String url="mqqwpa://im/chat?chat_type=crm&uin=4008659993&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
@@ -101,4 +105,48 @@ public class QqUtil {
         }
     }
 
+
+
+    public static void checkPermission(Activity context) {
+        // 先判断是否有权限。
+        if (AndPermission.hasPermission(context, Manifest.permission.CALL_PHONE)) {
+            // 有权限，直接do anything.
+
+            call(context);
+        } else if (!AndPermission.hasPermission(context, Manifest.permission.CALL_PHONE)) {
+            // 申请单个权限。
+            System.out.println("申请电话权限");
+            AndPermission.with(context)
+                    .requestCode(100)
+                    .permission(Manifest.permission.CALL_PHONE)
+                    // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
+                    .rationale((requestCode, rationale) ->
+                            // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
+                            AndPermission.rationaleDialog(context, rationale).show()
+                    )
+                    .send();
+            checkPermission(context);
+        }
+    }
+
+    private static void call(Activity context) {
+        final MADialog mMDialog = new MADialog(context);
+        mMDialog.setMessage("确认拨打：400 8659 993");
+        mMDialog.setBtnOK("确定", v1 -> {
+            mMDialog.miss();
+            Intent intentPhone = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008659993"));
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            context.startActivity(intentPhone);
+        });
+        mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
+    }
 }
