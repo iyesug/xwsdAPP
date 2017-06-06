@@ -145,41 +145,66 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_auto_bid"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/DIMEN_5"
                     android:background="@color/white"
                     android:orientation="horizontal">
-
+                    <LinearLayout
+                            android:id="@+id/ll_auto_bid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
                     <ImageView
                         android:layout_width="@dimen/DIMEN_20"
                         android:layout_height="@dimen/DIMEN_20"
                         android:layout_gravity="center"
                         android:layout_marginBottom="@dimen/DIMEN_5"
-                        android:layout_marginLeft="@dimen/DIMEN_10"
+                        android:layout_marginLeft="@dimen/DIMEN_40"
                         android:layout_marginRight="@dimen/DIMEN_5"
                         android:layout_marginTop="@dimen/DIMEN_5"
                         android:src="@mipmap/ic_tag" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+
                         android:text="@string/auto_bid"
-                        android:textColor="@color/gray_2"
-                        android:textSize="@dimen/TEXT_L" />
+                        android:textColor="@color/blue_3495ff"
+                        android:textSize="@dimen/TEXT_XL" />
 
+                </LinearLayout>
+                    <View style="@style/GreyIntervalVertical"></View>
+                    <LinearLayout
+                            android:id="@+id/ll_service"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                        <ImageView
+                                android:layout_width="@dimen/DIMEN_20"
+                                android:layout_height="@dimen/DIMEN_20"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/DIMEN_5"
+                                android:layout_marginLeft="@dimen/DIMEN_40"
+                                android:layout_marginRight="@dimen/DIMEN_5"
+                                android:layout_marginTop="@dimen/DIMEN_5"
+                                android:src="@mipmap/ic_servi" />
 
-                    <ImageView
-                        android:layout_width="@dimen/DIMEN_15"
-                        android:layout_height="@dimen/DIMEN_15"
-                        android:layout_margin="@dimen/DIMEN_10"
-                        android:layout_marginBottom="@dimen/DIMEN_5"
-                        android:layout_marginRight="@dimen/DIMEN_10"
-                        android:layout_marginTop="@dimen/DIMEN_5"
-                        android:src="@mipmap/ic_in_g" />
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:text="@string/services"
+                                android:textColor="@color/blue_3495ff"
+                                android:textSize="@dimen/TEXT_XL" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -300,9 +325,9 @@
     </RelativeLayout>
 
     <com.xwsd.app.view.EmptyLayout
-    android:id="@+id/error_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
 
 </FrameLayout>

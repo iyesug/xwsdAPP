@@ -19,10 +19,7 @@ import com.xwsd.app.bean.AccountBean;
 import com.xwsd.app.bean.AccountItemBean;
 import com.xwsd.app.bean.AgreeCardBean;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.tools.BuriedPointUtil;
-import com.xwsd.app.tools.GsonUtils;
-import com.xwsd.app.tools.TLog;
-import com.xwsd.app.tools.ToastUtil;
+import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.RiseNumberTextView;
@@ -37,6 +34,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.xwsd.app.R.id.ll_service;
 
 /**
  * Created by Gx on 2016/8/18.
@@ -413,11 +412,15 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         rise_number_text_view.start();
     }
 
-    @OnClick({R.id.ll_auto_bid, R.id.iv_calendar, R.id.bt_recharge, R.id.bt_withdraw, R.id.ll_property_details})
+    @OnClick({ll_service,R.id.ll_auto_bid, R.id.iv_calendar, R.id.bt_recharge, R.id.bt_withdraw, R.id.ll_property_details})
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.ll_service:
+                QqUtil.callQq(getActivity());
+                break;
+
             case R.id.ll_auto_bid:
                 //进入自动投标前先判断是否进行了实名认证
                 if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {

@@ -33,7 +33,7 @@
     <color name="blue_8cb6ce">#8cb6ce</color>
     <color name="zhonghong_text">#e4901a</color>
     <color name="backk">#000000</color>
-
+    <color name="blue_3495ff">#3495ff</color>
     <!-- 下拉刷新时，颜色值 -->
     <color name="swiperefresh_color1">#ff00ddff</color>
     <color name="swiperefresh_color2">#ffffbb33</color>

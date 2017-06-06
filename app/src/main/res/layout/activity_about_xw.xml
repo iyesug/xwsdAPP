@@ -46,6 +46,15 @@
 
                 <View style="@style/GreyInterval"></View>
 
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
                 <RelativeLayout
                     android:id="@+id/call"
                     android:layout_width="wrap_content"
@@ -55,10 +64,12 @@
 
                     <ImageView
                         android:id="@+id/serve_iv"
-                        android:layout_width="@dimen/DIMEN_40"
-                        android:layout_height="@dimen/DIMEN_40"
+                        android:layout_width="@dimen/DIMEN_28"
+                        android:layout_height="@dimen/DIMEN_28"
                         android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/DIMEN_5"
+                        android:layout_margin="@dimen/DIMEN_5"
+                        android:layout_marginRight="@dimen/DIMEN_8"
+                        android:layout_marginLeft="@dimen/DIMEN_10"
                         android:src="@mipmap/ic_service" />
 
                     <TextView
@@ -82,6 +93,55 @@
                         android:textSize="@dimen/TEXT_S" />
 
                 </RelativeLayout>
+                </LinearLayout>
+                <View style="@style/GreyIntervalVertical"></View>
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/qq"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                        <RelativeLayout
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/DIMEN_10">
+
+                            <ImageView
+                                    android:id="@+id/qq_iv"
+                                    android:layout_width="@dimen/DIMEN_28"
+                                    android:layout_height="@dimen/DIMEN_28"
+                                    android:layout_gravity="center"
+                                    android:layout_margin="@dimen/DIMEN_5"
+                                    android:layout_marginRight="@dimen/DIMEN_8"
+                                    android:layout_marginLeft="@dimen/DIMEN_10"
+                                    android:src="@mipmap/ic_qq" />
+
+                            <TextView
+                                    android:id="@+id/qq_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/qq_iv"
+                                    android:gravity="center"
+                                    android:text="在线客服"
+                                    android:textColor="@color/gray_2"
+                                    android:textSize="@dimen/TEXT_XL" />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/qq_num"
+                                    android:layout_toRightOf="@id/qq_iv"
+                                    android:gravity="center"
+                                    android:text="服务时间：9:00-21:00"
+                                    android:textColor="@color/gray_1"
+                                    android:textSize="@dimen/TEXT_S" />
+
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -22,7 +22,30 @@
                 android:maxLines="8"
                 android:text="你父母知道吗?"
                 android:textColor="#3097fd"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                />
+            <TextView
+                    android:id="@+id/dialog_msg2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_50"
+                    android:gravity="center"
+                    android:text="QQ客服：4008659993"
+                    android:layout_weight="1"
+                    android:textColor="#3097fd"
+                    android:visibility="gone"
+                    android:textSize="17sp" />
+            <View style="@style/GreyInterval"></View>
+
+            <TextView
+                    android:id="@+id/dialog_msg3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_50"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="热线客服：4008659993"
+                    android:textColor="#3097fd"
+                    android:visibility="gone"
+                    android:textSize="17sp" />
         </LinearLayout>
         <ImageView
             android:layout_width="match_parent"
@@ -37,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+
                 android:textColor="#000000"
                 android:background="#ffffff"
                 android:text="取消"

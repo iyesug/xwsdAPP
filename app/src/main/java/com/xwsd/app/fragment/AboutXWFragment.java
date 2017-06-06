@@ -16,6 +16,7 @@ import com.xwsd.app.activity.WebDetailsActivity;
 import com.xwsd.app.api.XWSDRequestAdresse;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.tools.QqUtil;
 import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
 import com.yanzhenjie.permission.AndPermission;
@@ -48,7 +49,7 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
 
 
 
-    @OnClick({R.id.ll_about_us, R.id.ll_help_center, R.id.ll_charging_standard, R.id.ll_update,R.id.call})
+    @OnClick({R.id.ll_about_us, R.id.ll_help_center, R.id.ll_charging_standard, R.id.ll_update,R.id.call,R.id.qq})
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -76,8 +77,13 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.ll_update:
                 break;
+
             case R.id.call:
                 checkPermission();
+                break;
+            case R.id.qq:
+                QqUtil.callQq(getActivity());
+                break;
         }
     }
 
@@ -85,18 +91,18 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
         // 先判断是否有权限。
         if(AndPermission.hasPermission(getActivity(), Manifest.permission.CALL_PHONE)) {
             // 有权限，直接do anything.
-            call();
-        }else{
+
+          call();
+        }else if(!AndPermission.hasPermission(getActivity(), Manifest.permission.CALL_PHONE)){
             // 申请单个权限。
+            System.out.println("申请电话权限");
             AndPermission.with(this)
                     .requestCode(100)
                     .permission(Manifest.permission.CALL_PHONE)
                     // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
                     .rationale((requestCode, rationale) ->
                             // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
-                            AndPermission
-                                    .rationaleDialog(getActivity(), rationale)
-                                    .show()
+                            AndPermission.rationaleDialog(getActivity(), rationale).show()
                     )
                     .send();
             checkPermission();

@@ -19,6 +19,7 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.DemoPopupWindow;
 import com.xwsd.app.view.DoubleScreenDialog;
+import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
 
 /**
@@ -85,7 +86,7 @@ public class ProjectFragment extends BaseFragment implements View.OnClickListene
     protected void init() {
 //        设置导航栏
         navbarManage.setCentreStr(getString(R.string.invest_money));
-        navbarManage.showLeft(false);
+        navbarManage.showLeft(true);
         navbarManage.showRight(true);
         navbarManage.setRightImg(R.mipmap.jisuan);
         navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener() {
@@ -96,6 +97,14 @@ public class ProjectFragment extends BaseFragment implements View.OnClickListene
                 pw.show(getActivity());
             }
         });
+        navbarManage.setLeftImg(R.mipmap.ic_ser);
+        navbarManage.setOnLeftClickListener(() -> {
+            final MADialog mMDialog = new MADialog(getContext());
+            mMDialog.setmsgGone(getActivity());
+            mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
+            mMDialog.setBtnOKGone();
+        });
+
 
         navbarManage.setBackground(R.color.navbar_bg);
 

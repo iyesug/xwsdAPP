@@ -211,5 +211,6 @@
 </string>
     <string name="setcard">您尚未设置充值银行卡，是否前往设置。</string>
     <string name="go">前往</string>
+    <string name="services">在线客服</string>
 
 </resources>
