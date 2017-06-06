@@ -59,6 +59,7 @@ public class SpinnerDialog {
                 R.drawable.bg_spinner_dialog));
     }
 
+
     /**
      * 设置数据
      *
