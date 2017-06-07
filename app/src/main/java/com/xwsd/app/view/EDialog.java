@@ -4,18 +4,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.xwsd.app.R;
 
 
-public class EDialog extends Dialog implements
-		View.OnClickListener {
+public class EDialog extends Dialog implements View.OnClickListener {
 	private DialogClickListener listener;
 	Context context;
 	private Button button_sure;
