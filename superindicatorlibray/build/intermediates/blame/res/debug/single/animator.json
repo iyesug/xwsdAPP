@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\java\\workspace\\xwsdAPP2.3.4\\superindicatorlibray\\build\\intermediates\\res\\merged\\debug\\animator\\scale_with_alpha.xml",
+        "source": "D:\\java\\workspace\\xwsdAPP2.3.4\\superindicatorlibray\\src\\main\\res\\animator\\scale_with_alpha.xml"
+    },
+    {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\debug\\animator\\scale_with_alpha.xml",
         "source": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\src\\main\\res\\animator\\scale_with_alpha.xml"
     }

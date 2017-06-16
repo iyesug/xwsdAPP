@@ -8,7 +8,19 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\ea6b7d6884b7d2d0c35bbc94707bdc2922e9b02d\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
     },
     {
+        "merged": "D:\\java\\workspace\\xwsdAPP2.3.4\\superindicatorlibray\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\ea6b7d6884b7d2d0c35bbc94707bdc2922e9b02d\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
         "merged": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\ea6b7d6884b7d2d0c35bbc94707bdc2922e9b02d\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP2.3.4\\superindicatorlibray\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\ea6b7d6884b7d2d0c35bbc94707bdc2922e9b02d\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "D:\\java\\workspace\\xwsdAPP2.3.4\\superindicatorlibray\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\ea6b7d6884b7d2d0c35bbc94707bdc2922e9b02d\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
     }
 ]
