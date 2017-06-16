@@ -371,7 +371,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                 et_money.setText(maxMoney);
                 break;
             case R.id.ll_red_packet:
-                Intent redIntent = new Intent(this, RechargeActivity.class);
+                Intent redIntent = new Intent(this, RedPacketActivity.class);
                 redIntent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
                 redIntent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
                 startActivity(redIntent);

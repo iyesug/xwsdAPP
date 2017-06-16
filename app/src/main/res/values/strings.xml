@@ -85,6 +85,7 @@
     <string name="withdraw_record">提现记录</string>
     <string name="certification">实名认证</string>
     <string name="bank_card_manage">银行卡管理</string>
+    <string name="my_red_packet">我的红包</string>
     <string name="modification">修改</string>
     <string name="can_turn_creditor">可转让</string>
     <string name="transfering_creditor">转让中</string>

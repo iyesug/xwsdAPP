@@ -318,6 +318,9 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity android:name=".activity.AutoBidJianSettingActivity"/>
+        <activity
+                android:name=".activity.RedPacketActivity"
+                android:screenOrientation="portrait" />
     </application>
 
 </manifest>
