@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -69,6 +70,8 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
     @Bind(R.id.et_money)
     EditText et_money;
 
+    @Bind(R.id.ll_red_packet)
+    LinearLayout ll_red_packet;
 
     private AgreeCardBean agreeCardBeanBaofu;
     private AgreeCardBean agreeCardBeanFuyou;
@@ -229,7 +232,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
         et_money.setText(investMoney);
     }
 
-    @OnClick({R.id.bt_pay, R.id.commit,R.id.bt_pay_max})
+    @OnClick({R.id.bt_pay, R.id.commit,R.id.bt_pay_max,R.id.ll_red_packet})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -366,6 +369,12 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
             case R.id.bt_pay_max:
                 String maxMoney = (this.maxMoney)+"";
                 et_money.setText(maxMoney);
+                break;
+            case R.id.ll_red_packet:
+                Intent redIntent = new Intent(this, RechargeActivity.class);
+                redIntent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
+                redIntent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
+                startActivity(redIntent);
                 break;
         }
     }

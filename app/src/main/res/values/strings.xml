@@ -212,5 +212,8 @@
     <string name="setcard">您尚未设置充值银行卡，是否前往设置。</string>
     <string name="go">前往</string>
     <string name="services">在线客服</string>
+    <string name="against_red_packet">抵扣红包</string>
+    <string name="comfirm_buttom">确认</string>
+    <string name="cancel_buttom">取消</string>
 
 </resources>

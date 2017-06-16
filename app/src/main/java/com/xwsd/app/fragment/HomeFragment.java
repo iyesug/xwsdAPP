@@ -299,7 +299,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         }
 
         //初始化月份
-        if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.get(0) != null) {
+        if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.size()>0 && indexBean.data.newHandOdds.get(0) != null) {
             tv_month.setText(indexBean.data.newHandOdds.get(0).oddPeriod);
         }
         et_new_bid.setText("");
@@ -646,48 +646,51 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         switch (v.getId()) {
             case commit://立即投
 
-                switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).progress) {
-                    case "start":
-                        if (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).schedule == 100) {//复审中
-                            ToastUtil.showToastShort("已结束");
-                        } else {
-                            switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).second) {
-                                case -1://立即投标
-                                    //判断用户是否登录
-                                    if (AppContext.getUserBean() == null) {
-                                        Intent intent = new Intent(getActivity(), UserActivity.class);
-                                        intent.putExtra(UserParam.CLASS, PromptlyInvestActivity.class);
-                                        intent.putExtra(UserParam.TYPE, PromptlyInvestActivity.TYPE_ALL_BID);
-                                        intent.putExtra(UserParam.DATA, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddNumber);
-                                        intent.putExtra(UserParam.TITLE, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddTitle);
-                                        //intent.putExtra(UserParam.MONEY, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddMoneyLast);
-                                        startActivity(intent);
-                                        return;
-                                    } else {
-                                        Intent intent = new Intent(getActivity(), PromptlyInvestActivity.class);
-                                        intent.putExtra(UserParam.TYPE, PromptlyInvestActivity.TYPE_ALL_BID);
-                                        intent.putExtra(UserParam.DATA, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddNumber);
-                                        intent.putExtra(UserParam.TITLE, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddTitle);
-                                        //intent.putExtra(UserParam.MONEY, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddMoneyLast);
-                                        startActivity(intent);
-                                    }
-                                    break;
-                                case 0://显示开始时间 2016-10-20 14:00:00
-                                    ToastUtil.showToastShort("尚未开始");
-                                    break;
-                                default://开始倒计时
-                                    ToastUtil.showToastShort("尚未开始");
-                                    break;
+                if(indexBean.data.newHandOdds.size()>vp_newbie_bid.getCurrentItem()){
+                    switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).progress) {
+                        case "start":
+                            if (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).schedule == 100) {//复审中
+                                ToastUtil.showToastShort("已结束");
+                            } else {
+                                switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).second) {
+                                    case -1://立即投标
+                                        //判断用户是否登录
+                                        if (AppContext.getUserBean() == null) {
+                                            Intent intent = new Intent(getActivity(), UserActivity.class);
+                                            intent.putExtra(UserParam.CLASS, PromptlyInvestActivity.class);
+                                            intent.putExtra(UserParam.TYPE, PromptlyInvestActivity.TYPE_ALL_BID);
+                                            intent.putExtra(UserParam.DATA, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddNumber);
+                                            intent.putExtra(UserParam.TITLE, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddTitle);
+                                            //intent.putExtra(UserParam.MONEY, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddMoneyLast);
+                                            startActivity(intent);
+                                            return;
+                                        } else {
+                                            Intent intent = new Intent(getActivity(), PromptlyInvestActivity.class);
+                                            intent.putExtra(UserParam.TYPE, PromptlyInvestActivity.TYPE_ALL_BID);
+                                            intent.putExtra(UserParam.DATA, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddNumber);
+                                            intent.putExtra(UserParam.TITLE, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddTitle);
+                                            //intent.putExtra(UserParam.MONEY, indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddMoneyLast);
+                                            startActivity(intent);
+                                        }
+                                        break;
+                                    case 0://显示开始时间 2016-10-20 14:00:00
+                                        ToastUtil.showToastShort("尚未开始");
+                                        break;
+                                    default://开始倒计时
+                                        ToastUtil.showToastShort("尚未开始");
+                                        break;
+                                }
                             }
-                        }
-                        break;
-                    case "run"://还款中
-                        ToastUtil.showToastShort("已结束");
-                        break;
-                    default://已结束
-                        ToastUtil.showToastShort("已结束");
-                        break;
+                            break;
+                        case "run"://还款中
+                            ToastUtil.showToastShort("已结束");
+                            break;
+                        default://已结束
+                            ToastUtil.showToastShort("已结束");
+                            break;
+                    }
                 }
+
 
                 break;
             case R.id.iv_left://新手标左边
