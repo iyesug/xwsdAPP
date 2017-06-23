@@ -35,9 +35,16 @@ public class MobileCertificationActivity extends BaseActivity {
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.mobile_certification));
         navbarManage.showLeft(true);
-        navbarManage.showRight(false);
+        navbarManage.showRight(true);
         navbarManage.setBackground(R.color.navbar_bg);
         navbarManage.setLeftImg(R.mipmap.ic_back_b);
+        navbarManage.setRightStr(getResources().getString(R.string.modification));
+        navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener() {
+            @Override
+            public void onRightClick() {
+                //// TODO: 2017/6/9  修改手机号
+            }
+        });
         navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
             @Override
             public void onLeftClick() {

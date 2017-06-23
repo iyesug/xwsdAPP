@@ -17,7 +17,7 @@ import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
-import com.xwsd.app.tools.QqUtil;
+import com.xwsd.app.tools.ContactUtil;
 import com.xwsd.app.view.DemoPopupWindow;
 import com.xwsd.app.view.DoubleScreenDialog;
 import com.xwsd.app.view.MADialog;
@@ -105,13 +105,13 @@ public class ProjectFragment extends BaseFragment implements View.OnClickListene
             mMDialog.setchoose1(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    QqUtil.callQq(getActivity());
+                    ContactUtil.callQq(getActivity());
                 }
             });
             mMDialog.setchoose2(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    QqUtil.checkPermission(getActivity());
+                    ContactUtil.checkPermission(getActivity());
                 }
             });
             mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());

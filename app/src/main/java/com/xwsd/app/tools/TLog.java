@@ -6,8 +6,8 @@ import android.util.Log;
  * 日志打印工具
  */
 public class TLog {
-    public static final String LOG_TAG = "Gx";
-    public static boolean DEBUG = false;//关闭日志打印
+    public static final String LOG_TAG = "Gy";
+    public static boolean DEBUG = true;//关闭日志打印
 
     public TLog() {
     }

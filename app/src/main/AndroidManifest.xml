@@ -313,6 +313,9 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ProtDetilaActivity"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.PromptlyInvestTransferActivity"
+                  android:screenOrientation="portrait"/>
         <activity
             android:name="com.baofoo.sdk.vip.BaofooPayActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

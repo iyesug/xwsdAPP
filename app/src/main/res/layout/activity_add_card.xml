@@ -199,6 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/DIMEN_50"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:paddingLeft="@dimen/DIMEN_15">
 
                         <TextView
@@ -283,6 +284,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/DIMEN_50"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:paddingLeft="@dimen/DIMEN_15">
 
                         <TextView

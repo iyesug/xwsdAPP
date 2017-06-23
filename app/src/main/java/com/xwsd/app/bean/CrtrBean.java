@@ -26,6 +26,8 @@ public class CrtrBean implements Serializable {
         public String oddReward;
         public float oddMoneyLast;
         public String oddRepaymentStyle;
-
+        public String schedule;	//投标进度
+        public String ingCount;	//在买数量
+        public String investedInterest;	//未结利息
     }
 }

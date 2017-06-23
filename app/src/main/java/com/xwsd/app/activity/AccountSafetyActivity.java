@@ -46,6 +46,9 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
     @Bind(R.id.ll_unite_deposit)
     LinearLayout ll_unite_deposit;
 
+    @Bind(R.id.ll_modify_update_phone)
+    LinearLayout ll_modify_update_phone;
+
     @Bind(R.id.ll_modify_login_password)
     LinearLayout ll_modify_login_password;
 
@@ -94,6 +97,7 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
         ((TextView) ll_bank_card.findViewById(R.id.tv_title)).setText(getString(R.string.bank_card));
         ((TextView) ll_unite_deposit.findViewById(R.id.tv_title)).setText(getString(R.string.unite_deposit));
 
+        ((TextView) ll_modify_update_phone.findViewById(R.id.tv_title)).setText(getString(R.string.ll_modify_update_phone));
         ((TextView) ll_modify_login_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_login_password));
 
         if (null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.payPassStatus&&AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.YES)) {
@@ -110,6 +114,7 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
             R.id.ll_email_certification,
             R.id.ll_bank_card,
             R.id.ll_unite_deposit,
+            R.id.ll_modify_update_phone,
             R.id.ll_modify_login_password,
             R.id.ll_modify_pay_password,
             R.id.ll_gesture_password,
@@ -141,6 +146,11 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
             case R.id.ll_unite_deposit:
                 BuriedPointUtil.buriedPoint("账户安全资金托管");
                 intent = new Intent(AccountSafetyActivity.this, DredgeTrusteeshipActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ll_modify_update_phone:
+                BuriedPointUtil.buriedPoint("账户安全修改手机号码");
+                intent = new Intent(AccountSafetyActivity.this, ModifyLoginPasswordActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_modify_login_password:

@@ -18,7 +18,7 @@ import java.util.List;
  * Created by iyesug on 2017/6/5.
  */
 
-public class QqUtil {
+public class ContactUtil {
     /**
      * 判断微信是否可用
      *
@@ -82,14 +82,14 @@ public class QqUtil {
     }
 
     public static void callQq(Context context) {
-        if(!QqUtil.isQQClientAvailable(context)){
+        if(!ContactUtil.isQQClientAvailable(context)){
             final MADialog mMDialog = new MADialog(context);
             mMDialog.setMessage("未安装QQ，请安装QQ后进行交流");
             mMDialog.setBtnOK("确定", v1 -> {
                 mMDialog.miss();
             });
         }
-        else if(!QqUtil.isRightTime(context)){
+        else if(!ContactUtil.isRightTime(context)){
             final MADialog mMDialog = new MADialog(context);
             mMDialog.setMessage("客服不在线，请留言！我们会第一时间联系您！");
             mMDialog.setBtnOK("确定", v1 -> {

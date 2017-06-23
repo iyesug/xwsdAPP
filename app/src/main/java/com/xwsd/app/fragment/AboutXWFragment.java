@@ -16,7 +16,7 @@ import com.xwsd.app.activity.WebDetailsActivity;
 import com.xwsd.app.api.XWSDRequestAdresse;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.tools.QqUtil;
+import com.xwsd.app.tools.ContactUtil;
 import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
 import com.yanzhenjie.permission.AndPermission;
@@ -79,10 +79,11 @@ public class AboutXWFragment extends BaseFragment implements View.OnClickListene
                 break;
 
             case R.id.call:
-                checkPermission();
+
+                ContactUtil.checkPermission(getActivity());
                 break;
             case R.id.qq:
-                QqUtil.callQq(getActivity());
+                ContactUtil.callQq(getActivity());
                 break;
         }
     }

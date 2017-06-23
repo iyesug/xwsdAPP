@@ -141,7 +141,7 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
 
     DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private float maxMoney;
-
+    private float allInterest;
     /**
      * 导航栏
      */
@@ -322,7 +322,7 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
                     if (jsonObject.getInt("status") == 1) {
                         crtrBean = GsonUtils.jsonToBean(response, CrtrBean.class);
                         maxMoney = (float) jsonObject.getJSONObject("data").getDouble("moneyLast");
-
+                        allInterest= (float) jsonObject.getJSONObject("data").getDouble("investedInterest");
                         if (type == 1) {
                             error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
                         } else {
@@ -480,9 +480,10 @@ public class TransferDetailsActivity extends BaseActivity implements View.OnClic
                     return;
                 }
 
-                intent = new Intent(TransferDetailsActivity.this, PromptlyInvestActivity.class);
-                intent.putExtra(UserParam.TYPE, PromptlyInvestActivity.TYPE_TRANSFER);
+                intent = new Intent(TransferDetailsActivity.this, PromptlyInvestTransferActivity.class);
+                intent.putExtra(UserParam.TYPE, PromptlyInvestTransferActivity.TYPE_TRANSFER);
                 intent.putExtra(UserParam.DATA, id);
+                intent.putExtra(UserParam.ALLINTEREST, allInterest);
                 //     intent.putExtra("investMoney",et_money.getText().toString().trim());
 //                intent.putExtra(UserParam.MONEY, crtrBean.data.oddMoneyLast);
                 intent.putExtra(UserParam.TITLE, crtrBean.data.title);

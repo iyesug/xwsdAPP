@@ -14,6 +14,7 @@ import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.TLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 import okhttp3.OkHttpClient;
 
 import javax.net.ssl.HostnameVerifier;
@@ -73,7 +74,7 @@ public class AppContext extends Application {
         context = getApplicationContext();
 
         //开启日志输出
-        TLog.DEBUG = false;
+        TLog.DEBUG = true;
 
 
         //bugly初始化
@@ -110,7 +111,7 @@ public class AppContext extends Application {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                //             .addInterceptor(new LoggerInterceptor("TAG"))
+                .addInterceptor(new LoggerInterceptor("TAG"))
                 .cookieJar(cookieJar1)
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override

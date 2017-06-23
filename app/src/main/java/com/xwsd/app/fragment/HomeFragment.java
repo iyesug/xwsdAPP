@@ -299,7 +299,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         }
 
         //初始化月份
-        if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.get(0) != null) {
+        if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.size() != 0) {
             tv_month.setText(indexBean.data.newHandOdds.get(0).oddPeriod);
         }
         et_new_bid.setText("");
@@ -645,6 +645,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     public void onClick(View v) {
         switch (v.getId()) {
             case commit://立即投
+                if(indexBean.data.newHandOdds.size()>vp_newbie_bid.getCurrentItem()){
 
                 switch (indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).progress) {
                     case "start":
@@ -688,7 +689,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                         ToastUtil.showToastShort("已结束");
                         break;
                 }
-
+                }
                 break;
             case R.id.iv_left://新手标左边
                 vp_newbie_bid.setCurrentItem(vp_newbie_bid.getCurrentItem() - 1);
@@ -700,6 +701,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 //                切换到讯息
                 ((MainActivity) getActivity()).main_tab.check(R.id.tab_news);
                 break;
+
         }
     }
 

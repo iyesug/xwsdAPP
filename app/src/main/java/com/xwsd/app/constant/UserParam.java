@@ -23,4 +23,5 @@ public class UserParam {
     public static final String ID = "id";
     public static final String OBJ = "obj";
     public static final String NUM = "num";
+    public static final String ALLINTEREST = "allInterest";
 }

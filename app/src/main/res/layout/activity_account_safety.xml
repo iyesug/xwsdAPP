@@ -77,6 +77,14 @@
                 android:orientation="vertical">
 
                 <include
+                        android:id="@+id/ll_modify_update_phone"
+                        layout="@layout/layout_account_safety_select"></include>
+
+                <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_10"></View>
+
+                <include
                     android:id="@+id/ll_modify_login_password"
                     layout="@layout/layout_account_safety_select"></include>
 

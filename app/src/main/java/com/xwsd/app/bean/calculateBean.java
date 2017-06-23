@@ -11,5 +11,6 @@ public class calculateBean implements Serializable {
     public Data data;
     public static class Data implements Serializable {
         public String interest;
+
     }
 }

@@ -2,10 +2,11 @@ package com.xwsd.app.activity;
 
 import android.content.*;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -36,7 +37,7 @@ import java.util.Map;
  * Created by Gx on 2016/8/24.
  * 立即支付
  */
-public class PromptlyInvestActivity extends BaseActivity implements View.OnClickListener {
+public class PromptlyInvestTransferActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 导航栏
      */
@@ -49,13 +50,12 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
     private int type;
 
     private String id;
-
     private float oddMoneyLast;
 
     RequestCall call;
 
     private float maxMoney;
-
+    private float allInterest;
     private String investMoney;
 
     @Bind(R.id.error_layout)
@@ -69,8 +69,9 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
 
     @Bind(R.id.et_money)
     EditText et_money;
-    @Bind(R.id.ll_red_packet)
-    LinearLayout ll_red_packet;
+
+    @Bind(R.id.tv_interest)
+    TextView tv_interest;
 
     private AgreeCardBean agreeCardBeanBaofu;
     private AgreeCardBean agreeCardBeanFuyou;
@@ -114,6 +115,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
         intent = getIntent();
         type = intent.getIntExtra(UserParam.TYPE, TYPE_ALL_BID);
         id = intent.getStringExtra(UserParam.DATA);
+        allInterest =intent.getFloatExtra(UserParam.ALLINTEREST,0);
         if(type == TYPE_ALL_BID){
             setContentView(R.layout.activity_promptly_invest);
         }else{
@@ -221,6 +223,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                             error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
                             maxMoney = (float) jsonObject.getJSONObject("data").getDouble("money");
                             oddMoneyLast = (float) jsonObject.getJSONObject("data").getDouble("moneyLast");
+
                             setData();
                         } else {
                             error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
@@ -238,23 +241,47 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
         tv_money.setText(decimalFormat.format(oddMoneyLast));
         tv_balance.setText(AppContext.getUserBean().data.fundMoney);
         et_money.setText(investMoney);
+        tv_interest.setText("0.00");
+        et_money.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!"".equals(s.toString().trim())){
+                    Float money=Float.parseFloat(s.toString().trim());
+                    Float interest=allInterest*(money/maxMoney);
+                    tv_interest.setText(decimalFormat.format(interest)+"");
+                }else{
+                    tv_interest.setText("0.00");
+                }
+
+            }
+        });
     }
 
-    @OnClick({R.id.bt_pay, R.id.commit,R.id.bt_pay_max,R.id.ll_red_packet})
+    @OnClick({R.id.bt_pay, R.id.commit,R.id.bt_pay_max})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_pay:
                 //                充值前，先判断是否进行了实名认证
                 if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                    new AlertDialog(PromptlyInvestActivity.this)
+                    new AlertDialog(PromptlyInvestTransferActivity.this)
                             .builder()
                             .setTitle("温馨提示：")
                             .setMsg("您尚未进行实名认证，是否前往认证。")
                             .setPositiveButton("前往", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestActivity.this, CertificationActivity.class);
+                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, CertificationActivity.class);
                                     startActivity(intent);
                                 }
                             })
@@ -270,14 +297,14 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
 
 //                充值前，先判断是否开通了托管
                 if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
-                    new AlertDialog(PromptlyInvestActivity.this)
+                    new AlertDialog(PromptlyInvestTransferActivity.this)
                             .builder()
                             .setTitle("温馨提示：")
                             .setMsg("您尚未开通托管，是否前往开通。")
                             .setPositiveButton("前往", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestActivity.this, DredgeTrusteeshipActivity.class);
+                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, DredgeTrusteeshipActivity.class);
                                     startActivity(intent);
                                 }
                             })
@@ -313,7 +340,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                             .setPositiveButton("前往", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestActivity.this, SettingsPayBankActivity.class);
+                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, SettingsPayBankActivity.class);
                                     startActivity(intent);
                                 }
                             })
@@ -347,7 +374,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                     ToastUtil.showToastShort("剩余金额不能低于50元");
                     return;
                 }
-                Intent intent = new Intent(PromptlyInvestActivity.this, WebDetailsActivity.class);
+                Intent intent = new Intent(PromptlyInvestTransferActivity.this, WebDetailsActivity.class);
                 String url;
                 if (type == TYPE_ALL_BID) {
                     intent.putExtra(UserParam.TITLE, "投标");
@@ -377,13 +404,9 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
             case R.id.bt_pay_max:
                 String maxMoney = (this.maxMoney)+"";
                 et_money.setText(maxMoney);
+                tv_interest.setText(decimalFormat.format(allInterest)+"");
                 break;
-            case R.id.ll_red_packet:
-                Intent redIntent = new Intent(this, RedPacketActivity.class);
-                redIntent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
-                redIntent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
-                startActivity(redIntent);
-                break;
+
         }
     }
 

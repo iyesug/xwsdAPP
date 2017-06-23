@@ -92,6 +92,7 @@
     <string name="account_safety">账户安全</string>
     <string name="mobile_certification">手机认证</string>
     <string name="email_certification">邮箱认证</string>
+    <string name="ll_modify_update_phone">修改手机号码</string>
     <string name="modify_login_password">修改登录密码</string>
     <string name="modify_pay_password">修改支付密码</string>
     <string name="gesture_password">设置手势密码</string>
@@ -213,4 +214,10 @@
     <string name="go">前往</string>
     <string name="services">在线客服</string>
 
+    <string name="unbind">解绑</string>
+    <string name="sync">同步</string>
+    <string name="against_red_packet">抵扣红包</string>
+    <string name="comfirm_buttom">确认</string>
+    <string name="cancel_buttom">取消</string>
+    <string name="my_red_packet">我的红包</string>
 </resources>

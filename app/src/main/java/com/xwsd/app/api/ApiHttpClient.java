@@ -71,6 +71,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static String CLOSE = "0";
     public static String userSecret = "";
 
+    public static String media = "Android";
     /**
      * 发送验证码
      *
@@ -83,6 +84,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("msgType", msgType);
         map.put("phone", phone);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -91,10 +93,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(SMS)
                 .addParams("msgType", msgType)
                 .addParams("phone", phone)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
         }
+
+
         RequestCall call = build.build();
         call.execute(callback);
         return call;
@@ -116,6 +121,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("username", username);
         map.put("password", password);
         map.put("phone", phone);
+        map.put("media",media);
         if (!TextUtils.isEmpty(spreadUser)) {
             map.put("spreadUser", spreadUser);
         }
@@ -127,6 +133,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("password", password)
                 .addParams("phone", phone)
                 .addParams("smsCode", smsCode)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
 
         if (!TextUtils.isEmpty(spreadUser)) {
@@ -150,11 +157,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("username", username);
         map.put("password", password);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(LOGIN)
                 .addParams("username", username)
                 .addParams("password", password)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -185,6 +194,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("passwordSure", passwordSure);
         map.put("type", type);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(UPDATE_PASSWORD)
@@ -194,6 +204,77 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("passwordSure", passwordSure)
                 .addParams("type", type)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+    /**
+     * 修改登录密码
+     *
+     * @param userId       用户id
+     * @param oldpass      旧密码
+     * @param password     新密码
+     * @param passwordSure 确认密码
+     * @param callback     回调接口
+     * @return 返回一个可取消的请求
+     */
+    public static RequestCall updateLoginpass(String userId,
+                                             String oldpass,
+                                             String password,
+                                             String passwordSure,
+
+                                             Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("oldpass", oldpass);
+        map.put("password", password);
+        map.put("passwordSure", passwordSure);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .url(UPDATE_LOGIN_PASS)
+                .addParams("userId", userId)
+                .addParams("oldpass", oldpass)
+                .addParams("password", password)
+                .addParams("passwordSure", passwordSure)
+
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+    /**
+     * 修改电话
+     *
+     * @param userId       用户id
+     * @param phone      电话
+     * @param callback     回调接口
+     * @return 返回一个可取消的请求
+     */
+    public static RequestCall updatePhone(String userId,
+                                             String phone,
+                                             Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("phone", phone);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .url(UPDATE_PHONE)
+                .addParams("userId", userId)
+                .addParams("phone", phone)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -208,12 +289,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      */
     public static RequestCall index(Callback callback) {
         Map<String, String> map = getSortMap();
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
         GetBuilder build = OkHttpUtils
                 .get()
                 .url(INDEX)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -234,11 +317,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
             Map<String, String> map = getSortMap();
             map.put("userId", AppContext.getUserBean().data.userId);
             map.put("userSecret",userSecret);
+            map.put("media",media);
             RequestCall call = OkHttpUtils
                     .get()
                     .url(ACCOUNT)
                     .addParams("userId", AppContext.getUserBean().data.userId)
                     .addParams("userSecret",userSecret)
+                    .addParams("media", media)
                     .addParams("sign", sign(map))
                     .build();
             call.execute(callback);
@@ -262,6 +347,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("page", String.valueOf(page));
         map.put("pageSize", String.valueOf(pageSize));
+        map.put("media",media);
         if (!TextUtils.isEmpty(period)) {
             map.put("period", period);
         }
@@ -276,6 +362,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(ODDS)
                 .addParams("page", String.valueOf(page))
                 .addParams("pageSize", String.valueOf(pageSize))
+                .addParams("media", media)
                 .addParams("sign", sign(map));
 
         if (!TextUtils.isEmpty(period)) {
@@ -303,6 +390,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall odd(String oddNumber, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("oddNumber", oddNumber);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -310,6 +398,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .get()
                 .url(ODD)
                 .addParams("oddNumber", oddNumber)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -342,7 +431,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", "" + page);
         map.put("pageSize", "" + pageSize);
         map.put("userSecret",userSecret);
-
+        map.put("media",media);
 //        map.put("startTime", startTime);
 //        map.put("endTime", endTime);
         RequestCall call = OkHttpUtils
@@ -354,6 +443,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
 //                .addParams("startTime", startTime)
 //                .addParams("endTime", endTime)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -384,6 +474,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", "" + page);
         map.put("pageSize", "" + pageSize);
         map.put("userSecret",userSecret);
+        map.put("media",media);
 //        map.put("startTime", startTime);
 //        map.put("endTime", endTime);
         RequestCall call = OkHttpUtils
@@ -395,6 +486,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
 //                .addParams("startTime", startTime)
 //                .addParams("endTime", endTime)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -413,11 +505,39 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(GET_BANK_CARDS)
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+    /**
+     * 用户绑定银行卡
+     *
+     * @param userId 用户id
+     * @return 返回一个可取消的请求
+     */
+    public static RequestCall getBankCard(
+            String userId,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .get()
+                .url(GET_BANK_CARD)
+                .addParams("userId", userId)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -440,6 +560,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", "1");
         map.put("pageSize","50");
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(INVESTLOTTER)
@@ -448,6 +569,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("page", "1")
                 .addParams("pageSize", "50")
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -462,6 +584,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", "1");
         map.put("pageSize","36");
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(REPAYMENT)
@@ -470,6 +593,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("page", "1")
                 .addParams("pageSize", "36")
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -491,12 +615,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddMoneyId", oddMoneyId);
         map.put("lotteryId", lotteryId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .addParams("userId", userId)
                 .addParams("oddMoneyId", oddMoneyId)
                 .addParams("lotteryId", lotteryId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(USEINVESTLOTTER)
                 .build();
@@ -534,6 +660,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("subbranch", subbranch);
         map.put("isDefault", isDefault);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(ADD_BANK_CARD)
@@ -545,6 +672,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("subbranch", subbranch)
                 .addParams("isDefault", isDefault)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -628,6 +756,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("realname", realname);
         map.put("cardnum", cardnum);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(CERTIFICATION)
@@ -635,6 +764,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("realname", realname)
                 .addParams("cardnum", cardnum)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -649,10 +779,11 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall banks(
             Callback callback) {
         Map<String, String> map = getSortMap();
-
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(BANKS)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -669,10 +800,12 @@ public class ApiHttpClient implements XWSDRequestAdresse {
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("id", id);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(AREAS)
                 .addParams("id", id)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -700,6 +833,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("paypass", paypass);
         map.put("paypassSure", paypassSure);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(SET_PAY_PASS)
@@ -708,6 +842,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("paypass", paypass)
                 .addParams("paypassSure", paypassSure)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -726,12 +861,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("payType",payType);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(AGREE_CARD)
                 .addParams("userId", userId)
                 .addParams("payType", payType)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -750,11 +887,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(GET_USER_INFO)
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -773,11 +912,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(QUEUE_INFO)
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -799,12 +940,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("id", id);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(DEL_BANK_CARD)
                 .addParams("userId", userId)
                 .addParams("id", id)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -843,6 +986,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("subbranch", subbranch);
         map.put("isDefault", isDefault);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(UPDATE_BANK_CARD)
@@ -855,6 +999,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("subbranch", subbranch)
                 .addParams("isDefault", isDefault)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -865,52 +1010,31 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      *
      * @param userId   用户id
      * @param money    充值金额, 需要大于500，测试时0.01
-     * @param payType  充值渠道, 目前只能为富友
-     * @param payWay   充值方式, 目前只能为02
-     * @param bankCode 银行编号, 不可空，通过获取用户已认证银行卡接口可获得
-     * @param noAgree  认证码, 已认证用户必须，未认证用户为空字符串
-     * @param bankCard 银行卡号, 未认证用户必须，已认证用户可为空字符串
+
      * @return 返回一个可取消的请求
      */
     public static RequestCall recharge(
             String userId,
             String money,
-            String payType,
-            String payWay,
-            String bankCode,
-            String noAgree,
-            String bankCard,
+
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("money", money);
-        map.put("payType", payType);
-        map.put("payWay", payWay);
-        map.put("bankCode", bankCode);
         map.put("userSecret",userSecret);
-        if (noAgree != null) {
-            map.put("noAgree", noAgree);
-        }
-        if (bankCard != null) {
-            map.put("bankCard", bankCard);
-        }
+        map.put("media",media);
+
         PostFormBuilder builder = OkHttpUtils
                 .post()
                 .url(RECHARGE)
                 .addParams("userId", userId)
                 .addParams("money", money)
-                .addParams("payType", payType)
-                .addParams("payWay", payWay)
-                .addParams("bankCode", bankCode)
+
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
 
-        if (noAgree != null) {
-            builder.addParams("noAgree", noAgree);
-        }
-        if (bankCard != null) {
-            builder.addParams("bankCard", bankCard);
-        }
+
 
         RequestCall call = builder.build();
         call.execute(callback);
@@ -922,34 +1046,42 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      *
      * @param userId  用户id
      * @param money   提现金额
-     * @param paypass 支付密码
-     * @param bank    银行卡ID
-     * @param isLottery    是否提现卷
+     * @param type 提现方式，0 即时提现 1大额提现
+     * @param cashBankNum    联行号，当type为1时，该值必填
+     * @param isLottery    是否使用提现券
      * @return 返回一个可取消的请求
+    userId	 用户Id
+    money	提现金额
+    type	提现方式，0 即时提现 1大额提现
+    cashBankNum	联行号，当type为1时，该值必填
+    isLottery	是否使用提现券
+    sign	签名信息：查看接口验证
      */
     public static RequestCall withdraw(
             String userId,
             String money,
-            String paypass,
-            String bank,
+            String type,
+            String cashBankNum,
             String isLottery,
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("money", money);
-        map.put("paypass", paypass);
-        map.put("bank", bank);
+        map.put("type", type);
+        map.put("cashBankNum", cashBankNum);
         map.put("isLottery",isLottery);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(WITHDRAW)
                 .addParams("userId", userId)
                 .addParams("money", money)
-                .addParams("paypass", paypass)
-                .addParams("bank", bank)
+                .addParams("type", type)
+                .addParams("cashBankNum", cashBankNum)
                 .addParams("isLottery",isLottery)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -972,12 +1104,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("money", money);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(WITHDRAW_FEE)
                 .addParams("userId", userId)
                 .addParams("money", money)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -995,6 +1129,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("oddNumber", oddNumber);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1002,6 +1137,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .get()
                 .url(ODDRM)
                 .addParams("oddNumber", oddNumber)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1029,6 +1165,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddNumber", oddNumber);
         map.put("page", "" + page);
         map.put("pageSize", "" + pageSize);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1038,6 +1175,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("oddNumber", oddNumber)
                 .addParams("page", "" + page)
                 .addParams("pageSize", "" + pageSize)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1064,6 +1202,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddNumber", oddNumber);
         map.put("page", "" + page);
         map.put("pageSize", "" + pageSize);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1073,6 +1212,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("oddNumber", oddNumber)
                 .addParams("page", "" + page)
                 .addParams("pageSize", "" + pageSize)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1102,6 +1242,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("phoneCode", phoneCode);
         map.put("loginpass", loginpass);
         map.put("loginpassSure", loginpassSure);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(FORGET_LOGIN_PASS)
@@ -1109,6 +1250,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("phoneCode", phoneCode)
                 .addParams("loginpass", loginpass)
                 .addParams("loginpassSure", loginpassSure)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1135,6 +1277,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("phoneCode", phoneCode);
         map.put("paypass", paypass);
         map.put("paypassSure", paypassSure);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(FORGET_PAYPASS)
@@ -1142,6 +1285,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("phoneCode", phoneCode)
                 .addParams("paypass", paypass)
                 .addParams("paypassSure", paypassSure)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1160,11 +1304,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(AUTO_INFO)
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1208,6 +1354,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("fixedMoney", fixedMoney);
         map.put("mode",mode);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         if (types != null) {
             map.put("types", types);
         }
@@ -1225,6 +1372,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("fixedMoney", fixedMoney)
                 .addParams("mode",mode)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
 
         if (types != null) {
@@ -1247,6 +1395,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("page", String.valueOf(page));
         map.put("pageSize", String.valueOf(pageSize));
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1255,6 +1404,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(CRTRS)
                 .addParams("page", String.valueOf(page))
                 .addParams("pageSize", String.valueOf(pageSize))
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1274,6 +1424,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall crtr(String id, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("id", id);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1281,6 +1432,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .get()
                 .url(CRTR)
                 .addParams("id", id)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1303,6 +1455,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("oddNumber", id);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1312,6 +1465,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("userId", userId)
                 .addParams("oddNumber", id)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1334,6 +1488,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("id", id);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1343,6 +1498,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("userId", userId)
                 .addParams("id", id)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1367,6 +1523,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", String.valueOf(page));
         map.put("id", id);
         map.put("pageSize", String.valueOf(pageSize));
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1376,6 +1533,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("page", String.valueOf(page))
                 .addParams("id", id)
                 .addParams("pageSize", String.valueOf(pageSize))
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1398,6 +1556,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", String.valueOf(page));
         map.put("id", id);
         map.put("pageSize", String.valueOf(pageSize));
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1407,6 +1566,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("page", String.valueOf(page))
                 .addParams("id", id)
                 .addParams("pageSize", String.valueOf(pageSize))
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1433,6 +1593,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("month", month);
         map.put("isAll", isAll);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(REPAYMENTS)
@@ -1441,6 +1602,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("month", month)
                 .addParams("isAll", isAll)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1464,6 +1626,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("pageSize", String.valueOf(pageSize));
         map.put("type", type);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(USER_TENDERS)
@@ -1472,6 +1635,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("pageSize", String.valueOf(pageSize))
                 .addParams("type", type)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1495,6 +1659,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", String.valueOf(page));
         map.put("pageSize", String.valueOf(pageSize));
         map.put("type", type);
+        map.put("media",media);
         if (!TextUtils.isEmpty(title)) {
             map.put("title", title);
         }
@@ -1513,6 +1678,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("page", String.valueOf(page))
                 .addParams("pageSize", String.valueOf(pageSize))
                 .addParams("type", type)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
 
         if (!TextUtils.isEmpty(title)) {
@@ -1549,6 +1715,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("pageSize", String.valueOf(pageSize));
         map.put("type", type);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(USER_CRTRS)
@@ -1557,6 +1724,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("pageSize", String.valueOf(pageSize))
                 .addParams("type", type)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1578,6 +1746,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddMoneyId", oddMoneyId);
         map.put("paypass", paypass);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(TRANSFER)
@@ -1585,6 +1754,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("oddMoneyId", oddMoneyId)
                 .addParams("paypass", paypass)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1606,6 +1776,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("oddMoneyId", oddMoneyId);
         map.put("paypass", paypass);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(DEL_TRANSFER)
@@ -1613,6 +1784,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("oddMoneyId", oddMoneyId)
                 .addParams("paypass", paypass)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1630,11 +1802,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(USER_ACCOUNT)
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1665,6 +1839,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("money", money);
         map.put("province", province);
         map.put("city", city);
+        map.put("media",media);
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             map.put("userId", AppContext.getUserBean().data.userId);
         }
@@ -1676,6 +1851,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("money", money)
                 .addParams("province", province)
                 .addParams("city", city)
+                .addParams("media", media)
                 .addParams("sign", sign(map));
         if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
             build.addParams("userId", AppContext.getUserBean().data.userId);
@@ -1698,12 +1874,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("email", email);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(SET_EMAIL)
                 .addParams("userId", userId)
                 .addParams("email", email)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1721,11 +1899,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(SPREAD)
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1742,10 +1922,12 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall news(String id, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("id", id);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(NEWS)
                 .addParams("id", id)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1762,10 +1944,12 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall answers(String id, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("id", id);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(ANSWERS)
                 .addParams("id", id)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1789,6 +1973,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("answerId", answerId);
         map.put("replyContent", replyContent);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(REPLY)
@@ -1797,6 +1982,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("answerId", answerId)
                 .addParams("replyContent", replyContent)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1820,6 +2006,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("content", content);
         map.put("type", type);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .url(ASK)
@@ -1828,6 +2015,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("content", content)
                 .addParams("type", type)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -1847,11 +2035,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .addParams("userId", userId)
                 .addFile("photo", file.getName(), file)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(SET_USER_PHOTO)
                 .build();
@@ -1877,6 +2067,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("maritalstatus", maritalstatus);
         map.put("city", city);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .addParams("userId", userId)
@@ -1884,6 +2075,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("maritalstatus", maritalstatus)
                 .addParams("city", city)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(SET_USER_INFO)
                 .build();
@@ -1902,10 +2094,12 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .addParams("userId", userId)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(USER_VIP)
                 .build();
@@ -1928,12 +2122,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("time", time);
         map.put("customService", customService);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .addParams("userId", userId)
                 .addParams("time", time)
                 .addParams("customService", customService)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(VIP_APPLY)
                 .build();
@@ -1955,11 +2151,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("data", data);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .addParams("userId", userId)
                 .addParams("data", data)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(PV)
                 .build();
@@ -1977,9 +2175,11 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall updataVersion(String version,Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("version", version);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .addParams("version",version)
+                .addParams("media", media)
                 .addParams("sign",sign(map))
                 .url(VERSION)
                 .build();
@@ -2070,6 +2270,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page",page);
         map.put("pageSize",pageSize);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(FRIEND)
@@ -2077,6 +2278,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("page",page)
                 .addParams("pageSize",pageSize)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .build();
         call.execute(callback);
@@ -2101,6 +2303,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("page", page);
         map.put("pageSize", pageSize);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .url(ZIJIN)
@@ -2108,6 +2311,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("type",type)
                 .addParams("page",page)
                 .addParams("pageSize",pageSize)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .addParams("userSecret",userSecret)
                 .build();
@@ -2128,11 +2332,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userId", userId);
         map.put("money",money);
         map.put("userSecret",userSecret);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .post()
                 .addParams("userId", userId)
                 .addParams("money",money)
                 .addParams("userSecret",userSecret)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(GETFRIEND)
                 .build();
@@ -2149,12 +2355,50 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("money",money);
         map.put("time",time);
         map.put("rate",rate);
+        map.put("media",media);
         RequestCall call = OkHttpUtils
                 .get()
                 .addParams("style",style)
                 .addParams("money",money)
                 .addParams("time",time)
                 .addParams("rate",rate)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(crtrs)
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+
+    /**投资计算器接口
+     * @param repayType matchpay等额本息  monthpay按月付息 avg_c 等额本金
+     * @param account 投资金额
+     * @param period 投资期限 12
+     * @param yearRate 期限类型  month  月 week 周
+     * @param periodType 年化率 0.15
+     * @param callback
+     * @return
+     */
+    public static RequestCall calculate(
+            String repayType,String account,String period,String periodType,String yearRate ,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("repayType",repayType);
+        map.put("account",account);
+        map.put("period",period);
+        map.put("yearRate",yearRate);
+        map.put("periodType",periodType);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .get()
+                .addParams("repayType",repayType)
+                .addParams("account",account)
+                .addParams("period",period)
+                .addParams("yearRate",yearRate)
+                .addParams("periodType",periodType)
+                .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(crtrs)
                 .build();
@@ -2166,6 +2410,62 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         RequestCall call = OkHttpUtils
                 .get()//
                 .url(Imageurl)//
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+    /**
+     * 用户银行卡解绑【存管】
+     * @param userId
+     * @param bankNum
+     * @param callback
+     * @return
+     */
+    public static RequestCall cardUnbind(
+            String userId,String bankNum,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("bankNum",bankNum);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .addParams("userId", userId)
+                .addParams("bankNum",bankNum)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(CARD_UNBIND)
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+    /**
+     * 用户银行卡绑定【存管】
+     * @param userId
+     * @param bankNum
+     * @param callback
+     * @return
+     */
+    public static RequestCall cardBind(
+            String userId,String bankNum,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("bankNum",bankNum);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .addParams("userId", userId)
+                .addParams("bankNum",bankNum)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(CARD_UNBIND)
                 .build();
         call.execute(callback);
         return call;

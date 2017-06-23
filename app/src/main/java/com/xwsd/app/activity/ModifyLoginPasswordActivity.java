@@ -110,12 +110,12 @@ public class ModifyLoginPasswordActivity extends BaseActivity implements View.On
                     }
                 });
 
-                call = ApiHttpClient.updatePassword(
+                call = ApiHttpClient.updateLoginpass(
                         AppContext.getUserBean().data.userId,
                         et_oldpass.getText().toString().trim(),
                         et_password.getText().toString().trim(),
                         et_passwordSure.getText().toString().trim(),
-                        ApiHttpClient.LOGINPASS,
+
                         new StringCallback() {
                             @Override
                             public void onError(Call call, Exception e, int id) {

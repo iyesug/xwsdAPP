@@ -62,23 +62,49 @@
             android:layout_marginRight="5dp"
             android:textColor="@color/gray_1"
             android:text="%"/>
+
+
+        <View
+                style="@style/GreyIntervalVertical"
+                ></View>
+
         <EditText
             android:id="@+id/qixian"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:inputType="number"
             android:background="@null"
             android:hint="输入项目期限"
             android:textColorHint="@color/gray_text"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_1"
-            android:textSize="15sp"
-            android:text="月"/>
-
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_line"
+                android:orientation="horizontal">
+            <Button
+                    android:id="@+id/yue"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/DIMEN_25"
+                    android:layout_height="@dimen/DIMEN_20"
+                    android:gravity="center"
+                    android:background="@drawable/select_period_button"
+                    android:textColor="@color/gray_1"
+                    android:textSize="15sp"
+                    android:text="月"/>
+            <Button
+                    android:id="@+id/zhou"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/DIMEN_25"
+                    android:layout_height="@dimen/DIMEN_20"
+                    android:gravity="center"
+                    android:background="@drawable/select_period_button"
+                    android:textColor="@color/gray_1"
+                    android:textSize="15sp"
+                    android:text="周"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -87,34 +113,46 @@
         android:layout_margin="5dp"
         android:gravity="center"
         android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:paddingLeft="5dp"
-            android:layout_weight="1"
-            android:text="回款方式"/>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner"
-                android:spinnerMode="dialog"
-                android:background="@null"
-                android:entries="@array/spingarr"
-                />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:layout_margin="@dimen/DIMEN_5"
-                android:background="@mipmap/qianjin"/>
-        </LinearLayout>
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:paddingLeft="5dp"
+                android:layout_weight="1"
+                android:text="回款方式"
+                android:id="@+id/textView"/>
+
+        <Button
+                android:id="@+id/type1"
+                android:layout_width="@dimen/DIMEN_75"
+                android:layout_height="@dimen/DIMEN_25"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:gravity="center"
+                android:background="@drawable/select_period_button"
+                android:textColor="@color/gray_1"
+                android:textSize="15sp"
+                android:text="等额本息"/>
+        <Button
+                android:id="@+id/type2"
+                android:layout_width="@dimen/DIMEN_75"
+                android:layout_height="@dimen/DIMEN_25"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:gravity="center"
+                android:background="@drawable/select_period_button"
+                android:textColor="@color/gray_1"
+                android:textSize="15sp"
+                android:text="按月付息"/>
+        <Button
+                android:id="@+id/type3"
+                android:layout_width="@dimen/DIMEN_75"
+                android:layout_height="@dimen/DIMEN_25"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:gravity="center"
+                android:background="@drawable/select_period_button"
+                android:textColor="@color/gray_1"
+                android:textSize="15sp"
+                android:text="等额本金"/>
 
     </LinearLayout>
 

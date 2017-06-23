@@ -14,8 +14,8 @@ public interface XWSDRequestAdresse {
     /**
      * 接口根地址
      */
-   String API_URL = "https://app.xwsd.com/api/";//正式
-   //String API_URL = "http://app.xwsdvip.com/api/";//测试
+    // String API_URL = "https://app.xwsd.com/api/";//正式
+String API_URL = "http://app.xwsdvip.com/api/";//测试
 
     /**
      * 签名密钥
@@ -42,7 +42,28 @@ public interface XWSDRequestAdresse {
      */
     String UPDATE_PASSWORD = API_URL + "updatePassword";
 
-    /**
+   /**
+    * 修改手机号【存管】
+    */
+   String UPDATE_PHONE = API_URL + "updatePhone";
+
+
+   /**
+    * 修改登录密码【存管】
+    */
+   String UPDATE_LOGIN_PASS = API_URL + "updateLoginpass";
+
+   /**
+    * 设置存管密码【存管】
+    */
+   String SET_CUSTODY_PASS = API_URL + "setCustodypass";
+
+   /**
+    * 修改存管密码【存管】
+    */
+   String UPDATE_CUSTODY_PASS = API_URL + "updateCustodypass";
+
+   /**
      * 首页
      */
     String INDEX = API_URL + "index";
@@ -77,6 +98,10 @@ public interface XWSDRequestAdresse {
      */
     String GET_BANK_CARDS = API_URL + "userBankCards";
 
+ /**
+  * 用户所有银行卡列表
+  */
+ String GET_BANK_CARD = API_URL + "userBankCard";
     /**
      * 可使用加息券
      */
@@ -379,4 +404,14 @@ public interface XWSDRequestAdresse {
      * 版本更新
      */
     String VERSION = API_URL + "version";
+
+   /**
+    * 用户银行卡解绑
+    */
+   String CARD_UNBIND = API_URL + "cardUnbind";
+
+   /**
+    * 用户银行卡绑定【存管】
+    */
+   String CARD_BIND = API_URL + "cardBind";
 }

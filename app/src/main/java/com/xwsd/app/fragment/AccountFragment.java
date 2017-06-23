@@ -380,7 +380,9 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
                     }
                     else {
-                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+//                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                        mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -418,7 +420,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         Intent intent;
         switch (v.getId()) {
             case R.id.ll_service:
-                QqUtil.callQq(getActivity());
+                ContactUtil.callQq(getActivity());
                 break;
 
             case R.id.ll_auto_bid:
@@ -493,21 +495,24 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 break;
 
             case R.id.bt_withdraw:
-                //进入提现前，先判断用户是否已实名认证
-                if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                    guideCertification();
-                    return;
-                }
+                if(AppContext.getUserBean().data!=null){
+                    //进入提现前，先判断用户是否已实名认证
+                    if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+                        guideCertification();
+                        return;
+                    }
 
-                //进入提现前，先判断用户是否设置了支付密码
-                if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
-                    guidePay();
-                    return;
-                }
-                intent = new Intent(getActivity(), WithdrawActivity.class);
-                intent.putExtra(UserParam.MONEY,accountBean.data.fundMoney);
-                startActivityForResult(intent,1234);
-                break;
+                    //进入提现前，先判断用户是否设置了支付密码
+                    if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
+                        guidePay();
+                        return;
+                    }
+                    intent = new Intent(getActivity(), WithdrawActivity.class);
+                    intent.putExtra(UserParam.MONEY,accountBean.data.fundMoney);
+                    startActivityForResult(intent,1234);
+                    break;
+            }
+
         }
     }
 

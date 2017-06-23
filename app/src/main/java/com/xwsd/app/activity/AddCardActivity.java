@@ -33,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -150,6 +151,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.commit:
+
                 if (TextUtils.isEmpty(et_name.getText().toString().trim())) {
                     ToastUtil.showToastShort(getString(R.string.name_null));
                     return;
@@ -174,31 +176,25 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                     ToastUtil.showToastShort(getString(R.string.banks_null));
                     return;
                 }
-
-                if (provincesId == -1) {
-                    ToastUtil.showToastShort(getString(R.string.provinces_null));
-                    return;
-                }
-
-                if (citysId == -1) {
-                    ToastUtil.showToastShort(getString(R.string.citys_null));
-                    return;
-                }
-
-                if (TextUtils.isEmpty(et_branch_name.getText().toString().trim())) {
-                    ToastUtil.showToastShort(getString(R.string.branch_name_null));
-                    return;
-                }
+//
+//                if (provincesId == -1) {
+//                    ToastUtil.showToastShort(getString(R.string.provinces_null));
+//                    return;
+//                }
+//
+//                if (citysId == -1) {
+//                    ToastUtil.showToastShort(getString(R.string.citys_null));
+//                    return;
+//                }
+//
+//                if (TextUtils.isEmpty(et_branch_name.getText().toString().trim())) {
+//                    ToastUtil.showToastShort(getString(R.string.branch_name_null));
+//                    return;
+//                }
 
 
                 if (type == 1) {//添加
-                    addCard(AppContext.getUserBean().data.userId,
-                            et_card_num.getText().toString().trim(),
-                            String.valueOf(banksId),
-                            String.valueOf(provincesId),
-                            String.valueOf(citysId),
-                            et_branch_name.getText().toString().trim(),
-                            ApiHttpClient.NO);
+                    addCard(et_card_num.getText().toString().trim());
                 } else {//修改
                     modifyCard(bankId,
                             AppContext.getUserBean().data.userId,
@@ -309,23 +305,27 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 添加银行卡
      *
-     * @param userId
-     * @param bankNum
-     * @param bank
-     * @param province
-     * @param city
-     * @param subbranch
-     * @param isDefault
-     */
-    private void addCard(String userId,
-                         String bankNum,
-                         String bank,
-                         String province,
-                         String city,
-                         String subbranch,
-                         String isDefault) {
 
-        showWaitDialog(new DialogInterface.OnCancelListener() {
+     * @param bankNum
+
+     */
+    private void addCard(String bankNum) {
+        //跳转到授权页面
+        Intent intent = new Intent(this, WebApproveActivity.class);
+        Map<String, String> map = ApiHttpClient.getSortMap();
+        map.put("userId", AppContext.getUserBean().data.userId);
+        intent.putExtra(UserParam.URL, ApiHttpClient.CARD_BIND +
+                "?userId=" + AppContext.getUserBean().data.userId +
+                "&bankNum=" + bankNum+
+                "&sign=" + ApiHttpClient.sign(map));
+        TLog.error("url:"+ ApiHttpClient.THIRD_AUTH +
+                "?userId=" + AppContext.getUserBean().data.userId +
+                "&bankNum=" + bankNum+
+                "&sign=" + ApiHttpClient.sign(map));
+        intent.putExtra(UserParam.TITLE, getString(R.string.bank_card));
+        startActivity(intent);
+
+/*        showWaitDialog(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
                 if (call != null) {
@@ -365,7 +365,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                             ToastUtil.showToastShort(getString(R.string.network_exception));
                         }
                     }
-                });
+                });*/
     }
 
     /**

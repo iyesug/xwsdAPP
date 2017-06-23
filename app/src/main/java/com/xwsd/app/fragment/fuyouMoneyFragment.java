@@ -310,11 +310,7 @@ public class fuyouMoneyFragment extends Fragment implements View.OnClickListener
                     }
                     call = ApiHttpClient.recharge(AppContext.getUserBean().data.userId,
                             et_money.getText().toString().trim(),
-                            ApiHttpClient.PAY_TYPE,
-                            ApiHttpClient.PAY_WAY,
-                            data.bank_code,
-                            data.no_agree,
-                            data.card_num,
+
                             new StringCallback() {
                                 @Override
                                 public void onError(Call call, Exception e, int id) {

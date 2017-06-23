@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import com.gnwai.loadingview.DialogControl;
 import com.gnwai.loadingview.LoadDialog;
@@ -21,11 +21,18 @@ import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+/*
+* 投资计算器
+*
+* */
 public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements DialogControl {
 
     private boolean isVisible = true;
     private LoadDialog zProgressHUD;
     private RequestCall call;
+    int period =1;
+    int type=1;
     public DemoPopupWindow(Context context) {
         super(context, null);
     }
@@ -33,22 +40,76 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
     @Override
     protected View generateCustomView(Void data) {
         View root = View.inflate(context, R.layout.popup_demo, null);
-        final Spinner spinner = (Spinner)root.findViewById(R.id.spinner);
+//        final Spinner spinner = (Spinner)root.findViewById(R.id.spinner);
 
         final TextView pupo_money = (TextView)root.findViewById(R.id.pupo_money);
         final EditText toubiaoMoney = (EditText)root.findViewById(R.id.toubiaoMoney);
         final EditText nianhualv = (EditText)root.findViewById(R.id.nianhualv);
         final EditText qixian = (EditText)root.findViewById(R.id.qixian);
 
+        final Button yue = (Button)root.findViewById(R.id.yue);
+        final Button zhou = (Button)root.findViewById(R.id.zhou);
+        final Button type1 = (Button)root.findViewById(R.id.type1);
+        final Button type2 = (Button)root.findViewById(R.id.type2);
+        final Button type3 = (Button)root.findViewById(R.id.type3);
+        yue.setSelected(true);
+        type1.setSelected(true);
+
+
+        //按月
+        yue.setOnClickListener(v -> {
+            period =1;
+            yue.setSelected(true);
+            zhou.setSelected(false);
+
+        });
+        //按周
+        zhou.setOnClickListener(v -> {
+            period =2;
+            zhou.setSelected(true);
+            yue.setSelected(false);
+
+        });
+
+        //先息后本
+        type1.setOnClickListener(v -> {
+            type =1;
+            type1.setSelected(true);
+            type2.setSelected(false);
+            type3.setSelected(false);
+        });
+        //等额本息
+        type2.setOnClickListener(v -> {
+            type =2;
+            type1.setSelected(false);
+            type2.setSelected(true);
+            type3.setSelected(false);
+        });
+        //等额本金
+        type3.setOnClickListener(v -> {
+            type =3;
+            type1.setSelected(false);
+            type2.setSelected(false);
+            type3.setSelected(true);
+        });
+
         View jisuan = root.findViewById(R.id.jisuan);
         jisuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mode = "";
-                if(spinner.getSelectedItemId() == 0){
-                    mode = "month";
-                }else {
-                    mode = "endmonth";
+                if(type==1){
+                    mode = "matchpay";
+                }else if(type==2){
+                    mode = "monthpay";
+                }else{
+                    mode = "avg_c";
+                }
+                String periodString = "";
+                if(period==1){
+                    periodString = "month";
+                }else{
+                    periodString = "week";
                 }
                 if(TextUtils.isEmpty(toubiaoMoney.getText().toString())){
                     ToastUtil.showToastShort("投资金额不能为空");
@@ -66,7 +127,7 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
                             }
                         }
                     });
-                    call = ApiHttpClient.crtrs(mode, toubiaoMoney.getText().toString(), qixian.getText().toString(), nianhualv.getText().toString(), new StringCallback() {
+                    call = ApiHttpClient.calculate(mode, toubiaoMoney.getText().toString(), qixian.getText().toString(),periodString, "0."+nianhualv.getText().toString(), new StringCallback() {
                         @Override
                         public void onError(Call call, Exception e, int id) {
                             hideWaitDialog();
