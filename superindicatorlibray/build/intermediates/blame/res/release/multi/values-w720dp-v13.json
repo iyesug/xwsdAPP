@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "D:\\java\\workspace\\xwsdAPP2.2.4-1\\superindicatorlibray\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w720dp-v13\\values-w720dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "C:\\Users\\Administrator\\.android\\build-cache\\ea6b7d6884b7d2d0c35bbc94707bdc2922e9b02d\\output\\res\\values-w720dp-v13\\values-w720dp-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 76,
+                        "endOffset": 127
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "D:\\java\\workspace\\xwsdAPP\\superindicatorlibray\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-w720dp-v13\\values-w720dp-v13.xml",
         "map": [
             {
