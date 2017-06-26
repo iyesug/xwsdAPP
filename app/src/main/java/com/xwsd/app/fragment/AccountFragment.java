@@ -230,12 +230,12 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 return;
             }
 
-            //进入银行卡前，先判断用户是否设置了支付密码
-            if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
-                    AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
-                guidePay();
-                return;
-            }
+//            //进入银行卡前，先判断用户是否设置了支付密码
+//            if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
+//                    AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
+//                guidePay();
+//                return;
+//            }
 
             Intent intent = new Intent(getActivity(), accountItems.get(position).activity);
             startActivity(intent);
@@ -450,43 +450,43 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     return;
                 }
 
-//                充值前，先判断是否开通了托管
-                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
-                    guideTrusteeship();
-                    return;
-                }
+////                充值前，先判断是否开通了托管
+//                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
+//                    guideTrusteeship();
+//                    return;
+//                }
 
-//                充值前，先判断是否认证了充值银行卡
-                ((MainActivity) getActivity()).showWaitDialog(dialog -> {
-                    if (call != null) {
-                        call.cancel();
-                    }
-                });
-                ((MainActivity) getActivity()).hideWaitDialog();
-                if(isCard){
+////                充值前，先判断是否认证了充值银行卡
+//                ((MainActivity) getActivity()).showWaitDialog(dialog -> {
+//                    if (call != null) {
+//                        call.cancel();
+//                    }
+//                });
+//                ((MainActivity) getActivity()).hideWaitDialog();
+//                if(isCard){
                     intent = new Intent(getActivity(), RechargeActivity.class);
                     // TODO: 2017/3/28  
 //                            Bundle bundle = new Bundle();
 //                            bundle.putSerializable(AgreeCardBean.class.getName(), agreeCardBean);
-                        intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
-                        intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
+//                        intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
+//                        intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
                     startActivityForResult(intent,1234);
           //          startActivity(intent);
-                }else {
-                    new AlertDialog(getActivity())
-                            .builder()
-                            .setTitle("温馨提示：")
-                            .setMsg(getString(R.string.setcard))
-                            .setPositiveButton(getString(R.string.go),
-                                    v1 -> {
-                                Intent intent1 = new Intent(getActivity(), SettingsPayBankActivity.class);
-                                // TODO: 2017/3/28
-                                startActivityForResult(intent1,1234);
-                            })
-                            .setNegativeButton("取消", v2 -> {
-
-                            }).show();
-                }
+//                }else {
+//                    new AlertDialog(getActivity())
+//                            .builder()
+//                            .setTitle("温馨提示：")
+//                            .setMsg(getString(R.string.setcard))
+//                            .setPositiveButton(getString(R.string.go),
+//                                    v1 -> {
+//                                Intent intent1 = new Intent(getActivity(), SettingsPayBankActivity.class);
+//                                // TODO: 2017/3/28
+//                                startActivityForResult(intent1,1234);
+//                            })
+//                            .setNegativeButton("取消", v2 -> {
+//
+//                            }).show();
+//                }
                 break;
             //账号信息
             case R.id.ll_property_details:
@@ -502,11 +502,11 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         return;
                     }
 
-                    //进入提现前，先判断用户是否设置了支付密码
-                    if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
-                        guidePay();
-                        return;
-                    }
+//                    //进入提现前，先判断用户是否设置了支付密码
+//                    if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
+//                        guidePay();
+//                        return;
+//                    }
                     intent = new Intent(getActivity(), WithdrawActivity.class);
                     intent.putExtra(UserParam.MONEY,accountBean.data.fundMoney);
                     startActivityForResult(intent,1234);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.xwsd.app.AppContext;
+import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
@@ -59,8 +60,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.et_branch_name)
     EditText et_branch_name;
 
-    @Bind(R.id.tv_open_bank)
-    TextView tv_open_bank;
+
 
     @Bind(R.id.tv_address_province)
     TextView tv_address_province;
@@ -133,7 +133,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
 //            设置银行信息
             et_card_num.setText(data.bankNum);
             et_branch_name.setText(data.subbranch);
-            tv_open_bank.setText(data.bankName);
+
             banksId = data.bank;
             provincesId = data.province;
             citysId = data.city;
@@ -146,7 +146,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    @OnClick({R.id.commit, R.id.ll_open_bank, R.id.ll_address_province, R.id.ll_address_city})
+    @OnClick({R.id.commit, R.id.ll_address_province, R.id.ll_address_city})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -172,10 +172,10 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                     return;
                 }
 
-                if (banksId == -1) {
-                    ToastUtil.showToastShort(getString(R.string.banks_null));
-                    return;
-                }
+//                if (banksId == -1) {
+//                    ToastUtil.showToastShort(getString(R.string.banks_null));
+//                    return;
+//                }
 //
 //                if (provincesId == -1) {
 //                    ToastUtil.showToastShort(getString(R.string.provinces_null));
@@ -207,14 +207,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                 }
 
                 break;
-            case R.id.ll_open_bank:
-                if (banksBean == null) {
-                    getBanks();
-                } else {
-                    showBankDialog(banksBean);
-                }
 
-                break;
             case R.id.ll_address_province:
                 if (provinces == null) {
                     getAreas(0);
@@ -291,6 +284,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                             if (jsonObject.getInt("status") == 1) {
                                 finish();
                                 BankCardActivity.needRefresh = true;
+                                WithdrawActivity.needRefresh = true;
                             } else {
                             }
                         } catch (JSONException e) {
@@ -314,16 +308,23 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
         Intent intent = new Intent(this, WebApproveActivity.class);
         Map<String, String> map = ApiHttpClient.getSortMap();
         map.put("userId", AppContext.getUserBean().data.userId);
+        map.put("bankNum", bankNum);
+        map.put("media", "Android");
         intent.putExtra(UserParam.URL, ApiHttpClient.CARD_BIND +
                 "?userId=" + AppContext.getUserBean().data.userId +
                 "&bankNum=" + bankNum+
+                "&media=" + "Android"+
                 "&sign=" + ApiHttpClient.sign(map));
         TLog.error("url:"+ ApiHttpClient.THIRD_AUTH +
                 "?userId=" + AppContext.getUserBean().data.userId +
                 "&bankNum=" + bankNum+
+                "&media=" + "Android"+
                 "&sign=" + ApiHttpClient.sign(map));
         intent.putExtra(UserParam.TITLE, getString(R.string.bank_card));
         startActivity(intent);
+        AppManager.getAppManager().finishActivity();
+        BankCardActivity.needRefresh = true;
+        WithdrawActivity.needRefresh = true;
 
 /*        showWaitDialog(new DialogInterface.OnCancelListener() {
             @Override
@@ -499,7 +500,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                                 public void onClick(View v) {
                                     bankDialog.dismiss();
                                     banksId = getBanksKey(banksBean, wv.getSeletedItem());
-                                    tv_open_bank.setText(wv.getSeletedItem());
+
                                 }
                             })
                     .setCanceledOnTouchOutside(true);

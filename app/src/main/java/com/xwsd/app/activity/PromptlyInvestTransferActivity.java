@@ -295,27 +295,27 @@ public class PromptlyInvestTransferActivity extends BaseActivity implements View
                     return;
                 }
 
-//                充值前，先判断是否开通了托管
-                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
-                    new AlertDialog(PromptlyInvestTransferActivity.this)
-                            .builder()
-                            .setTitle("温馨提示：")
-                            .setMsg("您尚未开通托管，是否前往开通。")
-                            .setPositiveButton("前往", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, DredgeTrusteeshipActivity.class);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("取消", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            }).show();
-                    return;
-                }
+////                充值前，先判断是否开通了托管
+//                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
+//                    new AlertDialog(PromptlyInvestTransferActivity.this)
+//                            .builder()
+//                            .setTitle("温馨提示：")
+//                            .setMsg("您尚未开通托管，是否前往开通。")
+//                            .setPositiveButton("前往", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, DredgeTrusteeshipActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                            })
+//                            .setNegativeButton("取消", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//
+//                                }
+//                            }).show();
+//                    return;
+//                }
 
 //                充值前，先判断是否认证了充值银行卡
                 showWaitDialog(new DialogInterface.OnCancelListener() {

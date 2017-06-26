@@ -38,7 +38,8 @@ public class ApiHttpClient implements XWSDRequestAdresse {
 
     public static String YES = "y";
     public static String NO = "n";
-
+    public static String ZERO = "0";
+    public static String ONE = "1";
 //    /**
 //     * 旧充值接口，充值渠道和充值方式(宝付)
 //     */
@@ -1073,7 +1074,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("userSecret",userSecret);
         map.put("media",media);
         RequestCall call = OkHttpUtils
-                .post()
+                .get()
                 .url(WITHDRAW)
                 .addParams("userId", userId)
                 .addParams("money", money)

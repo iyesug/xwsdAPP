@@ -6,10 +6,58 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
-
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_164"
+            android:background="@color/blue_3197ff"
+            android:orientation="vertical">
     <include layout="@layout/view_toolbar"></include>
 
-    <View style="@style/GreyInterval"></View>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/DIMEN_100"
+                android:orientation="horizontal">
+
+            <com.xwsd.app.view.CircleImageView
+                    android:id="@+id/iv_logo_jianxi"
+                    android:layout_width="@dimen/DIMEN_65"
+                    android:layout_height="@dimen/DIMEN_65"
+                    android:layout_gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/DIMEN_15"
+                    android:layout_marginBottom="@dimen/DIMEN_15"
+                    android:layout_marginLeft="@dimen/DIMEN_60"
+                    android:layout_marginRight="@dimen/DIMEN_35"
+                    android:src="@mipmap/jiangxi"
+                    />
+
+            <ImageView
+                    android:id="@+id/iv_logo_withdraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/DIMEN_15"
+                    android:layout_marginBottom="@dimen/DIMEN_15"
+                    android:background="@mipmap/withdraw"
+
+                    />
+            <com.xwsd.app.view.CircleImageView
+                    android:id="@+id/iv_logo_to"
+                    android:layout_width="@dimen/DIMEN_65"
+                    android:layout_height="@dimen/DIMEN_65"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/DIMEN_15"
+                    android:layout_marginBottom="@dimen/DIMEN_15"
+                    android:layout_marginRight="@dimen/DIMEN_60"
+                    android:layout_marginLeft="@dimen/DIMEN_35"
+                    android:src="@mipmap/jiangxi"
+
+                    />
+            
+        </LinearLayout>
+    </LinearLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/ll_bottom"
-            android:layout_marginTop="@dimen/DIMEN_10">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,80 +97,66 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/gray"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/DIMEN_50"
-                        android:orientation="horizontal"
-                        android:paddingLeft="@dimen/DIMEN_15">
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/DIMEN_50"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/DIMEN_15">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="开户名　"
-                            android:textColor="@color/gray_1"
-                            android:textSize="@dimen/TEXT_L" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="可用金额："
+                                android:textColor="@color/gray_1"
+                                android:textSize="@dimen/TEXT_L" />
 
-                        <EditText
-                            android:id="@+id/et_name"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="@dimen/DIMEN_5"
-                            android:layout_weight="1"
-                            android:background="@color/white"
-                            android:enabled="false"
-                            android:paddingLeft="@dimen/DIMEN_10"
-                            android:textColor="@color/gray_1"
-                            android:textColorHint="@color/gray_text"
-                            android:textSize="@dimen/TEXT_L" />
+                        <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/DIMEN_10"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:id="@+id/tv_balance"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="@dimen/DIMEN_5"
+                                    android:singleLine="true"
+                                    android:text="0.00"
+                                    android:textColor="@color/text_orange"
+                                    android:textSize="@dimen/TEXT_L" />
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="元"
+                                    android:textColor="@color/text_orange"
+                                    android:textSize="@dimen/TEXT_M" />
+
+                        </LinearLayout>
+                        <Button
+                                android:id="@+id/bt_all_withdraw"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/DIMEN_10"
+                                android:layout_marginTop="@dimen/DIMEN_10"
+                                android:background="@drawable/select_submit_button_simple"
+                                android:text="全部提现"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/TEXT_M" />
 
                     </LinearLayout>
 
-                    <View
-                        style="@style/GreyInterval"
-                        android:layout_marginLeft="@dimen/DIMEN_15"></View>
 
-                    <LinearLayout
-                        android:id="@+id/ll_banks"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/DIMEN_50"
-                        android:orientation="horizontal"
-                        android:paddingLeft="@dimen/DIMEN_15">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="提入账户"
-                            android:textColor="@color/gray_1"
-                            android:textSize="@dimen/TEXT_L" />
 
-                        <TextView
-                            android:id="@+id/tv_bank"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="@dimen/DIMEN_15"
-                            android:layout_weight="1"
-                            android:text="选择提入账户"
-                            android:textColor="@color/gray_1"
-                            android:textSize="@dimen/TEXT_L" />
-
-                        <ImageView
-                            android:layout_width="@dimen/DIMEN_15"
-                            android:layout_height="@dimen/DIMEN_15"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="@dimen/DIMEN_10"
-                            android:src="@mipmap/ic_in_g" />
-
-                    </LinearLayout>
-
-                    <View
-                        style="@style/GreyInterval"
-                        android:layout_marginLeft="@dimen/DIMEN_15"></View>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -134,29 +168,32 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="手续费　"
+                            android:text="手续费："
                             android:textColor="@color/gray_1"
                             android:textSize="@dimen/TEXT_L" />
+                        <TextView
+                                android:id="@+id/tv_poundage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/DIMEN_5"
+                                android:layout_marginLeft="@dimen/DIMEN_10"
+
+                                android:singleLine="true"
+                                android:layout_gravity="center"
+                                android:text="0.00"
+                                android:textColor="@color/text_orange"
+                                android:textSize="@dimen/TEXT_L" />
 
                         <TextView
-                            android:id="@+id/tv_poundage"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="@dimen/DIMEN_15"
-                            android:layout_weight="1"
-                            android:text="0"
-                            android:textColor="@color/gray_1"
-                            android:textSize="@dimen/TEXT_L" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="元"
+                                android:layout_gravity="center"
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="@dimen/DIMEN_15"
-                            android:text="元"
-                            android:textColor="@color/gray_1"
-                            android:textSize="@dimen/TEXT_L" />
+                                android:textColor="@color/text_orange"
+                                android:textSize="@dimen/TEXT_M" />
+
+
 
 
                     </LinearLayout>
@@ -169,6 +206,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/DIMEN_50"
+                        android:background="@color/white"
                         android:orientation="horizontal"
                         android:paddingLeft="@dimen/DIMEN_15">
 
@@ -236,44 +274,17 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/DIMEN_50"
-                    android:layout_marginLeft="@dimen/DIMEN_15"
-                    android:layout_marginRight="@dimen/DIMEN_15"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/tv_balance"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="当前余额：0元"
-                        android:textColor="@color/gray_1"
-                        android:textSize="@dimen/TEXT_L" />
-
-                    <Button
-                        android:id="@+id/bt_all_withdraw"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/DIMEN_10"
-                        android:layout_marginTop="@dimen/DIMEN_10"
-                        android:background="@drawable/select_submit_button_simple"
-                        android:text="全部提现"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/TEXT_M" />
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
+                    android:background="@color/gray_bg"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/gray_bg"
                         android:layout_margin="@dimen/DIMEN_10"
                         android:text="温馨提示："
                         android:textColor="@color/text_orange"
@@ -282,6 +293,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@color/gray_bg"
                         android:layout_marginBottom="@dimen/DIMEN_10"
                         android:layout_marginLeft="@dimen/DIMEN_10"
                         android:layout_marginRight="@dimen/DIMEN_10"

@@ -56,6 +56,10 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 
     @Bind(R.id.tv_title)
     TextView title;
+
+    @Bind(R.id.tv_type)
+    TextView tv_type;
+
     @Bind(R.id.tv_num)
     TextView num;
 
@@ -173,19 +177,25 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
     private void setBankCard(BankCardBean bean) {
         if (bean.data!=null&&Integer.parseInt(bean.data.id)!=0) {
 
-            if(!"".equals(bean.data.bank)){
-                title.setText(bean.data.bank+"");
+            if(!"".equals(bean.data.binInfo)){
+                String bankinfo=bean.data.binInfo;
+                String[] s=bankinfo.split("-");
+                title.setText(s[0]+"");
+                tv_type.setText(s[1]+"");
             }
-            if(!(bean.data.bankNum.length()>=0)){
-                num.setText("***" + bean.data.bankNum.substring(bean.data.bankNum.length() - 4, bean.data.bankNum.length()));
+            if((bean.data.bankNum.length()>=0)){
+                num.setText("**** **** **** " + bean.data.bankNum.substring(bean.data.bankNum.length() - 4, bean.data.bankNum.length()));
             }
-            else {
-                ll_bank_card_bg.setVisibility(View.GONE);
-            }
+//            else {
+//                ll_bank_card_bg.setVisibility(View.GONE);
+//            }
 
             ApiHttpClient.lodCircleImg(logo, bean.data.bankIco, R.drawable.ic_load, R.drawable.ic_load);
+            ll_add_bank_card_bg.setVisibility(View.GONE);
+            ll_bank_card_bg.setVisibility(View.VISIBLE);
         }else {
             ll_bank_card_bg.setVisibility(View.GONE);
+            ll_add_bank_card_bg.setVisibility(View.VISIBLE);
         }
     }
 
@@ -483,6 +493,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
             needRefresh = false;
         }
     }
+
 
 //    @Override
 //    public void onRefresh() {

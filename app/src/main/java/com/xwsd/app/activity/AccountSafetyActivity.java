@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -16,9 +17,6 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.fragment.fuyouMoneyFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.NavbarManage;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -100,10 +98,10 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
         ((TextView) ll_modify_update_phone.findViewById(R.id.tv_title)).setText(getString(R.string.ll_modify_update_phone));
         ((TextView) ll_modify_login_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_login_password));
 
-        if (null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.payPassStatus&&AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.YES)) {
-            ((TextView) ll_modify_pay_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_pay_password));
+        if (null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.custodyPwd&&AppContext.getUserBean().data.custodyPwd.equals(ApiHttpClient.ONE)) {
+            ((TextView) ll_modify_pay_password.findViewById(R.id.tv_title)).setText(getString(R.string.modify_custody_password));
         } else {
-            ((TextView) ll_modify_pay_password.findViewById(R.id.tv_title)).setText(getString(R.string.setting_pay_password));
+            ((TextView) ll_modify_pay_password.findViewById(R.id.tv_title)).setText(getString(R.string.setting_custody_password));
         }
         ((TextView) ll_gesture_password.findViewById(R.id.tv_title)).setText(getString(R.string.gesture_password));
 
@@ -159,9 +157,9 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.ll_modify_pay_password:
-                BuriedPointUtil.buriedPoint("账户安全修改支付密码");
+                BuriedPointUtil.buriedPoint("账户安全修改存管密码");
                 intent = new Intent(AccountSafetyActivity.this, ModifyPayPasswordActivity.class);
-                if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.YES)) {
+                if (AppContext.getUserBean().data.custodyPwd.equals(ApiHttpClient.ONE)) {
                     intent.putExtra(UserParam.TYPE, 1);
                 } else {
                     intent.putExtra(UserParam.TYPE, 0);
