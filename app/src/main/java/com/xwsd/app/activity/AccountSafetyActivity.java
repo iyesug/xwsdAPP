@@ -148,7 +148,7 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.ll_modify_update_phone:
                 BuriedPointUtil.buriedPoint("账户安全修改手机号码");
-                intent = new Intent(AccountSafetyActivity.this, ModifyLoginPasswordActivity.class);
+                intent = new Intent(AccountSafetyActivity.this, ModifyPhoneActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ll_modify_login_password:

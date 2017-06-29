@@ -321,6 +321,10 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity android:name=".activity.AutoBidJianSettingActivity"/>
+        <activity android:name=".activity.AccountRechargeActivity"/>
+        <activity android:name=".activity.ModifyPhoneActivity"/>
+        <activity android:name=".activity.BankListActivity"/>
+
     </application>
 
 </manifest>

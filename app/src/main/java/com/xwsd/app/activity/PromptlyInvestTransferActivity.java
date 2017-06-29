@@ -328,9 +328,9 @@ public class PromptlyInvestTransferActivity extends BaseActivity implements View
                 });
                 hideWaitDialog();
                 if(isCard){
-                   Intent intent = new Intent(this, RechargeActivity.class);
-                    intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
-                    intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
+                   Intent intent = new Intent(this, AccountRechargeActivity.class);
+
+
                     startActivity(intent);
                 }else {
                     new AlertDialog(this)

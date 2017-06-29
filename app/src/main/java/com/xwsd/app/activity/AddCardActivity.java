@@ -60,7 +60,8 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.et_branch_name)
     EditText et_branch_name;
 
-
+    @Bind(R.id.tv_open_bank)
+    TextView tv_open_bank;
 
     @Bind(R.id.tv_address_province)
     TextView tv_address_province;
@@ -133,7 +134,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
 //            设置银行信息
             et_card_num.setText(data.bankNum);
             et_branch_name.setText(data.subbranch);
-
+            tv_open_bank.setText(data.bankName);
             banksId = data.bank;
             provincesId = data.province;
             citysId = data.city;
@@ -146,12 +147,12 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    @OnClick({R.id.commit, R.id.ll_address_province, R.id.ll_address_city})
+    @OnClick({R.id.commit, R.id.ll_open_bank, R.id.ll_address_province, R.id.ll_address_city})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.commit:
-
+                addCard(et_card_num.getText().toString().trim());
                 if (TextUtils.isEmpty(et_name.getText().toString().trim())) {
                     ToastUtil.showToastShort(getString(R.string.name_null));
                     return;
@@ -172,10 +173,10 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                     return;
                 }
 
-//                if (banksId == -1) {
-//                    ToastUtil.showToastShort(getString(R.string.banks_null));
-//                    return;
-//                }
+                if (banksId == -1) {
+                    ToastUtil.showToastShort(getString(R.string.banks_null));
+                    return;
+                }
 //
 //                if (provincesId == -1) {
 //                    ToastUtil.showToastShort(getString(R.string.provinces_null));
@@ -207,7 +208,12 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                 }
 
                 break;
+            case R.id.ll_open_bank:
 
+                    showBankDialog(banksBean);
+
+
+                break;
             case R.id.ll_address_province:
                 if (provinces == null) {
                     getAreas(0);
@@ -480,32 +486,34 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
      * 弹出银行选择对话框
      */
     private void showBankDialog(BanksBean bean) {
-//        隐藏软键盘
-        hideSoftKeyboard(getCurrentFocus());
-        if (bankDialog == null) {
-            View outerView = LayoutInflater.from(AddCardActivity.this).inflate(R.layout.view_wheel, null);
-            final WheelView wv = (WheelView) outerView.findViewById(R.id.wheel_view_wv);
-            List<String> strings = new ArrayList();
-            for (BanksBean.Data.Records records : bean.data.records) {
-                strings.add(records.name);
-            }
-            wv.setOffset(2);
-            wv.setItems(strings);
-            wv.setSeletion(0);
-            bankDialog = new MaterialDialog(AddCardActivity.this).setTitle(R.string.banks_select)
-                    .setContentView(outerView)
-                    .setPositiveButton(getString(R.string.confirm),
-                            new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    bankDialog.dismiss();
-                                    banksId = getBanksKey(banksBean, wv.getSeletedItem());
-
-                                }
-                            })
-                    .setCanceledOnTouchOutside(true);
-        }
-        bankDialog.show();
+        Intent intent = new Intent(this, BankListActivity.class);
+        startActivity(intent);
+////        隐藏软键盘
+//        hideSoftKeyboard(getCurrentFocus());
+//        if (bankDialog == null) {
+//            View outerView = LayoutInflater.from(AddCardActivity.this).inflate(R.layout.view_wheel, null);
+//            final WheelView wv = (WheelView) outerView.findViewById(R.id.wheel_view_wv);
+//            List<String> strings = new ArrayList();
+//            for (BanksBean.Data.Records records : bean.data.records) {
+//                strings.add(records.name);
+//            }
+//            wv.setOffset(2);
+//            wv.setItems(strings);
+//            wv.setSeletion(0);
+//            bankDialog = new MaterialDialog(AddCardActivity.this).setTitle(R.string.banks_select)
+//                    .setContentView(outerView)
+//                    .setPositiveButton(getString(R.string.confirm),
+//                            new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    bankDialog.dismiss();
+//                                    banksId = getBanksKey(banksBean, wv.getSeletedItem());
+//                                    tv_open_bank.setText(wv.getSeletedItem());
+//                                }
+//                            })
+//                    .setCanceledOnTouchOutside(true);
+//        }
+//        bankDialog.show();
     }
 
     /**

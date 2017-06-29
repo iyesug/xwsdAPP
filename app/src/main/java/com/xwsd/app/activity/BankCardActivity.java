@@ -466,6 +466,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                                     finish();
                                 }else {
                                     ToastUtil.showToast(jsonObject.getString("msg"));
+                                    mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -480,6 +481,37 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                 break;
             //同步
             case R.id.ll_sync:
+                ApiHttpClient.cardRefresh(AppContext.getUserBean().data.userId,new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        TLog.error("解绑银行卡:" + response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getInt("status") == 1) {
+                                mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+                                ToastUtil.showToast(jsonObject.getString("msg"));
+                                getData();
+                            } else if (jsonObject.getInt("status") == 88){
+                                ToastUtil.showToast("用户密码已修改，请重新登录");
+                                Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
+                                Fintent.putExtra(UserParam.TYPE, 0);
+                                Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                                startActivity(Fintent);
+                                finish();
+                            }else {
+                                ToastUtil.showToast(jsonObject.getString("msg"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                        }
+                    }
+                });
 
                 break;
         }

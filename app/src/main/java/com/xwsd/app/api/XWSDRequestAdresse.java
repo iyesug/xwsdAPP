@@ -414,4 +414,9 @@ String API_URL = "http://app.xwsdvip.com/api/";//测试
     * 用户银行卡绑定【存管】
     */
    String CARD_BIND = API_URL + "cardBind";
+
+   /**
+    * 用户银行卡同步
+    */
+   String CARD_REFRESH = API_URL + "cardRefresh";
 }

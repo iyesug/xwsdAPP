@@ -17,12 +17,12 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
+import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.BankCardBean;
 import com.xwsd.app.bean.BankCardsBean;
-import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
@@ -38,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.Map;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -120,6 +121,18 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             startActivity(intent);
             return;
         }
+        get_ismoney.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    tv_poundage.setText("0");
+                }else{
+                    //获取手续费
+                    String s=et_money.getText().toString().trim();
+                    setPoundage(s.toString());
+                }
+            }
+        });
 //        设置开户名
 //        et_name.setText(AppContext.getUserBean().data.name);
 //        设置余额
@@ -340,9 +353,9 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 //        bankDialog.show();
 //    }
     private void showTicket(){
-        if(banks.data.lotteryCount > 0){
+//        if(banks.data.lotteryCount > 0){
             money_ticket.setVisibility(View.VISIBLE);
-        }
+//        }
     }
 
     /**
@@ -447,37 +460,66 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
         }else{
             isLottery = "0";
         }
-        call = ApiHttpClient.withdraw(AppContext.getUserBean().data.userId, money, payPassword, bankId,isLottery, new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                hideWaitDialog();
-                ToastUtil.showToastShort(R.string.network_exception);
-            }
 
-            @Override
-            public void onResponse(String response, int id) {
-                hideWaitDialog();
-                TLog.error("提现：" + response);
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    ToastUtil.showToastShort(jsonObject.getString("msg"));
-                    if (jsonObject.getInt("status") == 1) {
+        //跳转到充值页面
+        Intent intent = new Intent(this, WebApproveActivity.class);
+        Map<String, String> map = ApiHttpClient.getSortMap();
+        map.put("userId", AppContext.getUserBean().data.userId);
+        map.put("money", money);
+        map.put("type", "0");
+        map.put("cashBankNum", "");
+        map.put("isLottery", isLottery);
 
-//                        发送广播通知提现成功
-                        Intent intent = new Intent();
-                        intent.setAction(BroadcastParam.ACCOUNT_UPDATE_WITHDRAW);
-                        sendBroadcast(intent);
-                        finish();
+        map.put("media", "Android");
+        intent.putExtra(UserParam.URL, ApiHttpClient.WITHDRAW +
+                "?userId=" + AppContext.getUserBean().data.userId +
+                "&money=" + money +
+                "&type=" + "0" +
+                "&cashBankNum=" + "" +
+                "&isLottery=" + isLottery +
+                "&media=" + "Android" +
+                "&sign=" + ApiHttpClient.sign(map));
+        TLog.error("url:" + ApiHttpClient.THIRD_AUTH +
+                "?userId=" + AppContext.getUserBean().data.userId +
+                "&money=" + money +
+                "&media=" + "Android" +
+                "&sign=" + ApiHttpClient.sign(map));
+        intent.putExtra(UserParam.TITLE, getString(R.string.bank_card));
+        startActivity(intent);
+        AppManager.getAppManager().finishActivity();
 
-                    } else {
 
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    ToastUtil.showToastShort(getString(R.string.network_exception));
-                }
-            }
-        });
+//        call = ApiHttpClient.withdraw(AppContext.getUserBean().data.userId, money, payPassword, bankId,isLottery, new StringCallback() {
+//            @Override
+//            public void onError(Call call, Exception e, int id) {
+//                hideWaitDialog();
+//                ToastUtil.showToastShort(R.string.network_exception);
+//            }
+//
+//            @Override
+//            public void onResponse(String response, int id) {
+//                hideWaitDialog();
+//                TLog.error("提现：" + response);
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    ToastUtil.showToastShort(jsonObject.getString("msg"));
+//                    if (jsonObject.getInt("status") == 1) {
+//
+////                        发送广播通知提现成功
+//                        Intent intent = new Intent();
+//                        intent.setAction(BroadcastParam.ACCOUNT_UPDATE_WITHDRAW);
+//                        sendBroadcast(intent);
+//                        finish();
+//
+//                    } else {
+//
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    ToastUtil.showToastShort(getString(R.string.network_exception));
+//                }
+//            }
+//        });
     }
 
 

@@ -2471,4 +2471,28 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         call.execute(callback);
         return call;
     }
+
+    /**
+     * 用户银行卡同步【存管】
+     * @param userId
+     * @param callback
+     * @return
+     */
+    public static RequestCall cardRefresh(
+            String userId, Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .addParams("userId", userId)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(CARD_REFRESH)
+                .build();
+        call.execute(callback);
+        return call;
+    }
 }

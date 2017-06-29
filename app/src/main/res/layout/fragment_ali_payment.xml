@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/gray_bg"
+             android:descendantFocusability="beforeDescendants"
+             android:focusable="true"
+             android:focusableInTouchMode="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+        <ScrollView
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/DIMEN_12"
+                    android:layout_marginLeft="@dimen/DIMEN_10"
+                    android:layout_marginRight="@dimen/DIMEN_10"
+                    android:orientation="vertical">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        android:layout_marginBottom="@dimen/DIMEN_5"
+                        android:text="您可以通过支付宝转账到您在江西银行开立的电子账户。"
+                        />
+
+                <include layout="@layout/table_info"></include>
+
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        android:layout_marginBottom="@dimen/DIMEN_5"
+                        android:textColor="@color/swiperefresh_color3"
+                        android:text="南昌银行已更名为江西银行，如果搜索不到江西银行，可选择南昌银行或城市商业银行。"
+                        />
+
+                <View
+                        style="@style/GreyInterval"
+                        ></View>
+
+
+
+                <View
+                        style="@style/GreyInterval"
+                        android:layout_height="@dimen/DIMEN_10"
+                        ></View>
+
+                <ImageView
+                        android:id="@+id/pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+    <!--<com.xwsd.app.view.EmptyLayout-->
+            <!--android:id="@+id/error_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:visibility="visible"></com.xwsd.app.view.EmptyLayout>-->
+
+</FrameLayout>

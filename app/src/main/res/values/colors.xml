@@ -36,7 +36,7 @@
     <color name="blue_3495ff">#3495ff</color>
     <color name="blue_3197ff">#3197ff</color>
     <color name="red_fb674f">#fb674f</color>
-    <color name="blue_2fe5ff">#2fe5ff</color>
+    <color name="blue_2fe5ff">#2fc5ff</color>
 
     <!-- 下拉刷新时，颜色值 -->
     <color name="swiperefresh_color1">#ff00ddff</color>

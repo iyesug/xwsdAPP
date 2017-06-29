@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boder"
+    android:orientation="vertical">
+    <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="@dimen/DIMEN_100"
+                android:layout_height="@dimen/DIMEN_30"
+                android:gravity="center"
+                android:text="收款姓名"
+                />
+        <View
+                style="@style/GreyIntervalVertical"
+                ></View>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_30"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="默默某"
+                />
+
+    </LinearLayout>
+    <View
+            style="@style/GreyInterval"
+            ></View>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="@dimen/DIMEN_100"
+                android:layout_height="@dimen/DIMEN_30"
+                android:gravity="center"
+                android:text="收款方账号"
+                />
+        <View
+                style="@style/GreyIntervalVertical"
+                ></View>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_30"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="42424242424242424242"
+                />
+
+    </LinearLayout>
+    <View
+            style="@style/GreyInterval"
+            ></View>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="@dimen/DIMEN_100"
+                android:layout_height="@dimen/DIMEN_30"
+                android:gravity="center"
+                android:text="开户行"
+                />
+        <View
+                style="@style/GreyIntervalVertical"
+                ></View>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_30"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="江西银行"
+                />
+
+    </LinearLayout>
+    <View
+            style="@style/GreyInterval"
+            ></View>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="@dimen/DIMEN_100"
+                android:layout_height="@dimen/DIMEN_30"
+                android:gravity="center"
+                android:text="开户地"
+                />
+        <View
+                style="@style/GreyIntervalVertical"
+                ></View>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_30"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="江西省南昌市"
+                />
+
+    </LinearLayout>
+    <View
+            style="@style/GreyInterval"
+            ></View>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="@dimen/DIMEN_100"
+                android:layout_height="@dimen/DIMEN_30"
+                android:gravity="center"
+                android:text="开户支行"
+                />
+        <View
+                style="@style/GreyIntervalVertical"
+                ></View>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/DIMEN_30"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="江西银行股份有限公司总行营业部"
+                />
+
+    </LinearLayout>
+
+</LinearLayout>

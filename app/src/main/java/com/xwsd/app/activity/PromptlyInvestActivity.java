@@ -301,9 +301,8 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                 });
                 hideWaitDialog();
                 if(isCard){
-                   Intent intent = new Intent(this, RechargeActivity.class);
-                    intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
-                    intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
+                   Intent intent = new Intent(this, AccountRechargeActivity.class);
+
                     startActivity(intent);
                 }else {
                     new AlertDialog(this)
@@ -380,8 +379,8 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.ll_red_packet:
                 Intent redIntent = new Intent(this, RedPacketActivity.class);
-                redIntent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
-                redIntent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
+//                redIntent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
+//                redIntent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
                 startActivity(redIntent);
                 break;
         }

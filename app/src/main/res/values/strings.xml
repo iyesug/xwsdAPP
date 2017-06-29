@@ -26,6 +26,7 @@
     <string name="details">详情</string>
     <string name="auto_bid">自动投标</string>
     <string name="pay">充值</string>
+    <string name="account_recharge">账户充值</string>
     <string name="withdraw">提现</string>
     <string name="new_bid_notice">新标预告</string>
     <string name="notice_message">公告讯息</string>
@@ -220,4 +221,26 @@
     <string name="cancel_buttom">取消</string>
     <string name="my_red_packet">我的红包</string>
     <string name="modify_custody_password">修改存管密码</string>
+
+    <string name="Quick_top_up">快捷充值</string>
+    <string name="Alipay_recharge">支付宝充值</string>
+    <string name="bank_transfer">银行转账</string>
+    <string name="choose_bank">选择银行</string>
+
+    <string name="Top_up_instructions1">1、快捷充值最低充值金额为100元，用户使用快捷充值不收取任何手续费。
+\n\n2、系统支持工商银行、建设银行、中国银行、农业银行在内的多家银行快捷充值，其他银行的银联卡可以通过网上银行、ATM机、支付宝等方式进行转账充值。
+</string>
+    <string name="Top_up_instructions2">
+点击这里查看支持快捷转账的银行列表
+</string>
+    <string name="Top_up_instructions3">
+3、为了您的资金安全，江西银行电子交易账户采用同卡进出规则。
+\n\n4、如果充值失败，建议拨打您发卡行客服电话，咨询是否已开通待收代付，无卡支付或电子支付业务。如无法解决，您可使用其他方式充值。</string>
+
+    <string name="bank_transfer_tip">
+    1、您在平台开立的江西银行电子账户属于标准银联账户，可通过各家银行柜台、ATM机、网上银行、手机银行等，由本人或他人向您的电子账户转账。
+    \n\n2、在向电子账户转账时，必须为银行借记卡，平台暂不支持存折、信用卡转账。
+    \n\n3、根据银行收费标准，在转账过程可能会收取费用。平台目前不收取任何手续费。
+    \n\n4、若您电子账户余额小于500元，可按银行活期存款利率获得收益，若您电子账户余额超过500元，可获得“靠档计息”收益，即账户余额按活期利率和定期利率相结合获得收益，根据对应期限按最大化结转收益。
+    </string>
 </resources>

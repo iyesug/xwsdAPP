@@ -53,21 +53,28 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
         final Button type2 = (Button)root.findViewById(R.id.type2);
         final Button type3 = (Button)root.findViewById(R.id.type3);
         yue.setSelected(true);
+        yue.setTextColor(context.getResources().getColor(R.color.tv_white));
         type1.setSelected(true);
-
+        type1.setTextColor(context.getResources().getColor(R.color.tv_white));
 
         //按月
         yue.setOnClickListener(v -> {
             period =1;
             yue.setSelected(true);
+            yue.setTextColor(context.getResources().getColor(R.color.tv_white));
             zhou.setSelected(false);
+            zhou.setTextColor(context.getResources().getColor(R.color.black));
+
 
         });
         //按周
         zhou.setOnClickListener(v -> {
             period =2;
             zhou.setSelected(true);
+            zhou.setTextColor(context.getResources().getColor(R.color.tv_white));
             yue.setSelected(false);
+            yue.setTextColor(context.getResources().getColor(R.color.black));
+
 
         });
 
@@ -75,22 +82,34 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
         type1.setOnClickListener(v -> {
             type =1;
             type1.setSelected(true);
+            type1.setTextColor(context.getResources().getColor(R.color.tv_white));
+
             type2.setSelected(false);
+            type2.setTextColor(context.getResources().getColor(R.color.black));
             type3.setSelected(false);
+            type3.setTextColor(context.getResources().getColor(R.color.black));
         });
         //等额本息
         type2.setOnClickListener(v -> {
             type =2;
             type1.setSelected(false);
+            type1.setTextColor(context.getResources().getColor(R.color.black));
             type2.setSelected(true);
+            type2.setTextColor(context.getResources().getColor(R.color.tv_white));
+
             type3.setSelected(false);
+            type3.setTextColor(context.getResources().getColor(R.color.black));
         });
         //等额本金
         type3.setOnClickListener(v -> {
             type =3;
             type1.setSelected(false);
+            type1.setTextColor(context.getResources().getColor(R.color.black));
             type2.setSelected(false);
+            type2.setTextColor(context.getResources().getColor(R.color.black));
             type3.setSelected(true);
+            type3.setTextColor(context.getResources().getColor(R.color.tv_white));
+
         });
 
         View jisuan = root.findViewById(R.id.jisuan);

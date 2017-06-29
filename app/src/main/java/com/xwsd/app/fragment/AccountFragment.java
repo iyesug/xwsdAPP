@@ -464,7 +464,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                });
 //                ((MainActivity) getActivity()).hideWaitDialog();
 //                if(isCard){
-                    intent = new Intent(getActivity(), RechargeActivity.class);
+                    intent = new Intent(getActivity(), AccountRechargeActivity.class);
                     // TODO: 2017/3/28  
 //                            Bundle bundle = new Bundle();
 //                            bundle.putSerializable(AgreeCardBean.class.getName(), agreeCardBean);
