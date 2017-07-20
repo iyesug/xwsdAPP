@@ -2,19 +2,15 @@ package com.xwsd.app.base;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-
+import butterknife.ButterKnife;
+import com.baidu.mobstat.StatService;
 import com.gnwai.loadingview.DialogControl;
 import com.gnwai.loadingview.LoadDialog;
 import com.xwsd.app.AppContext;
@@ -29,8 +25,6 @@ import com.xwsd.app.tools.TLog;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 /**
  * 基础Activity
  * onBeforeSetContentLayout 方法中设置内容布局
@@ -43,7 +37,7 @@ public abstract class MyBaseActivity extends Activity implements DialogControl {
     private boolean isVisible;
 
     private LoadDialog zProgressHUD;
-
+    public String title="";
 
     /**
      * 保存在手机里面的文件名
@@ -56,9 +50,11 @@ public abstract class MyBaseActivity extends Activity implements DialogControl {
         AppManager.getAppManager().finishActivity(this);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //透明状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
@@ -77,6 +73,7 @@ public abstract class MyBaseActivity extends Activity implements DialogControl {
         ButterKnife.bind(this);
 //        初始化
         init(savedInstanceState);
+        StatService.onPageStart(this,title);
     }
 
     @Override
@@ -157,6 +154,7 @@ public abstract class MyBaseActivity extends Activity implements DialogControl {
     @Override
     protected void onPause() {
         super.onPause();
+        StatService.onPageEnd(this,title);
         if (this.isFinishing()) {
             hideSoftKeyboard(getCurrentFocus());
         }

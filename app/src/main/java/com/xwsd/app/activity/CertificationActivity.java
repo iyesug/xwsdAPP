@@ -55,6 +55,7 @@ public class CertificationActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.certification);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.certification));
         navbarManage.showLeft(true);

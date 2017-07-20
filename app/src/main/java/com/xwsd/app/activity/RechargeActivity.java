@@ -64,6 +64,7 @@ public class RechargeActivity extends MyBaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.pay);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.pay));
         navbarManage.showLeft(true);

@@ -42,7 +42,7 @@
                     android:layout_height="@dimen/DIMEN_50"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="热线客服：4008659993"
+                    android:text="热线客服：4001869996 "
                     android:textColor="#3097fd"
                     android:visibility="gone"
                     android:textSize="17sp" />

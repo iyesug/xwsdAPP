@@ -184,10 +184,10 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                         userActivity.setParam(UserParam.USER_ID, userBean.data.userId);
 
 //                                判断是否是已经加载，如果未加载就跳转到首页，否则关闭当前页面
-                        if (AppManager.getActivity(MainActivity.class) == null) {
-                            Intent intent = new Intent(userActivity, MainActivity.class);
-                            startActivity(intent);
-                        }
+                        AppManager.getAppManager().finishActivity(MainActivity.class);
+                        Intent mintent = new Intent(RegisterAffirmFragment.this.getActivity(), MainActivity.class);
+                        startActivity(mintent);
+                        RegisterAffirmFragment.this.getActivity().finish();
 
 //                                判断是否存在手势锁页面，如果有就关闭
                         AppManager.getAppManager().finishActivity(GestureLoginActivity.class);
@@ -225,11 +225,11 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                             userActivity.sendBroadcast(intent);
                         }
 
-//                                发送广播通知用户登录
-                        Intent intent = new Intent();
-                        intent.setAction(BroadcastParam.USER_CHANGE_LOGIN);
-                        userActivity.sendBroadcast(intent);
-                        userActivity.finish();
+////                                发送广播通知用户登录
+//                        Intent intent = new Intent();
+//                        intent.setAction(BroadcastParam.USER_CHANGE_LOGIN);
+//                        userActivity.sendBroadcast(intent);
+//                        userActivity.finish();
 
                     } else {
 

@@ -65,7 +65,7 @@ public class DueReturnedProjectFragment extends BaseUpDownListFragment {
                                 DueReturnedProjectBean dueReturnedProjectBean = GsonUtils.jsonToBean(response, DueReturnedProjectBean.class);
                                 setData(dueReturnedProjectBean, TYPE_PULLUP);
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast("用户密码已修改，请重新登录");
+                                ToastUtil.showToast(getString(R.string.please_relogin));
                                 Intent Fintent = new Intent();
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -108,7 +108,7 @@ public class DueReturnedProjectFragment extends BaseUpDownListFragment {
                                 allItemCount = dueReturnedProjectBean.data.count;
                                 mAdapter.replaceAll(dueReturnedProjectBean.data.records);
                             }else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast("用户密码已修改，请重新登录");
+                                ToastUtil.showToast(getString(R.string.please_relogin));
                                 Intent Fintent = new Intent();
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -154,7 +154,7 @@ public class DueReturnedProjectFragment extends BaseUpDownListFragment {
                                 DueReturnedProjectBean dueReturnedProjectBean = GsonUtils.jsonToBean(response, DueReturnedProjectBean.class);
                                 setData(dueReturnedProjectBean, TYPE_FIRST);
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast("用户密码已修改，请重新登录");
+                                ToastUtil.showToast(getString(R.string.please_relogin));
                                 Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -279,7 +279,7 @@ public class DueReturnedProjectFragment extends BaseUpDownListFragment {
                                         DueReturnedProjectBean dueReturnedProjectBean = GsonUtils.jsonToBean(response, DueReturnedProjectBean.class);
                                         setData(dueReturnedProjectBean, TYPE_FIRST);
                                     } else if (jsonObject.getInt("status") == 88){
-                                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                                        ToastUtil.showToast(getString(R.string.please_relogin));
                                         Intent Fintent = new Intent();
                                         Fintent.putExtra(UserParam.TYPE, 0);
                                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

@@ -212,7 +212,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
             //进入联合存款前先判断是否进行了实名认证
             if (accountItems.get(position).activity.equals(DredgeTrusteeshipActivity.class) &&
                     !AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
-                guideCertification();
+                guideTrusteeship();
                 return;
             }
 
@@ -306,9 +306,9 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         new AlertDialog(getActivity())
                 .builder()
                 .setTitle("温馨提示：")
-                .setMsg("您尚未进行实名认证，是否前往认证。")
+                .setMsg("您尚未开通存管，是否前往开通。")
                 .setPositiveButton("前往", v -> {
-                    Intent intent = new Intent(getActivity(), CertificationActivity.class);
+                    Intent intent = new Intent(getActivity(), OpenDepositoryActivity.class);
                     startActivity(intent);
                 })
                 .setNegativeButton("取消", v -> {
@@ -317,15 +317,15 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     }
 
     /**
-     * 引导开通托管
+     * 引导开通存管
      */
     private void guideTrusteeship() {
         new AlertDialog(getActivity())
                 .builder()
                 .setTitle("温馨提示：")
-                .setMsg("您尚未开通托管，是否前往开通。")
+                .setMsg("您尚未开通存管，是否前往开通。")
                 .setPositiveButton("前往", v -> {
-                    Intent intent = new Intent(getActivity(), DredgeTrusteeshipActivity.class);
+                    Intent intent = new Intent(getActivity(), OpenDepositoryActivity.class);
                     startActivity(intent);
                 })
                 .setNegativeButton("取消", v -> {
@@ -369,7 +369,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         accountBean = GsonUtils.jsonToBean(response, AccountBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -429,11 +429,11 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     guideCertification();
                     return;
                 }
-                //进入自动投标前判断是否开通托管
-                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
-                    guideTrusteeship();
-                    return;
-                }
+//                //进入自动投标前判断是否开通托管
+//                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
+//                    guideTrusteeship();
+//                    return;
+//                }
                 intent = new Intent(getActivity(), AutoBidActivity.class);
                 startActivity(intent);
                 break;
@@ -480,7 +480,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                            .setPositiveButton(getString(R.string.go),
 //                                    v1 -> {
 //                                Intent intent1 = new Intent(getActivity(), SettingsPayBankActivity.class);
-//                                // TODO: 2017/3/28
+//
 //                                startActivityForResult(intent1,1234);
 //                            })
 //                            .setNegativeButton("取消", v2 -> {
@@ -539,7 +539,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     ((MainActivity) getActivity()).hideWaitDialog();
                 }
 
-                ToastUtil.showToastShort(R.string.network_exception);
+//                ToastUtil.showToastShort(R.string.network_exception);
             }
             @Override
             public void onResponse(String response, int id) {

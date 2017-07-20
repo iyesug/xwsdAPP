@@ -67,6 +67,7 @@ public class RechargeWithdrawActivity extends BaseActivity implements View.OnCli
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.recharge_withdraw);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.recharge_withdraw));
         navbarManage.showLeft(true);

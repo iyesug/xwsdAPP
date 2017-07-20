@@ -1,14 +1,14 @@
 package com.xwsd.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
-
+import butterknife.Bind;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
+import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.NavbarManage;
-
-import butterknife.Bind;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -32,6 +32,7 @@ public class MobileCertificationActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.mobile_certification);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.mobile_certification));
         navbarManage.showLeft(true);
@@ -42,7 +43,9 @@ public class MobileCertificationActivity extends BaseActivity {
         navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener() {
             @Override
             public void onRightClick() {
-                //// TODO: 2017/6/9  修改手机号
+                BuriedPointUtil.buriedPoint("账户安全修改手机号码");
+                Intent intent = new Intent(MobileCertificationActivity.this, ModifyPhoneActivity.class);
+                startActivity(intent);
             }
         });
         navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {

@@ -33,7 +33,7 @@ public class WebApproveActivity extends BaseActivity {
     @Bind(R.id.webview_wechat)
     com.tencent.smtt.sdk.WebView webView;
 
-    String title;
+
 
     String url;
 

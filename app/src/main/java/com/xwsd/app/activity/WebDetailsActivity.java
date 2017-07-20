@@ -7,6 +7,7 @@ import butterknife.Bind;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
 import com.tencent.smtt.sdk.WebView;
+import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
@@ -34,7 +35,7 @@ public class WebDetailsActivity extends BaseActivity {
     @Bind(R.id.webview_wechat)
     com.tencent.smtt.sdk.WebView webView;
 
-    String title;
+
 
     String url;
 
@@ -48,18 +49,28 @@ public class WebDetailsActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+
+
         //设置导航栏
 
         navbarManage.showLeft(true);
-        navbarManage.showRight(false);
+        navbarManage.showRight(true);
         navbarManage.setLeftImg(R.mipmap.ic_back_b);
+        navbarManage.setRightStr("关闭");
         navbarManage.setBackground(R.color.navbar_bg);
+        navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener() {
+            @Override
+            public void onRightClick() {
+                AppManager.getAppManager().finishActivity();
+            }
+        });
         navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
                 onBackPressed();
             }
         });
+
 
         initProgressBar();
 //        得到标题

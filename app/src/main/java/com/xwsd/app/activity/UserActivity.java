@@ -1,9 +1,10 @@
 package com.xwsd.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-
 import com.xwsd.app.AppContext;
+import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
@@ -44,6 +45,8 @@ public class UserActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+
+
         navbarManage.showLeft(true);
         navbarManage.showRight(false);
         navbarManage.setTextColor(R.color.white);
@@ -62,16 +65,19 @@ public class UserActivity extends BaseActivity {
 
         switch (type) {
             case TYPE_LOGIN:
+                title="登陆";
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_content, new LoginFragment())
                         .commit();
                 break;
             case TYPE_FORGOT:
+                title="忘记密码";
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_content, new ForgotFragment())
                         .commit();
                 break;
             case TYPE_FORGET_PAYPASS:
+                title="忘记支付密码";
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame_content, new ForgotFragment())
                         .commit();
@@ -92,6 +98,9 @@ public class UserActivity extends BaseActivity {
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();
         } else {
+            AppManager.getAppManager().finishActivity(MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
             finish();
         }
     }

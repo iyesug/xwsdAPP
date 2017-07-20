@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -99,6 +100,7 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.auto_bid);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.auto_bid));
         navbarManage.showLeft(true);
@@ -178,24 +180,24 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
 
         //设置投资类型
         for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-            for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
+
                 for (String id : autoInfoBean.data.autoInvest.types) {
-                    if (bidList.id.equals(id)) {
-                        if(bidList.month == 1){
+                    if (types.id.equals(id)) {
+                        if(types.period == 1){
                             cb_title1.setChecked(true);
-                        } else if(bidList.month == 2){
+                        } else if(types.period == 2){
                             cb_title2.setChecked(true);
-                        }else if(bidList.month == 3){
+                        }else if(types.period == 3){
                             cb_title3.setChecked(true);
-                        }else if(bidList.month == 6){
+                        }else if(types.period == 6){
                             cb_title4.setChecked(true);
-                        }else if(bidList.month == 12){
+                        }else if(types.period == 12){
                             cb_title5.setChecked(true);
-                        }else if(bidList.month == 24){
+                        }else if(types.period == 24){
                             cb_title6.setChecked(true);
                         }
                     }
-                }
+
             }
         }
         //        设置自动投标
@@ -251,6 +253,8 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
                     }
                 });
                 BuriedPointUtil.buriedPoint("自动投标简版-保存");
+                String types=jointInvestType();
+
                 call = ApiHttpClient.autoSet(AppContext.getUserBean().data.userId,
                         autostatus,
                         "0",
@@ -259,7 +263,7 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
                         rangeBegin,
                         rangeEnd,
                         "100",
-                        jointInvestType(),
+                        types,
                         mode,
                         new StringCallback() {
                             @Override
@@ -298,60 +302,62 @@ public class AutoBidJianSettingActivity extends BaseActivity implements View.OnC
         //        遍历所有元素，设置选中状态
         if(cb_title1.isChecked()){
             for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-                for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                    if (bidList.month == 1) {
-                        typesStr.append(bidList.id);
+                    if (types.period == 1) {
+                        typesStr.append(types.id);
                         typesStr.append(",");
                     }
-                }
+
             }
         }
         if(cb_title2.isChecked()){
             for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-                for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                    if (bidList.month == 2) {
-                        typesStr.append(bidList.id);
+
+                    if (types.period == 2) {
+                        typesStr.append(types.id);
                         typesStr.append(",");
                     }
-                }
-            }
-        }        if(cb_title3.isChecked()){
-            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-                for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                    if (bidList.month == 3) {
-                        typesStr.append(bidList.id);
-                        typesStr.append(",");
-                    }
-                }
-            }
-        }        if(cb_title4.isChecked()){
-            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-                for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                    if (bidList.month == 6) {
-                        typesStr.append(bidList.id);
-                        typesStr.append(",");
-                    }
-                }
-            }
-        }        if(cb_title5.isChecked()){
-            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-                for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                    if (bidList.month == 12) {
-                        typesStr.append(bidList.id);
-                        typesStr.append(",");
-                    }
-                }
-            }
-        }        if(cb_title6.isChecked()){
-            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-                for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                    if (bidList.month == 24) {
-                        typesStr.append(bidList.id);
-                        typesStr.append(",");
-                    }
-                }
+
             }
         }
+        if(cb_title3.isChecked()){
+            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
+
+                    if (types.period == 3) {
+                        typesStr.append(types.id);
+                        typesStr.append(",");
+                    }
+
+            }
+        }
+        if(cb_title4.isChecked()){
+            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
+                    if (types.period == 6) {
+                        typesStr.append(types.id);
+                        typesStr.append(",");
+                    }
+
+            }
+        }
+        if(cb_title5.isChecked()){
+            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
+                    if (types.period == 12) {
+                        typesStr.append(types.id);
+                        typesStr.append(",");
+                    }
+
+            }
+        }
+        if(cb_title6.isChecked()){
+            for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
+                    if (types.period == 24) {
+                        typesStr.append(types.id);
+                        typesStr.append(",");
+                    }
+
+            }
+        }
+        Log.d("types:",typesStr.toString());
+
         if (typesStr.toString().contains(",")) {
             return typesStr.replace(typesStr.length() - 1, typesStr.length(), "").toString().trim();
         } else {

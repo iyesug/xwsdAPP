@@ -68,6 +68,7 @@ public class ModifyPayPasswordActivity extends BaseActivity implements View.OnCl
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.setting_pay_password);
         //设置导航栏
         navbarManage.showLeft(true);
         navbarManage.showRight(false);

@@ -54,6 +54,8 @@ public class ProtDetilaActivity extends BaseActivity {
     }
     @Override
     protected void init(Bundle savedInstanceState) {
+
+        title="明细";
         navbarManage.setCentreStr("明细");
         navbarManage.showLeft(true);
         navbarManage.showRight(false);

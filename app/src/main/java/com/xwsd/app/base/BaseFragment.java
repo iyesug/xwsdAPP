@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import butterknife.ButterKnife;
+import com.baidu.mobstat.StatService;
 
 /**
  * 基础Fragment类
@@ -33,7 +33,7 @@ public abstract class BaseFragment extends Fragment {
      * Fragment当前状态是否可见
      */
     private boolean isVisible;
-
+    public String title="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        避免重复加载UI
@@ -52,9 +52,18 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         init();
+        //百度页面统计开始
+        StatService.onPageStart(this.getActivity(),title);
         isPrepared = true;
         lazyLoad();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        StatService.onPageEnd(this.getActivity(),title);
     }
 
     /**

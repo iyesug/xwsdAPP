@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/serve_iv"
                         android:gravity="center"
-                        android:text="400-865-9993"
+                        android:text="400-186-9996 "
                         android:textColor="@color/gray_2"
                         android:textSize="@dimen/TEXT_XL" />
 

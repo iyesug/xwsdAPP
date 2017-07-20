@@ -136,6 +136,7 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.returned_calendar);
         // 设置导航栏
         navbarManage.setCentreStr(getString(R.string.returned_calendar));
         navbarManage.showLeft(true);

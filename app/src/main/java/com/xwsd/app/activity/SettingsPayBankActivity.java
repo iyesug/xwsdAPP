@@ -54,6 +54,7 @@ public class SettingsPayBankActivity extends MyBaseActivity {
     }
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.settings_card);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.settings_card));
         navbarManage.showLeft(true);

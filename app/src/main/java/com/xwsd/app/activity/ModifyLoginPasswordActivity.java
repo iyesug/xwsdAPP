@@ -60,6 +60,7 @@ public class ModifyLoginPasswordActivity extends BaseActivity implements View.On
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.modify_login_password);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.modify_login_password));
         navbarManage.showLeft(true);
@@ -130,6 +131,7 @@ public class ModifyLoginPasswordActivity extends BaseActivity implements View.On
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     ToastUtil.showToastShort(jsonObject.getString("msg"));
+                                    finish();
 //                                if (jsonObject.getInt("status") == 1) {
 //                                } else {
 

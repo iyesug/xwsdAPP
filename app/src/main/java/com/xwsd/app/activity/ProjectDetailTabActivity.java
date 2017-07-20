@@ -1,9 +1,6 @@
 package com.xwsd.app.activity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentManager;
@@ -11,11 +8,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
-import com.xwsd.app.api.XWSDRequestAdresse;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.OddBean;
 import com.xwsd.app.constant.UserParam;
@@ -25,11 +21,7 @@ import com.xwsd.app.fragment.ProjectDetailsFragment;
 import com.xwsd.app.fragment.RiskControlFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.TLog;
-import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * Created by Gy on 2017/3/27.
@@ -68,7 +60,7 @@ public class ProjectDetailTabActivity extends BaseActivity  implements View.OnCl
         oddBean=(OddBean)getIntent().getSerializableExtra(UserParam.OBJ);
         oddNum=getIntent().getStringExtra(UserParam.NUM);
         TLog.error("next:oddBean:"+oddBean);
-        String title = null;
+        title = null;
         switch (id) {
             case 1:
                 title=getString(R.string.particulars);
@@ -83,6 +75,7 @@ public class ProjectDetailTabActivity extends BaseActivity  implements View.OnCl
                 title=getString(R.string.investment);
                 break;
         }
+
         //设置导航栏
         navbarManage.setCentreStr(title);
         navbarManage.showLeft(true);

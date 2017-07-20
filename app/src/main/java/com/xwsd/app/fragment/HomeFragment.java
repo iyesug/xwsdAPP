@@ -1,5 +1,6 @@
 package com.xwsd.app.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.ObserveScrollView;
+import com.xwsd.app.view.PicDialog;
 import com.zhy.http.okhttp.callback.StringCallback;
 import okhttp3.Call;
 import org.json.JSONException;
@@ -215,6 +217,17 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         handler.sendEmptyMessageDelayed(2, 1000);//标的倒计时
         getData(1);
         initRefresh();
+        //判断是否开通存管
+        if (AppContext.getUserBean() != null ) {
+            {
+                if (AppContext.getUserBean().data.custodyId == null || "0".equals(AppContext.getUserBean().data.custodyId)
+                        || "".equals(AppContext.getUserBean().data.custodyId)) {
+                    showDialog();
+                }
+            }
+        }else {
+            showDialog();
+        }
     }
 
     /**
@@ -299,7 +312,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         }
 
         //初始化月份
-        if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.size() != 0) {
+        if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.size()>0 && indexBean.data.newHandOdds.get(0) != null) {
             tv_month.setText(indexBean.data.newHandOdds.get(0).oddPeriod);
         }
         et_new_bid.setText("");
@@ -348,7 +361,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                         //得到当前新手标的位置
                         int position = vp_newbie_bid.getCurrentItem();
                         //计算收益
-                        float price = (Float.valueOf(s.toString()) * indexBean.data.newHandOdds.get(position).oddYearRate) * (Float.valueOf(indexBean.data.newHandOdds.get(position).oddPeriod.split("个")[0]) / 12f);
+                        float price = 0;
+                        if(indexBean.data!=null&&indexBean.data.newHandOdds!=null&&indexBean.data.newHandOdds.size()!=0){
+                             price = (Float.valueOf(s.toString()) * indexBean.data.newHandOdds.get(position).oddYearRate) * (Float.valueOf(indexBean.data.newHandOdds.get(position).oddPeriod.split("个")[0]) / 12f);
+                        }
                         tv_predict.setText(decimalFormat.format(price));
                     } else {
                         tv_predict.setText("预计收益");
@@ -770,5 +786,42 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
             container.addView(view);
             return view;
         }
+    }
+    //开通存管对话框
+    private void showDialog(){
+
+
+        new PicDialog(this.getActivity(),R.style.Translucent_NoTitle,
+                new PicDialog.DialogClickListener() {
+
+                    @Override
+                    public void close(Dialog dialog, String pass) {
+                        dialog.dismiss();
+
+                    }
+
+                    @Override
+                    public void commit(Dialog dialog) {
+                        dialog.dismiss();
+                        Intent intent;
+                        if (AppContext.getUserBean() == null ) {
+                            intent = new Intent(getActivity(), UserActivity.class);
+                            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+                            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                            startActivity(intent);
+                        }if(AppContext.getUserBean() != null){
+                            intent = new Intent(HomeFragment.this.getActivity(), OpenDepositoryActivity.class);
+                            startActivity(intent);
+                        }
+
+
+
+                    }
+                }).show();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

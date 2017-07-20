@@ -107,6 +107,7 @@ public class BidDetailsActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.bid_details);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.bid_details));
         navbarManage.showLeft(true);

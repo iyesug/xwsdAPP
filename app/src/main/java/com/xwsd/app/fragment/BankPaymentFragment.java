@@ -2,6 +2,9 @@ package com.xwsd.app.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
+import butterknife.Bind;
+import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.BankCardBean;
@@ -16,7 +19,10 @@ import java.text.DecimalFormat;
 public class BankPaymentFragment extends BaseFragment implements View.OnClickListener {
 
 
-
+    @Bind(R.id.name)
+    TextView name;
+    @Bind(R.id.custodyId)
+    TextView custodyId;
     public static boolean needRefresh = false;
     BankCardBean bankCardBean;
     DecimalFormat decimalFormat = new DecimalFormat("0.0");
@@ -32,7 +38,8 @@ public class BankPaymentFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     protected void init() {
-
+        name.setText(AppContext.getUserBean().data.name);
+        custodyId.setText(AppContext.getUserBean().data.custodyId);
 
 
     }

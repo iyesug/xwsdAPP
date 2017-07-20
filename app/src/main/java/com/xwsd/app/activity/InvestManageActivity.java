@@ -8,16 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+import butterknife.Bind;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.fragment.DueReturnedProjectFragment;
-import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.view.NavbarManage;
-
-import butterknife.Bind;
 
 /**
  * Created by Gx on 2016/8/29.
@@ -69,6 +66,7 @@ public class InvestManageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.invest_manage);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.invest_manage));
         navbarManage.showLeft(true);

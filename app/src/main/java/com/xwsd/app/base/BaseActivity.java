@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import butterknife.ButterKnife;
+import com.baidu.mobstat.StatService;
 import com.gnwai.loadingview.DialogControl;
 import com.gnwai.loadingview.LoadDialog;
 import com.xwsd.app.AppContext;
@@ -37,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
 
     private LoadDialog zProgressHUD;
 
+    public String title="";
 
     /**
      * 保存在手机里面的文件名
@@ -45,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
     }
@@ -70,13 +73,14 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
         ButterKnife.bind(this);
 //        初始化
         init(savedInstanceState);
-
+        StatService.onPageStart(this,title);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         isVisible = true;
+
     }
 
     /**
@@ -151,6 +155,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DialogCo
     @Override
     protected void onPause() {
         super.onPause();
+        StatService.onPageEnd(this,title);
         if (this.isFinishing()) {
             hideSoftKeyboard(getCurrentFocus());
         }

@@ -105,6 +105,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.user_data);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.user_data));
         navbarManage.showLeft(true);

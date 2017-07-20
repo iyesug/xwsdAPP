@@ -218,22 +218,21 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      *
      * @param userId       用户id
      * @param oldpass      旧密码
-     * @param password     新密码
-     * @param passwordSure 确认密码
+     * @param loginpass     新密码
+     * @param loginpassSure 确认密码
      * @param callback     回调接口
      * @return 返回一个可取消的请求
      */
     public static RequestCall updateLoginpass(String userId,
                                              String oldpass,
-                                             String password,
-                                             String passwordSure,
-
+                                             String loginpass,
+                                             String loginpassSure,
                                              Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("oldpass", oldpass);
-        map.put("password", password);
-        map.put("passwordSure", passwordSure);
+        map.put("loginpass", loginpass);
+        map.put("loginpassSure", loginpassSure);
         map.put("userSecret",userSecret);
         map.put("media",media);
         RequestCall call = OkHttpUtils
@@ -241,9 +240,8 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(UPDATE_LOGIN_PASS)
                 .addParams("userId", userId)
                 .addParams("oldpass", oldpass)
-                .addParams("password", password)
-                .addParams("passwordSure", passwordSure)
-
+                .addParams("loginpass", loginpass)
+                .addParams("loginpassSure", loginpassSure)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
                 .addParams("sign", sign(map))
@@ -254,7 +252,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
 
 
     /**
-     * 修改电话
+     * 修改手机号
      *
      * @param userId       用户id
      * @param phone      电话
@@ -1417,7 +1415,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
 
     /**
      * 项目-债权转让-详情
-     *
+     *获取债权转让详细信息【存管】
      * @param id       标的唯一标识符
      * @param callback 回调接口
      * @return 返回一个可取消的请求
@@ -1738,14 +1736,12 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @param callback   回调接口
      * @param userId     用户ID
      * @param oddMoneyId
-     * @param paypass    支付密码
      * @return 返回一个可取消的请求
      */
-    public static RequestCall transfer(String userId, String oddMoneyId, String paypass, Callback callback) {
+    public static RequestCall transfer(String userId, String oddMoneyId, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("oddMoneyId", oddMoneyId);
-        map.put("paypass", paypass);
         map.put("userSecret",userSecret);
         map.put("media",media);
         RequestCall call = OkHttpUtils
@@ -1753,7 +1749,6 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(TRANSFER)
                 .addParams("userId", userId)
                 .addParams("oddMoneyId", oddMoneyId)
-                .addParams("paypass", paypass)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
                 .addParams("sign", sign(map))
@@ -2491,6 +2486,29 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(CARD_REFRESH)
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+    /**
+     *银行卡充值限额列表【存管】
+     * @return
+     */
+    public static RequestCall cardLimit(String userId,
+                                        Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userSecret",userSecret);
+        map.put("userId", userId);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .addParams("userSecret",userSecret)
+                .addParams("userId", userId)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(CARD_LIMIT)
                 .build();
         call.execute(callback);
         return call;

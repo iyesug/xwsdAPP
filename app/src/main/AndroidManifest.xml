@@ -54,12 +54,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <!--sophix业务配置开始-->
+        <meta-data
+                android:name="com.taobao.android.hotfix.IDSECRET"
+                android:value="24530194-1" />
+        <meta-data
+                android:name="com.taobao.android.hotfix.APPSECRET"
+                android:value="203590db252e92f1118d6cb001030bd3" />
+        <meta-data
+                android:name="com.taobao.android.hotfix.RSASECRET"
+                android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD0XTUCJ0WM7BDrFBU+/V/bml4bEo/RedE1LU/AZ4Rpj1/bkdhwafPpFV2FlnDv/c13ju0hW65br87esgUqH+zxN3CQdZz1eboD8B64+/w8G/tmds26CxrwnbosYte7DhxdoBWSBuAAICs0a7T9k7fRRJGjo42UL5cr/U0uT3apEdqgteRwHxosbf3dxHIJD2yObywjk+oBa31vpfBndgYxux+etiR7dq+U190xrmdVjL3loksq0BzvmlOjatl9LorqybT5yXBgmlq/HlDDFmhChkQeoSDJ8Nj8koGmzySUrxvWnyUxuy1hxTYaUsAXtt/R0AgyFYwH5zlyTIehK6N/AgMBAAECggEAbghCRDP2x1vMym2Cm5hvv2ylDz+ubr6Ri4ZZsONr5jRfD3l+oi+zWrL6J5r0Q7xe9oTvFeQ4gKSLXA+A79TsVjmGgCXVhVtIfVl0HAurKk3XR+4a+LjjapE7MZ1YUqwp7aaVz+k0mBnkGnidSMlpLdvYUHzm1WEQiwhF5qJ1Ze743LiACdMB5do28Pdrr/78vM76RSedHFXVgxjRTZNCHEuj8rpe03TQLMf+L02a7u523vtpVjs9Kc5NhBwJK/wMUMyLZO7CEqD8P+xZ8xPJfkkyZkmGjvi8MIUrv0YX+ug60F6UKzSioNbGDjHv/ervAOt6t66rFaxlr0jsIuKOYQKBgQD/hZ84W3xB6rlangD1tydzjzxJweBKRAXFktC8gvadAAtHBEeubxCPLQXkaPBY6SF8EUoKd3qW+UUmPPeVpQ8Af89GEBwmAm1Xwslnkfd/VBQqTxnjDVA6TozV9l18wSbdzu4Gf2K8cwf71kJhNeuqi2POK5m3ZiyMvsOoyA/H1wKBgQD00j3BWVVPTiUGQW0TooI1TrL8208lxPia5baTjq3yTE3VY+o0n3YKLwPCEXVSqBdNTXr3qO+369ug9x5t899pjK6TwGHpxKLUB08d+ca/1BozE6mfIr0UybxY1sEXMAYD5vUlEOVySlpFwrO4QN0xLocNkH3I1KxmreP/fDXsmQKBgFOOp5VvXT/U+Q3n81pmrVD9uvJHowfGHLkSHI44qVqH5Cgx/xrMmPao+29I3afFfLysjrDDh2QNWY56i1/1HOXF5cr8g6fuTUFQojnrIqsRnJKFUWrNNLoMa8OgD8w3AXWxMGcRiwEjAK5az1QopMsdT+LgoSC3GcRgsWzlFzv7AoGBAKhVnwzA5f2fl6mTdvKXPLx2nm9qRCOOKfonlMAkzMnbWXEuQC1qr3kVFppr8qWg2lTWv4Rmbl2iGOO2xv+HPciPaMJC95ALGoJ7fBT6V4QyzMjt7iVzd1tB0vWqxB2zcY9hUJHp6joJkcSBuZ0pTG2ytj3HahWa1efMDQbwWwuRAoGACMJTqu8kNds2A24kxsGSP1o7Bir+Bf7DXJEjBEe59oGatkAiTdjUl1mjPEpWAUKUH+q9c7eVzulPWkIClkUpV6jy5L9wzQ873JxuRc+7wG7HweABNy6+G7wO6aLMSBnPlTmeMhPEW71e4LPz3yvgRThc++yAP6q2zW0pWm+Z/Jo=" />
+        <!--sophix业务配置结束-->
         <!--百度统计业务配置开始-->
         <!-- 您从百度网站获取的APP KEY，根据实际您的APP申请的APP_KEY进行修改 -->
         <meta-data
                 android:name="BaiduMobAd_STAT_ID"
-                android:value="8eb7450e89" /> <!-- abcd1234 -->
+                android:value="424740d631" /> <!-- 8eb7450e89 -->
         <!-- 渠道商编号 -->
         <meta-data
                 android:name="BaiduMobAd_CHANNEL"
@@ -324,7 +334,9 @@
         <activity android:name=".activity.AccountRechargeActivity"/>
         <activity android:name=".activity.ModifyPhoneActivity"/>
         <activity android:name=".activity.BankListActivity"/>
-
+        <activity android:name=".activity.OpenDepositoryActivity"/>
+        <activity android:name=".activity.RedPacketActivity"/>
+        <activity android:name=".activity.GetBankNumInfoActivity"/>
     </application>
 
 </manifest>

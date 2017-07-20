@@ -2,6 +2,7 @@ package com.xwsd.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -160,6 +161,7 @@ public class AutoBidActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.auto_bid);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.auto_bid));
         navbarManage.showLeft(true);
@@ -218,8 +220,9 @@ public class AutoBidActivity extends BaseActivity {
 //        设置用户信息
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data) {
             //判断是否授权小微
-            if (AppContext.getUserBean().data.thirdAccountAuth == 1) {
-                navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
+            Log.e("autoBidAuth:",AppContext.getUserBean().data.autoBidAuth);
+            if(!(AppContext.getUserBean().data.autoBidAuth==null)||!("0".equals(AppContext.getUserBean().data.autoBidAuth))||!("".equals(AppContext.getUserBean().data.autoBidAuth))){
+                    navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
                 navbarManage.showRight(true);
                 toggle_button.setState(true);
             } else {
@@ -268,6 +271,7 @@ public class AutoBidActivity extends BaseActivity {
                                 public void onRightClick() {
                                     Intent intent = new Intent(AutoBidActivity.this, AutoBidSettingActivity.class);
                                     startActivity(intent);
+                                    needRefresh = true;
                                 }
                             });
                         }else {
@@ -276,6 +280,7 @@ public class AutoBidActivity extends BaseActivity {
                                 public void onRightClick() {
                                     Intent intent = new Intent(AutoBidActivity.this, AutoBidJianSettingActivity.class);
                                     startActivity(intent);
+                                    needRefresh = true;
                                 }
                             });
                         }
@@ -304,11 +309,14 @@ public class AutoBidActivity extends BaseActivity {
                     Intent intent = new Intent(AutoBidActivity.this, WebApproveActivity.class);
                     Map<String, String> map = ApiHttpClient.getSortMap();
                     map.put("userId", AppContext.getUserBean().data.userId);
-                    intent.putExtra(UserParam.URL, ApiHttpClient.THIRD_AUTH +
+                    map.put("mode", "bid");
+                    intent.putExtra(UserParam.URL, ApiHttpClient.AUTO_AUTH +
                             "?userId=" + AppContext.getUserBean().data.userId +
+                            "&mode=" + "bid" +
                             "&sign=" + ApiHttpClient.sign(map));
-                    TLog.error("url:"+ ApiHttpClient.THIRD_AUTH +
+                    TLog.error("url:"+ ApiHttpClient.AUTO_AUTH +
                             "?userId=" + AppContext.getUserBean().data.userId +
+                            "&mode=" + "bid" +
                             "&sign=" + ApiHttpClient.sign(map));
                     intent.putExtra(UserParam.TITLE, getString(R.string.auth_xw));
                     startActivity(intent);
@@ -323,8 +331,9 @@ public class AutoBidActivity extends BaseActivity {
                     Intent intent = new Intent(AutoBidActivity.this, WebApproveActivity.class);
                     Map<String, String> map = ApiHttpClient.getSortMap();
                     map.put("userId", AppContext.getUserBean().data.userId);
-                    intent.putExtra(UserParam.URL, ApiHttpClient.THIRD_AUTH +
+                    intent.putExtra(UserParam.URL, ApiHttpClient.AUTO_AUTH +
                             "?userId=" + AppContext.getUserBean().data.userId +
+                            "?mode=" + "bid" +
                             "&sign=" + ApiHttpClient.sign(map));
                     intent.putExtra(UserParam.TITLE, getString(R.string.auth_cancel));
                     startActivity(intent);
@@ -418,7 +427,7 @@ public class AutoBidActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (AppContext.getUserBean().data.thirdAccountAuth == 1) {
+        if(!(AppContext.getUserBean().data.autoBidAuth==null)||!("0".equals(AppContext.getUserBean().data.autoBidAuth))||!("".equals(AppContext.getUserBean().data.autoBidAuth))){
             tv_queue.setText(queueInfoBean.data.inQueue);
             tv_valid_ranking.setText(queueInfoBean.data.preInfo.validNum);
             tv_ranking_title.setText("我的排名");
@@ -455,6 +464,8 @@ public class AutoBidActivity extends BaseActivity {
         super.onResume();
         if (needRefresh) {
             getData();
+            getAuto();
+            initQueue();
             needRefresh = false;
         }
     }

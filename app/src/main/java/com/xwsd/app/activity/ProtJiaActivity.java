@@ -57,6 +57,7 @@ public class ProtJiaActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title="选择加息券";
         navbarManage.setCentreStr("选择加息券");
         navbarManage.showLeft(true);
         navbarManage.showRight(false);

@@ -61,6 +61,7 @@ public class RedPacketActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.my_red_packet);
         navbarManage.setCentreStr(getResources().getString(R.string.my_red_packet));
         navbarManage.showLeft(true);
         navbarManage.showRight(false);

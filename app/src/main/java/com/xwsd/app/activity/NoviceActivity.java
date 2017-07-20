@@ -30,7 +30,7 @@ public class NoviceActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
+        title="新手";
         view_pager.setAdapter(new PicAdapter());
         view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

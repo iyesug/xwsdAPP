@@ -8,10 +8,7 @@ import android.text.Editable;
 import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.*;
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -22,14 +19,13 @@ import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.BankCardBean;
-import com.xwsd.app.bean.BankCardsBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
-import com.xwsd.app.view.CircleImageView;
 import com.xwsd.app.view.NavbarManage;
+import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import me.drakeet.materialdialog.MaterialDialog;
@@ -49,64 +45,77 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
      * 导航栏
      */
     private NavbarManage navbarManage;
-
+    public static boolean needRefresh = false;
     RequestCall call;
 
     MaterialDialog bankDialog;
 
     BankCardBean banks;
-
+    float bigAmount= (float) 50000;
+    boolean big=false;
     /**
      * 选中的银行卡
      */
     BankCardBean checkedBank;
 
-    @Bind(R.id.iv_logo_to)
-    CircleImageView tv_bank;
+    @Bind(R.id.tv_bank)
+    TextView tv_bank;
 
     @Bind(R.id.et_money)
     EditText et_money;
 
+    @Bind(R.id.et_cashBankNum)
+    EditText et_cashBankNum;
+
     @Bind(R.id.tv_poundage)
     TextView tv_poundage;
 
-//    @Bind(R.id.et_name)
-//    EditText et_name;
+    @Bind(R.id.et_name)
+    EditText et_name;
 
     @Bind(R.id.tv_balance)
     TextView tv_balance;
 
-    @Bind(R.id.get_ismoney)
-    CheckBox get_ismoney;
+    @Bind(R.id.tv_true)
+    TextView tv_true;
+
+    @Bind(R.id.toggle_button)
+    SwitchView toggle_button;
 
     @Bind(R.id.money_ticket)
     RelativeLayout money_ticket;
 
+
+    @Bind(R.id.ll_big)
+    LinearLayout ll_big;
+
+    @Bind(R.id.et_how_get_bankNum)
+    ImageView et_how_get_bankNum;
+
     Dialog payDialog;
 
-    DecimalFormat decimalFormat = new DecimalFormat("0.0");
-    public static boolean needRefresh = false;
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+    String fee="0";
+    String tureMoney="0";
+    String allMoney="0";
+    String withdrawMoney="0";
+
     @Override
     protected void onBeforeSetContentLayout() {
         setContentView(R.layout.activity_withdraw);
-
         navbarManage = new NavbarManage(this);
     }
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.withdraw);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.withdraw));
         navbarManage.showLeft(true);
-        navbarManage.showRight(true);
-        navbarManage.setLeftImg(R.mipmap.ic_back_w);
-        navbarManage.setTextColor(R.color.white);
-        navbarManage.setRightStr(getString(R.string.withdraw_record));
-        navbarManage.setRightImg(R.mipmap.ic_in_w);
-        navbarManage.setOnRightClickListener(() -> {
-            Intent intent = new Intent(this, RechargeWithdrawActivity.class);
-            startActivity(intent);
-        });
+        navbarManage.showRight(false);
+        navbarManage.setBackground(R.color.navbar_bg);
+        navbarManage.setLeftImg(R.mipmap.ic_back_b);
         navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
             @Override
             public void onLeftClick() {
@@ -114,29 +123,87 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             }
         });
 //        判断用户是否登录
-        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+        if (AppContext.getUserBean() == null||null== AppContext.getUserBean().data) {
             Intent intent = new Intent(this, UserActivity.class);
             intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
             intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
             startActivity(intent);
             return;
         }
-        get_ismoney.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        et_how_get_bankNum.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    tv_poundage.setText("0");
+            public void onClick(View v) {
+                Intent intent = new Intent(WithdrawActivity.this, GetBankNumInfoActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        //提现卷开关监听
+
+        toggle_button.setOnStateChangedListener(new SwitchView.OnStateChangedListener() {
+            @Override
+            public void toggleToOn() {
+                toggle_button.toggleSwitch(true);
+
+                if(!"0".equals(fee)){
+                    fee=(Float.parseFloat(fee)-2)+"";
+                    tv_poundage.setText(fee);
+                    tureMoney=decimalFormat.format(Float.parseFloat(withdrawMoney)-Float.parseFloat(fee));
+                    tv_true.setText(tureMoney);
+                }
+                tv_true.setText(tureMoney);
+            }
+
+            @Override
+            public void toggleToOff() {
+                toggle_button.toggleSwitch(false);
+
+                //获取手续费
+                String s=et_money.getText().toString().trim();
+                if("".equals(s)){
+                    withdrawMoney="0";
+                    fee="0";
+                    tureMoney="0";
+                    tv_poundage.setText(fee);
+                    tv_true.setText(tureMoney);
+
                 }else{
-                    //获取手续费
-                    String s=et_money.getText().toString().trim();
-                    setPoundage(s.toString());
+                    withdrawMoney=s.toString();
+                    setPoundage(withdrawMoney);
                 }
             }
         });
+
+
 //        设置开户名
-//        et_name.setText(AppContext.getUserBean().data.name);
+        et_name.setText(AppContext.getUserBean().data.name);
 //        设置余额
-        tv_balance.setText( getIntent().getSerializableExtra(UserParam.MONEY) +"");
+        allMoney=getIntent().getSerializableExtra(UserParam.MONEY)+"";
+        tv_balance.setText(allMoney);
+        et_money.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
+                /*隐藏软键盘*/
+                    hideSoftKeyboard(getCurrentFocus());
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+//        et_money.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(!hasFocus){
+//
+//                }
+//
+//            }
+//        });
+
 //        设置文本监听
         et_money.addTextChangedListener(new TextWatcher() {
             @Override
@@ -152,26 +219,49 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void afterTextChanged(Editable s) {
 
+
                 if (s.length() > 0) {
 //                    提现金额不能大于余额
                     if (Float.valueOf(s.toString()) > Float.valueOf(getIntent().getSerializableExtra(UserParam.MONEY).toString())) {
                         ToastUtil.showToastShort(R.string.withdraw_money_exceed);
-                        et_money.setText(getIntent().getSerializableExtra(UserParam.MONEY).toString());
+                        withdrawMoney=getIntent().getSerializableExtra(UserParam.MONEY).toString();
+                        et_money.setText(withdrawMoney);
                         Editable etext = et_money.getText();
                         Selection.setSelection(etext, etext.length());
                         return;
                     }
 //                    获取手续费
-                    setPoundage(s.toString());
+                    withdrawMoney=s.toString();
+                    setPoundage(withdrawMoney);
+                    if("".equals(s)){
+                        withdrawMoney="0";
+                        fee="0";
+                        tv_poundage.setText(fee);
+                        tureMoney="0";
+                        tv_true.setText(tureMoney);
+                    }
+
+                    if(Float.valueOf(s.toString()) >= bigAmount){
+                        ll_big.setVisibility(View.VISIBLE);
+                        big=true;
+                    }
+                    if(Float.valueOf(s.toString()) < bigAmount){
+                        ll_big.setVisibility(View.GONE);
+                        big=false;
+                    }
                 } else {
-                    tv_poundage.setText("0");
+                    withdrawMoney="0";
+                    fee="0";
+                    tv_poundage.setText(fee);
+                    tureMoney="0";
+                    tv_true.setText(tureMoney);
                 }
             }
         });
         getBanks(1);
     }
 
-    @OnClick({R.id.commit, R.id.bt_all_withdraw, R.id.et_money})
+    @OnClick({R.id.commit,  R.id.bt_all_withdraw, R.id.et_money})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -186,13 +276,21 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                     ToastUtil.showToastShort(R.string.withdraw_money_null);
                     return;
                 }
-
+                if (big&&TextUtils.isEmpty(et_cashBankNum.getText().toString().trim())) {
+                    ToastUtil.showToastShort(R.string.bank_num_null);
+                    return;
+                }
                 if (decimalFormat.format(Float.valueOf(et_money.getText().toString().trim())).equals("0.00")) {
                     ToastUtil.showToastShort(R.string.withdraw_money_small);
                     return;
                 }
 
-                showPayDialog();
+                if(Float.parseFloat(tureMoney)<1){
+                    ToastUtil.showToastShort(R.string.money_no_one);
+                    return;
+                }
+                withdraw(et_money.getText().toString().trim());
+//                showPayDialog();
                 break;
 //            case R.id.ll_banks://选择提现银行卡
 //                BuriedPointUtil.buriedPoint("提现页面-选择提现银行卡");
@@ -204,7 +302,8 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 //                break;
             case R.id.bt_all_withdraw://全部提现
                 BuriedPointUtil.buriedPoint("提现页面-全部提现");
-                et_money.setText(getIntent().getSerializableExtra(UserParam.MONEY).toString());
+                withdrawMoney=getIntent().getSerializableExtra(UserParam.MONEY).toString();
+                et_money.setText(withdrawMoney);
                 break;
             case R.id.et_money:
                 BuriedPointUtil.buriedPoint("提现页面-写入提现金额");
@@ -233,10 +332,16 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
-                        if(!get_ismoney.isChecked()){
-                            tv_poundage.setText(jsonObject.getJSONObject("data").getString("fee"));
+                        if(toggle_button.getState() != SwitchView.STATE_SWITCH_ON){
+                            fee=jsonObject.getJSONObject("data").getString("fee");
+                            tv_poundage.setText(fee);
+                            tureMoney=decimalFormat.format(Float.parseFloat(withdrawMoney)-Float.parseFloat(fee));
+                            tv_true.setText(tureMoney);
                         }else{
-                            tv_poundage.setText("0");
+                            fee=Float.parseFloat(jsonObject.getJSONObject("data").getString("fee"))-2+"";
+                            tv_poundage.setText(fee);
+                            tureMoney=decimalFormat.format(Float.parseFloat(withdrawMoney)-Float.parseFloat(fee));
+                            tv_true.setText(tureMoney);
                         }
 
                     } else {
@@ -284,7 +389,15 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                             checkedBank=banks;
                             if(type == 0){
                             }else {
-                                ApiHttpClient.lodCircleImg(tv_bank, banks.data.bankIco, R.drawable.ic_load, R.drawable.ic_load);
+                                if(!"".equals(checkedBank.data.binInfo)){
+                                    String bankinfo=checkedBank.data.binInfo;
+                                    String[] s=bankinfo.split("-");
+                                    tv_bank.setText(s[0]+"");
+                                }
+
+
+
+//                                ApiHttpClient.lodCircleImg(tv_bank, banks.data.bankIco, R.drawable.ic_load, R.drawable.ic_load);
                                 showTicket();
                             }
                         } else {
@@ -344,7 +457,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 //                                public void onClick(View v) {
 //                                    bankDialog.dismiss();
 //                                    checkedBank = getCheckedBank(banks, wv.getSeletedItem());
-////                                    tv_bank.setText(wv.getSeletedItem());
+//                                    tv_bank.setText(wv.getSeletedItem());
 //                                    showTicket();
 //                                }
 //                            })
@@ -353,27 +466,27 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 //        bankDialog.show();
 //    }
     private void showTicket(){
-//        if(banks.data.lotteryCount > 0){
+        if(banks.data.lotteryCount > 0){
             money_ticket.setVisibility(View.VISIBLE);
-//        }
+        }
     }
 
-    /**
-     * 获取选中的银行
-     *
-     * @param bankCardsBean
-     * @param str
-     * @return
-     */
-    private BankCardsBean.records getCheckedBank(BankCardsBean bankCardsBean, String str) {
-        String bankName = str.split("（")[0];
-        for (BankCardsBean.records data : bankCardsBean.data.records) {
-            if (data.bankName.equals(bankName)) {
-                return data;
-            }
-        }
-        return null;
-    }
+//    /**
+//     * 获取选中的银行
+//     *
+//     * @param bankCardsBean
+//     * @param str
+//     * @return
+//     */
+//    private BankCardsBean.records getCheckedBank(BankCardBean bankCardsBean, String str) {
+//        String bankName = str.split("（")[0];
+//        for (BankCardBean data : bankCardBean.data.records) {
+//            if (data.bankName.equals(bankName)) {
+//                return data;
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * 显示支付密码对话框
@@ -411,9 +524,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                         return;
                     }
                     payDialog.dismiss();
-                    withdraw(et_money.getText().toString().trim(),
-                            editText.getText().toString().trim(),
-                            checkedBank.data.id);
+                    withdraw(et_money.getText().toString().trim());
                 }
             });
             payDialog.setContentView(view);
@@ -440,10 +551,10 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
      * 提现
      *
      * @param money       提现金额
-     * @param bankId      银行卡ID
-     * @param payPassword 支付密码
+     *
+     *
      */
-    private void withdraw(String money, String payPassword, String bankId) {
+    private void withdraw(String money ) {
 
         showWaitDialog(new DialogInterface.OnCancelListener() {
             @Override
@@ -454,11 +565,17 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             }
         });
         String isLottery;
-        if(get_ismoney.isChecked()){
+        if(toggle_button.getState() == SwitchView.STATE_SWITCH_ON ){
             isLottery = "1";
-            tv_poundage.setText("0");
+
         }else{
             isLottery = "0";
+        }
+        String big;
+        if(this.big){
+            big="1";
+        }else{
+            big="0";
         }
 
         //跳转到充值页面
@@ -466,25 +583,25 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
         Map<String, String> map = ApiHttpClient.getSortMap();
         map.put("userId", AppContext.getUserBean().data.userId);
         map.put("money", money);
-        map.put("type", "0");
-        map.put("cashBankNum", "");
+        map.put("type", big);
+        map.put("cashBankNum", et_cashBankNum.getText().toString().trim());
         map.put("isLottery", isLottery);
 
         map.put("media", "Android");
         intent.putExtra(UserParam.URL, ApiHttpClient.WITHDRAW +
                 "?userId=" + AppContext.getUserBean().data.userId +
                 "&money=" + money +
-                "&type=" + "0" +
-                "&cashBankNum=" + "" +
+                "&type=" + big +
+                "&cashBankNum=" + et_cashBankNum.getText().toString().trim() +
                 "&isLottery=" + isLottery +
                 "&media=" + "Android" +
                 "&sign=" + ApiHttpClient.sign(map));
-        TLog.error("url:" + ApiHttpClient.THIRD_AUTH +
+        TLog.error("url:" + ApiHttpClient.WITHDRAW +
                 "?userId=" + AppContext.getUserBean().data.userId +
                 "&money=" + money +
                 "&media=" + "Android" +
                 "&sign=" + ApiHttpClient.sign(map));
-        intent.putExtra(UserParam.TITLE, getString(R.string.bank_card));
+        intent.putExtra(UserParam.TITLE, getString(R.string.withdraw));
         startActivity(intent);
         AppManager.getAppManager().finishActivity();
 
@@ -521,7 +638,6 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
 //            }
 //        });
     }
-
 
     @Override
     public void onResume() {

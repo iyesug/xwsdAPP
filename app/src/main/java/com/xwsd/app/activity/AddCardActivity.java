@@ -17,8 +17,10 @@ import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.AreasBean;
 import com.xwsd.app.bean.BankCardsBean;
+import com.xwsd.app.bean.BankListBean;
 import com.xwsd.app.bean.BanksBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.event.MyEvent;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.PatternUtils;
 import com.xwsd.app.tools.TLog;
@@ -29,6 +31,9 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import me.drakeet.materialdialog.MaterialDialog;
 import okhttp3.Call;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,6 +74,8 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.tv_address_city)
     TextView tv_address_city;
 
+    BankListBean.Data.limitList chooseBank;
+
     BanksBean banksBean;
 
     AreasBean provinces;
@@ -97,11 +104,17 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_add_card);
         navbarManage = new NavbarManage(this);
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
     @Override
     protected void init(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
+        title=getString(R.string.add_bank_card);
         //设置导航栏
-        navbarManage.setCentreStr(getString(R.string.bank_card_manage));
+        navbarManage.setCentreStr(getString(R.string.add_bank_card));
         navbarManage.showLeft(true);
         navbarManage.showRight(false);
         navbarManage.setLeftImg(R.mipmap.ic_back_b);
@@ -152,7 +165,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.commit:
-                addCard(et_card_num.getText().toString().trim());
+
                 if (TextUtils.isEmpty(et_name.getText().toString().trim())) {
                     ToastUtil.showToastShort(getString(R.string.name_null));
                     return;
@@ -177,7 +190,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                     ToastUtil.showToastShort(getString(R.string.banks_null));
                     return;
                 }
-//
+//                addCard(et_card_num.getText().toString().trim());
 //                if (provincesId == -1) {
 //                    ToastUtil.showToastShort(getString(R.string.provinces_null));
 //                    return;
@@ -321,7 +334,7 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
                 "&bankNum=" + bankNum+
                 "&media=" + "Android"+
                 "&sign=" + ApiHttpClient.sign(map));
-        TLog.error("url:"+ ApiHttpClient.THIRD_AUTH +
+        TLog.error("url:"+ ApiHttpClient.CARD_BIND +
                 "?userId=" + AppContext.getUserBean().data.userId +
                 "&bankNum=" + bankNum+
                 "&media=" + "Android"+
@@ -607,5 +620,17 @@ AddCardActivity extends BaseActivity implements View.OnClickListener {
             }
         }
         return null;
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(MyEvent event) {
+        chooseBank=event.getChooseBank();
+        if(chooseBank==null){
+            tv_open_bank.setText("");
+
+        }
+        tv_open_bank.setText(chooseBank.bankName);
+        banksId=1;
     }
 }

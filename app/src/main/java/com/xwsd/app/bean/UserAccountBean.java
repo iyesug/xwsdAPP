@@ -37,6 +37,7 @@ public class UserAccountBean implements Serializable {
         public static class Lotteries implements Serializable {
             public String interest;
             public String withdraw;
+            public String invest_money;
         }
 
     }

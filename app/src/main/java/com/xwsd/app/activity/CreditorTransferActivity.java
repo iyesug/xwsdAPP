@@ -58,6 +58,7 @@ public class CreditorTransferActivity extends BaseActivity implements TabLayout.
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.creditor_transfer);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.creditor_transfer));
         navbarManage.showLeft(true);

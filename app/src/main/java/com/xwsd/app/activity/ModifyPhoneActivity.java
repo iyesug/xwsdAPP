@@ -48,6 +48,7 @@ public class ModifyPhoneActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.ll_modify_update_phone);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.ll_modify_update_phone));
         navbarManage.showLeft(true);
@@ -85,7 +86,7 @@ public class ModifyPhoneActivity extends BaseActivity implements View.OnClickLis
                     }
                 });
 
-                //跳转到授权页面
+                //修改手机号【存管】，跳转到修改手机号页面
                 Intent intent = new Intent(this, WebApproveActivity.class);
                 Map<String, String> map = ApiHttpClient.getSortMap();
                 map.put("userId", AppContext.getUserBean().data.userId);
@@ -97,7 +98,7 @@ public class ModifyPhoneActivity extends BaseActivity implements View.OnClickLis
                         "&media=" + "Android"+
                         "&sign=" + ApiHttpClient.sign(map));
 
-                intent.putExtra(UserParam.TITLE, getString(R.string.bank_card));
+                intent.putExtra(UserParam.TITLE, getString(R.string.ll_modify_update_phone));
                 startActivity(intent);
                 AppManager.getAppManager().finishActivity();
 

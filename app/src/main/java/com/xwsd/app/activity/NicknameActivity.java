@@ -25,6 +25,7 @@ public class NicknameActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.nickname);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.nickname));
         navbarManage.showLeft(true);

@@ -144,8 +144,8 @@ String API_URL = "http://app.xwsdvip.com/api/";//测试
     /**
      * 绑定第三方账号
      */
-    String BIND_THIRD = API_URL + "bindThird";
-
+//    String BIND_THIRD = API_URL + "bindThird";
+    String OPEN_CUSTODY = API_URL + "openCustody";
     /**
      * 获取已经认证的银行卡
      */
@@ -162,9 +162,9 @@ String API_URL = "http://app.xwsdvip.com/api/";//测试
     String QUEUE_INFO = API_URL + "queueInfo";
 
     /**
-     * 授权
+     * 授权 自动投标
      */
-    String THIRD_AUTH = API_URL + "thirdAuth";
+    String AUTO_AUTH = API_URL + "autoAuth";
 
     /**
      * 删除银行卡
@@ -419,4 +419,10 @@ String API_URL = "http://app.xwsdvip.com/api/";//测试
     * 用户银行卡同步
     */
    String CARD_REFRESH = API_URL + "cardRefresh";
+
+
+    /**
+     * 银行卡充值限额列表
+     */
+    String CARD_LIMIT = API_URL + "cardLimit";
 }

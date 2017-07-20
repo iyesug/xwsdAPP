@@ -16,17 +16,15 @@ public class AutoInfoBean implements Serializable {
         public List<Types> types;
 
         public static class Types implements Serializable {
-            public String name;
-            public List<BidList> list;
 
-            public class BidList implements Serializable {
-                public int month;
+                public int period;
                 public Double rate;
                 public String name;
                 public String id;
                 public String type;
                 public boolean selectType;
-            }
+                public int status;
+
         }
 
         public AutoInvest autoInvest;
@@ -43,4 +41,7 @@ public class AutoInfoBean implements Serializable {
 
         }
     }
+
+
+
 }

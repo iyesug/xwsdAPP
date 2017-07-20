@@ -54,6 +54,7 @@ public class GestureLockSettingsActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.gesture_lock_settings);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.gesture_lock_settings));
         navbarManage.showRight(false);

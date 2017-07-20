@@ -189,7 +189,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                         allItemCount = (mFriendsBean.data.count);
                         setData(type);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -254,7 +254,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                         ToastUtil.showToast("提取成功");
                         getData(1);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -272,6 +272,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
     }
     @Override
     protected void init(Bundle savedInstanceState) {
+        title="推荐奖励";
         //设置导航栏
         navbarManage.setCentreStr("推荐奖励");
         navbarManage.showLeft(true);
@@ -330,7 +331,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                                         startActivity(Intent.createChooser(intent, "请选择"));
 
                                     } else if (jsonObject.getInt("status") == 88){
-                                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                                        ToastUtil.showToast(getString(R.string.please_relogin));
                                         Intent Fintent = new Intent();
                                         Fintent.putExtra(UserParam.TYPE, 0);
                                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

@@ -21,22 +21,14 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.text.util.Linkify;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.CheckedTextView;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.*;
+import com.bumptech.glide.Glide;
 
 
 /**
@@ -226,6 +218,20 @@ public class BaseAdapterHelper {
     public BaseAdapterHelper setImageBitmap(int viewId, Bitmap bitmap) {
         ImageView view = retrieveView(viewId);
         view.setImageBitmap(bitmap);
+        return this;
+    }
+
+
+    /**
+     * Add an action to set the image of an image view. Can be called multiple times.
+     */
+    public BaseAdapterHelper setImageUrl(Context context,int viewId, String bitmap) {
+        ImageView view = retrieveView(viewId);
+
+        Glide.with(context)
+                .load(bitmap)
+                .crossFade()
+                .into(view);
         return this;
     }
 

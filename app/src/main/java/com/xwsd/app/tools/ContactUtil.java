@@ -94,13 +94,13 @@ public class ContactUtil {
             mMDialog.setMessage("客服不在线，请留言！我们会第一时间联系您！");
             mMDialog.setBtnOK("确定", v1 -> {
                 mMDialog.miss();
-                String url="mqqwpa://im/chat?chat_type=crm&uin=4008659993&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
+                String url="mqqwpa://im/chat?chat_type=crm&uin=938009686&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
                 context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             });
             mMDialog.setBtnCancelGone();
         }
         else{
-            String url="mqqwpa://im/chat?chat_type=crm&uin=4008659993&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
+            String url="mqqwpa://im/chat?chat_type=crm&uin=938009686&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
         }
     }
@@ -131,10 +131,10 @@ public class ContactUtil {
 
     private static void call(Activity context) {
         final MADialog mMDialog = new MADialog(context);
-        mMDialog.setMessage("确认拨打：400 8659 993");
+        mMDialog.setMessage("确认拨打：400 186 9996 ");//400-186-9996
         mMDialog.setBtnOK("确定", v1 -> {
             mMDialog.miss();
-            Intent intentPhone = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4008659993"));
+            Intent intentPhone = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "4001869996 "));
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions

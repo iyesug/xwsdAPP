@@ -6,7 +6,8 @@ import android.util.Base64;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.OnClick;
 import com.star.lockpattern.util.LockPatternUtil;
 import com.star.lockpattern.widget.LockPatternView;
 import com.xwsd.app.AppManager;
@@ -16,9 +17,6 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GesturePassward;
 
 import java.util.List;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 
 /**
@@ -47,6 +45,7 @@ public class GestureLoginActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title="手势登录";
 //        aCache = ACache.get(GestureLoginActivity.this);
         //得到当前用户的手势密码
 //        gesturePassword = aCache.getAsBinary((String) getParam(UserParam.USER_ID, ""));

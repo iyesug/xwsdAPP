@@ -224,6 +224,7 @@ public class FundRecordActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.Fund_record);
         navbarManage.setCentreStr(getString(R.string.Fund_record));
         navbarManage.showLeft(true);
         navbarManage.showRight(true);
@@ -294,7 +295,7 @@ public class FundRecordActivity extends BaseActivity implements View.OnClickList
                         allItemCount = Integer.valueOf(mFundRecordBean.data.count);
                         setData(type);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

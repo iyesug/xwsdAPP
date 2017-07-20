@@ -33,7 +33,8 @@
 
                 <include
                     android:id="@+id/ll_name_certification"
-                    layout="@layout/layout_account_safety_select"></include>
+                    layout="@layout/layout_account_safety_select"
+                        android:visibility="gone"></include>
 
                 <View
                     style="@style/GreyInterval"

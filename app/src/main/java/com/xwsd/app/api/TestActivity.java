@@ -307,10 +307,10 @@ public class TestActivity extends BaseActivity {
                     Intent intent = new Intent(TestActivity.this, WebApproveActivity.class);
                     Map<String, String> map = ApiHttpClient.getSortMap();
                     map.put("userId", AppContext.getUserBean().data.userId);
-                    intent.putExtra(UserParam.URL, ApiHttpClient.THIRD_AUTH +
+                    intent.putExtra(UserParam.URL, ApiHttpClient.AUTO_AUTH +
                             "?userId=" + AppContext.getUserBean().data.userId +
                             "&sign=" + ApiHttpClient.sign(map));
-                    TLog.error("url:"+ ApiHttpClient.THIRD_AUTH +
+                    TLog.error("url:"+ ApiHttpClient.AUTO_AUTH +
                             "?userId=" + AppContext.getUserBean().data.userId +
                             "&sign=" + ApiHttpClient.sign(map));
                     intent.putExtra(UserParam.TITLE, getString(R.string.auth_xw));
@@ -326,7 +326,7 @@ public class TestActivity extends BaseActivity {
                     Intent intent = new Intent(TestActivity.this, WebApproveActivity.class);
                     Map<String, String> map = ApiHttpClient.getSortMap();
                     map.put("userId", AppContext.getUserBean().data.userId);
-                    intent.putExtra(UserParam.URL, ApiHttpClient.THIRD_AUTH +
+                    intent.putExtra(UserParam.URL, ApiHttpClient.AUTO_AUTH +
                             "?userId=" + AppContext.getUserBean().data.userId +
                             "&sign=" + ApiHttpClient.sign(map));
                     intent.putExtra(UserParam.TITLE, getString(R.string.auth_cancel));

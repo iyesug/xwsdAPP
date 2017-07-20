@@ -51,6 +51,7 @@ public class AccountRechargeActivity extends BaseActivity implements TabLayout.O
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.account_recharge);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.account_recharge));
         navbarManage.showLeft(true);

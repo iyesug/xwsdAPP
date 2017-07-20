@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
+import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.QuickAdapter;
@@ -55,7 +56,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
     QuickAdapter adapter;
 
     @Bind(R.id.tv_title)
-    TextView title;
+    TextView tv_title;
 
     @Bind(R.id.tv_type)
     TextView tv_type;
@@ -85,6 +86,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.bank_card_manage);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.bank_card_manage));
         navbarManage.showLeft(true);
@@ -141,7 +143,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                         bankCardBean=bean;
                         setBankCard(bean);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(BankCardActivity.this, UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -180,7 +182,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
             if(!"".equals(bean.data.binInfo)){
                 String bankinfo=bean.data.binInfo;
                 String[] s=bankinfo.split("-");
-                title.setText(s[0]+"");
+                tv_title.setText(s[0]+"");
                 tv_type.setText(s[1]+"");
             }
             if((bean.data.bankNum.length()>=0)){
@@ -399,7 +401,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                             if (jsonObject.getInt("status") == 1) {
                                 getData();
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast("用户密码已修改，请重新登录");
+                                ToastUtil.showToast(getString(R.string.please_relogin));
                                 Intent Fintent = new Intent();
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -425,6 +427,30 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_add_bank_card:
+                //                充值前，先判断是否开通了存管
+                if(AppContext.getUserBean().data.custodyId==null||"0".equals(AppContext.getUserBean().data.custodyId)||"".equals(AppContext.getUserBean().data.custodyId)){
+                    new AlertDialog(this)
+                            .builder()
+                            .setTitle("温馨提示：")
+                            .setMsg("您尚未开通存管，是否前往开通。")
+                            .setPositiveButton("前往", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(BankCardActivity.this, OpenDepositoryActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("取消", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            }).show();
+                    return;
+                }
+
+
+
 //                if (AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
                 Intent intent = new Intent(BankCardActivity.this, AddCardActivity.class);
                 startActivity(intent);
@@ -458,7 +484,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                                     ToastUtil.showToast(jsonObject.getString("msg"));
                                     getData();
                                 } else if (jsonObject.getInt("status") == 88){
-                                    ToastUtil.showToast("用户密码已修改，请重新登录");
+                                    ToastUtil.showToast(getString(R.string.please_relogin));
                                     Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                                     Fintent.putExtra(UserParam.TYPE, 0);
                                     Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -489,7 +515,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 
                     @Override
                     public void onResponse(String response, int id) {
-                        TLog.error("解绑银行卡:" + response);
+                        TLog.error("同步银行卡:" + response);
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getInt("status") == 1) {
@@ -497,7 +523,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                                 ToastUtil.showToast(jsonObject.getString("msg"));
                                 getData();
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast("用户密码已修改，请重新登录");
+                                ToastUtil.showToast(getString(R.string.please_relogin));
                                 Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -546,7 +572,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
 //                        BankCardBean bean = GsonUtils.jsonToBean(response, BankCardBean.class);
 //                        setBankCard(bean);
 //                    } else if (jsonObject.getInt("status") == 88){
-//                        ToastUtil.showToast("用户密码已修改，请重新登录");
+//                        ToastUtil.showToast(getString(R.string.please_relogin));
 //                        Intent Fintent = new Intent();
 //                        Fintent.putExtra(UserParam.TYPE, 0);
 //                        Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

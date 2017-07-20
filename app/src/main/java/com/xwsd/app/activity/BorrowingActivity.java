@@ -84,6 +84,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.borrowing);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.borrowing));
         navbarManage.showLeft(true);
@@ -254,7 +255,7 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                             provinces = GsonUtils.jsonToBean(response, AreasBean.class);
                             showAreasDialog(areasId, provinces);
                         } else if (jsonObject.getInt("status") == 88){
-                            ToastUtil.showToast("用户密码已修改，请重新登录");
+                            ToastUtil.showToast(getString(R.string.please_relogin));
                             Intent Fintent = new Intent();
                             Fintent.putExtra(UserParam.TYPE, 0);
                             Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

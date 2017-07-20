@@ -30,7 +30,7 @@ public class BankListBean {
         public class  limitList implements Serializable {
             public String bankName;
             public String limit;
-
+            public String bankIcon;
         }
 
 

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import butterknife.Bind;
@@ -31,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -151,6 +153,10 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
     @Bind(R.id.error_layout)
     EmptyLayout mErrorLayout;
 
+    List<AutoInfoBean.Data.Types> first=new ArrayList<>();
+    List<AutoInfoBean.Data.Types>  second=new ArrayList<>();
+    List<AutoInfoBean.Data.Types>  third=new ArrayList<>();
+
     @Override
     protected void onBeforeSetContentLayout() {
         setContentView(R.layout.activity_auto_bid_setting);
@@ -159,6 +165,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.auto_bid);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.auto_bid));
         navbarManage.showLeft(true);
@@ -310,12 +317,13 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
         //设置投资类型
         for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-            for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
                 for (String id : autoInfoBean.data.autoInvest.types) {
-                    if (bidList.id.equals(id)) {
-                        bidList.selectType = true;
+
+                    if (types.id.equals(id)) {
+                        types.selectType = true;
+                        Log.e("get:::selectType:",types.selectType+"");
                     }
-                }
+
             }
         }
 
@@ -518,6 +526,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                                 }
                             }
                         });
+
                 break;
 
             case R.id.tb_type_v://选中/取消/类型
@@ -548,11 +557,10 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
         StringBuffer typesStr = new StringBuffer();
         //        遍历所有元素，设置选中状态
         for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
-            for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                if (bidList.selectType) {
-                    typesStr.append(bidList.id);
+                if (types.selectType) {
+                    typesStr.append(types.id);
                     typesStr.append(",");
-                }
+
             }
         }
         if (typesStr.toString().contains(",")) {
@@ -579,9 +587,9 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
         //遍历所有元素，设置选中状态
         for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
 
-            for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
-                bidList.selectType = selectType;
-            }
+
+            types.selectType = selectType;
+
         }
 
         //更新适配器
@@ -599,10 +607,24 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
         if (pledgeBidAdapter == null) {
 
-            if (autoInfoBean.data.types.get(0).name.equals("抵押标")) {
-                screen_list_left.setAdapter(pledgeBidAdapter = new QuickAdapter<AutoInfoBean.Data.Types.BidList>(AutoBidSettingActivity.this, R.layout.item_check_box, autoInfoBean.data.types.get(0).list) {
+            for(int i=0;i<autoInfoBean.data.types.size();i++){
+                if("diya".equals(autoInfoBean.data.types.get(i).type)){
+                    first.add(autoInfoBean.data.types.get(i));
+                }
+                if("xingyong".equals(autoInfoBean.data.types.get(i).type)){
+                    second.add(autoInfoBean.data.types.get(i));
+                }
+                if("danbao".equals(autoInfoBean.data.types.get(i).type)){
+                    third.add(autoInfoBean.data.types.get(i));
+                }
+
+            }
+
+
+
+                screen_list_left.setAdapter(pledgeBidAdapter = new QuickAdapter<AutoInfoBean.Data.Types>(AutoBidSettingActivity.this, R.layout.item_check_box, first) {
                     @Override
-                    protected void convert(BaseAdapterHelper helper, final AutoInfoBean.Data.Types.BidList item) {
+                    protected void convert(BaseAdapterHelper helper, final AutoInfoBean.Data.Types item) {
 //                        监听选中状态
                         helper.setOnCheckedChangeListener(R.id.cb_title, new CompoundButton.OnCheckedChangeListener() {
                             @Override
@@ -610,7 +632,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                                 item.selectType = isChecked;
 
 //                                判断是否有选中条目
-                                if (checkSelected(autoInfoBean.data.types.get(0).list)) {
+                                if (checkSelected(first)) {
                                     setArrowsType(tv_pledge_bid, iv_pledge_bid, 2);
                                 } else {
                                     setArrowsType(tv_pledge_bid, iv_pledge_bid, 0);
@@ -620,20 +642,21 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                         });
                         helper.setText(R.id.cb_title, item.name);
                         helper.setChecked(R.id.cb_title, item.selectType);
+                        Log.e("set:::selectType:",item.selectType+"");
                     }
                 });
-            }
 
-            if (autoInfoBean.data.types.get(1).name.equals("质押标")) {
-                screen_list_centre.setAdapter(mortgageBidAdapter = new QuickAdapter<AutoInfoBean.Data.Types.BidList>(AutoBidSettingActivity.this, R.layout.item_check_box, autoInfoBean.data.types.get(1).list) {
+
+
+                screen_list_centre.setAdapter(mortgageBidAdapter = new QuickAdapter<AutoInfoBean.Data.Types>(AutoBidSettingActivity.this, R.layout.item_check_box, second) {
                     @Override
-                    protected void convert(BaseAdapterHelper helper, final AutoInfoBean.Data.Types.BidList item) {
+                    protected void convert(BaseAdapterHelper helper, final AutoInfoBean.Data.Types item) {
                         helper.setOnCheckedChangeListener(R.id.cb_title, new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 item.selectType = isChecked;
 
-                                if (checkSelected(autoInfoBean.data.types.get(1).list)) {
+                                if (checkSelected(second)) {
                                     setArrowsType(tv_mortgage_bid, iv_mortgage_bid, 2);
                                 } else {
                                     setArrowsType(tv_mortgage_bid, iv_mortgage_bid, 0);
@@ -645,18 +668,18 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                         helper.setChecked(R.id.cb_title, item.selectType);
                     }
                 });
-            }
 
-            if (autoInfoBean.data.types.get(2).name.equals("融资租赁标")) {
-                screen_list_right.setAdapter(financeLeaseBidAdapter = new QuickAdapter<AutoInfoBean.Data.Types.BidList>(AutoBidSettingActivity.this, R.layout.item_check_box, autoInfoBean.data.types.get(2).list) {
+
+
+                screen_list_right.setAdapter(financeLeaseBidAdapter = new QuickAdapter<AutoInfoBean.Data.Types>(AutoBidSettingActivity.this, R.layout.item_check_box, third) {
                     @Override
-                    protected void convert(BaseAdapterHelper helper, final AutoInfoBean.Data.Types.BidList item) {
+                    protected void convert(BaseAdapterHelper helper, final AutoInfoBean.Data.Types item) {
                         helper.setOnCheckedChangeListener(R.id.cb_title, new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                                 item.selectType = isChecked;
 
-                                if (checkSelected(autoInfoBean.data.types.get(2).list)) {
+                                if (checkSelected(third)) {
                                     setArrowsType(tv_finance_lease_bid, iv_finance_lease_bid, 2);
                                 } else {
                                     setArrowsType(tv_finance_lease_bid, iv_finance_lease_bid, 0);
@@ -670,7 +693,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                     }
                 });
             }
-        }
+
     }
 
     /**
@@ -708,12 +731,12 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
         for (AutoInfoBean.Data.Types types : autoInfoBean.data.types) {
 
-            for (AutoInfoBean.Data.Types.BidList bidList : types.list) {
+
                 allNum++;
-                if (bidList.selectType) {
+                if (types.selectType) {
                     checkedNum++;
                 }
-            }
+
         }
 
         if (checkedNum == allNum &&
@@ -728,8 +751,8 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
     /**
      * 检查选中状态
      */
-    private boolean checkSelected(List<AutoInfoBean.Data.Types.BidList> bidLists) {
-        for (AutoInfoBean.Data.Types.BidList bidList : bidLists) {
+    private boolean checkSelected(List<AutoInfoBean.Data.Types> bidLists) {
+        for (AutoInfoBean.Data.Types bidList : bidLists) {
             if (bidList.selectType) {
                 return true;
             }

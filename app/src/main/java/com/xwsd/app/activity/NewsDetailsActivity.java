@@ -63,6 +63,7 @@ public class NewsDetailsActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.news_details);
         //设置导航栏
         navbarManage.showLeft(true);
         navbarManage.showRight(false);

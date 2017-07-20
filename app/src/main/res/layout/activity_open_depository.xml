@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_simple"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_toolbar"></include>
+
+    <View style="@style/GreyInterval"></View>
+
+
+    <ScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/gray_bg"
+            android:fitsSystemWindows="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_bg"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:id="@+id/ll_alredy"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/DIMEN_15">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/alredy_open_depository"
+                        android:textColor="@color/actionsheet_red"
+                        android:textSize="@dimen/TEXT_XXL"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                    android:visibility="visible"
+                    android:id="@+id/ll_input"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:background="@color/white"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/DIMEN_50"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/DIMEN_15">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/DIMEN_30"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/icon_name_black"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_L"/>
+
+                    <EditText
+                            android:id="@+id/et_name"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:hint="真实姓名"
+                            android:paddingLeft="@dimen/DIMEN_10"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_M"/>
+
+
+                </LinearLayout>
+
+                <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/DIMEN_50"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/DIMEN_15">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/DIMEN_30"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/icon_id_black"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_L"/>
+
+                    <EditText
+                            android:id="@+id/et_cardnum"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:hint="身份证号"
+                            android:inputType="number"
+                            android:paddingLeft="@dimen/DIMEN_10"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_M"/>
+
+                </LinearLayout>
+
+                <View
+                        style="@style/GreyInterval"
+                        android:layout_marginLeft="@dimen/DIMEN_15"></View>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/DIMEN_50"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/DIMEN_15">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/DIMEN_30"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/icon_bankcard_black"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_L"/>
+
+                    <EditText
+                            android:id="@+id/et_bankNum"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/DIMEN_5"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:hint="本人银行卡"
+                            android:inputType="number"
+                            android:paddingLeft="@dimen/DIMEN_10"
+                            android:textColor="@color/gray_1"
+                            android:textSize="@dimen/TEXT_M"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DIMEN_50"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/DIMEN_10">
+
+
+                <RadioButton
+                        android:id="@+id/check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:shadowColor="@color/actionsheet_blue"
+                        />
+
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="我已阅读并同意"
+                        android:textColor="@color/gray_1"
+                        android:textSize="@dimen/TEXT_S"/>
+
+                <TextView
+                        android:id="@+id/agreement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="《江西银行账户存管第三方协议》"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/TEXT_S"/>
+                <RadioButton
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:shadowColor="@color/actionsheet_blue"
+                        />
+
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/commit"
+                    style="@style/SubmitButton"
+                    android:visibility="visible"
+                    android:layout_marginLeft="@dimen/DIMEN_15"
+                    android:layout_marginRight="@dimen/DIMEN_15"
+                    android:layout_marginTop="@dimen/DIMEN_30"
+                    android:background="@drawable/select_submit_button_simple"
+                    android:text="@string/next"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -7,7 +7,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import com.baidu.mobstat.StatService;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.view.EmptyLayout;
@@ -98,9 +98,16 @@ public abstract class BasePullUpListFragment extends BaseFragment implements Abs
 
     @Override
     protected void init() {
+        StatService.onPageStart(this.getActivity(),"");
         initErrorLayout();
         initBottomView();
         list_view.setOnScrollListener(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        StatService.onPageEnd(this.getActivity(),"");
     }
 
     /**

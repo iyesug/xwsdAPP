@@ -8,32 +8,64 @@
 
     <include layout="@layout/view_toolbar"></include>
 
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DIMEN_40"
+            android:layout_marginLeft="@dimen/DIMEN_30"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_width="@dimen/DIMEN_12"
+                android:layout_height="@dimen/DIMEN_12"
+                android:background="@drawable/circle"
+                />
+        <TextView
+                android:id="@+id/bank_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/DIMEN_12"
+                android:text="支持银行"
+                android:textSize="@dimen/TEXT_S"
+                />
+
+        <TextView
+                android:id="@+id/limit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/DIMEN_70"
+                android:gravity="right"
+                android:text="充值限额"
+                android:textSize="@dimen/TEXT_S"
+
+                />
+    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
         <ScrollView
-            android:scrollbars="none"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                    android:scrollbars="none"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/DIMEN_20"
+                >
+            <com.xwsd.app.view.AdaptiveListView
                     android:id="@+id/list_view"
+                    android:layout_marginTop="@dimen/DIMEN_15"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:divider="@android:color/transparent"
-                    android:dividerHeight="@dimen/DIMEN_10"
-                    android:padding="@dimen/DIMEN_10"/>
-
-
+                    android:dividerHeight="@dimen/DIMEN_15"/>
         </ScrollView>
-
         <com.xwsd.app.view.EmptyLayout
-            android:id="@+id/error_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+                android:id="@+id/error_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"/>
 
     </FrameLayout>
 

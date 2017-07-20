@@ -51,6 +51,7 @@ public class EmailCertificationActivity extends BaseActivity implements View.OnC
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.email_certification);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.email_certification));
         navbarManage.showLeft(true);

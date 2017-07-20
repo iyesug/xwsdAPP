@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.Bind;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.BankCardBean;
@@ -28,10 +30,10 @@ public class AliPaymentFragment extends BaseFragment implements View.OnClickList
 //    @Bind(R.id.ll_bank_card)
 //    LinearLayout ll_bank_card;
 //
-//    @Bind(R.id.tv_bank_name)
-//    TextView tv_bank_name;
-//    @Bind(R.id.tv_bank_num)
-//    TextView tv_bank_num;
+    @Bind(R.id.name)
+    TextView name;
+    @Bind(R.id.custodyId)
+    TextView custodyId;
 //    @Bind(R.id.tv_money)
 //    TextView tv_money;
 //    @Bind(R.id.tv_list)
@@ -55,6 +57,8 @@ public class AliPaymentFragment extends BaseFragment implements View.OnClickList
 
     @Override
     protected void init() {
+        name.setText(AppContext.getUserBean().data.name);
+        custodyId.setText(AppContext.getUserBean().data.custodyId);
         //设置图片
         loadIntoUseFitWidth(getActivity(), R.mipmap.alipay, R.mipmap.alipay, pic);
 

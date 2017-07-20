@@ -129,7 +129,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
     @Override
     protected void init(Bundle savedInstanceState) {
 
-
+        title=intent.getStringExtra(UserParam.TITLE);
         //设置导航栏
         navbarManage.showLeft(true);
         navbarManage.showRight(false);
@@ -170,10 +170,10 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
         }
 
         getData();
-        // 宝付
-        agreeCard("baofoo");
-        //富有
-        agreeCard("fuiou");
+//        // 宝付
+//        agreeCard("baofoo");
+//        //富有
+//        agreeCard("fuiou");
     }
 
     private void getData() {
@@ -245,39 +245,39 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_pay:
-                //                充值前，先判断是否进行了实名认证
-                if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+//                //                充值前，先判断是否进行了实名认证
+//                if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+//                    new AlertDialog(PromptlyInvestActivity.this)
+//                            .builder()
+//                            .setTitle("温馨提示：")
+//                            .setMsg("您尚未进行实名认证，是否前往认证。")
+//                            .setPositiveButton("前往", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    Intent intent = new Intent(PromptlyInvestActivity.this, CertificationActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                            })
+//                            .setNegativeButton("取消", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//
+//                                }
+//                            }).show();
+//
+//                    return;
+//                }
+
+//                充值前，先判断是否开通了存管
+                if(AppContext.getUserBean().data.custodyId==null||"0".equals(AppContext.getUserBean().data.custodyId)||"".equals(AppContext.getUserBean().data.custodyId)){
                     new AlertDialog(PromptlyInvestActivity.this)
                             .builder()
                             .setTitle("温馨提示：")
-                            .setMsg("您尚未进行实名认证，是否前往认证。")
+                            .setMsg("您尚未开通存管，是否前往开通。")
                             .setPositiveButton("前往", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestActivity.this, CertificationActivity.class);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("取消", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            }).show();
-
-                    return;
-                }
-
-//                充值前，先判断是否开通了托管
-                if (AppContext.getUserBean().data.thirdAccountStatus == 0) {
-                    new AlertDialog(PromptlyInvestActivity.this)
-                            .builder()
-                            .setTitle("温馨提示：")
-                            .setMsg("您尚未开通托管，是否前往开通。")
-                            .setPositiveButton("前往", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestActivity.this, DredgeTrusteeshipActivity.class);
+                                    Intent intent = new Intent(PromptlyInvestActivity.this, OpenDepositoryActivity.class);
                                     startActivity(intent);
                                 }
                             })

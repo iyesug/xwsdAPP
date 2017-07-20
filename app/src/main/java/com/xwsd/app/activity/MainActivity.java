@@ -124,8 +124,12 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void init(Bundle savedInstanceState) {
+        title="主页";
         mDoubleClickExit = new DoubleClickExitHelper(this);
         fragmentManager = getSupportFragmentManager();
 //        设置TAB的状态更新事件
@@ -152,8 +156,36 @@ public class MainActivity extends BaseActivity {
         intentFilter.addAction(BroadcastParam.BUY_CREDITORS);
         intentFilter.addAction(BroadcastParam.USER_CHANGE_LOGIN);
         registerReceiver(myBroadcastReciever, intentFilter);
-    }
 
+//        //判断是否开通存管
+//        if (AppContext.getUserBean() != null ) {
+//            {
+//                if (AppContext.getUserBean().data.custodyId == null || "0".equals(AppContext.getUserBean().data.custodyId)
+//                        || "".equals(AppContext.getUserBean().data.custodyId)) {
+//                    showDialog();
+//                }
+//            }
+//        }
+    }
+//    //开通存管对话框
+//    private void showDialog(){
+//        new PicDialog(this,
+//                new PicDialog.DialogClickListener() {
+//
+//                    @Override
+//                    public void close(Dialog dialog, String pass) {
+//                        dialog.dismiss();
+//
+//                    }
+//
+//                    @Override
+//                    public void commit(Dialog dialog) {
+//                        dialog.dismiss();
+//                        Intent intent = new Intent(MainActivity.this, OpenDepositoryActivity.class);
+//                        startActivity(intent);
+//                    }
+//                }).show();
+//    }
     /**
      * 根据传入的id来设置选中的tab页。
      *

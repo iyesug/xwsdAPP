@@ -53,6 +53,7 @@ public class DredgeTrusteeshipActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.dredge_trusteeship);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.dredge_trusteeship));
         navbarManage.showLeft(true);
@@ -113,12 +114,12 @@ public class DredgeTrusteeshipActivity extends BaseActivity {
         Intent intent = new Intent(DredgeTrusteeshipActivity.this, WebApproveActivity.class);
         Map<String, String> map = ApiHttpClient.getSortMap();
         map.put("userId", AppContext.getUserBean().data.userId);
-        intent.putExtra(UserParam.URL, ApiHttpClient.BIND_THIRD +
-                "?userId=" + AppContext.getUserBean().data.userId +
-                "&sign=" + ApiHttpClient.sign(map));
-        TLog.error("UserParam.URL:"+ApiHttpClient.BIND_THIRD +
-                "?userId=" + AppContext.getUserBean().data.userId +
-                "&sign=" + ApiHttpClient.sign(map));
+//        intent.putExtra(UserParam.URL, ApiHttpClient.BIND_THIRD +
+//                "?userId=" + AppContext.getUserBean().data.userId +
+//                "&sign=" + ApiHttpClient.sign(map));
+//        TLog.error("UserParam.URL:"+ApiHttpClient.BIND_THIRD +
+//                "?userId=" + AppContext.getUserBean().data.userId +
+//                "&sign=" + ApiHttpClient.sign(map));
 
         if (AppContext.getUserBean().data.thirdAccountStatus == 1) {
             intent.putExtra(UserParam.TITLE, getString(R.string.cancel_trusteeship));
@@ -171,7 +172,7 @@ public class DredgeTrusteeshipActivity extends BaseActivity {
                             toggle_button.setState(false);
                         }
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(DredgeTrusteeshipActivity.this, UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

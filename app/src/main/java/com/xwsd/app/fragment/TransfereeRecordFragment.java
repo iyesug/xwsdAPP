@@ -63,7 +63,7 @@ public class TransfereeRecordFragment extends BaseUpDownListFragment {
                         CreditorTransferBean infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(infosBean, TYPE_PULLUP);
                     }else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -105,7 +105,7 @@ public class TransfereeRecordFragment extends BaseUpDownListFragment {
                         allItemCount = infosBean.data.count;
                         mAdapter.replaceAll(infosBean.data.records);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -142,7 +142,7 @@ public class TransfereeRecordFragment extends BaseUpDownListFragment {
                         CreditorTransferBean infosBean = GsonUtils.jsonToBean(response, CreditorTransferBean.class);
                         setData(infosBean, TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

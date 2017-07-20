@@ -73,6 +73,7 @@ public class CEOQuestionsActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        title=getString(R.string.ceo_questions);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.ceo_questions));
         navbarManage.showLeft(true);
