@@ -96,6 +96,9 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
     @Bind(R.id.tv_get_money)
     protected LinearLayout tv_get_money;
 
+    @Bind(R.id.tv_invest_money)
+    protected LinearLayout tv_invest_money;
+
     @Bind(R.id.tv_recommended_award)
     protected LinearLayout tv_recommended_award;
 
@@ -253,6 +256,7 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
 
         ((TextView) tv_increase_interest.findViewById(R.id.tv_title)).setText("加息券：");
         ((TextView) tv_get_money.findViewById(R.id.tv_title)).setText("提现券：");
+        ((TextView) tv_invest_money.findViewById(R.id.tv_title)).setText("抵扣红包：");
         ((TextView) tv_recommended_award.findViewById(R.id.tv_title)).setText("累计推荐奖励：");
         ((TextView) tv_recommended_use_award.findViewById(R.id.tv_title)).setText("剩余可提取推荐奖励：");
 
@@ -297,6 +301,8 @@ public class PropertyDetailsActivity extends BaseActivity implements View.OnClic
 
         ((TextView) tv_increase_interest.findViewById(R.id.tv_content)).setText(userAccountBean.data.lotteries.interest + "张");
         ((TextView) tv_get_money.findViewById(R.id.tv_content)).setText(userAccountBean.data.lotteries.withdraw + "张");
+        ((TextView) tv_invest_money.findViewById(R.id.tv_content)).setText(userAccountBean.data.lotteries.invest_money + "张");
+
         if(userAccountBean.data.spreadMoney!=null){
             ((TextView) tv_recommended_award.findViewById(R.id.tv_content)).setText(userAccountBean.data.spreadMoney + "元");
         }else{

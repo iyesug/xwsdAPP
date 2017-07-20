@@ -2,36 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/blue_simple"
+                android:background="@color/gray_bg"
                 android:fitsSystemWindows="true"
                 android:orientation="vertical">
 
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/DIMEN_70"
             android:background="@color/gray_bg"
             android:orientation="vertical">
         <include layout="@layout/view_toolbar"></include>
 
         <View style="@style/GreyInterval"></View>
 
-        <LinearLayout
+        <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/my_bootom"
                 android:orientation="vertical">
+
+            <ScrollView
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
             <com.xwsd.app.view.AdaptiveListView
                     android:id="@+id/list_view"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:divider="@android:color/transparent"
                     android:dividerHeight="@dimen/DIMEN_15"/>
+            </ScrollView>
             <com.xwsd.app.view.EmptyLayout
                     android:id="@+id/error_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="visible"/>
-        </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/my_bootom"

@@ -486,6 +486,40 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         call.execute(callback);
         return call;
     }
+
+
+    /**
+     * 获取抵扣红包
+     * @param userId
+     * @param callback
+     * @return
+     */
+    public static RequestCall moneyLotteries(
+            String userId,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("page", "1");
+        map.put("pageSize","50");
+        map.put("pageType","0");
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .get()
+                .url(MONEYLOTTERIES)
+                .addParams("userId", userId)
+                .addParams("page", "1")
+                .addParams("pageSize", "50")
+                .addParams("pageType","0")
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
     public static RequestCall getDetilaInfo(
             String userId,String oddMoneyId,
             Callback callback) {
@@ -1278,6 +1312,8 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @param rangeEnd        最高投资金额(此参数不可省略，moneyType为0时与此值与fixedMoney相同即可)
      * @param fixedMoney      指定投资金额(此参数不可省略，moneyType为1此值可给1任意大于0的值)
      * @param types           投资类型，将类型 id使用英文逗号(,)拼接起来
+     * @param lotteryID       红包ID，不用为0
+
      * @return 返回一个可取消的请求
      */
     public static RequestCall autoSet(
@@ -1291,6 +1327,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
             String fixedMoney,
             String types,
             String mode,
+            String lotteryID,
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
@@ -1302,6 +1339,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("rangeEnd", rangeEnd);
         map.put("fixedMoney", fixedMoney);
         map.put("mode",mode);
+        map.put("lotteryID",lotteryID);
         map.put("userSecret",userSecret);
         map.put("media",media);
         if (types != null) {
@@ -1320,9 +1358,9 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("rangeEnd", rangeEnd)
                 .addParams("fixedMoney", fixedMoney)
                 .addParams("mode",mode)
+                .addParams("lotteryID",lotteryID)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
-
                 .addParams("sign", sign(map));
 
         if (types != null) {

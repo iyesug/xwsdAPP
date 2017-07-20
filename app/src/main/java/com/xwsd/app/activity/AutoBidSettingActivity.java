@@ -15,7 +15,9 @@ import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.AutoInfoBean;
+import com.xwsd.app.bean.RedpackageBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.event.MyEvent;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
@@ -27,6 +29,9 @@ import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import okhttp3.Call;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -128,7 +133,26 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
     AutoInfoBean autoInfoBean;
 
+    @Bind(R.id.tv_title)
+    TextView tv_title;
+
     DecimalFormat decimalFormat = new DecimalFormat("0.0");
+
+    RedpackageBean.Data.records chooseRedpackage;
+    String lotteryID="0";
+
+    //获取红包
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(MyEvent event) {
+        chooseRedpackage=event.getUserData();
+        if(chooseRedpackage==null){
+            tv_title.setText("");
+            lotteryID="0";
+        }
+        tv_title.setText(chooseRedpackage.name);
+        lotteryID=chooseRedpackage.id;
+
+    }
 
     /**
      * 类型
@@ -158,7 +182,13 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    @Override
     protected void init(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.auto_bid));
         navbarManage.showLeft(true);
@@ -299,6 +329,16 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
             autostatus = ApiHttpClient.CLOSE;
             tb_auto_bid.setState(false);
         }
+        //        设置红包
+        if ("0".equals(autoInfoBean.data.autoInvest.lotteryID)) {
+            lotteryID="0";
+            tv_title.setText("");
+        } else {
+            lotteryID=autoInfoBean.data.autoInvest.lotteryID+"";
+            tv_title.setText(autoInfoBean.data.autoInvest.lotteryName+"");
+
+        }
+
 //        设置排队不投
         if (autoInfoBean.data.autoInvest.staystatus == 1) {
             staystatus = ApiHttpClient.OPEN;
@@ -374,7 +414,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
     }
 
-    @OnClick({R.id.tv_retain, R.id.ll_amount_type, R.id.ll_tab, R.id.commit, R.id.tb_type_v, R.id.ll_invest_section, R.id.et_assign_money})
+    @OnClick({R.id.tv_retain, R.id.ll_amount_type, R.id.ll_tab, R.id.commit, R.id.tb_type_v, R.id.ll_invest_section, R.id.et_assign_money,R.id.ll_red_packet})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -493,6 +533,7 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
                         fixedMoney,
                         jointInvestType(),
                         mode,
+                        lotteryID,
                         new StringCallback() {
                             @Override
                             public void onError(Call call, Exception e, int id) {
@@ -537,6 +578,12 @@ public class AutoBidSettingActivity extends BaseActivity implements View.OnClick
 
             case R.id.et_assign_money:
                 BuriedPointUtil.buriedPoint("自动投标设置金额输入");
+                break;
+
+            case R.id.ll_red_packet:
+                Intent redIntent = new Intent(this, RedPacketActivity.class);
+
+                startActivity(redIntent);
                 break;
         }
     }

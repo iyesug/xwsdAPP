@@ -39,6 +39,7 @@
     <dimen name="TEXT_L">16sp</dimen>
     <dimen name="TEXT_XL">18sp</dimen>
     <dimen name="TEXT_XXL">20sp</dimen>
+    <dimen name="TEXT_XXLL">24sp</dimen>
     <dimen name="TEXT_XXXXL">35sp</dimen>
     <dimen name="TEXT_S1">10sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

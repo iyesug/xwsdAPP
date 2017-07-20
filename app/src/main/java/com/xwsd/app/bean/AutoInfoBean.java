@@ -13,6 +13,7 @@ public class AutoInfoBean implements Serializable {
 
     public static class Data implements Serializable {
         public String fundMoney;
+
         public List<Types> types;
 
         public static class Types implements Serializable {
@@ -35,6 +36,8 @@ public class AutoInfoBean implements Serializable {
             public int autostatus;
             public int moneyType;
             public int staystatus;
+            public String lotteryID;//	当前使用的红包ID，没有用为0
+            public String lotteryName;
             public String investMoneyUper;
             public String investMoneyLower;
             public String investEgisMoney;

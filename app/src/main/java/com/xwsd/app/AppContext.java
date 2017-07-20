@@ -2,10 +2,15 @@ package com.xwsd.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+import com.taobao.sophix.PatchStatus;
+import com.taobao.sophix.SophixManager;
+import com.taobao.sophix.listener.PatchLoadStatusListener;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.constant.UserParam;
@@ -14,6 +19,7 @@ import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.TLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 import okhttp3.OkHttpClient;
 
 import javax.net.ssl.HostnameVerifier;
@@ -70,6 +76,33 @@ public class AppContext extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //sophix初始化
+        SophixManager.getInstance().setContext(this)
+                .setAppVersion(getVersionName())
+                .setAesKey(null)
+                .setEnableDebug(false)
+                .setPatchLoadStatusStub(new PatchLoadStatusListener() {
+                    @Override
+                    public void onLoad(final int mode, final int code, final String info, final int handlePatchVersion) {
+                        // 补丁加载回调通知
+                        if (code == PatchStatus.CODE_LOAD_SUCCESS) {
+                            // 表明补丁加载成功
+                        } else if (code == PatchStatus.CODE_LOAD_RELAUNCH) {
+                            // 表明新补丁生效需要重启. 开发者可提示用户或者强制重启;
+                            // 建议: 用户可以监听进入后台事件, 然后应用自杀
+                        } else if (code == PatchStatus.CODE_LOAD_FAIL) {
+                            // 内部引擎异常, 推荐此时清空本地补丁, 防止失败补丁重复加载
+                            // SophixManager.getInstance().cleanPatches();
+                        } else {
+                            // 其它错误信息, 查看PatchStatus类说明
+                        }
+                    }
+                }).initialize();
+        SophixManager.getInstance().queryAndLoadNewPatch();
+
+
+
         context = getApplicationContext();
 
         //开启日志输出
@@ -110,7 +143,7 @@ public class AppContext extends Application {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                //             .addInterceptor(new LoggerInterceptor("TAG"))
+                .addInterceptor(new LoggerInterceptor("TAG"))
                 .cookieJar(cookieJar1)
                 .hostnameVerifier(new HostnameVerifier() {
                     @Override
@@ -134,4 +167,17 @@ public class AppContext extends Application {
         return (AppContext) context;
     }
 
+    /**
+     * 获取本地版本号
+     */
+    private String getVersionName() {
+        PackageManager pm = getPackageManager();
+        try {
+            PackageInfo pki = pm.getPackageInfo(getPackageName(), 0);
+            return pki.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

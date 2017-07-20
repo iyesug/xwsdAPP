@@ -466,9 +466,12 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     // TODO: 2017/3/28  
 //                            Bundle bundle = new Bundle();
 //                            bundle.putSerializable(AgreeCardBean.class.getName(), agreeCardBean);
+                    if(agreeCardBeanBaofu.data!=null){
                         intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
                         intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
-                    startActivityForResult(intent,1234);
+                        startActivityForResult(intent,1234);
+                    }
+
           //          startActivity(intent);
                 }else {
                     new AlertDialog(getActivity())
@@ -493,14 +496,22 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 break;
 
             case R.id.bt_withdraw:
+                //判断是否登陆
+                if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+                    Intent lintent = new Intent(getActivity(), UserActivity.class);
+                    lintent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+                    lintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                    startActivity(lintent);
+                    return;
+                }
                 //进入提现前，先判断用户是否已实名认证
-                if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {
+                if (!ApiHttpClient.YES.equals(AppContext.getUserBean().data.cardstatus)) {
                     guideCertification();
                     return;
                 }
 
                 //进入提现前，先判断用户是否设置了支付密码
-                if (AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
+                if (ApiHttpClient.NO.equals(AppContext.getUserBean().data.payPassStatus)) {
                     guidePay();
                     return;
                 }

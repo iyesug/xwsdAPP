@@ -9,7 +9,10 @@ import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.*;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.gnwai.iosdialog.AlertDialog;
@@ -25,6 +28,7 @@ import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.NavbarManage;
+import com.xwsd.app.view.SwitchView;
 import com.xwsd.app.view.WheelView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -73,15 +77,23 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
     @Bind(R.id.tv_balance)
     TextView tv_balance;
 
-    @Bind(R.id.get_ismoney)
-    CheckBox get_ismoney;
+    @Bind(R.id.tv_true)
+    TextView tv_true;
+
+    @Bind(R.id.toggle_button)
+    SwitchView toggle_button;
 
     @Bind(R.id.money_ticket)
     RelativeLayout money_ticket;
 
     Dialog payDialog;
 
-    DecimalFormat decimalFormat = new DecimalFormat("0.0");
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+    String fee="0";
+    String tureMoney="0";
+    String allMoney="0";
+    String withdrawMoney="0";
 
     @Override
     protected void onBeforeSetContentLayout() {
@@ -111,10 +123,71 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             startActivity(intent);
             return;
         }
+        //提现卷开关监听
+
+        toggle_button.setOnStateChangedListener(new SwitchView.OnStateChangedListener() {
+            @Override
+            public void toggleToOn() {
+                toggle_button.toggleSwitch(true);
+
+                if(!"0".equals(fee)){
+                    fee=(Float.parseFloat(fee)-2)+"";
+                    tv_poundage.setText(fee);
+                    tureMoney=decimalFormat.format(Float.parseFloat(withdrawMoney)-Float.parseFloat(fee));
+                    tv_true.setText(tureMoney);
+                }
+                tv_true.setText(tureMoney);
+            }
+
+            @Override
+            public void toggleToOff() {
+                toggle_button.toggleSwitch(false);
+
+                //获取手续费
+                String s=et_money.getText().toString().trim();
+                if("".equals(s)){
+                    withdrawMoney="0";
+                    fee="0";
+                    tureMoney="0";
+                    tv_poundage.setText(fee);
+                    tv_true.setText(tureMoney);
+
+                }else{
+                    withdrawMoney=s.toString();
+                    setPoundage(withdrawMoney);
+                }
+            }
+        });
+
+
 //        设置开户名
         et_name.setText(AppContext.getUserBean().data.name);
 //        设置余额
-        tv_balance.setText("当前余额：" + getIntent().getSerializableExtra(UserParam.MONEY) + "  元");
+        allMoney=getIntent().getSerializableExtra(UserParam.MONEY)+"";
+        tv_balance.setText(allMoney);
+        et_money.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
+                /*隐藏软键盘*/
+                    hideSoftKeyboard(getCurrentFocus());
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+//        et_money.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if(!hasFocus){
+//
+//                }
+//
+//            }
+//        });
+
 //        设置文本监听
         et_money.addTextChangedListener(new TextWatcher() {
             @Override
@@ -130,19 +203,33 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void afterTextChanged(Editable s) {
 
+
                 if (s.length() > 0) {
 //                    提现金额不能大于余额
                     if (Float.valueOf(s.toString()) > Float.valueOf(getIntent().getSerializableExtra(UserParam.MONEY).toString())) {
                         ToastUtil.showToastShort(R.string.withdraw_money_exceed);
-                        et_money.setText(getIntent().getSerializableExtra(UserParam.MONEY).toString());
+                        withdrawMoney=getIntent().getSerializableExtra(UserParam.MONEY).toString();
+                        et_money.setText(withdrawMoney);
                         Editable etext = et_money.getText();
                         Selection.setSelection(etext, etext.length());
                         return;
                     }
 //                    获取手续费
-                    setPoundage(s.toString());
+                    withdrawMoney=s.toString();
+                    setPoundage(withdrawMoney);
+                    if("".equals(s)){
+                        withdrawMoney="0";
+                        fee="0";
+                        tv_poundage.setText(fee);
+                        tureMoney="0";
+                        tv_true.setText(tureMoney);
+                    }
                 } else {
-                    tv_poundage.setText("0");
+                    withdrawMoney="0";
+                    fee="0";
+                    tv_poundage.setText(fee);
+                    tureMoney="0";
+                    tv_true.setText(tureMoney);
                 }
             }
         });
@@ -170,6 +257,10 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                     return;
                 }
 
+                if(Float.parseFloat(tureMoney)<1){
+                    ToastUtil.showToastShort(R.string.money_no_one);
+                    return;
+                }
                 showPayDialog();
                 break;
             case R.id.ll_banks://选择提现银行卡
@@ -182,7 +273,8 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.bt_all_withdraw://全部提现
                 BuriedPointUtil.buriedPoint("提现页面-全部提现");
-                et_money.setText(getIntent().getSerializableExtra(UserParam.MONEY).toString());
+                withdrawMoney=getIntent().getSerializableExtra(UserParam.MONEY).toString();
+                et_money.setText(withdrawMoney);
                 break;
             case R.id.et_money:
                 BuriedPointUtil.buriedPoint("提现页面-写入提现金额");
@@ -211,10 +303,16 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
-                        if(!get_ismoney.isChecked()){
-                            tv_poundage.setText(jsonObject.getJSONObject("data").getString("fee"));
+                        if(toggle_button.getState() != SwitchView.STATE_SWITCH_ON){
+                            fee=jsonObject.getJSONObject("data").getString("fee");
+                            tv_poundage.setText(fee);
+                            tureMoney=decimalFormat.format(Float.parseFloat(withdrawMoney)-Float.parseFloat(fee));
+                            tv_true.setText(tureMoney);
                         }else{
-                            tv_poundage.setText("0");
+                            fee=Float.parseFloat(jsonObject.getJSONObject("data").getString("fee"))-2+"";
+                            tv_poundage.setText(fee);
+                            tureMoney=decimalFormat.format(Float.parseFloat(withdrawMoney)-Float.parseFloat(fee));
+                            tv_true.setText(tureMoney);
                         }
 
                     } else {
@@ -428,9 +526,9 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
             }
         });
         String isLottery;
-        if(get_ismoney.isChecked()){
+        if(toggle_button.getState() == SwitchView.STATE_SWITCH_ON ){
             isLottery = "1";
-            tv_poundage.setText("0");
+
         }else{
             isLottery = "0";
         }

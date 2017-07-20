@@ -8,8 +8,8 @@ android {
         applicationId "com.xwsd.app"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2017060801
-        versionName "2.3.4"
+        versionCode 2017070501
+        versionName "2.3.5"
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
@@ -25,7 +25,26 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+
+//repositories {
+//    maven {
+//        url "http://maven.aliyun.com/nexus/content/repositories/releases"
+//    }
+//}
+repositories {
+    flatDir {
+        dirs 'libs' //this way we can find the .aar file in libs folder
+    }
+}
 dependencies {
+
+    //热修复
+//    compile 'com.aliyun.ams:alicloud-android-hotfix:3.0.3'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile(name: 'hotfix_core-release-3.0.5', ext: 'aar')
+
+
     //兼容包
     compile 'com.android.support:appcompat-v7:23+'
     //注解框架库
@@ -72,6 +91,9 @@ dependencies {
     compile 'com.yanzhenjie:permission:1.0.5'
     //图片加载库glide
     compile 'com.github.bumptech.glide:glide:3.6.1'
+    //eventbus
+    compile 'org.greenrobot:eventbus:3.0.0'
+
 
 
 }

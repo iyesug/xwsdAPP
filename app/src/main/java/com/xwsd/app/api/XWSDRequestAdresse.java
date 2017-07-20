@@ -81,6 +81,12 @@ public interface XWSDRequestAdresse {
      * 可使用加息券
      */
     String INVESTLOTTER = API_URL + "investlotteries";
+
+    /**
+     * 可使用红包
+     */
+    String MONEYLOTTERIES = API_URL + "moneyLotteries";
+
     /**
      * 使用加息券
      */

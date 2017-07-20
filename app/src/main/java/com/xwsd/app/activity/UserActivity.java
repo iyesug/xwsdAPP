@@ -1,9 +1,10 @@
 package com.xwsd.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-
 import com.xwsd.app.AppContext;
+import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
@@ -92,6 +93,9 @@ public class UserActivity extends BaseActivity {
         if (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStack();
         } else {
+            AppManager.getAppManager().finishActivity(MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
             finish();
         }
     }

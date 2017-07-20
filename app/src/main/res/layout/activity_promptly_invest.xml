@@ -137,6 +137,8 @@
                         android:id="@+id/tv_title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="请选择红包"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/DIMEN_10"
                         android:layout_weight="1"

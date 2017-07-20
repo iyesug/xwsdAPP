@@ -87,6 +87,8 @@ public class ProjectFragment extends BaseFragment implements View.OnClickListene
     protected void init() {
 //        设置导航栏
         navbarManage.setCentreStr(getString(R.string.invest_money));
+        //navbarManage.setCentreStr("项目");
+
         navbarManage.showLeft(true);
         navbarManage.showRight(true);
         navbarManage.setRightImg(R.mipmap.jisuan);

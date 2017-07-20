@@ -149,7 +149,7 @@ public class GuideActivity extends BaseActivity {
         mFragment2 = new GuideFragment2();
         mFragment3 = new GuideFragment3();
         mFragment4 = new GuideFragment4();
-        mListFragment.add(mFragment1);
+//        mListFragment.add(mFragment1);
         mListFragment.add(mFragment2);
         mListFragment.add(mFragment3);
         mListFragment.add(mFragment4);
