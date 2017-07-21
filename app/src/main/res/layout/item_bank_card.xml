@@ -31,6 +31,7 @@
 
             <com.xwsd.app.view.CircleImageView
                     android:id="@+id/iv_logo"
+                    android:visibility="invisible"
                     android:layout_width="@dimen/DIMEN_50"
                     android:layout_height="@dimen/DIMEN_50"
                     android:layout_centerVertical="true"

@@ -106,7 +106,9 @@
                     android:text="周"/>
         </LinearLayout>
     </LinearLayout>
-
+    <View
+            style="@style/GreyInterval"
+            ></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="51dp"
@@ -155,7 +157,9 @@
                 android:text="等额本金"/>
 
     </LinearLayout>
-
+    <View
+            style="@style/GreyInterval"
+            ></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="51dp"
@@ -179,7 +183,9 @@
             android:hint="输入投资金额"
             android:textColorHint="@color/gray_text"/>
     </LinearLayout>
-
+    <View
+            style="@style/GreyInterval"
+            ></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

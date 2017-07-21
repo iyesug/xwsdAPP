@@ -245,6 +245,7 @@ public class FastPaymentFragment extends BaseFragment implements View.OnClickLis
                 break;
             case R.id.tv_list://银行列表
                 Intent listintent = new Intent(this.getActivity(), BankListActivity.class);
+                listintent.putExtra(UserParam.TITLE,"payment");
                 startActivity(listintent);
 
                 break;

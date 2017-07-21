@@ -63,6 +63,25 @@
 
                         />
 
+                <View
+                        style="@style/GreyInterval"
+                        ></View>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="温馨提示："
+                        android:textColor="@color/text_orange"
+                        android:textSize="@dimen/TEXT_XL"/>
+
+                <TextView
+                        android:layout_marginTop="@dimen/DIMEN_10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/DIMEN_20"
+                        android:text="@string/ali_transfer_tip"
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/TEXT_S"/>
+
             </LinearLayout>
 
         </ScrollView>

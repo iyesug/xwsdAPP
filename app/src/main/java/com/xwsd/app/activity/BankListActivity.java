@@ -73,6 +73,7 @@ public class BankListActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+
         title=getString(R.string.choose_bank);
         //设置导航栏
         navbarManage.showLeft(true);
@@ -160,7 +161,13 @@ public class BankListActivity extends BaseActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     EventBus.getDefault().post(new MyEvent(data.data.limitList.get(position)));
-                    AppManager.getAppManager().finishActivity();
+                    if("payment".equals(getIntent().getStringExtra(UserParam.TITLE))){
+                        return;
+
+                    }else{
+                        AppManager.getAppManager().finishActivity();
+                    }
+
                 }
             });
         } else {

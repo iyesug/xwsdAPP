@@ -67,7 +67,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/bank_transfer_tip"
                         android:textColor="@color/gray_text"
-                        android:textSize="@dimen/TEXT_L"/>
+                        android:layout_marginBottom="@dimen/DIMEN_20"
+                        android:textSize="@dimen/TEXT_S"/>
 
             </LinearLayout>
 

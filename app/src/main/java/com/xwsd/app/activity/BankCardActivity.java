@@ -186,7 +186,9 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                 tv_type.setText(s[1]+"");
             }
             if((bean.data.bankNum.length()>=0)){
-                num.setText("**** **** **** " + bean.data.bankNum.substring(bean.data.bankNum.length() - 4, bean.data.bankNum.length()));
+                num.setText(bean.data.bankNum.substring(0, 3)
+                        +" **** **** " +
+                        bean.data.bankNum.substring(bean.data.bankNum.length() - 4, bean.data.bankNum.length()));
             }
 //            else {
 //                ll_bank_card_bg.setVisibility(View.GONE);

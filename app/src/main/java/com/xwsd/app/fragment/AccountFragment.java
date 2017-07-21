@@ -109,7 +109,6 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_account, null);
         navbarManage = new NavbarManage(getActivity(), view);
         AppContext.setNeedLock(true);
-
         return view;
     }
     @Override
