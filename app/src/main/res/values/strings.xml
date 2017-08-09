@@ -219,7 +219,7 @@
     <string name="setcard">您尚未设置充值银行卡，是否前往设置。</string>
     <string name="go">前往</string>
     <string name="services">在线客服</string>
-
+    <string name="booking">申请约标</string>
     <string name="unbind">解绑</string>
     <string name="sync">同步</string>
     <string name="against_red_packet">抵扣红包</string>
@@ -261,4 +261,11 @@
         </string>
     <string name="alredy_open_depository">已开通江西银行存管</string>
     <string name="please_relogin">登陆信息已失效，请重新登录</string>
+
+    <string name="yuebiao_tip">
+约标金额：一次性投5万（含）以上（用户享有20万/月的成功约标限额）
+\n\n约标期限：6月（含）、12月（含）、24月（含）以上的标的
+\n\n约标限制：一个约标项目仅由一个用户进行约标（如果约标金额小于标的金额时，则多出部分则自动转为手动标供其他投资人投至满标为止。）
+
+        </string>
 </resources>

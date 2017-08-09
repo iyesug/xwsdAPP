@@ -21,7 +21,22 @@
         <item name="android:gravity">center_horizontal|bottom</item>
         <item name="android:textColor">@color/tab_text_color</item>
     </style>
+    <!-- 弹出框动画 由下至上 -->
+    <style name="dialogStyle" parent="@android:style/Animation.Dialog">
+        <!--<item name="@android:windowEnterAnimation">@anim/dialog_enter</item>-->
+        <!--&lt;!&ndash; 进入时的动画 &ndash;&gt;-->
+        <!--<item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
+        <!--&lt;!&ndash; 退出时的动画 &ndash;&gt;-->
+    </style>
 
+    <!-- 对话框样式 -->
+    <style name="Theme.Light.Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
     <!-- 按钮样式 -->
     <style name="SubmitButton">
         <item name="android:layout_width">match_parent</item>

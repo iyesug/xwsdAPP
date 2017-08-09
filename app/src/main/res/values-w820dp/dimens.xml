@@ -1,6 +1,47 @@
-<resources>
-    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
-         (such as screen margins) for screens with more than 820dp of available width. This
-         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
-    <dimen name="activity_horizontal_margin">64dp</dimen>
+<?xml version="1.0" encoding="utf-8"?><resources>    <dimen name="DIMEN_1">2.05dp</dimen>
+    <dimen name="DIMEN_2">4.1dp</dimen>
+    <dimen name="DIMEN_3">6.15dp</dimen>
+    <dimen name="DIMEN_5">10.25dp</dimen>
+    <dimen name="DIMEN_7">14.35dp</dimen>
+    <dimen name="DIMEN_8">16.4dp</dimen>
+    <dimen name="DIMEN_10">20.5dp</dimen>
+    <dimen name="DIMEN_12">24.6dp</dimen>
+    <dimen name="DIMEN_13">26.65dp</dimen>
+    <dimen name="DIMEN_14">28.7dp</dimen>
+    <dimen name="DIMEN_15">30.75dp</dimen>
+    <dimen name="DIMEN_20">41.0dp</dimen>
+    <dimen name="DIMEN_40">82.0dp</dimen>
+    <dimen name="DIMEN_25">51.25dp</dimen>
+    <dimen name="DIMEN_30">61.5dp</dimen>
+    <dimen name="DIMEN_18">36.9dp</dimen>
+    <dimen name="DIMEN_50">102.5dp</dimen>
+    <dimen name="DIMEN_28">57.4dp</dimen>
+    <dimen name="DIMEN_80">164.0dp</dimen>
+    <dimen name="DIMEN_100">205.0dp</dimen>
+    <dimen name="DIMEN_150">307.5dp</dimen>
+    <dimen name="DIMEN_164">336.2dp</dimen>
+    <dimen name="DIMEN_45">92.25dp</dimen>
+    <dimen name="DIMEN_70">143.5dp</dimen>
+    <dimen name="DIMEN_75">153.75dp</dimen>
+    <dimen name="DIMEN_90">184.5dp</dimen>
+    <dimen name="DIMEN_60">123.0dp</dimen>
+    <dimen name="DIMEN_65">133.25dp</dimen>
+    <dimen name="DIMEN_250">512.5dp</dimen>
+    <dimen name="DIMEN_200">410.0dp</dimen>
+    <dimen name="DIMEN_180">369.0dp</dimen>
+    <dimen name="DIMEN_48">98.4dp</dimen>
+    <dimen name="DIMEN_35">71.75dp</dimen>
+    <dimen name="DIMEN_270">553.5dp</dimen>
+    <dimen name="DIMEN_120">246.0dp</dimen>
+    <dimen name="DIMEN_220">451.0dp</dimen>
+    <dimen name="DIMEN_470">963.5dp</dimen>
+    <dimen name="TEXT_S">24.6sp</dimen>
+    <dimen name="TEXT_M">28.7sp</dimen>
+    <dimen name="TEXT_L">32.8sp</dimen>
+    <dimen name="TEXT_XL">36.9sp</dimen>
+    <dimen name="TEXT_XXL">41.0sp</dimen>
+    <dimen name="TEXT_XXXXL">71.75sp</dimen>
+    <dimen name="TEXT_S1">20.5sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->    <dimen name="activity_horizontal_margin">32.8dp</dimen>
+    <dimen name="activity_vertical_margin">32.8dp</dimen>
 </resources>

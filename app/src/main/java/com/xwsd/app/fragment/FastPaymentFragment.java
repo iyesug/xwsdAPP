@@ -254,7 +254,12 @@ public class FastPaymentFragment extends BaseFragment implements View.OnClickLis
                 if ("".equals(money)) {
                     ToastUtil.showToastShort(getString(R.string.pay_money_null));
 
-                } else {
+                } else if(Float.parseFloat(money)<100){
+                    ToastUtil.showToastShort("充值金额不能小于100元");
+
+                }
+
+                else {
                     //跳转到充值页面
                     Intent intent = new Intent(getActivity(), WebApproveActivity.class);
                     Map<String, String> map = ApiHttpClient.getSortMap();

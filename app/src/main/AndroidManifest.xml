@@ -337,6 +337,8 @@
         <activity android:name=".activity.OpenDepositoryActivity"/>
         <activity android:name=".activity.RedPacketActivity"/>
         <activity android:name=".activity.GetBankNumInfoActivity"/>
+        <activity android:name=".activity.BookingActivity"/>
+
     </application>
 
 </manifest>

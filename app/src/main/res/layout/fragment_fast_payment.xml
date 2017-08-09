@@ -141,6 +141,7 @@
                                     android:layout_marginLeft="@dimen/DIMEN_10"
                                     android:layout_marginRight="@dimen/DIMEN_10"
                                     android:layout_weight="1"
+                                    android:inputType="number"
                                     android:background="@color/white"
                                     android:hint="不少于100元"
                                     android:gravity="right"

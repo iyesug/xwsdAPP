@@ -17,8 +17,9 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:textColor="@color/actionsheet_gray"
-        android:textSize="13sp"
-        android:visibility="gone" />
+        android:textSize="18sp"
+        android:visibility="gone"
+            />
 
     <ScrollView
         android:id="@+id/sLayout_content"
@@ -42,7 +43,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/actionsheet_single_selector"
         android:gravity="center"
-        android:text="取消"
+        android:text="关闭"
         android:textColor="@color/actionsheet_blue"
         android:textSize="18sp"
         android:textStyle="bold" />

@@ -136,6 +136,7 @@
                                     android:layout_marginTop="@dimen/DIMEN_10">
 
                                 <LinearLayout
+                                        android:id="@+id/ll_newbie_bid"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:orientation="horizontal">
@@ -146,6 +147,7 @@
                                             android:layout_height="@dimen/DIMEN_40"
                                             android:layout_gravity="center_vertical"
                                             android:layout_marginLeft="@dimen/DIMEN_10"
+                                            android:visibility="invisible"
                                             android:clickable="true"
                                             android:src="@mipmap/ic_new_bid_left"/>
 
@@ -191,7 +193,7 @@
                                         android:ellipsize="end"
                                         android:gravity="center"
                                         android:hint="输入金额"
-                                        android:inputType="number"
+                                        android:inputType="textUri|textMultiLine"
                                         android:singleLine="true"
                                         android:textColor="@color/gray_text"
                                         android:textColorHint="@color/gray_text"

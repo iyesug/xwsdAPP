@@ -106,6 +106,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     protected View setContentView(LayoutInflater inflater) {
+        // TODO: 2017/8/1 约标改变
         View view = inflater.inflate(R.layout.fragment_account, null);
         navbarManage = new NavbarManage(getActivity(), view);
         AppContext.setNeedLock(true);
@@ -116,16 +117,19 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         accountItems = new ArrayList<AccountItemBean>() {{
             add(new AccountItemBean(getString(R.string.invest_manage), R.mipmap.ic_invest_manage, InvestManageActivity.class));
  /*           add(new AccountItemBean(getString(R.string.unite_deposit), R.mipmap.ic_unite_deposit, DredgeTrusteeshipActivity.class));*/
-            add(new AccountItemBean(getString(R.string.recharge_withdraw), R.mipmap.ic_recharge_withdraw, RechargeWithdrawActivity.class));
+
   /*          add(new AccountItemBean(getString(R.string.bank_card), R.mipmap.ic_bank_card, BankCardActivity.class));*/
             add(new AccountItemBean(getString(R.string.creditor_transfer), R.mipmap.ic_creditor_transfer, CreditorTransferActivity.class));
-            add(new AccountItemBean(getString(R.string.security_account), R.mipmap.ic_security_account, AccountSafetyActivity.class));
+            add(new AccountItemBean(getString(R.string.recharge_withdraw), R.mipmap.ic_recharge_withdraw, RechargeWithdrawActivity.class));
+            add(new AccountItemBean(getString(R.string.Fund_record), R.mipmap.zijin_icon, FundRecordActivity.class));
+            add(new AccountItemBean(getString(R.string.recommend_award), R.mipmap.ic_recommend_award, RecommendFriendActivity.class));
             add(new AccountItemBean(getString(R.string.borrowing), R.mipmap.ic_borrowing, BorrowingActivity.class));
  /*           add(new AccountItemBean(getString(R.string.aboutus), R.mipmap.ic_aboutus, AboutXWActivity.class));*/
             add(new AccountItemBean(getString(R.string.vip), R.mipmap.ic_vip, VIPActivity.class));
  /*           add(new AccountItemBean(getString(R.string.guide), R.mipmap.ic_guide, NoviceActivity.class));*/
-            add(new AccountItemBean(getString(R.string.recommend_award), R.mipmap.ic_recommend_award, RecommendFriendActivity.class));
-            add(new AccountItemBean(getString(R.string.Fund_record), R.mipmap.zijin_icon, FundRecordActivity.class));
+
+
+            add(new AccountItemBean(getString(R.string.security_account), R.mipmap.ic_security_account, AccountSafetyActivity.class));
         }};
 
 //        设置导航栏
@@ -412,16 +416,19 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         rise_number_text_view.setDuration(1500);
         rise_number_text_view.start();
     }
-
+//,R.id.ll_booking
     @OnClick({ll_service,R.id.ll_auto_bid, R.id.iv_calendar, R.id.bt_recharge, R.id.bt_withdraw, R.id.ll_property_details})
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.ll_booking:
+                intent = new Intent(getActivity(), BookingActivity.class);
+                startActivity(intent);
+                break;
             case R.id.ll_service:
                 ContactUtil.callQq(getActivity());
                 break;
-
             case R.id.ll_auto_bid:
                 //进入自动投标前先判断是否进行了实名认证
                 if (!AppContext.getUserBean().data.cardstatus.equals(ApiHttpClient.YES)) {

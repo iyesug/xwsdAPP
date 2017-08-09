@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
+import com.gnwai.iosdialog.AlertDialog;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
@@ -177,39 +178,61 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.ll_modify_pay_password:
                 BuriedPointUtil.buriedPoint("账户安全修改存管密码");
-                Intent webintent = new Intent(this, WebApproveActivity.class);
-                Log.e("custodyPwd",AppContext.getUserBean().data.custodyPwd);
-                if (AppContext.getUserBean().data.custodyPwd.equals(ApiHttpClient.ZERO)) {
 
-                    //设置存管密码【存管】，跳转到设置页面
+                //                充值前，先判断是否开通了存管
+                if(AppContext.getUserBean().data.custodyId==null||"0".equals(AppContext.getUserBean().data.custodyId)||"".equals(AppContext.getUserBean().data.custodyId)) {
+                    new AlertDialog(this)
+                            .builder()
+                            .setTitle("温馨提示：")
+                            .setMsg("您尚未开通存管，是否前往开通。")
+                            .setPositiveButton("前往", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(AccountSafetyActivity.this, OpenDepositoryActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("取消", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
-                    Map<String, String> map = ApiHttpClient.getSortMap();
-                    map.put("userId", AppContext.getUserBean().data.userId);
-                    map.put("media", "Android");
-                    webintent.putExtra(UserParam.URL, ApiHttpClient.SET_CUSTODY_PASS +
-                            "?userId=" + AppContext.getUserBean().data.userId +
-                            "&media=" + "Android"+
-                            "&sign=" + ApiHttpClient.sign(map));
-
-                    webintent.putExtra(UserParam.TITLE, getString(R.string.setting_custody_password));
-
-                } else {
-
-                    //修改存管密码【存管】，跳转到修改页面
-
-                    Map<String, String> map = ApiHttpClient.getSortMap();
-                    map.put("userId", AppContext.getUserBean().data.userId);
-                    map.put("media", "Android");
-                    webintent.putExtra(UserParam.URL, ApiHttpClient.UPDATE_CUSTODY_PASS +
-                            "?userId=" + AppContext.getUserBean().data.userId +
-                            "&media=" + "Android"+
-                            "&sign=" + ApiHttpClient.sign(map));
-
-                    webintent.putExtra(UserParam.TITLE, getString(R.string.modify_pay_password));
-
-
+                                }
+                            }).show();
                 }
-                startActivity(webintent);
+                else {
+                    Intent webintent = new Intent(this, WebApproveActivity.class);
+                    Log.e("custodyPwd", AppContext.getUserBean().data.custodyPwd);
+                    if (AppContext.getUserBean().data.custodyPwd.equals(ApiHttpClient.ZERO)) {
+
+                        //设置存管密码【存管】，跳转到设置页面
+
+                        Map<String, String> map = ApiHttpClient.getSortMap();
+                        map.put("userId", AppContext.getUserBean().data.userId);
+                        map.put("media", "Android");
+                        webintent.putExtra(UserParam.URL, ApiHttpClient.SET_CUSTODY_PASS +
+                                "?userId=" + AppContext.getUserBean().data.userId +
+                                "&media=" + "Android" +
+                                "&sign=" + ApiHttpClient.sign(map));
+                        webintent.putExtra(UserParam.TITLE, getString(R.string.setting_custody_password));
+
+                    } else {
+
+                        //修改存管密码【存管】，跳转到修改页面
+
+                        Map<String, String> map = ApiHttpClient.getSortMap();
+                        map.put("userId", AppContext.getUserBean().data.userId);
+                        map.put("media", "Android");
+                        webintent.putExtra(UserParam.URL, ApiHttpClient.UPDATE_CUSTODY_PASS +
+                                "?userId=" + AppContext.getUserBean().data.userId +
+                                "&media=" + "Android" +
+                                "&sign=" + ApiHttpClient.sign(map));
+
+                        webintent.putExtra(UserParam.TITLE, getString(R.string.modify_pay_password));
+
+
+                    }
+                    startActivity(webintent);
+                }
                 break;
             case R.id.ll_gesture_password:
                 BuriedPointUtil.buriedPoint("账户安全设置手势密码");

@@ -97,10 +97,10 @@ public class NewbieBidFragment extends BaseFragment implements View.OnClickListe
 
     }
 
-    @OnClick(R.id.arc_progress)
+    @OnClick({R.id.arc_progress,R.id.fl_progress})
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.arc_progress&&HomeFragment.indexBean!=null) {
+        if (HomeFragment.indexBean!=null) {
             Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
             intent.putExtra("oddNumber", HomeFragment.indexBean.data.newHandOdds.get(position).oddNumber);
             startActivity(intent);

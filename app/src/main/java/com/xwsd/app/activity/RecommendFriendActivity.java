@@ -22,6 +22,7 @@ import com.xwsd.app.bean.FundRecordBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EDialog;
+import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -42,6 +43,9 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
 
 
     private FriendsBean mFriendsBean;
+
+    @Bind(R.id.error_layout)
+    EmptyLayout error_layout;
 
     private String  spreadMoney;
     private String lastSpreadMoney;
@@ -182,7 +186,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
-        //                error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+                        error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
                         mFriendsBean = GsonUtils.jsonToBean(response, FriendsBean.class);
                         spreadMoney = mFriendsBean.data.spreadMoney;
                         lastSpreadMoney = mFriendsBean.data.lastSpreadMoney;
@@ -196,36 +200,41 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                         startActivity(Fintent);
                         finish();
                     }else {
-           //             error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                        error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-            //        error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                    error_layout.setErrorType(EmptyLayout.NETWORK_ERROR);
                 }
             }
         });
     }
     private void setData(int type){
         //设置推荐列表
+        if( mFriendsBean.data.records==null||mFriendsBean.data.count==0){
+            error_layout.setErrorType(EmptyLayout.NODATA);
+        }else{
+            error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+        }
+
         if (adapter == null) {
+
             adapter = new QuickAdapter<FriendsBean.Data.records>(this, R.layout.item_friend, mFriendsBean.data.records) {
                 @Override
                 protected void convert(BaseAdapterHelper helper, FriendsBean.Data.records item) {
+
+
                     helper.setText(R.id.name, item.username);
                     helper.setText(R.id.time, item.time);
                     helper.setText(R.id.jiangli, item.money);
                     helper.setText(R.id.jibie, item.level + "级");
 
-                    //判断是否是新手标
+
                 }
             };
-
             list_view.setAdapter(adapter);
-            list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            list_view.setOnItemClickListener((parent, view, position, id) -> {
 
-                }
             });
         } else {
             if(type == 0){

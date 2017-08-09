@@ -114,7 +114,7 @@
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:hint="身份证号"
-                            android:inputType="number"
+                            android:inputType="textUri|textMultiLine"
                             android:paddingLeft="@dimen/DIMEN_10"
                             android:textColor="@color/gray_1"
                             android:textSize="@dimen/TEXT_M"/>

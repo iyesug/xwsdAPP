@@ -3,13 +3,8 @@ package com.gnwai.iosdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
@@ -183,6 +178,7 @@ public class ActionSheetDialog {
 			});
 
 			lLayout_content.addView(textView);
+
 		}
 	}
 
@@ -209,7 +205,7 @@ public class ActionSheetDialog {
 	}
 
 	public enum SheetItemColor {
-		Blue("#037BFF"), Red("#FD4A2E"), Orange("#f58101");
+		Blue("#037BFF"), Red("#FD4A2E"), Orange("#f58101"),Gray("#8F8F8F");
 
 		private String name;
 

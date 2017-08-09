@@ -80,7 +80,8 @@
                             android:gravity="center"
                             android:text="@string/my_interest"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/TEXT_S" />
+                            style="@style/AccountText_1"
+                                />
 
                         <com.xwsd.app.view.RiseNumberTextView
                             android:id="@+id/rise_number_text_view"
@@ -146,8 +147,9 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/DIMEN_5"
+
                     android:background="@color/white"
                     android:orientation="horizontal">
                     <LinearLayout
@@ -156,42 +158,65 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
                     <ImageView
-                        android:layout_width="@dimen/DIMEN_20"
-                        android:layout_height="@dimen/DIMEN_30"
+                        android:layout_width="@dimen/DIMEN_28"
+                        android:layout_height="@dimen/DIMEN_28"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/DIMEN_5"
-                        android:layout_marginLeft="@dimen/DIMEN_40"
-                        android:layout_marginRight="@dimen/DIMEN_5"
+                        android:layout_marginBottom="@dimen/DIMEN_3"
                         android:layout_marginTop="@dimen/DIMEN_5"
                         android:src="@mipmap/ic_tag" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/DIMEN_5"
                         android:layout_gravity="center"
-
                         android:text="@string/auto_bid"
-                        android:textColor="@color/blue_3495ff"
+                        android:textColor="@color/gray_1"
                         android:textSize="@dimen/TEXT_XL" />
 
                 </LinearLayout>
-                    <View style="@style/GreyIntervalVertical"></View>
+
+                    <LinearLayout
+                            android:id="@+id/ll_booking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                        <ImageView
+                                android:layout_width="@dimen/DIMEN_28"
+                                android:layout_height="@dimen/DIMEN_28"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/DIMEN_3"
+                                android:layout_marginTop="@dimen/DIMEN_5"
+                                android:src="@mipmap/booking" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingBottom="@dimen/DIMEN_5"
+
+                                android:text="@string/booking"
+                                android:textColor="@color/gray_1"
+                                android:textSize="@dimen/TEXT_XL" />
+
+                    </LinearLayout>
+
                     <LinearLayout
                             android:id="@+id/ll_service"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
                         <ImageView
-                                android:layout_width="@dimen/DIMEN_20"
-                                android:layout_height="@dimen/DIMEN_30"
+                                android:layout_width="@dimen/DIMEN_28"
+                                android:layout_height="@dimen/DIMEN_28"
                                 android:layout_gravity="center"
-                                android:layout_marginBottom="@dimen/DIMEN_5"
-                                android:layout_marginLeft="@dimen/DIMEN_40"
-                                android:layout_marginRight="@dimen/DIMEN_5"
+                                android:layout_marginBottom="@dimen/DIMEN_3"
                                 android:layout_marginTop="@dimen/DIMEN_5"
                                 android:src="@mipmap/ic_servi" />
 
@@ -199,9 +224,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:paddingBottom="@dimen/DIMEN_5"
 
                                 android:text="@string/services"
-                                android:textColor="@color/blue_3495ff"
+                                android:textColor="@color/gray_1"
                                 android:textSize="@dimen/TEXT_XL" />
 
                     </LinearLayout>
@@ -212,7 +238,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginTop="@dimen/DIMEN_5"
                     android:background="@color/white"
                     android:orientation="horizontal">
@@ -221,7 +246,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:orientation="vertical">
 
                         <LinearLayout

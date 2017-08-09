@@ -32,7 +32,7 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
     private LoadDialog zProgressHUD;
     private RequestCall call;
     int period =1;
-    int type=1;
+    int type=2;
     public DemoPopupWindow(Context context) {
         super(context, null);
     }
@@ -54,8 +54,8 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
         final Button type3 = (Button)root.findViewById(R.id.type3);
         yue.setSelected(true);
         yue.setTextColor(context.getResources().getColor(R.color.tv_white));
-        type1.setSelected(true);
-        type1.setTextColor(context.getResources().getColor(R.color.tv_white));
+        type2.setSelected(true);
+        type2.setTextColor(context.getResources().getColor(R.color.tv_white));
 
         //按月
         yue.setOnClickListener(v -> {
@@ -130,14 +130,16 @@ public class DemoPopupWindow extends BottomPushPopupWindow<Void> implements Dial
                 }else{
                     periodString = "week";
                 }
-                if(TextUtils.isEmpty(toubiaoMoney.getText().toString())){
-                    ToastUtil.showToastShort("投资金额不能为空");
-                }else if (TextUtils.isEmpty(nianhualv.getText().toString())){
+
+                if (TextUtils.isEmpty(nianhualv.getText().toString())){
                     ToastUtil.showToastShort("年化收益率不能为空");
                 }
                 else if (TextUtils.isEmpty(qixian.getText().toString())){
                     ToastUtil.showToastShort("项目期限不能为空");
-                }else {
+                }
+                else   if(TextUtils.isEmpty(toubiaoMoney.getText().toString())){
+                ToastUtil.showToastShort("投资金额不能为空");}
+                else {
                     showWaitDialog(new DialogInterface.OnCancelListener() {
                         @Override
                         public void onCancel(DialogInterface dialog) {

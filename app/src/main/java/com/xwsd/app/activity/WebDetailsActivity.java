@@ -2,7 +2,9 @@ package com.xwsd.app.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import butterknife.Bind;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
@@ -103,7 +105,11 @@ public class WebDetailsActivity extends BaseActivity {
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setUseWideViewPort(true);
+        webSettings.setDefaultTextEncodingName("GBK");//设置字符编码
         webView.setInitialScale(25);
+        //添加方法
+        webView.addJavascriptInterface(new JavaScriptInterface(), "login");
+
         webView.loadUrl(url);
         webView.setWebViewClient(new com.tencent.smtt.sdk.WebViewClient() {
             @Override
@@ -144,5 +150,28 @@ public class WebDetailsActivity extends BaseActivity {
                 progressBar.setProgress(newProgress);
             }
         });
+    }
+
+
+    final class JavaScriptInterface {
+
+        JavaScriptInterface() {
+        }
+
+        /**
+         * This is not called on the UI thread. Post a runnable to invoke
+         * loadUrl on the UI thread.
+         */
+        @JavascriptInterface
+        public void loginOnH5(String test) {
+            Toast.makeText(WebDetailsActivity.this, test, Toast.LENGTH_SHORT).show();
+        }
+
+        @JavascriptInterface
+        public String loginOnNative()
+        {
+
+            return "123";
+        }
     }
 }

@@ -121,9 +121,8 @@ public class OpenDepositoryActivity extends BaseActivity implements View.OnClick
                 //绑定第三方帐号【存管】，跳转到绑定第三方帐号页面
                 Intent fintent = new Intent(this, WebApproveActivity.class);
 
-                //// TODO: 2017/7/13  添加协议地址 
-                fintent.putExtra(UserParam.URL, ApiHttpClient.OPEN_CUSTODY +
-                        "?userId=");
+
+                fintent.putExtra(UserParam.URL, ApiHttpClient.OPEN_CUSTODY_AGREEMENT );
 
                 fintent.putExtra(UserParam.TITLE, "《江西银行账户存管第三方协议》");
                 startActivity(fintent);

@@ -116,7 +116,7 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            View view = getActivity().getLayoutInflater().inflate(R.layout.view_recommend_page_item, container, false);
+            View view = getActivity().getLayoutInflater().inflate(R.layout.view_risk_page_item, container, false);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -202,6 +202,8 @@ public class RiskImgFragment extends BaseFragment implements View.OnClickListene
             //imageView.setImageUrl(oddrmImgs.get(position).normal, R.drawable.ic_load, R.drawable.ic_load);
             Glide.with(getActivity())
                     .load(oddrmImgs.get(position).min)
+                    .placeholder(R.mipmap.icon_placeholder)
+                    .centerCrop()
                     .crossFade()
                     .into(imageView);
 /*            ApiHttpClient.getMita(oddrmImgs.get(position).min, new BitmapCallback() {

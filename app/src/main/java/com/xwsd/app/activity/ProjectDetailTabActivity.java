@@ -34,6 +34,8 @@ public class ProjectDetailTabActivity extends BaseActivity  implements View.OnCl
     private NavbarManage navbarManage;
     private  int id ;
 
+
+
     ProjectDetailsFragment projectDetailsFragment;
 
     RiskControlFragment riskControlFragment;
@@ -199,6 +201,10 @@ public class ProjectDetailTabActivity extends BaseActivity  implements View.OnCl
 
 
         }
+
+
+
+
 
 
 

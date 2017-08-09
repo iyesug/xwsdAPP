@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity {
     public RadioButton tab_news;
 
     RequestCall pvCall;
-
+    FragmentTransaction transaction;
     /**
      * 用于对Fragment进行管理
      */
@@ -193,7 +193,7 @@ public class MainActivity extends BaseActivity {
      */
     private void setTabSelection(int id) {
         // 开启一个Fragment事务
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction = fragmentManager.beginTransaction();
         // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
         hideFragments(transaction);
         switch (id) {
@@ -422,6 +422,7 @@ public class MainActivity extends BaseActivity {
                     break;
                 case BroadcastParam.NEED_ENTER_ACCOUNT://需要进入账户页面
                     tab_account.setChecked(true);
+                    nowShowWho = R.id.tab_account;
                     break;
                 case BroadcastParam.BUY_BID://投标
 
@@ -432,7 +433,7 @@ public class MainActivity extends BaseActivity {
                 case BroadcastParam.USER_CHANGE_LOGIN://登录成功
                     //启动服务获取用户信息
                     startService(new Intent(MainActivity.this, UserService.class).putExtra(UserParam.USER_ID, AppContext.getUserBean().data.userId));
-                    tab_home.setChecked(true);
+                    tab_account.setChecked(true);
                     break;
             }
         }

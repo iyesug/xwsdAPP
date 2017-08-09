@@ -125,6 +125,17 @@
                 android:text="回款方式"
                 android:id="@+id/textView"/>
 
+
+        <Button
+                android:id="@+id/type2"
+                android:layout_width="@dimen/DIMEN_75"
+                android:layout_height="@dimen/DIMEN_25"
+                android:layout_marginRight="@dimen/DIMEN_10"
+                android:gravity="center"
+                android:background="@drawable/select_period_button"
+                android:textColor="@color/gray_1"
+                android:textSize="15sp"
+                android:text="先息后本"/>
         <Button
                 android:id="@+id/type1"
                 android:layout_width="@dimen/DIMEN_75"
@@ -135,16 +146,6 @@
                 android:textColor="@color/gray_1"
                 android:textSize="15sp"
                 android:text="等额本息"/>
-        <Button
-                android:id="@+id/type2"
-                android:layout_width="@dimen/DIMEN_75"
-                android:layout_height="@dimen/DIMEN_25"
-                android:layout_marginRight="@dimen/DIMEN_10"
-                android:gravity="center"
-                android:background="@drawable/select_period_button"
-                android:textColor="@color/gray_1"
-                android:textSize="15sp"
-                android:text="按月付息"/>
         <Button
                 android:id="@+id/type3"
                 android:layout_width="@dimen/DIMEN_75"

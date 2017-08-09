@@ -215,7 +215,7 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-            View view = getActivity().getLayoutInflater().inflate(R.layout.view_recommend_page_item, container, false);
+            View view = getActivity().getLayoutInflater().inflate(R.layout.view_detail_page_item, container, false);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -254,8 +254,13 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
 //                                view.setImageUrl(oddBean.data.oddExteriorPhotos.get(position).normal,
 //                                        R.drawable.ic_load, R.drawable.ic_load);
 
+                                // TODO: 2017/7/25  修改占位图
                                 Glide.with(getActivity())
+
+
                                         .load(oddBean.data.oddExteriorPhotos.get(position).normal)
+                                        .placeholder(R.mipmap.icon_placeholder)
+                                        .fitCenter()
                                         .crossFade()
                                         .into(view);
        /*                         ApiHttpClient.getMita(oddBean.data.oddExteriorPhotos.get(position).normal,new BitmapCallback() {
@@ -314,6 +319,8 @@ public class ProjectDetailsFragment extends BaseFragment implements View.OnClick
 //                    R.drawable.ic_load, R.drawable.ic_load);
             Glide.with(getActivity())
                     .load(oddBean.data.oddExteriorPhotos.get(position).min)
+                    .placeholder(R.mipmap.icon_placeholder)
+                    .centerCrop()
                     .crossFade()
                     .into(imageView);
 /*            ApiHttpClient.getMita(oddBean.data.oddExteriorPhotos.get(position).normal,new BitmapCallback() {

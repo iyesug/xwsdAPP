@@ -8,6 +8,8 @@
     <ImageView
         android:id="@+id/item_account_iv"
         android:layout_width="@dimen/DIMEN_40"
+        android:layout_marginTop="@dimen/DIMEN_10"
+
         android:layout_height="@dimen/DIMEN_40"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
@@ -20,6 +22,7 @@
         android:layout_below="@id/item_account_iv"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/DIMEN_2"
+        android:layout_marginBottom="@dimen/DIMEN_10"
         android:maxLines="1"
         android:text="@string/invest_manage"
         android:textColor="@color/gray_1"
@@ -28,6 +31,6 @@
     <View
         style="@style/GreyInterval"
         android:layout_below="@id/item_account_text"
-        android:layout_marginTop="@dimen/DIMEN_3"></View>
+        android:layout_marginTop="@dimen/DIMEN_5"></View>
 
 </RelativeLayout>

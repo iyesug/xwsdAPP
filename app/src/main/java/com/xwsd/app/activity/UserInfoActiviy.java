@@ -138,7 +138,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
 
         ApiHttpClient.lodCircleImg(user_portrait_img,
                 AppContext.getUserBean().data.userimg,
-                R.drawable.ic_load, R.drawable.ic_load);
+                R.drawable.ic_load, R.mipmap.icon_placeholder);
 
         ((TextView) user_nickname.findViewById(R.id.text_content)).setText(AppContext.getUserBean().data.userName);
 
@@ -153,7 +153,8 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
         if (!TextUtils.isEmpty(AppContext.getUserBean().data.cardnum)) {
             if(AppContext.getUserBean().data.cardnum.length()<=16){
                 ((TextView) user_identity.findViewById(R.id.text_content))
-                        .setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, AppContext.getUserBean().data.cardnum.length()-3), "**********"));
+                        .setText(AppContext.getUserBean().data.cardnum.replace(
+                                AppContext.getUserBean().data.cardnum.substring(3, AppContext.getUserBean().data.cardnum.length()-3), "**********"));
             }else{
                 ((TextView) user_identity.findViewById(R.id.text_content))
                         .setText(AppContext.getUserBean().data.cardnum.replace(AppContext.getUserBean().data.cardnum.substring(3, 13), "**********"));
@@ -211,6 +212,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                             .builder()
                             .setCancelable(true)
                             .setCanceledOnTouchOutside(true)
+
                             .addSheetItem(getString(R.string.photograph), ActionSheetDialog.SheetItemColor.Blue,
                                     new ActionSheetDialog.OnSheetItemClickListener() {
                                         //拍照点击事件

@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import com.xwsd.app.tools.TLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
         this.data = data == null ? new ArrayList<T>() : new ArrayList<T>(data);
         this.context = context;
         this.layoutResId = layoutResId;
+
     }
 
     @Override
@@ -74,30 +76,38 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
 
     @Override
     public T getItem(int position) {
+        TLog.error("getItem-position"+ ( position ));
+        TLog.error("getItem-data.size()"+ (data.size()));
         if (position >= data.size()) return null;
         return data.get(position);
     }
 
     @Override
     public long getItemId(int position) {
+        TLog.error("getItemId-position"+ ( position ));
         return position;
     }
 
     @Override
     public int getViewTypeCount() {
+        TLog.error("getViewTypeCount-position"+ ( data.size() ));
         return 2;
     }
 
     @Override
     public int getItemViewType(int position) {
+        TLog.error("getItemViewType-position"+ ( position ));
+        TLog.error("getItemViewType-position"+ ( data.size() ));
         return position >= data.size() ? 1 : 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         if (getItemViewType(position) == 0) {
             final H helper = getAdapterHelper(position, convertView, parent);
             T item = getItem(position);
+
             convert(helper, item);
             helper.setAssociatedObject(item);
             return helper.getView();
@@ -107,13 +117,13 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
     }
 
     private View createIndeterminateProgressView(View convertView, ViewGroup parent) {
-        if (convertView == null) {
+
             FrameLayout container = new FrameLayout(context);
             container.setForegroundGravity(Gravity.CENTER);
             ProgressBar progress = new ProgressBar(context);
             container.addView(progress);
             convertView = container;
-        }
+
         return convertView;
     }
 

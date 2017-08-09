@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_progress"
     android:layout_width="match_parent"
     android:layout_height="@dimen/DIMEN_120"
     android:background="@color/white"

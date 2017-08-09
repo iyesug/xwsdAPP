@@ -18,7 +18,7 @@ import butterknife.Bind;
  */
 public class NoviceActivity extends BaseActivity {
 
-    int[] imgId = {R.mipmap.img_novice_1, R.mipmap.img_novice_2, R.mipmap.img_novice_3, R.mipmap.img_novice_4,};
+    int[] imgId = {R.mipmap.ic_about_xw, R.mipmap.ic_about_xw, R.mipmap.ic_about_xw, R.mipmap.ic_about_xw,};
 
     @Bind(R.id.view_pager)
     ViewPager view_pager;

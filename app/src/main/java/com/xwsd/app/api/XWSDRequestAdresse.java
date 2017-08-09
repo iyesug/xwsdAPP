@@ -15,7 +15,9 @@ public interface XWSDRequestAdresse {
      * 接口根地址
      */
     // String API_URL = "https://app.xwsd.com/api/";//正式
-String API_URL = "http://app.xwsdvip.com/api/";//测试
+    // String API_URL = "http://app.xwsdvip.com/api/";//测试
+
+String API_URL = "http://app.xwshidai.com/api/";//生产
 
     /**
      * 签名密钥
@@ -146,6 +148,12 @@ String API_URL = "http://app.xwsdvip.com/api/";//测试
      */
 //    String BIND_THIRD = API_URL + "bindThird";
     String OPEN_CUSTODY = API_URL + "openCustody";
+
+    /**
+     * 存管协议
+     */
+//    String BIND_THIRD = API_URL + "bindThird";
+    String OPEN_CUSTODY_AGREEMENT = "http://app.xwsdvip.com/v2page/cuspro.html";
     /**
      * 获取已经认证的银行卡
      */

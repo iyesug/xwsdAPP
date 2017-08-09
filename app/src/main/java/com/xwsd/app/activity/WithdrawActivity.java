@@ -51,7 +51,7 @@ public class WithdrawActivity extends BaseActivity implements View.OnClickListen
     MaterialDialog bankDialog;
 
     BankCardBean banks;
-    float bigAmount= (float) 50000;
+    float bigAmount= (float) 200000;
     boolean big=false;
     /**
      * 选中的银行卡

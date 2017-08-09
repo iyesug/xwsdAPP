@@ -64,14 +64,20 @@
                 android:text="注册时间"/>
         </LinearLayout>
     </LinearLayout>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_bg"
+            android:layout_below="@+id/top"
+            android:layout_above="@+id/my_bootom"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top"
-        android:layout_above="@+id/my_bootom"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+>
+
         <com.xwsd.app.view.AdaptiveListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
@@ -79,7 +85,16 @@
             android:divider="@android:color/transparent"
             android:background="@color/white"
             android:dividerHeight="@dimen/DIMEN_15"/>
+
+
     </android.support.v4.widget.SwipeRefreshLayout>
+    <com.xwsd.app.view.EmptyLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/my_bootom"
         android:layout_width="match_parent"

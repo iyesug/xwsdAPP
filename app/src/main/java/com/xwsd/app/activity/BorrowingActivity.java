@@ -211,9 +211,10 @@ public class BorrowingActivity extends BaseActivity implements View.OnClickListe
                                                         materialDialog.dismiss();
                                                     }
                                                 });
-                                    } else {
-                                        materialDialog.show();
+
                                     }
+                                        materialDialog.show();
+
                                     if (jsonObject.getInt("status") == 1) {
                                     }
                                 } catch (JSONException e) {

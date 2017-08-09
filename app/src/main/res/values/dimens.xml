@@ -36,7 +36,7 @@
     <dimen name="DIMEN_270">270dp</dimen>
     <dimen name="DIMEN_120">120dp</dimen>
     <dimen name="DIMEN_220">220dp</dimen>
-
+    <dimen name="DIMEN_470">470dp</dimen>
     <dimen name="TEXT_S">12sp</dimen>
     <dimen name="TEXT_M">14sp</dimen>
     <dimen name="TEXT_L">16sp</dimen>

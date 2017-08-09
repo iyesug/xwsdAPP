@@ -26,10 +26,6 @@ import com.xwsd.app.bean.InvestRecordNowBean;
 import com.xwsd.app.bean.OddBean;
 import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.fragment.InvestRecordFragment;
-import com.xwsd.app.fragment.InvestRecordNowFragment;
-import com.xwsd.app.fragment.ProjectDetailsFragment;
-import com.xwsd.app.fragment.RiskControlFragment;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
@@ -47,7 +43,7 @@ import java.text.DecimalFormat;
 
 /**
  * Created by Gx on 2016/8/24.
- * 项目-标-详情
+ * 项目-标-详情（deprecate）
  */
 public class ProjectDetailsActivity extends BaseActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -61,13 +57,7 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
 
     private String[] titles;
 
-    ProjectDetailsFragment projectDetailsFragment;
 
-    RiskControlFragment riskControlFragment;
-
-    InvestRecordFragment investRecordFragment;
-
-    InvestRecordNowFragment investRecordNowFragment;
 
     @Bind(R.id.tv_oddTitle)
     TextView tv_oddTitle;
@@ -155,8 +145,8 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
 
 
 
-/*    @Bind(R.id.iv_arrows)
-    TextView iv_arrows;*/
+    @Bind(R.id.iv_arrows)
+    TextView iv_arrows;
 
 /*    @Bind(R.id.indicator_1)
     View indicator_1;
@@ -295,12 +285,12 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
                     if (jsonObject.getInt("status") == 1) {
                         InvestRecordNowBean investRecordBean = GsonUtils.jsonToBean(response, InvestRecordNowBean.class);
                         int num = investRecordBean.data.count;
-/*                        if(num > 0){
+                        if(num > 0){
                             iv_arrows.setVisibility(View.VISIBLE);
                             iv_arrows.setText(num+"");
                         }else {
                             iv_arrows.setVisibility(View.GONE);
-                        }*/
+                        }
                     } else {
                     }
                 } catch (JSONException e) {
@@ -322,8 +312,10 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
 
         swipe_refresh_layout.setOnRefreshListener(this);
         swipe_refresh_layout.setColorSchemeResources(
-                R.color.swiperefresh_color1, R.color.swiperefresh_color2,
-                R.color.swiperefresh_color3, R.color.swiperefresh_color4);
+                R.color.swiperefresh_color1,
+                R.color.swiperefresh_color2,
+                R.color.swiperefresh_color3,
+                R.color.swiperefresh_color4);
     }
 
     /**

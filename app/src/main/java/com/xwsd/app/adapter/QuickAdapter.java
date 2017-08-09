@@ -18,6 +18,7 @@ package com.xwsd.app.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import com.xwsd.app.tools.TLog;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public abstract class QuickAdapter<T> extends BaseQuickAdapter<T, BaseAdapterHel
      */
     public QuickAdapter(Context context, int layoutResId, List<T> data) {
         super(context, layoutResId, data);
+        TLog.error("QuickAdapter-new");
     }
 
     protected BaseAdapterHelper getAdapterHelper(int position, View convertView, ViewGroup parent) {

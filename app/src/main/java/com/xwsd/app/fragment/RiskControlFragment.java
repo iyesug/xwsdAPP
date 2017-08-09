@@ -144,7 +144,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 RiskBorrowDataFragment borrowDataFragment = new RiskBorrowDataFragment();
                 bundle.putSerializable(UserParam.DATA, oddrmBean);
                 borrowDataFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_content, borrowDataFragment).commit();
+                transaction.replace(R.id.frame_content, borrowDataFragment).commitAllowingStateLoss();
                 setFrameLayout(0);
                 return;
             case R.id.tab_radio_risk_describe://风控详情
@@ -153,7 +153,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 BuriedPointUtil.buriedPoint("项目介绍风控材料风控描述");
 
                 RiskDescribeFragment describeFragment = new RiskDescribeFragment();
-                transaction.replace(R.id.frame_content1, describeFragment).commit();
+                transaction.replace(R.id.frame_content1, describeFragment).commitAllowingStateLoss();
                 setFrameLayout(1);
                 return;
             case R.id.tab_radio_property_img://产权图片
@@ -164,7 +164,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_PROPERTY);
                 imgFragment = new RiskImgFragment();
                 imgFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_content2, imgFragment).commit();
+                transaction.replace(R.id.frame_content2, imgFragment).commitAllowingStateLoss();
                 break;
             case R.id.tab_radio_borrow_procedure://借款手续
                 setFrameLayout(3);
@@ -174,7 +174,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_BORROW_PROCEDURE);
                 imgFragment = new RiskImgFragment();
                 imgFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_content3, imgFragment).commit();
+                transaction.replace(R.id.frame_content3, imgFragment).commitAllowingStateLoss();
                 break;
             case R.id.tab_radio_risk_img://风控图片
                 setFrameLayout(4);
@@ -184,7 +184,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_RISK);
                 imgFragment = new RiskImgFragment();
                 imgFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_content4, imgFragment).commit();
+                transaction.replace(R.id.frame_content4, imgFragment).commitAllowingStateLoss();
                 break;
             case R.id.tab_radio_checkout_img://验车图片
                 setFrameLayout(5);
@@ -194,7 +194,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_CHECKOUT);
                 imgFragment = new RiskImgFragment();
                 imgFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_content5, imgFragment).commit();
+                transaction.replace(R.id.frame_content5, imgFragment).commitAllowingStateLoss();
                 break;
             case R.id.tab_radio_investigation://征信报告
                 setFrameLayout(6);
@@ -204,7 +204,7 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 bundle.putInt(UserParam.TYPE, RiskImgFragment.TYPE_INVESTIGATION);
                 imgFragment = new RiskImgFragment();
                 imgFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_content6, imgFragment).commit();
+                transaction.replace(R.id.frame_content6, imgFragment).commitAllowingStateLoss();
                 break;
         }
 
@@ -227,8 +227,6 @@ public class RiskControlFragment extends BaseFragment implements RadioGroup.OnCh
                 frames.get(i).setVisibility(View.GONE);
             }
         }
-
-
 
     }
 }

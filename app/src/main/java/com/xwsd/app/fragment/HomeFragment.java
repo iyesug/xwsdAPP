@@ -74,6 +74,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
     ImageView iv_trumpet;
 
     /**
+     * 新手标左边
+     */
+    @Bind(R.id.iv_left)
+    ImageView iv_left;
+
+    /**
+     * 新手标右边
+     */
+    @Bind(R.id.iv_right)
+    ImageView iv_right;
+
+    /**
      * 交易量
      */
     @Bind(R.id.tv_turnover_price)
@@ -153,7 +165,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
      * 为你推荐适配器
      */
     QuickAdapter adapter;
-    DecimalFormat decimalFormat = new DecimalFormat("0.0");
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected View setContentView(LayoutInflater inflater) {
@@ -314,6 +326,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
         //初始化月份
         if (indexBean.data.newHandOdds != null && indexBean.data.newHandOdds.size()>0 && indexBean.data.newHandOdds.get(0) != null) {
             tv_month.setText(indexBean.data.newHandOdds.get(0).oddPeriod);
+            if(indexBean.data.newHandOdds.size()==1){
+                iv_left.setVisibility(View.GONE);
+                iv_right.setVisibility(View.GONE);
+            }
         }
         et_new_bid.setText("");
 
@@ -326,6 +342,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
             vp_newbie_bid.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    if(0==position){
+                        iv_left.setVisibility(View.INVISIBLE);
+                    }else{
+                        iv_left.setVisibility(View.VISIBLE);
+                    }
+                    if(position==(indexBean.data.newHandOdds.size()-1)){
+                        iv_right.setVisibility(View.INVISIBLE);
+                    }else{
+                        iv_right.setVisibility(View.VISIBLE);
+                    }
 
                 }
 
@@ -403,7 +429,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 
                 text_switcher.setInAnimation(getActivity(), R.anim.slide_in_bottom);
                 text_switcher.setOutAnimation(getActivity(), R.anim.slide_out_top);
-                text_switcher.setText(indexBean.data.notices.get(0).news_title);
+                if(indexBean.data.notices!=null&&indexBean.data.notices.size()>0&&indexBean.data.notices.get(0)!=null){
+                    text_switcher.setText(indexBean.data.notices.get(0).news_title);
+                }
+
             }
 
 
@@ -627,8 +656,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                                 text_switcher.setFactory(viewFactory);
                             }
                             if(isAdded()&&indexBean!=null&&indexBean.data!=null){
-                                text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
+                                if(indexBean.data.notices!=null&&indexBean.data.notices.size()>0&&indexBean.data.notices.get(0)!=null) {
 
+                                    text_switcher.setText(indexBean.data.notices.get(current).news_title + "");
+                                }
                                 text_switcher.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -656,7 +687,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
 
     );
 
-    @OnClick({commit, R.id.iv_left, R.id.iv_right, R.id.iv_new_menu})
+    @OnClick({commit, R.id.iv_left, R.id.iv_right, R.id.iv_new_menu,R.id.ll_newbie_bid})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -709,9 +740,26 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                 break;
             case R.id.iv_left://新手标左边
                 vp_newbie_bid.setCurrentItem(vp_newbie_bid.getCurrentItem() - 1);
+                if((-1)==(vp_newbie_bid.getCurrentItem() - 1)){
+                    iv_left.setVisibility(View.INVISIBLE);
+                }
+                iv_right.setVisibility(View.VISIBLE);
                 break;
             case R.id.iv_right://新手标右边
                 vp_newbie_bid.setCurrentItem(vp_newbie_bid.getCurrentItem() + 1);
+                if(indexBean.data.newHandOdds.size()==(vp_newbie_bid.getCurrentItem() + 1)){
+                    iv_right.setVisibility(View.INVISIBLE);
+                }
+                    iv_left.setVisibility(View.VISIBLE);
+
+                break;
+            case R.id.ll_newbie_bid://新手标
+
+                if (indexBean.data.newHandOdds.size()==1) {
+                    Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
+                    intent.putExtra("oddNumber", indexBean.data.newHandOdds.get(vp_newbie_bid.getCurrentItem()).oddNumber);
+                    startActivity(intent);
+                }
                 break;
             case R.id.iv_new_menu://讯息菜单
 //                切换到讯息

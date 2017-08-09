@@ -352,13 +352,41 @@
                                     android:layout_marginTop="@dimen/DIMEN_10"
                                     android:layout_marginLeft="@dimen/DIMEN_10"
                                     android:layout_marginRight="@dimen/DIMEN_10"></View>
-                                <ImageView
-                                    android:id="@+id/tab_investment"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:layout_gravity="center_horizontal"
-                                    android:src="@mipmap/icon_blue_investment" />
+
+                                <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+
+                                        android:layout_weight="1">
+                                    <ImageView
+                                            android:id="@+id/tab_investment"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:layout_centerInParent="true"
+                                            android:src="@mipmap/icon_blue_investment" />
+
+                                    <TextView
+                                            android:id="@+id/iv_arrows"
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:textColor="@color/white"
+                                            android:visibility="visible"
+                                            android:gravity="center"
+                                            android:layout_alignBottom="@id/tab_investment"
+                                            android:layout_alignRight="@id/tab_investment"
+                                            android:text="5"
+                                            android:background="@drawable/hong_yuan_text"/>
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                        android:id="@+id/ll_tab_project_right"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+
+                                        android:orientation="horizontal">
                                 <TextView
                                     android:id="@+id/text_investment"
                                     android:layout_width="wrap_content"
@@ -370,6 +398,8 @@
                                     android:textColor="@color/gray_2"
                                     android:textSize="@dimen/TEXT_M" />
 
+
+                                </LinearLayout>
                             </LinearLayout>
 
 
