@@ -3,6 +3,7 @@ package com.xwsd.app.fragment;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.ProjectDetailsActivity;
@@ -10,11 +11,11 @@ import com.xwsd.app.activity.ProtDetilaActivity;
 import com.xwsd.app.activity.ProtJiaActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
-import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BasePullUpListFragment;
 import com.xwsd.app.base.BaseUpDownListFragment;
 import com.xwsd.app.bean.CreditorTransferBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.oldapp.api.ApiHttpClient;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
@@ -182,7 +183,7 @@ public class TransfereeRecordFragment extends BaseUpDownListFragment {
                     ((TitleTextView) helper.getView(R.id.tv_interest)).setContent(item.interest + "元");
                     ((TitleTextView) helper.getView(R.id.tv_expire_time)).setContent(item.endtime);
                     ((TitleTextView) helper.getView(R.id.tv_day)).setContent(item.remainDay + "天");
-
+                    ((TextView) helper.getView(R.id.prot_bid)).setVisibility(View.GONE);
                     if(item.lotteryId.equals("0")){
                         helper.getView(R.id.yijiaxi).setVisibility(View.GONE);
                     }else{

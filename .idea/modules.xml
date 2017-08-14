@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/smartimageview/smartimageview.iml" filepath="$PROJECT_DIR$/smartimageview/smartimageview.iml" />
       <module fileurl="file://$PROJECT_DIR$/superindicatorlibray/superindicatorlibray.iml" filepath="$PROJECT_DIR$/superindicatorlibray/superindicatorlibray.iml" />
       <module fileurl="file://$PROJECT_DIR$/xwsdAPP.iml" filepath="$PROJECT_DIR$/xwsdAPP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xwsdAPP2.5.iml" filepath="$PROJECT_DIR$/xwsdAPP2.5.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,7 @@
 package com.xwsd.app.fragment;
 
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
@@ -19,6 +20,7 @@ import com.xwsd.app.bean.AccountBean;
 import com.xwsd.app.bean.AccountItemBean;
 import com.xwsd.app.bean.AgreeCardBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.oldapp.OldAppActivity;
 import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EmptyLayout;
 import com.xwsd.app.view.NavbarManage;
@@ -92,6 +94,9 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
     @Bind(R.id.error_layout)
     protected EmptyLayout mErrorLayout;
+    //切换回旧版本
+    @Bind(R.id.navbar_left_text)
+    protected TextView navbarLeftText;
 
     RequestCall call;
 
@@ -149,6 +154,25 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         navbarManage.setOnRightClickListener(() -> {
             Intent intent = new Intent(getActivity(), PropertyDetailsActivity.class);
             startActivity(intent);
+        });
+
+        //切换旧版本
+        navbarLeftText.setText("返回旧版\n查看历史资金");
+        navbarLeftText.setTextSize(12);
+        navbarLeftText.setGravity(Gravity.CENTER);
+        navbarLeftText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //将接口转成旧版本接口
+//                XWSDRequestAdresse.API_URL="http://opp.xwsd.com/api/";
+//                try {
+//                    XWSDRequestAdresse.getObjectValue("http://app.xwsd.com/api/","http://opp.xwsd.com/api/");
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+                //启动旧版本界面
+                startActivity(new Intent(getActivity(),OldAppActivity.class));
+            }
         });
 
         //设置日历时间
@@ -416,7 +440,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         rise_number_text_view.setDuration(1500);
         rise_number_text_view.start();
     }
-//,R.id.ll_booking
+    //,R.id.ll_booking
     @OnClick({ll_service,R.id.ll_auto_bid, R.id.iv_calendar, R.id.bt_recharge, R.id.bt_withdraw, R.id.ll_property_details})
     @Override
     public void onClick(View v) {
@@ -470,14 +494,14 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                });
 //                ((MainActivity) getActivity()).hideWaitDialog();
 //                if(isCard){
-                    intent = new Intent(getActivity(), AccountRechargeActivity.class);
-                    // TODO: 2017/3/28  
+                intent = new Intent(getActivity(), AccountRechargeActivity.class);
+                // TODO: 2017/3/28
 //                            Bundle bundle = new Bundle();
 //                            bundle.putSerializable(AgreeCardBean.class.getName(), agreeCardBean);
 //                        intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
 //                        intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
-                    startActivityForResult(intent,1234);
-          //          startActivity(intent);
+                startActivityForResult(intent,1234);
+                //          startActivity(intent);
 //                }else {
 //                    new AlertDialog(getActivity())
 //                            .builder()
@@ -517,7 +541,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                     intent.putExtra(UserParam.MONEY,accountBean.data.fundMoney);
                     startActivityForResult(intent,1234);
                     break;
-            }
+                }
 
         }
     }
@@ -538,37 +562,37 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
             return;
         }
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data&&null!=AppContext.getUserBean().data.userId){
-        call = ApiHttpClient.agreeCard(AppContext.getUserBean().data.userId,flag, new StringCallback() {
-            @Override
-            public void onError(Call call, Exception e, int id) {
-                if(null!=getActivity()){
-                    ((MainActivity) getActivity()).hideWaitDialog();
-                }
+            call = ApiHttpClient.agreeCard(AppContext.getUserBean().data.userId,flag, new StringCallback() {
+                @Override
+                public void onError(Call call, Exception e, int id) {
+                    if(null!=getActivity()){
+                        ((MainActivity) getActivity()).hideWaitDialog();
+                    }
 
 //                ToastUtil.showToastShort(R.string.network_exception);
-            }
-            @Override
-            public void onResponse(String response, int id) {
-                TLog.error("获取认证银行：" + response);
-                if(null!=getActivity()){
-                    ((MainActivity) getActivity()).hideWaitDialog();
                 }
+                @Override
+                public void onResponse(String response, int id) {
+                    TLog.error("获取认证银行：" + response);
+                    if(null!=getActivity()){
+                        ((MainActivity) getActivity()).hideWaitDialog();
+                    }
 
 //                        这边捕获下异常，data.agreeCard为fals
-                try {
+                    try {
 //                            将充值银行卡的信息传给充值页面
-                    if(flag.equals("baofoo")){
-                        agreeCardBeanBaofu = GsonUtils.jsonToBean(response, AgreeCardBean.class);
-                        isCard = true;
-                    }else{
-                        agreeCardBeanFuyou = GsonUtils.jsonToBean(response, AgreeCardBean.class);
-                        isCard = true;
+                        if(flag.equals("baofoo")){
+                            agreeCardBeanBaofu = GsonUtils.jsonToBean(response, AgreeCardBean.class);
+                            isCard = true;
+                        }else{
+                            agreeCardBeanFuyou = GsonUtils.jsonToBean(response, AgreeCardBean.class);
+                            isCard = true;
+                        }
+                    } catch (Exception e) {
+                        isCard = false;
                     }
-                } catch (Exception e) {
-                    isCard = false;
                 }
-            }
-        });
+            });
         }
     }
 

@@ -14,6 +14,7 @@ import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.fragment.DueReturnedProjectFragment;
+import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.NavbarManage;
 
 /**
@@ -66,6 +67,7 @@ public class InvestManageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        TLog.error("新投资管理:" );
         title=getString(R.string.invest_manage);
         //设置导航栏
         navbarManage.setCentreStr(getString(R.string.invest_manage));

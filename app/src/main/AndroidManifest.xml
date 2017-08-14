@@ -339,6 +339,17 @@
         <activity android:name=".activity.GetBankNumInfoActivity"/>
         <activity android:name=".activity.BookingActivity"/>
 
+        <activity android:name=".oldapp.OldAppActivity"/>
+        <activity android:name=".oldapp.UserActivity"/>
+        <activity android:name=".oldapp.UserInfoActiviy"/>
+        <activity android:name=".oldapp.FundRecordActivity"/>
+        <activity android:name=".oldapp.CreditorTransferActivity"/>
+        <activity android:name=".oldapp.RechargeWithdrawActivity"/>
+        <activity android:name=".oldapp.InvestManageActivity"/>
+        <activity android:name=".oldapp.RecommendFriendActivity"/>
+        <activity android:name=".oldapp.PropertyDetailsActivity"/>
+        <activity android:name=".oldapp.CalendarActivity"/>
+        <activity android:name=".oldapp.AutoBidActivity"/>
     </application>
 
 </manifest>

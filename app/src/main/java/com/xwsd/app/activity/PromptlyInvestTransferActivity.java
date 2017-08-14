@@ -328,30 +328,30 @@ public class PromptlyInvestTransferActivity extends BaseActivity implements View
                     }
                 });
                 hideWaitDialog();
-                if(isCard){
-                   Intent intent = new Intent(this, AccountRechargeActivity.class);
+//                if(isCard){
+                   Intent fintent = new Intent(this, AccountRechargeActivity.class);
 
 
-                    startActivity(intent);
-                }else {
-                    new AlertDialog(this)
-                            .builder()
-                            .setTitle("温馨提示：")
-                            .setMsg("您尚未设置充值银行卡，是否前往设置。")
-                            .setPositiveButton("前往", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, SettingsPayBankActivity.class);
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("取消", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
-                            }).show();
-                }
+                    startActivity(fintent);
+//                }else {
+//                    new AlertDialog(this)
+//                            .builder()
+//                            .setTitle("温馨提示：")
+//                            .setMsg("您尚未设置充值银行卡，是否前往设置。")
+//                            .setPositiveButton("前往", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    Intent intent = new Intent(PromptlyInvestTransferActivity.this, SettingsPayBankActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                            })
+//                            .setNegativeButton("取消", new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//
+//                                }
+//                            }).show();
+//                }
                 break;
 
             case R.id.commit:
