@@ -64,6 +64,8 @@
     <string name="creditor_transfer">债权转让</string>
     <string name="security_account">账号安全</string>
     <string name="borrowing">借款</string>
+    <string name="money_transfer">资金迁移</string>
+    <string name="money_transfer_record">迁移记录</string>
     <string name="aboutus">关于小微</string>
     <string name="vip">VIP</string>
     <string name="recommend_award">推荐奖励</string>
@@ -142,6 +144,7 @@
     <string name="network_error_click_to_refresh">没有可用网络\r\n点击重试</string>
     <string name="no_data">暂无数据</string>
     <string name="please_write_full">请填写完整</string>
+    <string name="once_max">单笔最大金额20000</string>
     <string name="please_check">请阅读并同意《江西银行账户存管第三方协议》</string>
     <string name="load_error">加载错误</string>
     <string name="no_more">没有更多数据</string>
@@ -170,7 +173,9 @@
     <string name="bank_num_null">银联号不能为空</string>
 
     <string name="withdraw_bank_card_null">请选择提现账户</string>
-    <string name="withdraw_money_exceed">提现金额不能大余额</string>
+    <string name="withdraw_money_exceed">提现金额不能大于余额</string>
+    <string name="Transfer_money_exceed">迁移金额不能大于余额</string>
+
     <string name="pay_pasworrd_null">支付密码不能为空</string>
     <string name="withdraw_money_small">提现金额需大于0</string>
     <string name="money_no_one">实得金额不能小于1！</string>
@@ -215,6 +220,12 @@
 \n\n3、大额提现：支持20万以上资金提现，工作日9:00-16:45 。到账时间为30分钟左右，依据发卡行不同可能略有差异。
 \n\n4、平台充值不收取任何费用，提现每笔收2元手续费，未投标的资金第额外收取您提现金额0.5%的手续费；
 \n\n5、如果提现出现任何疑问，可立即联系小微时贷客服人员。
+</string>
+    <string name="money_transfer_tip">1、  每人每日资金迁移上限为10万元，每人每日资金迁移操作次数上限为10次；
+\n\n2、  单笔资金迁移上限为2万元；
+\n\n3、  资金迁移申通提交成功后，该笔迁移的资金将会被冻结审核，审核过程中该笔资金无法进行投资、提现等相关操作；
+\n\n4、  小微时贷将会在工作日9:00-16:00的早上及下午各进行一次资金迁移审核，审核通过后资金即可到账至您的江西银行存管账户中；（节假日进行资金迁移操作将会顺延至下一个工作日进行处理）；
+\n\n5、  资金迁移无需任何手续费。
 </string>
     <string name="setcard">您尚未设置充值银行卡，是否前往设置。</string>
     <string name="go">前往</string>

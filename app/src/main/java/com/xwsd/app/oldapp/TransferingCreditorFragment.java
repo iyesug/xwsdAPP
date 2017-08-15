@@ -154,7 +154,7 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                         setData(infosBean,TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
                         ToastUtil.showToast("用户密码已修改，请重新登录");
-                        Intent Fintent = new Intent();
+                        Intent Fintent = new Intent(getActivity(), com.xwsd.app.oldapp.UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);

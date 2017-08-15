@@ -320,6 +320,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                             payDialog.show();
                         }
                     });
+                    helper.setVisible(R.id.prot_detail,false);
                     helper.setOnClickListener(R.id.prot_detail,new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {

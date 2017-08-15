@@ -222,6 +222,7 @@ public class DueReturnedProjectFragment extends BaseUpDownListFragment {
                     if (type.equals(ApiHttpClient.TYPE_TENDERS_RUN)) {
                         helper.setText(R.id.tv_time, "预计到期时间：" + item.endtime);
                         helper.setText(R.id.tv_interest, "到期收益：" + item.interest + "元");
+                        helper.setVisible(R.id.prot_jia,false);
                         helper.setOnClickListener(R.id.prot_jia,new View.OnClickListener(){
                             @Override
                             public void onClick(View v) {

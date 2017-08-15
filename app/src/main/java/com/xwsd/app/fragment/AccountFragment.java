@@ -171,7 +171,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                    e.printStackTrace();
 //                }
                 //启动旧版本界面
-                startActivity(new Intent(getActivity(),OldAppActivity.class));
+                Intent intent = new Intent(getActivity(), OldAppActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -270,17 +271,17 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
         mErrorLayout.setOnLayoutClickListener(v -> {
             getData();
-            // 宝付
-            agreeCard("baofoo");
-            //富有
-            agreeCard("fuiou");
+//            // 宝付
+//            agreeCard("baofoo");
+//            //富有
+//            agreeCard("fuiou");
         });
 
         getData();
-        // 宝付
-        agreeCard("baofoo");
-        //富有
-        agreeCard("fuiou");
+//        // 宝付
+//        agreeCard("baofoo");
+//        //富有
+//        agreeCard("fuiou");
     }
 
     /**
@@ -365,7 +366,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
      */
     public void getData() {
 
-        guideNovice();
+//        guideNovice();
 
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
 
@@ -500,8 +501,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                            bundle.putSerializable(AgreeCardBean.class.getName(), agreeCardBean);
 //                        intent.putExtra(UserParam.DATA, agreeCardBeanBaofu.data.agreeCard);
 //                        intent.putExtra(UserParam.DATA2, agreeCardBeanFuyou.data.agreeCard);
-                startActivityForResult(intent,1234);
-                //          startActivity(intent);
+//                startActivityForResult(intent,1234);
+                          startActivity(intent);
 //                }else {
 //                    new AlertDialog(getActivity())
 //                            .builder()
@@ -539,7 +540,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                    }
                     intent = new Intent(getActivity(), WithdrawActivity.class);
                     intent.putExtra(UserParam.MONEY,accountBean.data.fundMoney);
-                    startActivityForResult(intent,1234);
+//                    startActivityForResult(intent,1234);
+                    startActivity(intent);
                     break;
                 }
 
@@ -599,11 +601,13 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onResume() {
         super.onResume();
-   /*     mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);*/
+   /*     mErrorLayout.setErrorTypeptyLayout.NETWORK_LOADING);*/
+        mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
 
-        // 宝付
-        agreeCard("baofoo");
-        //富有
-        agreeCard("fuiou");
+   getData();
+//        // 宝付
+//        agreeCard("baofoo");
+//        //富有
+//        agreeCard("fuiou");
     }
 }

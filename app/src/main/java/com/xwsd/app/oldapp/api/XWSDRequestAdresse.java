@@ -387,4 +387,15 @@ public interface XWSDRequestAdresse {
      * 版本更新
      */
     String VERSION = API_URL + "version";
+
+
+    /**
+     * 资金迁移
+     */
+    String TRANMONEY = API_URL + "tranMoney";
+
+    /**
+     * 资金迁移记录
+     */
+    String TRANLOGS = API_URL + "tranlogs";
 }

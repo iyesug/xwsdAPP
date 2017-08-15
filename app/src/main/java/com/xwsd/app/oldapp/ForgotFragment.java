@@ -8,7 +8,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import com.gnwai.groupeeditview.GroupeEditView;
 import com.xwsd.app.R;
-import com.xwsd.app.activity.UserActivity;
+
 import com.xwsd.app.oldapp.api.ApiHttpClient;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.tools.PatternUtils;

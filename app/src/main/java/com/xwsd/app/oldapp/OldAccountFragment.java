@@ -19,6 +19,8 @@ import com.xwsd.app.bean.AccountBean;
 import com.xwsd.app.bean.AccountItemBean;
 import com.xwsd.app.bean.AgreeCardBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.oldapp.activity.MoneyTransferActivity;
+import com.xwsd.app.oldapp.activity.TransferRecordActivity;
 import com.xwsd.app.oldapp.api.ApiHttpClient;
 import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EmptyLayout;
@@ -68,7 +70,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     TextView tv_due_in;
 
     /**
-     * 投资总额
+     * 账户余额
      */
     @Bind(R.id.tv_invest)
     TextView tv_invest;
@@ -101,6 +103,9 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
 
     RequestCall call;
 
+    @Bind(R.id.ll_text)
+    protected LinearLayout ll_text;
+
     private List<AccountItemBean> accountItems;
 
     AccountBean accountBean;
@@ -120,6 +125,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     }
     @Override
     protected void init() {
+        ll_text.setVisibility(View.GONE);
         ll_bottom.setVisibility(View.GONE);
         accountItems = new ArrayList<AccountItemBean>() {{
             add(new AccountItemBean(getString(R.string.invest_manage), R.mipmap.ic_invest_manage, InvestManageActivity.class));
@@ -130,8 +136,8 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
             add(new AccountItemBean(getString(R.string.recharge_withdraw), R.mipmap.ic_recharge_withdraw, RechargeWithdrawActivity.class));
             add(new AccountItemBean(getString(R.string.Fund_record), R.mipmap.zijin_icon, FundRecordActivity.class));
             add(new AccountItemBean(getString(R.string.recommend_award), R.mipmap.ic_recommend_award, RecommendFriendActivity.class));
-//            add(new AccountItemBean(getString(R.string.borrowing), R.mipmap.ic_borrowing, BorrowingActivity.class));
- /*           add(new AccountItemBean(getString(R.string.aboutus), R.mipmap.ic_aboutus, AboutXWActivity.class));*/
+            add(new AccountItemBean(getString(R.string.money_transfer), R.mipmap.ic_money_transfer, MoneyTransferActivity.class));
+            add(new AccountItemBean(getString(R.string.money_transfer_record), R.mipmap.ic_transfer_record, TransferRecordActivity.class));
 //            add(new AccountItemBean(getString(R.string.vip), R.mipmap.ic_vip, VIPActivity.class));
  /*           add(new AccountItemBean(getString(R.string.guide), R.mipmap.ic_guide, NoviceActivity.class));*/
 
@@ -252,6 +258,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
                 return;
             }
 
+
 //            //进入银行卡前，先判断用户是否设置了支付密码
 //            if (accountItems.get(position).activity.equals(BankCardActivity.class) &&
 //                    AppContext.getUserBean().data.payPassStatus.equals(ApiHttpClient.NO)) {
@@ -260,9 +267,13 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
 //            }
 
             Intent intent = new Intent(getActivity(), accountItems.get(position).activity);
+            //资金迁移
+            if (accountItems.get(position).activity.equals(MoneyTransferActivity.class) ) {
+                intent.putExtra("fundMoney",accountBean.data.fundMoney);
+            }
             startActivity(intent);
         });
-
+        mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         mErrorLayout.setOnLayoutClickListener(v -> {
             getData();
 
@@ -386,13 +397,14 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
                         accountBean = GsonUtils.jsonToBean(response, AccountBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
+                        if(isAdded()){
                         ToastUtil.showToast(getString(R.string.please_relogin));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-                        if(isAdded()){
+
                             startActivity(Fintent);
-                            getActivity().finish();
+
                         }
 
                     }
@@ -589,6 +601,8 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onResume() {
         super.onResume();
+        mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+        getData();
    /*     mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);*/
 
 

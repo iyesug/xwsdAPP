@@ -188,10 +188,13 @@ public class FastPaymentFragment extends BaseFragment implements View.OnClickLis
     private void setBankCard(BankCardBean bean) {
         if (bean.data != null && Integer.parseInt(bean.data.id) != 0) {
 
-            Glide.with(getActivity())
-                    .load(bean.data.bankIco)
-                    .crossFade()
-                    .into(iv_bank);
+            if(isAdded()){
+                Glide.with(getActivity())
+                        .load(bean.data.bankIco)
+                        .crossFade()
+                        .into(iv_bank);
+            }
+
 
             if (!"".equals(bean.data.binInfo)) {
                 String bankinfo = bean.data.binInfo;

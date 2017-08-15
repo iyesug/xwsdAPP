@@ -2,7 +2,6 @@ package com.xwsd.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -220,8 +219,10 @@ public class AutoBidActivity extends BaseActivity {
 //        设置用户信息
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data) {
             //判断是否授权小微
-            Log.e("autoBidAuth:",AppContext.getUserBean().data.autoBidAuth);
-            if(!(AppContext.getUserBean().data.autoBidAuth==null)||!("0".equals(AppContext.getUserBean().data.autoBidAuth))||!("".equals(AppContext.getUserBean().data.autoBidAuth))){
+//            Log.e("autoBidAuth:",AppContext.getUserBean().data.autoBidAuth);
+            if(!(AppContext.getUserBean().data.autoBidAuth==null)
+                    ||!("0".equals(AppContext.getUserBean().data.autoBidAuth))
+                    ||!("".equals(AppContext.getUserBean().data.autoBidAuth))){
                     navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
                 navbarManage.showRight(true);
                 toggle_button.setState(true);

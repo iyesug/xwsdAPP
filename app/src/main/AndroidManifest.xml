@@ -350,6 +350,9 @@
         <activity android:name=".oldapp.PropertyDetailsActivity"/>
         <activity android:name=".oldapp.CalendarActivity"/>
         <activity android:name=".oldapp.AutoBidActivity"/>
+        <activity android:name=".oldapp.activity.TransferRecordActivity"/>
+        <activity android:name=".oldapp.activity.MoneyTransferActivity"/>
+
     </application>
 
 </manifest>

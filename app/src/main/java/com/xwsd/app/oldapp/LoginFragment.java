@@ -18,8 +18,6 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.oldapp.ForgotFragment;
-import com.xwsd.app.fragment.RegisterFragment;
 import com.xwsd.app.oldapp.api.ApiHttpClient;
 import com.xwsd.app.tools.*;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -186,10 +184,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                 break;
             case R.id.ll_register:
-                userActivity.fragmentManager.beginTransaction()
-                        .replace(R.id.frame_content, new RegisterFragment())
-                        .addToBackStack(RegisterFragment.TAG)
-                        .commit();
+//                userActivity.fragmentManager.beginTransaction()
+//                        .replace(R.id.frame_content, new RegisterFragment())
+//                        .addToBackStack(RegisterFragment.TAG)
+//                        .commit();
                 break;
             case R.id.ll_password_forget:
                 userActivity.type = UserActivity.TYPE_FORGOT;

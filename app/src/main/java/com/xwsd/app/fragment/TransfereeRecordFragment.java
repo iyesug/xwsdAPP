@@ -15,6 +15,7 @@ import com.xwsd.app.base.BasePullUpListFragment;
 import com.xwsd.app.base.BaseUpDownListFragment;
 import com.xwsd.app.bean.CreditorTransferBean;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.oldapp.UserActivity;
 import com.xwsd.app.oldapp.api.ApiHttpClient;
 import com.xwsd.app.tools.BuriedPointUtil;
 import com.xwsd.app.tools.GsonUtils;
@@ -144,7 +145,7 @@ public class TransfereeRecordFragment extends BaseUpDownListFragment {
                         setData(infosBean, TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
                         ToastUtil.showToast(getString(R.string.please_relogin));
-                        Intent Fintent = new Intent();
+                        Intent Fintent = new Intent(getActivity(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
@@ -201,6 +202,8 @@ public class TransfereeRecordFragment extends BaseUpDownListFragment {
                             startActivity(intent);
                         }
                     });
+                    helper.setVisible(R.id.prot_jia,false);
+
                     helper.setOnClickListener(R.id.prot_jia,new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {

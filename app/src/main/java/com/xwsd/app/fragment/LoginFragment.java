@@ -101,7 +101,17 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         }
                     }
                 });
+                call = com.xwsd.app.oldapp.api.ApiHttpClient.login(user_name.getEditTextInfo(), user_password_1.getEditTextInfo(), new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+
+                    }
+                });
                 call = ApiHttpClient.login(user_name.getEditTextInfo(), user_password_1.getEditTextInfo(), new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {

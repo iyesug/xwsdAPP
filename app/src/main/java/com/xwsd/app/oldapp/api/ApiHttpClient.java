@@ -2396,4 +2396,65 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         call.execute(callback);
         return call;
     }
+
+
+    /**
+     * 资金迁移
+     * @param userId
+     * @param money
+     * @param callback
+     * @return
+     */
+    public static RequestCall tranMoney(
+            String userId,String money,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("money",money);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .addParams("userId", userId)
+                .addParams("money",money)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(TRANMONEY)
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+    /**
+     * 资金迁移记录
+     * @param userId
+     * @param callback
+     * @return
+     */
+    public static RequestCall tranlogs(
+            String userId,int page,
+            int pageSize,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("page", ""+page);
+        map.put("pageSize", ""+pageSize);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .get()
+                .addParams("userId", userId)
+                .addParams("page", ""+page)
+                .addParams("pageSize", ""+pageSize)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(TRANLOGS)
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
 }
