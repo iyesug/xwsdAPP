@@ -398,7 +398,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
                         if(isAdded()){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast("您在旧版系统的登陆信息已失效，请重新登录");
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

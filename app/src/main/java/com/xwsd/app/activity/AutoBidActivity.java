@@ -17,6 +17,7 @@ import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.view.EmptyLayout;
+import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.NavbarManage;
 import com.xwsd.app.view.SwitchView;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -138,7 +139,7 @@ public class AutoBidActivity extends BaseActivity {
     @Bind(R.id.tv_hint)
     TextView tv_hint;
 
-
+    MADialog mMDialog;
     private boolean needRefresh = false;
 
     private boolean needSkip = true;
@@ -226,6 +227,7 @@ public class AutoBidActivity extends BaseActivity {
                     navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
                 navbarManage.showRight(true);
                 toggle_button.setState(true);
+
             } else {
                 navbarManage.showRight(false);
                 toggle_button.setState(false);
@@ -305,6 +307,7 @@ public class AutoBidActivity extends BaseActivity {
             public void toggleToOn() {
                 needRefresh = true;
                 toggle_button.toggleSwitch(true);
+
                 if (needSkip) {
                     //跳转到授权页面
                     Intent intent = new Intent(AutoBidActivity.this, WebApproveActivity.class);
@@ -327,18 +330,31 @@ public class AutoBidActivity extends BaseActivity {
             @Override
             public void toggleToOff() {
                 needRefresh = true;
-                toggle_button.toggleSwitch(false);
-                if (needSkip) {
-                    Intent intent = new Intent(AutoBidActivity.this, WebApproveActivity.class);
-                    Map<String, String> map = ApiHttpClient.getSortMap();
-                    map.put("userId", AppContext.getUserBean().data.userId);
-                    intent.putExtra(UserParam.URL, ApiHttpClient.AUTO_AUTH +
-                            "?userId=" + AppContext.getUserBean().data.userId +
-                            "?mode=" + "bid" +
-                            "&sign=" + ApiHttpClient.sign(map));
-                    intent.putExtra(UserParam.TITLE, getString(R.string.auth_cancel));
-                    startActivity(intent);
+                toggle_button.toggleSwitch(true);
+
+                if(mMDialog==null){
+                    mMDialog = new MADialog(AutoBidActivity.this);
+                    mMDialog.setMessage("系统暂不支持取消授权！");
+                    mMDialog.setBtnOK("确定", v1 -> {
+                        mMDialog.miss();
+                    });
+                    mMDialog.setBtnCancelGone();
                 }
+
+                mMDialog.show();
+
+//                toggle_button.toggleSwitch(false);
+//                if (needSkip) {
+//                    Intent intent = new Intent(AutoBidActivity.this, WebApproveActivity.class);
+//                    Map<String, String> map = ApiHttpClient.getSortMap();
+//                    map.put("userId", AppContext.getUserBean().data.userId);
+//                    intent.putExtra(UserParam.URL, ApiHttpClient.AUTO_AUTH +
+//                            "?userId=" + AppContext.getUserBean().data.userId +
+//                            "?mode=" + "bid" +
+//                            "&sign=" + ApiHttpClient.sign(map));
+//                    intent.putExtra(UserParam.TITLE, getString(R.string.auth_cancel));
+//                    startActivity(intent);
+//                }
             }
         });
     }
