@@ -128,6 +128,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     }
     @Override
     protected void init() {
+        TLog.error("旧账户:" +"init");
         ll_text.setVisibility(View.GONE);
         ll_bottom.setVisibility(View.GONE);
         money_synchronization.setVisibility(View.GONE);
@@ -284,7 +285,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
 
         });
 
-        getData();
+
 
     }
 
@@ -369,7 +370,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
      * 得到数据
      */
     public void getData() {
-
+        TLog.error("旧账户:" +"getData");
         guideNovice();
 
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
@@ -377,14 +378,14 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
         if (call != null) {
             call.cancel();
         }
-        //判断是否登陆
-        if (AppContext.getUserBean() == null||null== AppContext.getUserBean().data) {
-            Intent intent = new Intent(getActivity(), UserActivity.class);
-            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
-            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-            startActivity(intent);
-            return;
-        }
+//        //判断是否登陆
+//        if (AppContext.getUserBean() == null||null== AppContext.getUserBean().data) {
+//            Intent intent = new Intent(getActivity(), UserActivity.class);
+//            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+//            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+//            startActivity(intent);
+//            return;
+//        }
         call = ApiHttpClient.account(new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -554,9 +555,9 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1234) {
-            getData();
-        }
+//        if (requestCode == 1234) {
+//            getData();
+//        }
     }
     public void agreeCard(final String flag){
         //判断是否登陆
@@ -605,6 +606,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onResume() {
         super.onResume();
+        TLog.error("旧账户:" +"onResume");
         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         getData();
    /*     mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);*/

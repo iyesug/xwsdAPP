@@ -84,7 +84,7 @@ public class FastPaymentFragment extends BaseFragment implements View.OnClickLis
     protected void init() {
         tv_list.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
         tv_list.getPaint().setAntiAlias(true);//抗锯齿
-        getData();
+
 
     }
 

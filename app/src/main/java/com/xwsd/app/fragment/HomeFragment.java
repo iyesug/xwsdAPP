@@ -389,7 +389,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener,S
                         //计算收益
                         float price = 0;
                         if(indexBean.data!=null&&indexBean.data.newHandOdds!=null&&indexBean.data.newHandOdds.size()!=0){
-                             price = (Float.valueOf(s.toString()) * indexBean.data.newHandOdds.get(position).oddYearRate) * (Float.valueOf(indexBean.data.newHandOdds.get(position).oddPeriod.split("个")[0]) / 12f);
+                             price = (Float.valueOf(s.toString().replace(" ", "")) * indexBean.data.newHandOdds.get(position).oddYearRate) * (Float.valueOf(indexBean.data.newHandOdds.get(position).oddPeriod.split("个")[0]) / 12f);
                         }
                         tv_predict.setText(decimalFormat.format(price));
                     } else {
