@@ -106,6 +106,9 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     @Bind(R.id.ll_text)
     protected LinearLayout ll_text;
 
+    @Bind(R.id.money_synchronization)
+    protected TextView money_synchronization;
+
     private List<AccountItemBean> accountItems;
 
     AccountBean accountBean;
@@ -127,6 +130,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
     protected void init() {
         ll_text.setVisibility(View.GONE);
         ll_bottom.setVisibility(View.GONE);
+        money_synchronization.setVisibility(View.GONE);
         accountItems = new ArrayList<AccountItemBean>() {{
             add(new AccountItemBean(getString(R.string.invest_manage), R.mipmap.ic_invest_manage, InvestManageActivity.class));
  /*           add(new AccountItemBean(getString(R.string.unite_deposit), R.mipmap.ic_unite_deposit, DredgeTrusteeshipActivity.class));*/

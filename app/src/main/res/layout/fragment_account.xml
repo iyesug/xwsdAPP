@@ -1,96 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_bg"
-    android:descendantFocusability="beforeDescendants"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/gray_bg"
+             android:descendantFocusability="beforeDescendants"
+             android:focusable="true"
+             android:focusableInTouchMode="true">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/ll_bottom"
+                android:id="@+id/ll_bottom"
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="@dimen/DIMEN_10"
-            android:background="@color/white"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/DIMEN_10"
+                android:background="@color/white"
+                android:orientation="horizontal">
 
             <Button
-                android:id="@+id/bt_recharge"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/DIMEN_40"
-                android:layout_marginBottom="@dimen/DIMEN_10"
-                android:layout_marginLeft="@dimen/DIMEN_30"
-                android:layout_marginRight="@dimen/DIMEN_15"
-                android:layout_marginTop="@dimen/DIMEN_10"
-                android:layout_weight="1"
-                android:background="@drawable/select_pay_button"
-                android:text="@string/pay"
-                android:textColor="@color/white"
-                android:textSize="@dimen/TEXT_L" />
+                    android:id="@+id/bt_recharge"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/DIMEN_40"
+                    android:layout_marginBottom="@dimen/DIMEN_10"
+                    android:layout_marginLeft="@dimen/DIMEN_30"
+                    android:layout_marginRight="@dimen/DIMEN_15"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_pay_button"
+                    android:text="@string/pay"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/TEXT_L"/>
 
             <Button
-                android:id="@+id/bt_withdraw"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/DIMEN_40"
-                android:layout_marginBottom="@dimen/DIMEN_10"
-                android:layout_marginLeft="@dimen/DIMEN_15"
-                android:layout_marginRight="@dimen/DIMEN_30"
-                android:layout_marginTop="@dimen/DIMEN_10"
-                android:layout_weight="1"
-                android:background="@drawable/select_withdraw_button"
-                android:text="@string/withdraw"
-                android:textColor="@color/white"
-                android:textSize="@dimen/TEXT_L" />
+                    android:id="@+id/bt_withdraw"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/DIMEN_40"
+                    android:layout_marginBottom="@dimen/DIMEN_10"
+                    android:layout_marginLeft="@dimen/DIMEN_15"
+                    android:layout_marginRight="@dimen/DIMEN_30"
+                    android:layout_marginTop="@dimen/DIMEN_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_withdraw_button"
+                    android:text="@string/withdraw"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/TEXT_L"/>
 
         </LinearLayout>
 
 
-
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@id/ll_bottom"
                 android:orientation="vertical">
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:background="@mipmap/ic_account_top_bg"
                     android:orientation="vertical">
 
-                    <include layout="@layout/view_toolbar"></include>
+                <include layout="@layout/view_toolbar"></include>
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/ll_property_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
+                    <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/DIMEN_5"
                             android:layout_marginTop="@dimen/DIMEN_5"
-                            android:gravity="center"
-                            android:text="@string/my_interest"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/TEXT_S" />
+                            android:orientation="horizontal">
 
-                        <com.xwsd.app.view.RiseNumberTextView
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_marginTop="@dimen/DIMEN_5"
+                                android:gravity="center"
+                                android:text="@string/my_interest"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/TEXT_S"/>
+
+                        <TextView
+                                android:id="@+id/money_synchronization"
+                                android:layout_weight="1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/DIMEN_5"
+                                android:layout_marginLeft="@dimen/DIMEN_10"
+                                android:gravity="center"
+                                android:background="@mipmap/ic_money_synchronization"/>
+                    </LinearLayout>
+
+                    <com.xwsd.app.view.RiseNumberTextView
                             android:id="@+id/rise_number_text_view"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/DIMEN_5"
-                            android:gravity="center" />
+                            android:gravity="center"/>
 
-                        <View
+                    <View
                             android:layout_width="match_parent"
                             android:layout_height="0.1sp"
                             android:layout_marginLeft="@dimen/DIMEN_15"
@@ -98,44 +117,42 @@
                             android:layout_marginTop="@dimen/DIMEN_5"
                             android:background="@color/white_translucence"></View>
 
-                        <LinearLayout
+                    <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/DIMEN_5"
                             android:layout_marginTop="@dimen/DIMEN_5"
                             android:orientation="horizontal">
 
-                            <LinearLayout
+                        <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
 
-                                <TextView
+                            <TextView
                                     style="@style/AccountText_1"
-                                    android:text="@string/unbenefit_money" />
+                                    android:text="@string/unbenefit_money"/>
 
-                                <TextView
+                            <TextView
                                     android:id="@+id/tv_due_in"
-                                    style="@style/AccountText_2" />
+                                    style="@style/AccountText_2"/>
 
-                            </LinearLayout>
+                        </LinearLayout>
 
-                            <LinearLayout
+                        <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
 
-                                <TextView
+                            <TextView
                                     style="@style/AccountText_1"
-                                    android:text="@string/benefit_money" />
+                                    android:text="@string/benefit_money"/>
 
-                                <TextView
+                            <TextView
                                     android:id="@+id/tv_invest"
-                                    style="@style/AccountText_2" />
-
-                            </LinearLayout>
+                                    style="@style/AccountText_2"/>
 
                         </LinearLayout>
 
@@ -143,74 +160,81 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                        android:id="@+id/ll_text"
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ll_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginTop="@dimen/DIMEN_5"
                     android:background="@color/white"
                     android:orientation="horizontal">
-                    <LinearLayout
-                            android:id="@+id/ll_auto_bid"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="@dimen/DIMEN_20"
-                        android:layout_height="@dimen/DIMEN_30"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/DIMEN_5"
-                        android:layout_marginLeft="@dimen/DIMEN_40"
-                        android:layout_marginRight="@dimen/DIMEN_5"
-                        android:layout_marginTop="@dimen/DIMEN_5"
-                        android:src="@mipmap/ic_tag" />
 
-                    <TextView
+                <LinearLayout
+                        android:id="@+id/ll_auto_bid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-                        android:text="@string/auto_bid"
-                        android:textColor="@color/blue_3495ff"
-                        android:textSize="@dimen/TEXT_XL" />
+                    <ImageView
+                            android:layout_width="@dimen/DIMEN_20"
+                            android:layout_height="@dimen/DIMEN_30"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/DIMEN_5"
+                            android:layout_marginLeft="@dimen/DIMEN_40"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:layout_marginTop="@dimen/DIMEN_5"
+                            android:src="@mipmap/ic_tag"/>
 
-                </LinearLayout>
-                    <View style="@style/GreyIntervalVertical"></View>
-                    <LinearLayout
-                            android:id="@+id/ll_service"
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-                        <ImageView
-                                android:layout_width="@dimen/DIMEN_20"
-                                android:layout_height="@dimen/DIMEN_30"
-                                android:layout_gravity="center"
-                                android:layout_marginBottom="@dimen/DIMEN_5"
-                                android:layout_marginLeft="@dimen/DIMEN_40"
-                                android:layout_marginRight="@dimen/DIMEN_5"
-                                android:layout_marginTop="@dimen/DIMEN_5"
-                                android:src="@mipmap/ic_servi" />
 
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-
-                                android:text="@string/services"
-                                android:textColor="@color/blue_3495ff"
-                                android:textSize="@dimen/TEXT_XL" />
-
-                    </LinearLayout>
-
+                            android:text="@string/auto_bid"
+                            android:textColor="@color/blue_3495ff"
+                            android:textSize="@dimen/TEXT_XL"/>
 
                 </LinearLayout>
 
+                <View style="@style/GreyIntervalVertical"></View>
+
                 <LinearLayout
+                        android:id="@+id/ll_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:layout_width="@dimen/DIMEN_20"
+                            android:layout_height="@dimen/DIMEN_30"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/DIMEN_5"
+                            android:layout_marginLeft="@dimen/DIMEN_40"
+                            android:layout_marginRight="@dimen/DIMEN_5"
+                            android:layout_marginTop="@dimen/DIMEN_5"
+                            android:src="@mipmap/ic_servi"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+
+                            android:text="@string/services"
+                            android:textColor="@color/blue_3495ff"
+                            android:textSize="@dimen/TEXT_XL"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -218,20 +242,20 @@
                     android:background="@color/white"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <LinearLayout
+                    <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
-                            <TextView
+                        <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -241,33 +265,33 @@
                                 android:layout_marginTop="@dimen/DIMEN_10"
                                 android:text="当月回款总额："
                                 android:textColor="@color/gray_1"
-                                android:textSize="@dimen/TEXT_L" />
+                                android:textSize="@dimen/TEXT_L"/>
 
-                            <TextView
+                        <TextView
                                 android:id="@+id/tv_returned_money_all"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:textColor="@color/gray_text"
-                                android:textSize="@dimen/TEXT_XL" />
+                                android:textSize="@dimen/TEXT_XL"/>
 
-                        </LinearLayout>
+                    </LinearLayout>
 
-                        <View
+                    <View
                             style="@style/GreyInterval"
                             android:layout_weight="1"
                             android:layout_gravity="center"
 
                             android:layout_marginLeft="@dimen/DIMEN_10"></View>
 
-                        <LinearLayout
+                    <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
-                            <TextView
+                        <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -277,22 +301,22 @@
                                 android:layout_marginTop="@dimen/DIMEN_10"
                                 android:text="当月回款数目："
                                 android:textColor="@color/gray_1"
-                                android:textSize="@dimen/TEXT_L" />
+                                android:textSize="@dimen/TEXT_L"/>
 
-                            <TextView
+                        <TextView
                                 android:id="@+id/tv_returned_money"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
                                 android:textColor="@color/gray_text"
-                                android:textSize="@dimen/TEXT_XL" />
-
-                        </LinearLayout>
+                                android:textSize="@dimen/TEXT_XL"/>
 
                     </LinearLayout>
 
-                    <FrameLayout
+                </LinearLayout>
+
+                <FrameLayout
                         android:id="@+id/iv_calendar"
                         android:layout_width="@dimen/DIMEN_60"
                         android:layout_height="@dimen/DIMEN_60"
@@ -300,20 +324,20 @@
                         android:layout_margin="@dimen/DIMEN_10"
                         android:background="@mipmap/ic_calendar">
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_day"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="@dimen/DIMEN_10"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/TEXT_M" />
+                            android:textSize="@dimen/TEXT_M"/>
 
-                    </FrameLayout>
+                </FrameLayout>
 
-                </LinearLayout>
+            </LinearLayout>
 
-                <com.xwsd.app.view.AdaptiveGridView
+            <com.xwsd.app.view.AdaptiveGridView
                     android:id="@+id/grid_view"
                     android:layout_weight="1"
                     android:layout_width="fill_parent"
@@ -328,16 +352,15 @@
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="0.0dip"></com.xwsd.app.view.AdaptiveGridView>
 
-            </LinearLayout>
-
+        </LinearLayout>
 
 
     </RelativeLayout>
 
     <com.xwsd.app.view.EmptyLayout
-            android:id="@+id/error_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
+    android:id="@+id/error_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"></com.xwsd.app.view.EmptyLayout>
 
 </FrameLayout>

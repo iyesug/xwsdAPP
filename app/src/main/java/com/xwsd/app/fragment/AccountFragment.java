@@ -442,7 +442,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
         rise_number_text_view.start();
     }
     //,R.id.ll_booking
-    @OnClick({ll_service,R.id.ll_auto_bid, R.id.iv_calendar, R.id.bt_recharge, R.id.bt_withdraw, R.id.ll_property_details})
+    @OnClick({ll_service,R.id.ll_auto_bid, R.id.iv_calendar, R.id.bt_recharge, R.id.bt_withdraw, R.id.money_synchronization})
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -520,9 +520,8 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //                }
                 break;
             //账号信息
-            case R.id.ll_property_details:
-                intent = new Intent(getActivity(), PropertyDetailsActivity.class);
-                startActivity(intent);
+            case R.id.money_synchronization:
+
                 break;
 
             case R.id.bt_withdraw:

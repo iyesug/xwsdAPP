@@ -2,6 +2,7 @@ package com.xwsd.app.oldapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -219,14 +220,17 @@ public class AutoBidActivity extends BaseActivity {
             startActivity(intent);
             return;
         }
+        Log.e("","判断完登陆"+AppContext.getUserBean().data.autoBidAuth);
 //        设置用户信息
         if(null!= AppContext.getUserBean()&&null!= AppContext.getUserBean().data) {
             //判断是否授权小微
-            if (AppContext.getUserBean().data.thirdAccountAuth == 1) {
+            if (!("".equals(AppContext.getUserBean().data.autoBidAuth)) ) {
+                Log.e("","非空字符串"+AppContext.getUserBean().data.autoBidAuth);
                 navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
                 navbarManage.showRight(true);
                 toggle_button.setState(true);
             } else {
+                Log.e("","空字符串");
                 navbarManage.showRight(false);
                 toggle_button.setState(false);
                 ll_ranking_valid.setVisibility(View.GONE);
@@ -422,7 +426,8 @@ public class AutoBidActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (AppContext.getUserBean().data.thirdAccountAuth == 1) {
+        if (!("".equals(AppContext.getUserBean().data.autoBidAuth)) ) {
+
             tv_queue.setText(queueInfoBean.data.inQueue);
             tv_valid_ranking.setText(queueInfoBean.data.preInfo.validNum);
             tv_ranking_title.setText("我的排名");

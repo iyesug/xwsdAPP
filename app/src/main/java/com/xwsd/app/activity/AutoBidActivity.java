@@ -74,6 +74,7 @@ public class AutoBidActivity extends BaseActivity {
     LinearLayout ll_queue;
 
     RequestCall call;
+    RequestCall call2;
 
     @Bind(R.id.error_layout)
     EmptyLayout mErrorLayout;
@@ -191,6 +192,8 @@ public class AutoBidActivity extends BaseActivity {
         initQueue();
     }
 
+
+
     /**
      * 初始化布局
      */
@@ -221,9 +224,8 @@ public class AutoBidActivity extends BaseActivity {
         if(null!=AppContext.getUserBean()&&null!=AppContext.getUserBean().data) {
             //判断是否授权小微
 //            Log.e("autoBidAuth:",AppContext.getUserBean().data.autoBidAuth);
-            if(!(AppContext.getUserBean().data.autoBidAuth==null)
-                    ||!("0".equals(AppContext.getUserBean().data.autoBidAuth))
-                    ||!("".equals(AppContext.getUserBean().data.autoBidAuth))){
+            if (!("".equals(AppContext.getUserBean().data.autoBidAuth)) ) {
+
                     navbarManage.setRightImg(R.mipmap.ic_auto_bid_setting);
                 navbarManage.showRight(true);
                 toggle_button.setState(true);
@@ -258,7 +260,7 @@ public class AutoBidActivity extends BaseActivity {
         ApiHttpClient.autoInfo(AppContext.getUserBean().data.userId, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-      //          mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+                mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
             }
             @Override
             public void onResponse(String response, int id) {
@@ -306,7 +308,7 @@ public class AutoBidActivity extends BaseActivity {
             @Override
             public void toggleToOn() {
                 needRefresh = true;
-                toggle_button.toggleSwitch(true);
+
 
                 if (needSkip) {
                     //跳转到授权页面
@@ -444,7 +446,7 @@ public class AutoBidActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(!(AppContext.getUserBean().data.autoBidAuth==null)||!("0".equals(AppContext.getUserBean().data.autoBidAuth))||!("".equals(AppContext.getUserBean().data.autoBidAuth))){
+        if (!("".equals(AppContext.getUserBean().data.autoBidAuth)) ) {
             tv_queue.setText(queueInfoBean.data.inQueue);
             tv_valid_ranking.setText(queueInfoBean.data.preInfo.validNum);
             tv_ranking_title.setText("我的排名");
@@ -493,14 +495,15 @@ public class AutoBidActivity extends BaseActivity {
     private void getData() {
         type = 1;
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
-        if (call != null) {
-            call.cancel();
+        if (call2 != null) {
+            call2.cancel();
         }
 
-        call = ApiHttpClient.getUserInfo(AppContext.getUserBean().data.userId, new StringCallback() {
+        call2 = ApiHttpClient.getUserInfo(AppContext.getUserBean().data.userId, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                TLog.error("获取用户信息:" + e);
             }
 
             @Override
