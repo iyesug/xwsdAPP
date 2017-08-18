@@ -156,7 +156,7 @@ public class RedPacketActivity extends BaseActivity implements View.OnClickListe
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
                         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                        ToastUtil.showToast("加息成功");
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         finish();
                     } else {
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);

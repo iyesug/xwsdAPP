@@ -242,9 +242,9 @@ public class MainActivity extends BaseActivity {
                 } else {
                     AppContext.setNeedLock(true);
                     transaction.show(accountFragment);
-                    accountFragment.getData();
-                    accountFragment.agreeCard("baofoo");
-                    accountFragment.agreeCard("fuiou");
+//                    accountFragment.getData();
+//                    accountFragment.agreeCard("baofoo");
+//                    accountFragment.agreeCard("fuiou");
                 }
 
                 break;

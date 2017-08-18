@@ -286,30 +286,30 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 //            agreeCard("fuiou");
         });
 
-        getData();
+//        getData();
 //        // 宝付
 //        agreeCard("baofoo");
 //        //富有
 //        agreeCard("fuiou");
     }
 
-    /**
-     * 引导支付
-     */
-    private void guidePay() {
-        new AlertDialog(getActivity())
-                .builder()
-                .setTitle("温馨提示：")
-                .setMsg("您尚未设置支付密码，是否前往设置。")
-                .setPositiveButton("前往", v -> {
-                    Intent intent = new Intent(getActivity(), ModifyPayPasswordActivity.class);
-                    intent.putExtra("type", 0);
-                    startActivity(intent);
-                })
-                .setNegativeButton("取消", v -> {
-
-                }).show();
-    }
+//    /**
+//     * 引导支付
+//     */
+//    private void guidePay() {
+//        new AlertDialog(getActivity())
+//                .builder()
+//                .setTitle("温馨提示：")
+//                .setMsg("您尚未设置支付密码，是否前往设置。")
+//                .setPositiveButton("前往", v -> {
+//                    Intent intent = new Intent(getActivity(), ModifyPayPasswordActivity.class);
+//                    intent.putExtra("type", 0);
+//                    startActivity(intent);
+//                })
+//                .setNegativeButton("取消", v -> {
+//
+//                }).show();
+//    }
 
     /**
      * 引导新手
@@ -406,7 +406,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         accountBean = GsonUtils.jsonToBean(response, AccountBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -569,7 +569,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                                 ToastUtil.showToast(jsonObject.getString("msg"));
                                 setMoney(syncMoneyBean);
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast(getString(R.string.please_relogin));
+                                ToastUtil.showToast(jsonObject.getString("msg"));
                                 Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -616,9 +616,9 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1234) {
-            getData();
-        }
+//        if (requestCode == 1234) {
+//            getData();
+//        }
     }
     public void agreeCard(final String flag){
         //判断是否登陆

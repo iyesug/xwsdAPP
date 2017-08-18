@@ -289,23 +289,23 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
 
     }
 
-    /**
-     * 引导支付
-     */
-    private void guidePay() {
-        new AlertDialog(getActivity())
-                .builder()
-                .setTitle("温馨提示：")
-                .setMsg("您尚未设置支付密码，是否前往设置。")
-                .setPositiveButton("前往", v -> {
-                    Intent intent = new Intent(getActivity(), ModifyPayPasswordActivity.class);
-                    intent.putExtra("type", 0);
-                    startActivity(intent);
-                })
-                .setNegativeButton("取消", v -> {
-
-                }).show();
-    }
+//    /**
+//     * 引导支付
+//     */
+//    private void guidePay() {
+//        new AlertDialog(getActivity())
+//                .builder()
+//                .setTitle("温馨提示：")
+//                .setMsg("您尚未设置支付密码，是否前往设置。")
+//                .setPositiveButton("前往", v -> {
+//                    Intent intent = new Intent(getActivity(), ModifyPayPasswordActivity.class);
+//                    intent.putExtra("type", 0);
+//                    startActivity(intent);
+//                })
+//                .setNegativeButton("取消", v -> {
+//
+//                }).show();
+//    }
 
     /**
      * 引导新手
@@ -403,7 +403,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
                         if(isAdded()){
-                        ToastUtil.showToast("您在旧版系统的登陆信息已失效，请重新登录");
+                            ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

@@ -193,7 +193,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                         allItemCount = (mFriendsBean.data.count);
                         setData(type);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -260,17 +260,17 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
                         //                error_layout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                        ToastUtil.showToast("提取成功");
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         getData(1);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
                         startActivity(Fintent);
                         finish();
                     }else {
-                        ToastUtil.showToast("提取失败");
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -340,7 +340,7 @@ public class RecommendFriendActivity extends BaseActivity implements View.OnClic
                                         startActivity(Intent.createChooser(intent, "请选择"));
 
                                     } else if (jsonObject.getInt("status") == 88){
-                                        ToastUtil.showToast(getString(R.string.please_relogin));
+                                        ToastUtil.showToast(jsonObject.getString("msg"));
                                         Intent Fintent = new Intent();
                                         Fintent.putExtra(UserParam.TYPE, 0);
                                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

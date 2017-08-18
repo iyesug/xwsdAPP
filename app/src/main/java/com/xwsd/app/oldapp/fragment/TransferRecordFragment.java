@@ -62,7 +62,7 @@ public class TransferRecordFragment extends BaseUpDownListFragment {
                         MoneyTransferRecordBean bean = GsonUtils.jsonToBean(response, MoneyTransferRecordBean.class);
                         setData(bean,TYPE_PULLUP);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("登陆信息已失效，请重新登录");
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -104,7 +104,7 @@ public class TransferRecordFragment extends BaseUpDownListFragment {
                         allItemCount = bean.data.count;
                         mAdapter.replaceAll(bean.data.records);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("用户密码已修改，请重新登录");
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -141,7 +141,7 @@ public class TransferRecordFragment extends BaseUpDownListFragment {
                         MoneyTransferRecordBean bean = GsonUtils.jsonToBean(response, MoneyTransferRecordBean.class);
                         setData(bean,TYPE_FIRST);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast("登陆信息已失效，请重新登录");
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

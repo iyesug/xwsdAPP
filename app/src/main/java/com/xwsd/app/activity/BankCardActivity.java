@@ -143,7 +143,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                         bankCardBean=bean;
                         setBankCard(bean);
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(BankCardActivity.this, UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -403,7 +403,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                             if (jsonObject.getInt("status") == 1) {
                                 getData();
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast(getString(R.string.please_relogin));
+                                ToastUtil.showToast(jsonObject.getString("msg"));
                                 Intent Fintent = new Intent();
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -486,7 +486,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                                     ToastUtil.showToast(jsonObject.getString("msg"));
                                     getData();
                                 } else if (jsonObject.getInt("status") == 88){
-                                    ToastUtil.showToast(getString(R.string.please_relogin));
+                                    ToastUtil.showToast(jsonObject.getString("msg"));
                                     Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                                     Fintent.putExtra(UserParam.TYPE, 0);
                                     Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
@@ -525,7 +525,7 @@ public class BankCardActivity extends BaseActivity implements View.OnClickListen
                                 ToastUtil.showToast(jsonObject.getString("msg"));
                                 getData();
                             } else if (jsonObject.getInt("status") == 88){
-                                ToastUtil.showToast(getString(R.string.please_relogin));
+                                ToastUtil.showToast(jsonObject.getString("msg"));
                                 Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                                 Fintent.putExtra(UserParam.TYPE, 0);
                                 Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

@@ -172,7 +172,7 @@ public class DredgeTrusteeshipActivity extends BaseActivity {
                             toggle_button.setState(false);
                         }
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(DredgeTrusteeshipActivity.this, UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);

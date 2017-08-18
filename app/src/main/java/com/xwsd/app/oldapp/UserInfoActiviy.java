@@ -351,7 +351,7 @@ public class UserInfoActiviy extends BaseActivity implements View.OnClickListene
                     JSONObject jsonObject = new JSONObject(response);
                     ToastUtil.showToastShort(jsonObject.getString("msg"));
                     if (jsonObject.getInt("status") == 1) {
-                        ToastUtil.showToast(getString(R.string.update_success));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
 
                         //获取data转换成json对象
                         String data = jsonObject.getString("data");

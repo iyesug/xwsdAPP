@@ -20,6 +20,8 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static android.R.attr.tag;
+
 /**
  * Created by Gx on 2016/8/31.
  * 应用网络请求统一调用工具类
@@ -73,6 +75,85 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static String userSecret = "";
 
     public static String media = "Android";
+
+    /**
+     * @param tag 标记该请求，用于取消请求时候使用
+     * @param params post请求参数
+     * @param absCallback 回调接口 调用方法时候 可实现AbsCallback的子类接口
+     */
+    public static RequestCall post(Object tag, String method, Map<String, String> params, Callback absCallback) {
+        params.put("media",media);
+        params.put("sign", sign(params));
+
+        //添加公共参数
+
+        PostFormBuilder build = OkHttpUtils
+                .post()
+                .url(method)
+                .tag(tag)
+                .params(params);
+
+
+
+        RequestCall call = build.build();
+        call.execute(absCallback);
+        return call;
+    }
+
+    /**
+     * 已登录 统一添加请求参数
+     * @param tag
+     * @param params
+     * @param absCallback
+     */
+    public static RequestCall postLogged(Object tag,String method,Map<String, String> params,Callback absCallback){
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            params.put("userId", AppContext.getUserBean().data.userId);//登录的用户id
+            params.put("userSecret",userSecret);
+
+        }
+        return  post(tag,method,params,absCallback);
+    }
+
+    /**
+     * @param tag 标记该请求，用于取消请求时候使用
+     * @param params post请求参数
+     * @param absCallback 回调接口 调用方法时候 可实现AbsCallback的子类接口
+     */
+    public static RequestCall get(Object tag, String method, Map<String, String> params, Callback absCallback) {
+        params.put("media",media);
+        params.put("sign", sign(params));
+
+        //添加公共参数
+
+        GetBuilder build = OkHttpUtils
+                .get()
+                .url(method)
+                .tag(tag)
+                .params(params);
+
+
+
+        RequestCall call = build.build();
+        call.execute(absCallback);
+        return call;
+    }
+
+    /**
+     * 已登录 统一添加请求参数
+     * @param tag
+     * @param params
+     * @param absCallback
+     */
+    public static RequestCall getLogged(Object tag,String method,Map<String, String> params,Callback absCallback){
+        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+            params.put("userId", AppContext.getUserBean().data.userId);//登录的用户id
+            params.put("userSecret",userSecret);
+
+        }
+        return  get(tag,method,params,absCallback);
+    }
+
     /**
      * 发送验证码
      *
@@ -85,25 +166,26 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("msgType", msgType);
         map.put("phone", phone);
-        map.put("media",media);
-        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
-            map.put("userId", AppContext.getUserBean().data.userId);
-        }
-        PostFormBuilder build = OkHttpUtils
-                .post()
-                .url(SMS)
-                .addParams("msgType", msgType)
-                .addParams("phone", phone)
-                .addParams("media", media)
-                .addParams("sign", sign(map));
-        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
-            build.addParams("userId", AppContext.getUserBean().data.userId);
-        }
+        return  postLogged(tag, SMS, map, callback);
 
-
-        RequestCall call = build.build();
-        call.execute(callback);
-        return call;
+//        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+//            map.put("userId", AppContext.getUserBean().data.userId);
+//        }
+//        PostFormBuilder build = OkHttpUtils
+//                .post()
+//                .url(SMS)
+//                .addParams("msgType", msgType)
+//                .addParams("phone", phone)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map));
+//        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+//            build.addParams("userId", AppContext.getUserBean().data.userId);
+//        }
+//
+//
+//        RequestCall call = build.build();
+//        call.execute(callback);
+//        return call;
     }
 
     /**
@@ -122,28 +204,29 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("username", username);
         map.put("password", password);
         map.put("phone", phone);
-        map.put("media",media);
         if (!TextUtils.isEmpty(spreadUser)) {
             map.put("spreadUser", spreadUser);
         }
         map.put("smsCode", smsCode);
-        PostFormBuilder builder = OkHttpUtils
-                .post()
-                .url(REGISTER)
-                .addParams("username", username)
-                .addParams("password", password)
-                .addParams("phone", phone)
-                .addParams("smsCode", smsCode)
-                .addParams("media", media)
-                .addParams("sign", sign(map));
 
-        if (!TextUtils.isEmpty(spreadUser)) {
-            builder.addParams("spreadUser", spreadUser);
-        }
-
-        RequestCall call = builder.build();
-        call.execute(callback);
-        return call;
+        return  post(tag, REGISTER, map, callback);
+//        PostFormBuilder builder = OkHttpUtils
+//                .post()
+//                .url(REGISTER)
+//                .addParams("username", username)
+//                .addParams("password", password)
+//                .addParams("phone", phone)
+//                .addParams("smsCode", smsCode)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map));
+//
+//        if (!TextUtils.isEmpty(spreadUser)) {
+//            builder.addParams("spreadUser", spreadUser);
+//        }
+//
+//        RequestCall call = builder.build();
+//        call.execute(callback);
+//        return call;
     }
 
     /**
@@ -158,21 +241,23 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         Map<String, String> map = getSortMap();
         map.put("username", username);
         map.put("password", password);
-        map.put("media",media);
-        RequestCall call = OkHttpUtils
-                .post()
-                .url(LOGIN)
-                .addParams("username", username)
-                .addParams("password", password)
-                .addParams("media", media)
-                .addParams("sign", sign(map))
-                .build();
-        call.execute(callback);
-        return call;
+        return  post(tag, LOGIN, map, callback);
+//        map.put("media",media);
+//        RequestCall call = OkHttpUtils
+//                .post()
+//                .url(LOGIN)
+//                .addParams("username", username)
+//                .addParams("password", password)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map))
+//                .build();
+//        call.execute(callback);
+//        return call;
     }
 
     /**
-     * 修改登录密码
+     * 修改支付密码（存管取消）
+
      *
      * @param userId       用户id
      * @param oldpass      旧密码
@@ -182,6 +267,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @param callback     回调接口
      * @return 返回一个可取消的请求
      */
+    @Deprecated
     public static RequestCall updatePassword(String userId,
                                              String oldpass,
                                              String password,
@@ -189,27 +275,28 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                                              String type,
                                              Callback callback) {
         Map<String, String> map = getSortMap();
-        map.put("userId", userId);
+//        map.put("userId", userId);
         map.put("oldpass", oldpass);
         map.put("password", password);
         map.put("passwordSure", passwordSure);
         map.put("type", type);
-        map.put("userSecret",userSecret);
-        map.put("media",media);
-        RequestCall call = OkHttpUtils
-                .post()
-                .url(UPDATE_PASSWORD)
-                .addParams("userId", userId)
-                .addParams("oldpass", oldpass)
-                .addParams("password", password)
-                .addParams("passwordSure", passwordSure)
-                .addParams("type", type)
-                .addParams("userSecret",userSecret)
-                .addParams("media", media)
-                .addParams("sign", sign(map))
-                .build();
-        call.execute(callback);
-        return call;
+//        map.put("userSecret",userSecret);
+//        map.put("media",media);
+        return  postLogged(tag, UPDATE_PASSWORD, map, callback);
+//        RequestCall call = OkHttpUtils
+//                .post()
+//                .url(UPDATE_PASSWORD)
+//                .addParams("userId", userId)
+//                .addParams("oldpass", oldpass)
+//                .addParams("password", password)
+//                .addParams("passwordSure", passwordSure)
+//                .addParams("type", type)
+//                .addParams("userSecret",userSecret)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map))
+//                .build();
+//        call.execute(callback);
+//        return call;
     }
 
 
@@ -229,25 +316,26 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                                              String loginpassSure,
                                              Callback callback) {
         Map<String, String> map = getSortMap();
-        map.put("userId", userId);
+//        map.put("userId", userId);
         map.put("oldpass", oldpass);
         map.put("loginpass", loginpass);
         map.put("loginpassSure", loginpassSure);
-        map.put("userSecret",userSecret);
-        map.put("media",media);
-        RequestCall call = OkHttpUtils
-                .post()
-                .url(UPDATE_LOGIN_PASS)
-                .addParams("userId", userId)
-                .addParams("oldpass", oldpass)
-                .addParams("loginpass", loginpass)
-                .addParams("loginpassSure", loginpassSure)
-                .addParams("userSecret",userSecret)
-                .addParams("media", media)
-                .addParams("sign", sign(map))
-                .build();
-        call.execute(callback);
-        return call;
+        return  postLogged(tag, UPDATE_LOGIN_PASS, map, callback);
+//        map.put("userSecret",userSecret);
+//        map.put("media",media);
+//        RequestCall call = OkHttpUtils
+//                .post()
+//                .url(UPDATE_LOGIN_PASS)
+//                .addParams("userId", userId)
+//                .addParams("oldpass", oldpass)
+//                .addParams("loginpass", loginpass)
+//                .addParams("loginpassSure", loginpassSure)
+//                .addParams("userSecret",userSecret)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map))
+//                .build();
+//        call.execute(callback);
+//        return call;
     }
 
 
@@ -263,21 +351,23 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                                              String phone,
                                              Callback callback) {
         Map<String, String> map = getSortMap();
-        map.put("userId", userId);
+
         map.put("phone", phone);
-        map.put("userSecret",userSecret);
-        map.put("media",media);
-        RequestCall call = OkHttpUtils
-                .post()
-                .url(UPDATE_PHONE)
-                .addParams("userId", userId)
-                .addParams("phone", phone)
-                .addParams("userSecret",userSecret)
-                .addParams("media", media)
-                .addParams("sign", sign(map))
-                .build();
-        call.execute(callback);
-        return call;
+        return  postLogged(tag, UPDATE_PHONE, map, callback);
+//        map.put("userSecret",userSecret);
+//        map.put("media",media);
+//        map.put("userId", userId);
+//        RequestCall call = OkHttpUtils
+//                .post()
+//                .url(UPDATE_PHONE)
+//                .addParams("userId", userId)
+//                .addParams("phone", phone)
+//                .addParams("userSecret",userSecret)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map))
+//                .build();
+//        call.execute(callback);
+//        return call;
     }
 
     /**
@@ -288,21 +378,22 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      */
     public static RequestCall index(Callback callback) {
         Map<String, String> map = getSortMap();
-        map.put("media",media);
-        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
-            map.put("userId", AppContext.getUserBean().data.userId);
-        }
-        GetBuilder build = OkHttpUtils
-                .get()
-                .url(INDEX)
-                .addParams("media", media)
-                .addParams("sign", sign(map));
-        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
-            build.addParams("userId", AppContext.getUserBean().data.userId);
-        }
-        RequestCall call = build.build();
-        call.execute(callback);
-        return call;
+        return  get(tag, INDEX, map, callback);
+//        map.put("media",media);
+//        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+//            map.put("userId", AppContext.getUserBean().data.userId);
+//        }
+//        GetBuilder build = OkHttpUtils
+//                .get()
+//                .url(INDEX)
+//                .addParams("media", media)
+//                .addParams("sign", sign(map));
+//        if(AppContext.getUserBean()!=null && AppContext.getUserBean().data.userId.length()>0){
+//            build.addParams("userId", AppContext.getUserBean().data.userId);
+//        }
+//        RequestCall call = build.build();
+//        call.execute(callback);
+//        return call;
     }
 
     /**
@@ -314,19 +405,20 @@ public class ApiHttpClient implements XWSDRequestAdresse {
     public static RequestCall account(Callback callback) {
         if(null!=AppContext.getUserBean()){
             Map<String, String> map = getSortMap();
-            map.put("userId", AppContext.getUserBean().data.userId);
-            map.put("userSecret",userSecret);
-            map.put("media",media);
-            RequestCall call = OkHttpUtils
-                    .get()
-                    .url(ACCOUNT)
-                    .addParams("userId", AppContext.getUserBean().data.userId)
-                    .addParams("userSecret",userSecret)
-                    .addParams("media", media)
-                    .addParams("sign", sign(map))
-                    .build();
-            call.execute(callback);
-            return call;
+            return  getLogged(tag, ACCOUNT, map, callback);
+//            map.put("userId", AppContext.getUserBean().data.userId);
+//            map.put("userSecret",userSecret);
+//            map.put("media",media);
+//            RequestCall call = OkHttpUtils
+//                    .get()
+//                    .url(ACCOUNT)
+//                    .addParams("userId", AppContext.getUserBean().data.userId)
+//                    .addParams("userSecret",userSecret)
+//                    .addParams("media", media)
+//                    .addParams("sign", sign(map))
+//                    .build();
+//            call.execute(callback);
+//            return call;
         }
 
         return null;

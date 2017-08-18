@@ -356,7 +356,7 @@ public class ProjectDetailsActivity extends BaseActivity implements View.OnClick
                         oddBean = GsonUtils.jsonToBean(response, OddBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
-                        ToastUtil.showToast(getString(R.string.please_relogin));
+                        ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent();
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
