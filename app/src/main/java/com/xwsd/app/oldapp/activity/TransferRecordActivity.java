@@ -14,8 +14,8 @@ import com.xwsd.app.oldapp.fragment.TransferRecordFragment;
 import com.xwsd.app.view.NavbarManage;
 
 /**
- * Created by Gx on 2016/8/29.
- * 充值提现记录
+ * Created by Gy on 2017/8/17.
+ * 资金迁移记录
  */
 public class TransferRecordActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 

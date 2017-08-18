@@ -433,4 +433,9 @@ public interface XWSDRequestAdresse {
      * 银行卡充值限额列表
      */
     String CARD_LIMIT = API_URL + "cardLimit";
+
+    /**
+     * 同步资金
+     */
+    String SYNC_MONEY = API_URL + "syncMoney";
 }

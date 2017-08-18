@@ -1,5 +1,6 @@
 package com.xwsd.app.base;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import com.baidu.mobstat.StatService;
+import com.gnwai.loadingview.LoadDialog;
+import com.xwsd.app.R;
 
 /**
  * 基础Fragment类
@@ -18,7 +21,7 @@ public abstract class BaseFragment extends Fragment {
      * 根布局
      */
     protected View rootView;
-
+    private LoadDialog zProgressHUD;
     /**
      * 是否创建完成
      */
@@ -117,5 +120,45 @@ public abstract class BaseFragment extends Fragment {
      */
     protected void firstRequestData() {
         mHasLoadedOnce = true;
+    }
+
+
+
+
+    public LoadDialog showWaitDialog(DialogInterface.OnCancelListener onCancelListener) {
+        return showWaitDialog(R.string.loading, onCancelListener);
+    }
+
+
+    public LoadDialog showWaitDialog(int resid, DialogInterface.OnCancelListener onCancelListener) {
+        return showWaitDialog(getActivity().getString(resid), onCancelListener);
+    }
+
+
+    public LoadDialog showWaitDialog(String message, DialogInterface.OnCancelListener onCancelListener) {
+
+            if (zProgressHUD == null) {
+                zProgressHUD = new LoadDialog(getActivity());
+                zProgressHUD.setOnCancelListener(onCancelListener);
+            }
+            if (zProgressHUD != null) {
+                zProgressHUD.setMessage(message);
+                zProgressHUD.show();
+            }
+            return zProgressHUD;
+
+
+    }
+
+
+    public void hideWaitDialog() {
+        if ( zProgressHUD != null) {
+            try {
+                zProgressHUD.dismiss();
+                zProgressHUD = null;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }

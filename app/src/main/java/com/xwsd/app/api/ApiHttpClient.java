@@ -2513,4 +2513,30 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         call.execute(callback);
         return call;
     }
+
+
+
+    /**
+     * 新系统同步资金[新系统]
+     * @param userId
+     * @param callback
+     * @return
+     */
+    public static RequestCall syncMoney(
+            String userId, Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .get()
+                .addParams("userId", userId)
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(SYNC_MONEY)
+                .build();
+        call.execute(callback);
+        return call;
+    }
 }

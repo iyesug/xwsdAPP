@@ -101,7 +101,13 @@ public class ContactUtil {
         }
         else{
             String url="mqqwpa://im/chat?chat_type=crm&uin=938009686&version=1&src_type=web&web_src=http:://wpa.b.qq.com";
-            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+
+
+            try {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

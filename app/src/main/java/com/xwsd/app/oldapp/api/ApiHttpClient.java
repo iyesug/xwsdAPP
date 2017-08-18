@@ -20,6 +20,8 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static com.xwsd.app.api.ApiHttpClient.userSecret;
+
 /**
  * Created by Gx on 2016/8/31.
  * 应用网络请求统一调用工具类
@@ -69,7 +71,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
 
     public static String OPEN = "1";
     public static String CLOSE = "0";
-    public static String userSecret = "";
+
 
     public static String media = "Android";
     /**
@@ -2452,6 +2454,36 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("media", media)
                 .addParams("sign", sign(map))
                 .url(TRANLOGS)
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
+
+
+    /**
+     * 开启关闭自动资金迁移
+     * @param userId
+     * @param value
+     * @param callback
+     * @return
+     */
+    public static RequestCall openAutoTran(
+            String userId,int value,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("value",value+"");
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .post()
+                .addParams("userId", userId)
+                .addParams("value",value+"")
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .url(OPEN_AUTO_TRAN)
                 .build();
         call.execute(callback);
         return call;

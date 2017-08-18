@@ -26,7 +26,7 @@ import okhttp3.Call;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.xwsd.app.oldapp.api.ApiHttpClient.userSecret;
+import static com.xwsd.app.api.ApiHttpClient.userSecret;
 
 /**
  * Created by Gx on 2016/8/30.

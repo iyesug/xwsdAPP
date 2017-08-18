@@ -39,6 +39,6 @@ public class UserBean implements Serializable {
         public String  autoBidAuth;//自动投标签约单号
         public String  autoCreditAuth;//自动债转签约单号
         public String  custodyPwd;//是否设置存管密码 0 未设置 1未设置
-
+        public int  openTranStatus;//参数 0表示关闭 1表示开启
     }
 }

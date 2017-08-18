@@ -72,6 +72,7 @@
     <string name="Fund_record">资金记录</string>
     <string name="my_ranking">我的排名</string>
     <string name="accredit_xw">授权小微</string>
+    <string name="money_auto_transfer">自动迁移</string>
     <string name="ranking_front">排在我前面的资金：</string>
     <string name="account_balance">账户余额：</string>
     <string name="investment_amount">投资金额：</string>
@@ -226,6 +227,11 @@
 \n\n3、  资金迁移申通提交成功后，该笔迁移的资金将会被冻结审核，审核过程中该笔资金无法进行投资、提现等相关操作；
 \n\n4、  小微时贷将会在工作日9:00-16:00的早上及下午各进行一次资金迁移审核，审核通过后资金即可到账至您的江西银行存管账户中；（节假日进行资金迁移操作将会顺延至下一个工作日进行处理）；
 \n\n5、  资金迁移无需任何手续费。
+</string>
+    <string name="money_auto_transfer_tip">1、开启自动资金迁移功能后，您旧系统账户上所有的账户余额（包括但不仅限于充值、项目回款等资金）将被冻结；
+\n\n2、系统将在每个工作日的9：00~16：00自动为您迁移冻结资金到您新系统的账户中；
+\n\n3、关闭该功能后所冻结的资金将继续执行迁移，后续增加资金将不再进行自动迁移；
+\n\n4、若当天系统未执行资金迁移请耐心等待至下一个工作日。
 </string>
     <string name="setcard">您尚未设置充值银行卡，是否前往设置。</string>
     <string name="go">前往</string>

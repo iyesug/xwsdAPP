@@ -52,7 +52,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     GroupeEditView user_password_1;
 
     RequestCall call;
-
+    RequestCall call2;
     @Override
     protected View setContentView(LayoutInflater inflater) {
         return inflater.inflate(R.layout.fragment_login, null);
@@ -101,7 +101,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                         }
                     }
                 });
-                call = com.xwsd.app.oldapp.api.ApiHttpClient.login(user_name.getEditTextInfo(), user_password_1.getEditTextInfo(), new StringCallback() {
+                call2 = com.xwsd.app.oldapp.api.ApiHttpClient.login(user_name.getEditTextInfo(), user_password_1.getEditTextInfo(), new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
 
@@ -109,7 +109,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                     @Override
                     public void onResponse(String response, int id) {
-
+                        TLog.error("登录旧:" + response);
                     }
                 });
                 call = ApiHttpClient.login(user_name.getEditTextInfo(), user_password_1.getEditTextInfo(), new StringCallback() {
@@ -123,7 +123,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
                     @Override
                     public void onResponse(String response, int id) {
-                        TLog.error("登录:" + response);
+                        TLog.error("登录新:" + response);
                         userActivity.hideWaitDialog();
                         try {
                             JSONObject jsonObject = new JSONObject(response);

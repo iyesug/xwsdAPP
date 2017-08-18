@@ -398,4 +398,9 @@ public interface XWSDRequestAdresse {
      * 资金迁移记录
      */
     String TRANLOGS = API_URL + "tranlogs";
+
+    /**
+     * 开启关闭自动资金迁移
+     */
+    String OPEN_AUTO_TRAN = API_URL + "openAutoTran";
 }

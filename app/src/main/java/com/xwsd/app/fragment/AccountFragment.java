@@ -1,5 +1,6 @@
 package com.xwsd.app.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.AccountBean;
 import com.xwsd.app.bean.AccountItemBean;
 import com.xwsd.app.bean.AgreeCardBean;
+import com.xwsd.app.bean.SyncMoneyBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.oldapp.OldAppActivity;
 import com.xwsd.app.tools.*;
@@ -28,6 +30,7 @@ import com.xwsd.app.view.RiseNumberTextView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import okhttp3.Call;
+import okhttp3.Request;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -87,6 +90,12 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     TextView tv_returned_money;
 
     /**
+     * 同步资金
+     */
+    @Bind(R.id.money_synchronization)
+    TextView money_synchronization;
+
+    /**
      * 当前日期
      */
     @Bind(R.id.tv_day)
@@ -103,7 +112,7 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     private List<AccountItemBean> accountItems;
 
     AccountBean accountBean;
-
+    SyncMoneyBean syncMoneyBean;
     private AgreeCardBean agreeCardBeanBaofu;
     private AgreeCardBean agreeCardBeanFuyou;
 
@@ -521,7 +530,60 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 break;
             //账号信息
             case R.id.money_synchronization:
+                money_synchronization.setClickable(false);
+                showWaitDialog(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        if (call != null) {
+                            call.cancel();
+                        }
+                    }
+                });
+                ApiHttpClient.syncMoney(AppContext.getUserBean().data.userId,new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        ToastUtil.showToast("网络请求超时");
 
+                    }
+
+                    @Override
+                    public void onBefore(Request request, int id) {
+                        super.onBefore(request, id);
+                    }
+
+                    @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+                        money_synchronization.setClickable(true);
+                        hideWaitDialog();
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        TLog.error("同步资金:" + response);
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getInt("status") == 1) {
+                                mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+                               syncMoneyBean = GsonUtils.jsonToBean(response, SyncMoneyBean.class);
+                                ToastUtil.showToast(jsonObject.getString("msg"));
+                                setMoney(syncMoneyBean);
+                            } else if (jsonObject.getInt("status") == 88){
+                                ToastUtil.showToast(getString(R.string.please_relogin));
+                                Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
+                                Fintent.putExtra(UserParam.TYPE, 0);
+                                Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                                startActivity(Fintent);
+
+                            }else {
+                                ToastUtil.showToast(jsonObject.getString("msg"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                        }
+                    }
+                });
                 break;
 
             case R.id.bt_withdraw:
@@ -545,6 +607,11 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                 }
 
         }
+    }
+
+    private void setMoney(SyncMoneyBean syncMoneyBean) {
+        tv_invest.setText(syncMoneyBean.data.money);
+
     }
 
     @Override

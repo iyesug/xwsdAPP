@@ -26,8 +26,8 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 
 /**
- * Created by Gx on 2016/8/29.
- * 手机认证
+ * Created by Gy on 2017/8/17.
+ * 资金迁移
  */
 public class MoneyTransferActivity extends BaseActivity implements View.OnClickListener {
 
@@ -64,7 +64,15 @@ public class MoneyTransferActivity extends BaseActivity implements View.OnClickL
         navbarManage.showLeft(true);
         navbarManage.setBackground(R.color.navbar_bg);
         navbarManage.setLeftImg(R.mipmap.ic_back_b);
-
+        navbarManage.setRightStr("自动迁移");
+        navbarManage.setRightTextColor(R.color.blue);
+        navbarManage.setOnRightClickListener(new NavbarManage.OnRightClickListener() {
+            @Override
+            public void onRightClick() {
+                Intent intent = new Intent(MoneyTransferActivity.this, MoneyAutoTransferActivity.class);
+                startActivity(intent);
+            }
+        });
         navbarManage.setOnLeftClickListener(new NavbarManage.OnLeftClickListener() {
             @Override
             public void onLeftClick() {

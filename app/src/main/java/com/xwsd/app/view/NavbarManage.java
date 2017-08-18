@@ -128,6 +128,12 @@ public class NavbarManage {
         navbar_centre.setTextColor(activity.getResources().getColor(colorId));
         navbar_right_text.setTextColor(activity.getResources().getColor(colorId));
     }
+    /**
+     * 设置字体颜色
+     */
+    public void setRightTextColor(int colorId) {
+        navbar_right_text.setTextColor(activity.getResources().getColor(colorId));
+    }
 
     /**
      * 设置左边文本
