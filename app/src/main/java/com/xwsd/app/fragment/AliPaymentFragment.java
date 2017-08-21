@@ -1,6 +1,7 @@
 package com.xwsd.app.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,10 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
+import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.base.BaseFragment;
 import com.xwsd.app.bean.BankCardBean;
+import com.xwsd.app.constant.UserParam;
 import com.zhy.http.okhttp.request.RequestCall;
 
 import java.text.DecimalFormat;
@@ -57,6 +60,14 @@ public class AliPaymentFragment extends BaseFragment implements View.OnClickList
 
     @Override
     protected void init() {
+        //判断是否登陆
+        if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+            Intent intent = new Intent(getActivity(), UserActivity.class);
+            intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+            intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+            startActivity(intent);
+            return;
+        }
         name.setText(AppContext.getUserBean().data.name);
         custodyId.setText(AppContext.getUserBean().data.custodyId);
         //设置图片

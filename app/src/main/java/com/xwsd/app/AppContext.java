@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -53,11 +54,11 @@ public class AppContext extends Application {
     }
 
     public static UserBean getUserBean() {
-        if (null == currentUser || null == currentUser.data) {
+//        if (null == currentUser || null == currentUser.data) {
             currentUser = BuriedPointUtil.getObject(UserParam.USERBEAN, UserBean.class);
-        }
+//        }
 
-//Log.e("currentUser","currentUser"+currentUser.data.userName);
+Log.e("currentUsersp",BuriedPointUtil.getObject(UserParam.USERBEAN, UserBean.class).data.userName);
 
         return currentUser;
     }

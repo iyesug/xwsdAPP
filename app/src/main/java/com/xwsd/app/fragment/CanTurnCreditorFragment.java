@@ -1,9 +1,13 @@
 package com.xwsd.app.fragment;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.text.TextUtils;
+import android.view.*;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
 import com.xwsd.app.activity.ProtDetilaActivity;
@@ -16,12 +20,8 @@ import com.xwsd.app.base.BasePullUpListFragment;
 import com.xwsd.app.base.BaseUpDownListFragment;
 import com.xwsd.app.bean.CreditorTransferBean;
 import com.xwsd.app.constant.UserParam;
-import com.xwsd.app.tools.BuriedPointUtil;
-import com.xwsd.app.tools.GsonUtils;
-import com.xwsd.app.tools.TLog;
-import com.xwsd.app.tools.ToastUtil;
+import com.xwsd.app.tools.*;
 import com.xwsd.app.view.EmptyLayout;
-import com.xwsd.app.view.MADialog;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import okhttp3.Call;
@@ -205,65 +205,163 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                     helper.setText(R.id.tv_capital, (item.money));
                     helper.setText(R.id.tv_time, "预计到期时间：" + item.endtime);
                     helper.setText(R.id.tv_interest, "到期收益：" + item.interest +"元");
-
                     helper.setOnClickListener(R.id.tv_transfer_creditor, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
                             BuriedPointUtil.buriedPoint("账户债权转让转让债权按键");
 
+                            //显示支付对话框
 
-                            //确认对话框
-                            final MADialog mMDialog = new MADialog(getContext());
-                            mMDialog.setMessage("确认转让该债权吗？");
-                            mMDialog.setBtnOK("确定", v1 -> {
-                                mMDialog.miss();
+                            payDialog = new Dialog(getActivity(), R.style.BankDialog);
+                            View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay_creditor_smscode, null);
+                            final EditText pass = (EditText) view.findViewById(R.id.et_password);
+                            TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
+                            TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);
+                            TextView sms = (TextView) view.findViewById(R.id.tv_forget_password);
+                            remain.setText(item.remain+"");
+                            crtrSM.setText(item.crtrSM+"");
 
+                            view.findViewById(R.id.tv_forget_password).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //判断是否登陆
+                                    if (AppContext.getUserBean() == null||null==AppContext.getUserBean().data) {
+                                        Intent intent = new Intent(getActivity(), UserActivity.class);
+                                        intent.putExtra(UserParam.TYPE, UserActivity.TYPE_LOGIN);
+                                        intent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                                        startActivity(intent);
+                                        return;
+                                    }
+                                    String phone=AppContext.getUserBean().data.phone;
+                                    if (TextUtils.isEmpty(phone)) {
+                                        ToastUtil.showToastShort("未设置手机号！");
+                                        return;
+                                    }
 
-                                //债权转让接口
-                                call = ApiHttpClient.transfer(
-                                        AppContext.getUserBean().data.userId,
-                                        item.id,
-                                        new StringCallback() {
-                                            @Override
-                                            public void onError(Call call, Exception e, int id) {
-                                                ((BaseActivity) getActivity()).hideWaitDialog();
+                                    if (!PatternUtils.matchesPhone(phone)) {
+                                        ToastUtil.showToastShort(getString(R.string.user_phone_format_error));
+                                        return;
+                                    }
+                                    sms.setTextColor(getResources().getColor(R.color.gray));
+                                    sms.setClickable(false);
+                                    ApiHttpClient.sendMessage("transfer", phone, new StringCallback() {
+                                        @Override
+                                        public void onError(Call call, Exception e, int id) {
+                                            ToastUtil.showToastShort(getString(R.string.network_exception));
+                                        }
+
+                                        @Override
+                                        public void onResponse(String response, int id) {
+                                            TLog.error("发送验证码:" + response);
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                if (jsonObject.getInt("status") == 1) {
+                                                    ToastUtil.showToastShort(getString(R.string.send_succeed));
+                                                } else {
+
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
                                                 ToastUtil.showToastShort(getString(R.string.network_exception));
                                             }
+                                        }
+                                    });
+                                }
+                            });
 
-                                            @Override
-                                            public void onResponse(String response, int id) {
-                                                TLog.error("转让债权:" + response);
-                                                ((BaseActivity) getActivity()).hideWaitDialog();
-                                                try {
-                                                    JSONObject jsonObject = new JSONObject(response);
-                                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
-                                                    if (jsonObject.getInt("status") == 1) {
-                                                        mAdapter.remove(helper.getPosition());
-                                                    }else if (jsonObject.getInt("status") == 88){
-                                                        ToastUtil.showToast(jsonObject.getString("msg"));
-                                                        Intent Fintent = new Intent();
-                                                        Fintent.putExtra(UserParam.TYPE, 0);
-                                                        Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-                                                        startActivity(Fintent);
-                                                        getActivity().finish();
-                                                    }
-                                                } catch (JSONException e) {
-                                                    e.printStackTrace();
+                            view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    payDialog.dismiss();
+                                }
+                            });
+
+                            view.findViewById(R.id.commit).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (TextUtils.isEmpty(pass.getText().toString().trim())) {
+                                        ToastUtil.showToastShort(R.string.pay_pasworrd_null);
+                                        return;
+                                    }
+                                    payDialog.dismiss();
+
+                                    //债权转让请求
+                                    ((BaseActivity) getActivity()).showWaitDialog(new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+                                            if (call != null) {
+                                                call.cancel();
+                                            }
+                                        }
+                                    });
+
+
+                                    if (TextUtils.isEmpty(pass.getText().toString().trim())) {
+                                        ToastUtil.showToastShort("验证码不能为空");
+                                        return;
+                                    }
+                                    //债权转让接口
+                                    call = ApiHttpClient.transfer(
+                                            AppContext.getUserBean().data.userId,
+                                            item.id,
+                                            pass.getText().toString().trim(),
+                                            new StringCallback() {
+                                                @Override
+                                                public void onError(Call call, Exception e, int id) {
+                                                    ((BaseActivity) getActivity()).hideWaitDialog();
                                                     ToastUtil.showToastShort(getString(R.string.network_exception));
                                                 }
-                                            }
-                                        });
 
-
+                                                @Override
+                                                public void onResponse(String response, int id) {
+                                                    TLog.error("转让债权:" + response);
+                                                    ((BaseActivity) getActivity()).hideWaitDialog();
+                                                    try {
+                                                        JSONObject jsonObject = new JSONObject(response);
+                                                        ToastUtil.showToastShort(jsonObject.getString("msg"));
+                                                        if (jsonObject.getInt("status") == 1) {
+                                                            mAdapter.remove(helper.getPosition());
+                                                        }else if (jsonObject.getInt("status") == 88){
+                                                            ToastUtil.showToast(jsonObject.getString("msg"));
+                                                            Intent Fintent = new Intent();
+                                                            Fintent.putExtra(UserParam.TYPE, 0);
+                                                            Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                                                            startActivity(Fintent);
+                                                            getActivity().finish();
+                                                        }
+                                                    } catch (JSONException e) {
+                                                        e.printStackTrace();
+                                                        ToastUtil.showToastShort(getString(R.string.network_exception));
+                                                    }
+                                                }
+                                            });
+                                }
                             });
-                            mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
 
 
 
+                            payDialog.setContentView(view);
 
+                            Window window = payDialog.getWindow();
+                            WindowManager.LayoutParams lp = window.getAttributes();
+                            lp.gravity = Gravity.CENTER;
+                            lp.width = window.getWindowManager().getDefaultDisplay().getWidth() - 100;
+                            lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                            payDialog.getWindow().setAttributes(lp);
+
+                            payDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    pass.setText("");
+                                }
+                            });
+
+
+                            payDialog.show();
                         }
                     });
+
                     helper.setOnClickListener(R.id.prot_detail,new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {

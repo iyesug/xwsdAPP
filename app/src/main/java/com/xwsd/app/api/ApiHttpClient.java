@@ -1830,10 +1830,11 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @param oddMoneyId
      * @return 返回一个可取消的请求
      */
-    public static RequestCall transfer(String userId, String oddMoneyId, Callback callback) {
+    public static RequestCall transfer(String userId, String oddMoneyId,String smsCode, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("oddMoneyId", oddMoneyId);
+        map.put("smsCode",smsCode);
         map.put("userSecret",userSecret);
         map.put("media",media);
         RequestCall call = OkHttpUtils
@@ -1841,6 +1842,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(TRANSFER)
                 .addParams("userId", userId)
                 .addParams("oddMoneyId", oddMoneyId)
+                .addParams("smsCode", smsCode)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
                 .addParams("sign", sign(map))

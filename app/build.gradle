@@ -8,8 +8,8 @@ android {
         applicationId "com.xwsd.app"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2017081701
-        versionName "2.5.3"
+        versionCode 2017082101
+        versionName "2.5.4"
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }

@@ -274,7 +274,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
             Intent intent = new Intent(getActivity(), accountItems.get(position).activity);
             //资金迁移
             if (accountItems.get(position).activity.equals(MoneyTransferActivity.class) ) {
-                intent.putExtra("fundMoney",accountBean.data.fundMoney);
+                intent.putExtra("fundMoney",Float.parseFloat(tv_invest.getText().toString().trim()));
             }
             startActivity(intent);
         });
@@ -545,7 +545,7 @@ public class OldAccountFragment extends BaseFragment implements View.OnClickList
 //                        return;
 //                    }
                     intent = new Intent(getActivity(), WithdrawActivity.class);
-                    intent.putExtra(UserParam.MONEY,accountBean.data.fundMoney);
+                    intent.putExtra(UserParam.MONEY,Float.parseFloat(tv_invest.getText().toString().trim()));
                     startActivityForResult(intent,1234);
                     break;
             }
