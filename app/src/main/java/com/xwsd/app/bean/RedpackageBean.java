@@ -38,6 +38,7 @@ public class RedpackageBean implements Serializable {
             public String money_uper;
             public String money_rate;
             public String endtime;
+            public String type;//: invest_money抵扣红包  interest加息券
         }
     }
 }

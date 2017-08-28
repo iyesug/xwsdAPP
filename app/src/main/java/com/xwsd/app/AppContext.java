@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.util.Log;
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
@@ -13,6 +12,8 @@ import com.taobao.sophix.PatchStatus;
 import com.taobao.sophix.SophixManager;
 import com.taobao.sophix.listener.PatchLoadStatusListener;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
+import com.umeng.analytics.MobclickAgent;
 import com.xwsd.app.bean.UserBean;
 import com.xwsd.app.constant.UserParam;
 import com.xwsd.app.tbswebview.APIWebviewTBS;
@@ -54,11 +55,11 @@ public class AppContext extends Application {
     }
 
     public static UserBean getUserBean() {
-//        if (null == currentUser || null == currentUser.data) {
+        if (null == currentUser || null == currentUser.data) {
             currentUser = BuriedPointUtil.getObject(UserParam.USERBEAN, UserBean.class);
-//        }
+        }
 
-Log.e("currentUsersp",BuriedPointUtil.getObject(UserParam.USERBEAN, UserBean.class).data.userName);
+//Log.e("currentUser","currentUser"+currentUser.data.userName);
 
         return currentUser;
     }
@@ -77,8 +78,10 @@ Log.e("currentUsersp",BuriedPointUtil.getObject(UserParam.USERBEAN, UserBean.cla
     @Override
     public void onCreate() {
         super.onCreate();
-
-
+        //初始化Ad Tracking SDK
+        TalkingDataAppCpa.init(this,"34E6C5642CB9402885F79FEDD765B1C8","channelId");
+        //初始化友盟 SDK
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType. E_UM_NORMAL);
         //sophix初始化
         SophixManager.getInstance().setContext(this)
                 .setAppVersion(getVersionName())

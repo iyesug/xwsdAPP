@@ -122,7 +122,7 @@
                     android:layout_height="@dimen/DIMEN_50"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:paddingLeft="@dimen/DIMEN_15">
 
                 <TextView

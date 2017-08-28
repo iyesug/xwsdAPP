@@ -9,7 +9,6 @@ import android.widget.*;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.xwsd.app.AppContext;
-import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
@@ -185,7 +184,8 @@ public class OpenDepositoryActivity extends BaseActivity implements View.OnClick
 
                 intent.putExtra(UserParam.TITLE, getString(R.string.open_depository));
                 startActivity(intent);
-                AppManager.getAppManager().finishActivity();
+                hideWaitDialog();
+//                AppManager.getAppManager().finishActivity();
 
                 break;
 

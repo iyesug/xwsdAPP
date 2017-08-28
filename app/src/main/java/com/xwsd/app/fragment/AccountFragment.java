@@ -406,11 +406,11 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
                         accountBean = GsonUtils.jsonToBean(response, AccountBean.class);
                         setData();
                     } else if (jsonObject.getInt("status") == 88){
+                        if(isAdded()){
                         ToastUtil.showToast(jsonObject.getString("msg"));
                         Intent Fintent = new Intent(AppContext.context(), UserActivity.class);
                         Fintent.putExtra(UserParam.TYPE, 0);
                         Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-                        if(isAdded()){
                             startActivity(Fintent);
                             getActivity().finish();
                         }

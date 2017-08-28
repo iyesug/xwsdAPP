@@ -1440,6 +1440,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
             String fixedMoney,
             String types,
             String mode,
+            String lotteryID,
             Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
@@ -1451,6 +1452,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         map.put("rangeEnd", rangeEnd);
         map.put("fixedMoney", fixedMoney);
         map.put("mode",mode);
+        map.put("lotteryID",lotteryID);
         map.put("userSecret",userSecret);
         map.put("media",media);
         if (types != null) {
@@ -1469,6 +1471,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .addParams("rangeEnd", rangeEnd)
                 .addParams("fixedMoney", fixedMoney)
                 .addParams("mode",mode)
+                .addParams("lotteryID",lotteryID)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
                 .addParams("sign", sign(map));
@@ -1836,12 +1839,13 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @param userId     用户ID
      * @param oddMoneyId
      * @return 返回一个可取消的请求
+     *
      */
     public static RequestCall transfer(String userId, String oddMoneyId,String smsCode, Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("oddMoneyId", oddMoneyId);
-        map.put("smsCode",smsCode);
+//        map.put("smsCode",smsCode);
         map.put("userSecret",userSecret);
         map.put("media",media);
         RequestCall call = OkHttpUtils
@@ -1849,7 +1853,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(TRANSFER)
                 .addParams("userId", userId)
                 .addParams("oddMoneyId", oddMoneyId)
-                .addParams("smsCode", smsCode)
+//                .addParams("smsCode", smsCode)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
                 .addParams("sign", sign(map))
@@ -1864,14 +1868,14 @@ public class ApiHttpClient implements XWSDRequestAdresse {
      * @param callback   回调接口
      * @param userId     用户ID
      * @param oddMoneyId
-     * @param paypass    支付密码
+//     * @param paypass    支付密码
      * @return 返回一个可取消的请求
      */
-    public static RequestCall deltransfer(String userId, String oddMoneyId, String paypass, Callback callback) {
+    public static RequestCall deltransfer(String userId, String oddMoneyId,  Callback callback) {
         Map<String, String> map = getSortMap();
         map.put("userId", userId);
         map.put("oddMoneyId", oddMoneyId);
-        map.put("paypass", paypass);
+//        map.put("paypass", paypass);
         map.put("userSecret",userSecret);
         map.put("media",media);
         RequestCall call = OkHttpUtils
@@ -1879,7 +1883,7 @@ public class ApiHttpClient implements XWSDRequestAdresse {
                 .url(DEL_TRANSFER)
                 .addParams("userId", userId)
                 .addParams("oddMoneyId", oddMoneyId)
-                .addParams("paypass", paypass)
+//                .addParams("paypass", paypass)
                 .addParams("userSecret",userSecret)
                 .addParams("media", media)
                 .addParams("sign", sign(map))
@@ -2640,4 +2644,38 @@ public class ApiHttpClient implements XWSDRequestAdresse {
         call.execute(callback);
         return call;
     }
+
+
+
+    /**
+     * 获取抵扣红包
+     * @param userId
+     * @param callback
+     * @return
+     */
+    public static RequestCall moneyLotteries(
+            String userId,
+            Callback callback) {
+        Map<String, String> map = getSortMap();
+        map.put("userId", userId);
+        map.put("page", "1");
+        map.put("pageSize","50");
+        map.put("pageType","0");
+        map.put("userSecret",userSecret);
+        map.put("media",media);
+        RequestCall call = OkHttpUtils
+                .get()
+                .url(MONEYLOTTERIES)
+                .addParams("userId", userId)
+                .addParams("page", "1")
+                .addParams("pageSize", "50")
+                .addParams("pageType","0")
+                .addParams("userSecret",userSecret)
+                .addParams("media", media)
+                .addParams("sign", sign(map))
+                .build();
+        call.execute(callback);
+        return call;
+    }
+
 }

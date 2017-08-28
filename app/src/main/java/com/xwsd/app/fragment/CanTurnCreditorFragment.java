@@ -135,7 +135,11 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
             }
         });
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        firstRequestData();
+    }
     @Override
     public void firstRequestData() {
         super.firstRequestData();
@@ -211,6 +215,61 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
 
                             BuriedPointUtil.buriedPoint("账户债权转让转让债权按键");
 
+
+
+//                            //确认对话框
+//                            final MADialog mMDialog = new MADialog(getContext());
+//                            mMDialog.setMessage("确认转让该债权吗？");
+//                            mMDialog.setBtnOK("确定", v1 -> {
+//                                mMDialog.miss();
+//
+//
+//                                //债权转让接口
+//                                call = ApiHttpClient.transfer(
+//                                        AppContext.getUserBean().data.userId,
+//                                        item.id,
+//                                        new StringCallback() {
+//                                            @Override
+//                                            public void onError(Call call, Exception e, int id) {
+//                                                ((BaseActivity) getActivity()).hideWaitDialog();
+//                                                ToastUtil.showToastShort(getString(R.string.network_exception));
+//                                            }
+//
+//                                            @Override
+//                                            public void onResponse(String response, int id) {
+//                                                TLog.error("转让债权:" + response);
+//                                                ((BaseActivity) getActivity()).hideWaitDialog();
+//                                                try {
+//                                                    JSONObject jsonObject = new JSONObject(response);
+//                                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
+//                                                    if (jsonObject.getInt("status") == 1) {
+//                                                        mAdapter.remove(helper.getPosition());
+//                                                    }else if (jsonObject.getInt("status") == 88){
+//                                                        ToastUtil.showToast(getString(R.string.please_relogin));
+//                                                        Intent Fintent = new Intent();
+//                                                        Fintent.putExtra(UserParam.TYPE, 0);
+//                                                        Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+//                                                        startActivity(Fintent);
+//                                                        getActivity().finish();
+//                                                    }
+//                                                } catch (JSONException e) {
+//                                                    e.printStackTrace();
+//                                                    ToastUtil.showToastShort(getString(R.string.network_exception));
+//                                                }
+//                                            }
+//                                        });
+//
+//
+//                            });
+//                            mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
+
+
+
+
+
+
+
+
                             //显示支付对话框
 
                             payDialog = new Dialog(getActivity(), R.style.BankDialog);
@@ -221,6 +280,7 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                             TextView sms = (TextView) view.findViewById(R.id.tv_forget_password);
                             remain.setText(item.remain+"");
                             crtrSM.setText(item.crtrSM+"");
+
 
                             view.findViewById(R.id.tv_forget_password).setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -256,10 +316,12 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
                                             TLog.error("发送验证码:" + response);
                                             try {
                                                 JSONObject jsonObject = new JSONObject(response);
+                                                ToastUtil.showToastShort(jsonObject.getString("msg"));
                                                 if (jsonObject.getInt("status") == 1) {
-                                                    ToastUtil.showToastShort(getString(R.string.send_succeed));
-                                                } else {
 
+                                                } else {
+                                                    sms.setTextColor(getResources().getColor(R.color.text_orange));
+                                                    sms.setClickable(true);
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -359,6 +421,10 @@ public class CanTurnCreditorFragment extends BaseUpDownListFragment {
 
 
                             payDialog.show();
+
+
+
+
                         }
                     });
 

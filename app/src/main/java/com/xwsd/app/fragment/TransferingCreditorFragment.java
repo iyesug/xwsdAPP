@@ -1,16 +1,11 @@
 package com.xwsd.app.fragment;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.text.TextUtils;
-import android.view.*;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.R;
-import com.xwsd.app.activity.UserActivity;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
@@ -24,6 +19,7 @@ import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
 import com.xwsd.app.view.EmptyLayout;
+import com.xwsd.app.view.MADialog;
 import com.xwsd.app.view.TitleTextView;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
@@ -134,6 +130,12 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        firstRequestData();
+    }
+
+    @Override
     public void firstRequestData() {
         super.firstRequestData();
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
@@ -202,103 +204,153 @@ public class TransferingCreditorFragment extends BaseUpDownListFragment {
                             BuriedPointUtil.buriedPoint("账户债权转让转让中债权撤销转让");
                             //显示支付对话框
 
-                                payDialog = new Dialog(getActivity(), R.style.BankDialog);
-                                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay_creditor_smscode, null);
-                                final EditText editText = (EditText) view.findViewById(R.id.et_password);
-                                TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
-                                TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);
 
-                                remain.setText(item.money+"");
-                                crtrSM.setText(item.crtrSM+"");
-                                view.findViewById(R.id.tv_forget_password).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        Intent intent = new Intent(getActivity(), UserActivity.class);
-                                        intent.putExtra(UserParam.TYPE, UserActivity.TYPE_FORGET_PAYPASS);
-                                        startActivity(intent);
-                                    }
-                                });
+                            //确认对话框
+                            final MADialog mMDialog = new MADialog(getContext());
+                            mMDialog.setMessage("确认转让该债权吗？");
+                            mMDialog.setBtnOK("确定", v1 -> {
+                                mMDialog.miss();
 
-                                view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        payDialog.dismiss();
-                                    }
-                                });
 
-                                view.findViewById(R.id.commit).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        if (TextUtils.isEmpty(editText.getText().toString().trim())) {
-                                            ToastUtil.showToastShort(R.string.pay_pasworrd_null);
-                                            return;
-                                        }
-                                        payDialog.dismiss();
-
-                                        //债权转让请求
-                                        ((BaseActivity) getActivity()).showWaitDialog(new DialogInterface.OnCancelListener() {
-                                            @Override
-                                            public void onCancel(DialogInterface dialog) {
-                                                if (call != null) {
-                                                    call.cancel();
-                                                }
-                                            }
-                                        });
+                                //债权转让接口
 
                                         call = ApiHttpClient.deltransfer(
                                                 AppContext.getUserBean().data.userId,
                                                 item.id,
-                                                editText.getText().toString().trim(),
                                                 new StringCallback() {
-                                                    @Override
-                                                    public void onError(Call call, Exception e, int id) {
-                                                        ((BaseActivity) getActivity()).hideWaitDialog();
-                                                        ToastUtil.showToastShort(getString(R.string.network_exception));
+                                            @Override
+                                            public void onError(Call call, Exception e, int id) {
+                                                ((BaseActivity) getActivity()).hideWaitDialog();
+                                                ToastUtil.showToastShort(getString(R.string.network_exception));
+                                            }
+
+                                            @Override
+                                            public void onResponse(String response, int id) {
+                                                TLog.error("转让债权:" + response);
+                                                ((BaseActivity) getActivity()).hideWaitDialog();
+                                                try {
+                                                    JSONObject jsonObject = new JSONObject(response);
+                                                    ToastUtil.showToastShort(jsonObject.getString("msg"));
+                                                    if (jsonObject.getInt("status") == 1) {
+                                                        mAdapter.remove(helper.getPosition());
+                                                    }else if (jsonObject.getInt("status") == 88){
+                                                        ToastUtil.showToast(getString(R.string.please_relogin));
+                                                        Intent Fintent = new Intent();
+                                                        Fintent.putExtra(UserParam.TYPE, 0);
+                                                        Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+                                                        startActivity(Fintent);
+                                                        getActivity().finish();
                                                     }
-
-                                                    @Override
-                                                    public void onResponse(String response, int id) {
-                                                        TLog.error("撤销转让债权:" + response);
-                                                        ((BaseActivity) getActivity()).hideWaitDialog();
-                                                        try {
-                                                            JSONObject jsonObject = new JSONObject(response);
-                                                            ToastUtil.showToastShort(jsonObject.getString("msg"));
-                                                            if (jsonObject.getInt("status") == 1) {
-                                                                mAdapter.remove(helper.getPosition());
-                                                            }else if (jsonObject.getInt("status") == 88){
-                                                                ToastUtil.showToast(jsonObject.getString("msg"));
-                                                                Intent Fintent = new Intent();
-                                                                Fintent.putExtra(UserParam.TYPE, 0);
-                                                                Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
-                                                                startActivity(Fintent);
-                                                                getActivity().finish();
-                                                            }
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                            ToastUtil.showToastShort(getString(R.string.network_exception));
-                                                        }
-                                                    }
-                                                });
-                                    }
-                                });
-                                payDialog.setContentView(view);
-
-                                Window window = payDialog.getWindow();
-                                WindowManager.LayoutParams lp = window.getAttributes();
-                                lp.gravity = Gravity.CENTER;
-                                lp.width = window.getWindowManager().getDefaultDisplay().getWidth() - 100;
-                                lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                                payDialog.getWindow().setAttributes(lp);
-
-                                payDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                        editText.setText("");
-                                    }
-                                });
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                    ToastUtil.showToastShort(getString(R.string.network_exception));
+                                                }
+                                            }
+                                        });
 
 
-                            payDialog.show();
+                            });
+                            mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
+
+
+
+//                                payDialog = new Dialog(getActivity(), R.style.BankDialog);
+//                                View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_pay_creditor_smscode, null);
+//                                final EditText editText = (EditText) view.findViewById(R.id.et_password);
+//                                TextView remain = (TextView) view.findViewById(R.id.tv_remain_velue);
+//                                TextView crtrSM = (TextView) view.findViewById(R.id.tv_crtrSM_velue);
+//
+//                                remain.setText(item.money+"");
+//                                crtrSM.setText(item.crtrSM+"");
+//                                view.findViewById(R.id.tv_forget_password).setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        Intent intent = new Intent(getActivity(), UserActivity.class);
+//                                        intent.putExtra(UserParam.TYPE, UserActivity.TYPE_FORGET_PAYPASS);
+//                                        startActivity(intent);
+//                                    }
+//                                });
+//
+//                                view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        payDialog.dismiss();
+//                                    }
+//                                });
+//
+//                                view.findViewById(R.id.commit).setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View v) {
+//                                        if (TextUtils.isEmpty(editText.getText().toString().trim())) {
+//                                            ToastUtil.showToastShort(R.string.pay_pasworrd_null);
+//                                            return;
+//                                        }
+//                                        payDialog.dismiss();
+//
+//                                        //债权转让请求
+//                                        ((BaseActivity) getActivity()).showWaitDialog(new DialogInterface.OnCancelListener() {
+//                                            @Override
+//                                            public void onCancel(DialogInterface dialog) {
+//                                                if (call != null) {
+//                                                    call.cancel();
+//                                                }
+//                                            }
+//                                        });
+//
+//                                        call = ApiHttpClient.deltransfer(
+//                                                AppContext.getUserBean().data.userId,
+//                                                item.id,
+//                                                editText.getText().toString().trim(),
+//                                                new StringCallback() {
+//                                                    @Override
+//                                                    public void onError(Call call, Exception e, int id) {
+//                                                        ((BaseActivity) getActivity()).hideWaitDialog();
+//                                                        ToastUtil.showToastShort(getString(R.string.network_exception));
+//                                                    }
+//
+//                                                    @Override
+//                                                    public void onResponse(String response, int id) {
+//                                                        TLog.error("撤销转让债权:" + response);
+//                                                        ((BaseActivity) getActivity()).hideWaitDialog();
+//                                                        try {
+//                                                            JSONObject jsonObject = new JSONObject(response);
+//                                                            ToastUtil.showToastShort(jsonObject.getString("msg"));
+//                                                            if (jsonObject.getInt("status") == 1) {
+//                                                                mAdapter.remove(helper.getPosition());
+//                                                            }else if (jsonObject.getInt("status") == 88){
+//                                                                ToastUtil.showToast(jsonObject.getString("msg"));
+//                                                                Intent Fintent = new Intent();
+//                                                                Fintent.putExtra(UserParam.TYPE, 0);
+//                                                                Fintent.putExtra(UserParam.NEED_ENTER_ACCOUNT, true);
+//                                                                startActivity(Fintent);
+//                                                                getActivity().finish();
+//                                                            }
+//                                                        } catch (JSONException e) {
+//                                                            e.printStackTrace();
+//                                                            ToastUtil.showToastShort(getString(R.string.network_exception));
+//                                                        }
+//                                                    }
+//                                                });
+//                                    }
+//                                });
+//                                payDialog.setContentView(view);
+//
+//                                Window window = payDialog.getWindow();
+//                                WindowManager.LayoutParams lp = window.getAttributes();
+//                                lp.gravity = Gravity.CENTER;
+//                                lp.width = window.getWindowManager().getDefaultDisplay().getWidth() - 100;
+//                                lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//                                payDialog.getWindow().setAttributes(lp);
+//
+//                                payDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                                    @Override
+//                                    public void onDismiss(DialogInterface dialog) {
+//                                        editText.setText("");
+//                                    }
+//                                });
+//
+//
+//                            payDialog.show();
                         }
                     });
                 }

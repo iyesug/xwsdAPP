@@ -282,7 +282,7 @@
                         layout="@layout/layout_property_details_text"></include>
 
                     <include
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:id="@+id/tv_invest_money"
                             layout="@layout/layout_property_details_text"></include>
                 </LinearLayout>

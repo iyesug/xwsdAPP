@@ -8,8 +8,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
+import com.xwsd.app.R;
 import com.xwsd.app.view.MADialog;
 import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.PermissionNo;
+import com.yanzhenjie.permission.PermissionYes;
 
 import java.util.Calendar;
 import java.util.List;
@@ -19,6 +23,7 @@ import java.util.List;
  */
 
 public class ContactUtil {
+    static boolean isCheck;
     /**
      * 判断微信是否可用
      *
@@ -80,8 +85,9 @@ public class ContactUtil {
             return false;
         }
     }
-
+    static Context mContext;
     public static void callQq(Context context) {
+        mContext=context;
         if(!ContactUtil.isQQClientAvailable(context)){
             final MADialog mMDialog = new MADialog(context);
             mMDialog.setMessage("未安装QQ，请安装QQ后进行交流");
@@ -119,21 +125,53 @@ public class ContactUtil {
             // 有权限，直接do anything.
 
             call(context);
+            isCheck=false;
         } else if (!AndPermission.hasPermission(context, Manifest.permission.CALL_PHONE)) {
             // 申请单个权限。
-            System.out.println("申请电话权限");
-            AndPermission.with(context)
-                    .requestCode(100)
-                    .permission(Manifest.permission.CALL_PHONE)
-                    // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
-                    .rationale((requestCode, rationale) ->
-                            // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
-                            AndPermission.rationaleDialog(context, rationale).show()
-                    )
-                    .send();
-            checkPermission(context);
+//            if(isCheck){
+                System.out.println("申请电话权限");
+                AndPermission.with(context)
+                        .requestCode(100)
+                        .permission(Manifest.permission.CALL_PHONE)
+                        // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
+                        .rationale((requestCode, rationale) ->
+                                // 这里的对话框可以自定义，只要调用rationale.resume()就可以继续申请。
+                                AndPermission.rationaleDialog(context, rationale).show()
+                        )
+                        .send();
+                isCheck=true;
+//                checkPermission(context);
+//            }
+
         }
     }
+
+
+    //----------------------------------权限----------------------------------//
+
+
+    @PermissionYes(100)
+    private void getMultiYes(List<String> grantedPermissions) {
+        Toast.makeText(mContext,R.string.message_post_success, Toast.LENGTH_SHORT).show();
+    }
+
+    @PermissionNo(100)
+    private void getMultiNo(List<String> deniedPermissions) {
+        Toast.makeText(mContext, R.string.message_post_failed, Toast.LENGTH_SHORT).show();
+
+        // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
+//        if (AndPermission.hasAlwaysDeniedPermission(mContext, deniedPermissions)) {
+//            AndPermission.defaultSettingDialog(this, REQUEST_CODE_SETTING)
+//                    .setTitle(R.string.title_dialog)
+//                    .setMessage(R.string.message_permission_failed)
+//                    .setPositiveButton(R.string.btn_dialog_yes_permission)
+//                    .setNegativeButton(R.string.btn_dialog_no_permission, null)
+//                    .show();
+
+            // 更多自定dialog，请看上面。
+//        }
+    }
+
 
     private static void call(Activity context) {
         final MADialog mMDialog = new MADialog(context);
@@ -151,7 +189,7 @@ public class ContactUtil {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
-            context.startActivity(intentPhone);
+            context.startActivity(intentPhone);;
         });
         mMDialog.setBtnCancel("取消", v12 -> mMDialog.miss());
     }

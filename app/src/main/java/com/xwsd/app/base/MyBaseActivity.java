@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 import com.baidu.mobstat.StatService;
 import com.gnwai.loadingview.DialogControl;
 import com.gnwai.loadingview.LoadDialog;
+import com.umeng.analytics.MobclickAgent;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
@@ -154,6 +155,8 @@ public abstract class MyBaseActivity extends Activity implements DialogControl {
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPause(this);
+        MobclickAgent.onPageEnd(title);
         StatService.onPageEnd(this,title);
         if (this.isFinishing()) {
             hideSoftKeyboard(getCurrentFocus());
@@ -163,6 +166,8 @@ public abstract class MyBaseActivity extends Activity implements DialogControl {
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
+        MobclickAgent.onPageStart(title);
     }
 
     private boolean isBackground = false;

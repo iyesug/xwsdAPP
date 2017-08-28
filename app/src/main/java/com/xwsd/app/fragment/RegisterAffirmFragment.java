@@ -8,6 +8,7 @@ import android.view.View;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.gnwai.groupeeditview.GroupeEditView;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
@@ -147,7 +148,8 @@ public class RegisterAffirmFragment extends BaseFragment implements View.OnClick
                                     if (jsonObject.getInt("status") == 1) {
 
                                         login();
-
+                                        //用户帐号注册成功的时候调用TalkingDataAppCpa的onRegister方法
+                                        TalkingDataAppCpa.onLogin(user_name.getEditTextInfo());
                                     } else {
                                         userActivity.hideWaitDialog();
                                     }

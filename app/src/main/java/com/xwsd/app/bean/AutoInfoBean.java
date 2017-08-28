@@ -38,6 +38,8 @@ public class AutoInfoBean implements Serializable {
             public String investEgisMoney;
             public List<String> types;
             public String mode;
+            public String lotteryID;//	当前使用的红包ID，没有用为0
+            public String lotteryName;
 
         }
     }

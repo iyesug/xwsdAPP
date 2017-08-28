@@ -14,8 +14,8 @@ public interface XWSDRequestAdresse {
     /**
      * 接口根地址
      */
-    String API_URL = "https://app.xwsd.com/api/";//正式
-    // String API_URL = "http://app.xwsdvip.com/api/";//测试
+    //    String API_URL = "https://app.xwsd.com/api/";//正式
+String API_URL = "http://app.xwsdvip.com/api/";//测试
 
     // String API_URL = "http://app.xwshidai.com/api/";//生产
 
@@ -438,4 +438,9 @@ public interface XWSDRequestAdresse {
      * 同步资金
      */
     String SYNC_MONEY = API_URL + "syncMoney";
+
+    /**
+     * 可使用红包
+     */
+    String MONEYLOTTERIES = API_URL + "moneyLotteries";
 }

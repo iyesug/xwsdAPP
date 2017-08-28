@@ -292,6 +292,53 @@
                             android:layout_height="wrap_content" />
 
                     </LinearLayout>
+
+
+                    <View
+                            style="@style/GreyInterval"
+                            android:layout_marginLeft="@dimen/DIMEN_10"></View>
+
+                    <LinearLayout
+                            android:id="@+id/ll_red_packet"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/DIMEN_50"
+                            android:background="@color/white"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/DIMEN_10">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/against_red_packet"
+                                android:textColor="@color/gray_1"
+                                android:textSize="@dimen/TEXT_L" />
+
+
+                        <TextView
+                                android:id="@+id/tv_title"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="请选择优惠券"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/DIMEN_10"
+                                android:layout_weight="1"
+                                android:textColor="@color/gray_1"
+                                android:textSize="@dimen/TEXT_L" />
+
+
+                        <ImageView
+                                android:layout_width="@dimen/DIMEN_20"
+                                android:layout_height="@dimen/DIMEN_25"
+                                android:layout_gravity="center"
+                                android:src="@mipmap/ic_in_g" />
+
+                    </LinearLayout>
+                    <View
+                            style="@style/GreyInterval"
+                            android:layout_marginLeft="@dimen/DIMEN_10"></View>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

@@ -239,10 +239,10 @@
     <string name="booking">申请约标</string>
     <string name="unbind">解绑</string>
     <string name="sync">同步</string>
-    <string name="against_red_packet">抵扣红包</string>
+    <string name="against_red_packet">优惠券</string>
     <string name="comfirm_buttom">确认</string>
     <string name="cancel_buttom">取消</string>
-    <string name="my_red_packet">我的红包</string>
+    <string name="my_red_packet">我的卡券</string>
     <string name="modify_custody_password">修改存管密码</string>
 
     <string name="Quick_top_up">快捷充值</string>
@@ -285,4 +285,6 @@
 \n\n约标限制：一个约标项目仅由一个用户进行约标（如果约标金额小于标的金额时，则多出部分则自动转为手动标供其他投资人投至满标为止。）
 
         </string>
+    <string name="message_post_success">权限获取成功</string>
+    <string name="message_post_failed">权限获取失败</string>
 </resources>

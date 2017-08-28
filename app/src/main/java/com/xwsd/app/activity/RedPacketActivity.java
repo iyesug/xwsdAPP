@@ -8,12 +8,14 @@ import android.widget.ListView;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.xwsd.app.AppContext;
+import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
 import com.xwsd.app.adapter.BaseAdapterHelper;
 import com.xwsd.app.adapter.QuickAdapter;
 import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.base.BaseActivity;
-import com.xwsd.app.bean.prot_jiaBean;
+import com.xwsd.app.bean.RedpackageBean;
+import com.xwsd.app.event.MyEvent;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
@@ -22,8 +24,11 @@ import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import okhttp3.Call;
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by Gy on 2017/6/16.
@@ -47,8 +52,9 @@ public class RedPacketActivity extends BaseActivity implements View.OnClickListe
     private String oddNumber;
 
     private static LinearLayout mVIew;
-    private prot_jiaBean mprot_jiaBean;
-    private static String id;
+    private RedpackageBean mprot_jiaBean;
+    private static RedpackageBean.Data.records chooseRedpackage;
+    DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected void onBeforeSetContentLayout() {
@@ -80,19 +86,21 @@ public class RedPacketActivity extends BaseActivity implements View.OnClickListe
     }
     //oddNumber
     private void getData() {
-        call = ApiHttpClient.getjiaxiTicket(AppContext.getUserBean().data.userId,oddNumber, new StringCallback() {
+
+        call = ApiHttpClient.moneyLotteries(AppContext.getUserBean().data.userId, new StringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
                 mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                TLog.error("抵扣红包:" + e);
             }
             @Override
             public void onResponse(String response, int id) {
-                TLog.error("加息券:" + response);
+                TLog.error("抵扣红包:" + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getInt("status") == 1) {
                         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                        mprot_jiaBean = GsonUtils.jsonToBean(response, prot_jiaBean.class);
+                        mprot_jiaBean = GsonUtils.jsonToBean(response, RedpackageBean.class);
                         setData();
                     } else {
                         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
@@ -108,22 +116,53 @@ public class RedPacketActivity extends BaseActivity implements View.OnClickListe
     private void setData() {
         if (mprot_jiaBean.data.records == null || mprot_jiaBean.data.records.size() <= 0) {
             mErrorLayout.setErrorType(EmptyLayout.NODATA);
+            ToastUtil.showToast("您当前没有抵扣红包");
+
         }
         if (adapter == null) {
-            adapter = new QuickAdapter<prot_jiaBean.Data.PreInfo>(this, R.layout.item_jiaxi, mprot_jiaBean.data.records) {
+            adapter = new QuickAdapter<RedpackageBean.Data.records>(this, R.layout.item_hongbao, mprot_jiaBean.data.records) {
                 @Override
-                protected void convert(BaseAdapterHelper helper, prot_jiaBean.Data.PreInfo item) {
-                    helper.setText(R.id.jiaxi_num, item.name.split("\\%")[0] + "%");
-                    helper.setText(R.id.jiaxi_time, item.endtime.split(" ")[0]);
-                    helper.setText(R.id.use_type, item.type);
-                    helper.setText(R.id.use_money, item.money);
+                protected void convert(BaseAdapterHelper helper, RedpackageBean.Data.records item) {
+                    if("invest_money".equals(item.type)){
+                        helper.setText(R.id.money_rate, "￥"+item.money_rate);
+                    }else if("interest".equals(item.type)){
+                        helper.setText(R.id.money_rate, Float.parseFloat(item.money_rate)*100+"%");
+                    }
+
+                    helper.setText(R.id.name, item.name);
+
+                    //有效期
+                    helper.setText(R.id.endtime, item.endtime);
+
+                    //设置金额
+                    String low=item.money_lower;
+                    String up=item.money_uper;
+                    if(item.money_lower==null){
+                        low="0";
+                    }
+                    if(item.money_uper==null){
+                        up="无限";
+                    }
+                    helper.setText(R.id.money_lower, low+"元 - "+up+"元");
+
+                    //设置使用月标
+                    if(item.period_lower==null&&item.period_uper==null){
+                        helper.setText(R.id.period, "无限制");
+                    }else if(item.period_lower!=null&&item.period_uper==null){
+                        helper.setText(R.id.period, "大等于"+item.period_lower);
+                    }else if(item.period_lower==null&&item.period_uper!=null){
+                        helper.setText(R.id.period, "小等于"+item.period_uper);
+                    }else{
+                        helper.setText(R.id.period, item.period_lower+"月 - "+item.period_uper+"月");
+                    }
+
                 }
             };
             list_view.setAdapter(adapter);
             list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    RedPacketActivity.id = mprot_jiaBean.data.records.get(position).id + "";
+                    RedPacketActivity.chooseRedpackage = mprot_jiaBean.data.records.get(position);
                     LinearLayout mView = (LinearLayout)view.findViewById(R.id.mview);
                     if(mVIew!=null){
                         mVIew.setBackgroundResource(R.mipmap.jiaxiquan);
@@ -174,13 +213,17 @@ public class RedPacketActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sure://使用
-                if(id != null && id.length() > 0){
-                    uesTicket(id);
+                if(chooseRedpackage != null ){
+//                    uesTicket(id);
+
+                    EventBus.getDefault().post(new MyEvent(chooseRedpackage));
+                    AppManager.getAppManager().finishActivity();
                 }else {
-                    ToastUtil.showToast("请选择加息券");
+                    ToastUtil.showToast("请选择抵扣红包");
                 }
                 break;
             case R.id.cancel://取消
+                EventBus.getDefault().post(new MyEvent((RedpackageBean.Data.records)null));
                 finish();
                 break;
         }

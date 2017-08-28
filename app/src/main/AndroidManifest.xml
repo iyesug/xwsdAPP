@@ -54,6 +54,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--友盟业务配置开始-->
+        <meta-data android:value="599ba7681c5dd065c40006f7" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
+        <!--友盟业务配置结束-->
+
         <!--sophix业务配置开始-->
         <meta-data
                 android:name="com.taobao.android.hotfix.IDSECRET"

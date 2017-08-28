@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import com.baidu.mobstat.StatService;
 import com.gnwai.loadingview.LoadDialog;
+import com.umeng.analytics.MobclickAgent;
 import com.xwsd.app.R;
 
 /**
@@ -57,6 +58,7 @@ public abstract class BaseFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         init();
+        MobclickAgent.onPageStart(title);
         //百度页面统计开始
         StatService.onPageStart(this.getActivity(),title);
         isPrepared = true;
@@ -66,6 +68,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(title);
         StatService.onPageEnd(this.getActivity(),title);
     }
 

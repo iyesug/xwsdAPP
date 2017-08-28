@@ -157,13 +157,13 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.ll_unite_deposit:
                 BuriedPointUtil.buriedPoint("账户安全绑定第三方账户");
-                if(AppContext.getUserBean().data.custodyId==null||"0".equals(AppContext.getUserBean().data.custodyId)||"".equals(AppContext.getUserBean().data.custodyId)){
+//                if(AppContext.getUserBean().data.custodyId==null||"0".equals(AppContext.getUserBean().data.custodyId)||"".equals(AppContext.getUserBean().data.custodyId)){
                     intent = new Intent(AccountSafetyActivity.this, OpenDepositoryActivity.class);
                     startActivity(intent);
-                }else{
+//                }else{
                     ToastUtil.showToastShort(getString(R.string.alredy_open_depository));
 
-                }
+//                }
 
                 break;
             case R.id.ll_modify_update_phone:
@@ -258,6 +258,7 @@ public class AccountSafetyActivity extends BaseActivity implements View.OnClickL
         }
 
     }
+
 
     @Override
     protected void onResume() {

@@ -8,6 +8,7 @@ import android.view.View;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.gnwai.groupeeditview.GroupeEditView;
+import com.tendcloud.appcpa.TalkingDataAppCpa;
 import com.xwsd.app.AppContext;
 import com.xwsd.app.AppManager;
 import com.xwsd.app.R;
@@ -129,7 +130,10 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                             JSONObject jsonObject = new JSONObject(response);
                             ToastUtil.showToastShort(jsonObject.getString("msg"));
                             if (jsonObject.getInt("status") == 1) {
+
                                 UserBean userBean = GsonUtils.jsonToBean(response, UserBean.class);
+                                //在用户帐号登录成功的时候调用TalkingDataAppCpa的onLogin方法
+                                TalkingDataAppCpa.onLogin(userBean.data.userName);
 //                                设置用户信息
                                 AppContext.setUserBean(userBean);
                                 userActivity.setParam(UserParam.USER_ID, userBean.data.userId);

@@ -16,8 +16,10 @@ import com.xwsd.app.api.ApiHttpClient;
 import com.xwsd.app.api.XWSDRequestAdresse;
 import com.xwsd.app.base.BaseActivity;
 import com.xwsd.app.bean.AgreeCardBean;
+import com.xwsd.app.bean.RedpackageBean;
 import com.xwsd.app.constant.BroadcastParam;
 import com.xwsd.app.constant.UserParam;
+import com.xwsd.app.event.MyEvent;
 import com.xwsd.app.tools.GsonUtils;
 import com.xwsd.app.tools.TLog;
 import com.xwsd.app.tools.ToastUtil;
@@ -26,6 +28,9 @@ import com.xwsd.app.view.NavbarManage;
 import com.zhy.http.okhttp.callback.StringCallback;
 import com.zhy.http.okhttp.request.RequestCall;
 import okhttp3.Call;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,8 +74,16 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
 
     @Bind(R.id.et_money)
     EditText et_money;
+
     @Bind(R.id.ll_red_packet)
     LinearLayout ll_red_packet;
+
+
+    @Bind(R.id.tv_title)
+    TextView tv_title;
+
+    RedpackageBean.Data.records chooseRedpackage;
+    String lotteryID="0";
 
     private AgreeCardBean agreeCardBeanBaofu;
     private AgreeCardBean agreeCardBeanFuyou;
@@ -107,6 +120,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
         super.onDestroy();
         //解绑广播
         unregisterReceiver(myBroadcastReciever);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -128,6 +142,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
 
         title=intent.getStringExtra(UserParam.TITLE);
         //设置导航栏
@@ -143,9 +158,13 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
         });
 
 
+        Intent intent = getIntent();
+        type = intent.getIntExtra(UserParam.TYPE, TYPE_ALL_BID);
+        id = intent.getStringExtra(UserParam.DATA);
 
-
-
+        investMoney = intent.getStringExtra("investMoney");
+//        oddMoneyLast =intent.getFloatExtra(UserParam.MONEY,0);
+        navbarManage.setCentreStr(intent.getStringExtra(UserParam.TITLE));
 
         error_layout.setOnLayoutClickListener(new View.OnClickListener() {
             @Override
@@ -206,6 +225,7 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                 }
             });
         } else {
+            ll_red_packet.setVisibility(View.GONE);
             ApiHttpClient.getMaxBuy(AppContext.getUserBean().data.userId, id, new StringCallback() {
                 @Override
                 public void onError(Call call, Exception e, int id) {
@@ -346,6 +366,12 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                     ToastUtil.showToastShort("剩余金额不能低于50元");
                     return;
                 }
+                if (chooseRedpackage!=null&&chooseRedpackage.money_lower!=null&&
+                        Float.valueOf(et_money.getText().toString().trim()) < Float.valueOf(chooseRedpackage.money_lower)) {
+                    ToastUtil.showToastShort("购买金额须大于抵扣红包最低使用金额");
+                    return;
+                }
+
                 Intent intent = new Intent(PromptlyInvestActivity.this, WebDetailsActivity.class);
                 String url;
                 if (type == TYPE_ALL_BID) {
@@ -353,10 +379,12 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                     Map<String, String> map = ApiHttpClient.getSortMap();
                     map.put("userId", AppContext.getUserBean().data.userId);
                     map.put("oddNumber", id);
+                    map.put("lotteryID", lotteryID);
                     map.put("money", et_money.getText().toString().trim());
 
                     url = XWSDRequestAdresse.BID + "?userId=" + AppContext.getUserBean().data.userId +
-                            "&oddNumber=" + id + "&money=" + et_money.getText().toString().trim() +
+                            "&oddNumber=" + id + "&money=" + et_money.getText().toString().trim()
+                            + "&lotteryID=" + lotteryID+
                             "&sign=" + ApiHttpClient.sign(map);
                 } else {
                     intent.putExtra(UserParam.TITLE, "购买债权");
@@ -385,6 +413,19 @@ public class PromptlyInvestActivity extends BaseActivity implements View.OnClick
                 break;
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(MyEvent event) {
+        chooseRedpackage=event.getUserData();
+        if(chooseRedpackage==null){
+            tv_title.setText("");
+            lotteryID="0";
+        }
+        tv_title.setText(chooseRedpackage.name);
+        lotteryID=chooseRedpackage.id;
+
+    }
+
 
     private void agreeCard(final String flag){
         call = ApiHttpClient.agreeCard(AppContext.getUserBean().data.userId,flag, new StringCallback() {
